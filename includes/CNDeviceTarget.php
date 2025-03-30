@@ -92,47 +92,4 @@ class CNDeviceTarget {
 
 		return $db->insertId();
 	}
-
-	/**
-	 * Sets the associated devices with a banner
-	 *
-	 * @param int $bannerId Banner ID to modify
-	 * @param string|array $newDevices Single name, or array of names, of devices that should be
-	 *                                 associated with a banner
-	 * @throws RangeException
-	 *
-	 * FIXME Unused, remove
-	 */
-	public static function setBannerDeviceTargets( $bannerId, $newDevices ) {
-		$db = CNDatabase::getPrimaryDb();
-
-		$knownDevices = self::getAvailableDevices( true );
-		$newDevices = (array)$newDevices;
-
-		// Remove all entries from the table for this banner
-		$db->newDeleteQueryBuilder()
-			->deleteFrom( 'cn_template_devices' )
-			->where( [ 'tmp_id' => $bannerId ] )
-			->caller( __METHOD__ )
-			->execute();
-
-		// Add the new device mappings
-		if ( $newDevices ) {
-			$modifyArray = [];
-			foreach ( $newDevices as $device ) {
-				if ( !array_key_exists( $device, $knownDevices ) ) {
-					throw new RangeException( "Device name '$device' not known! Cannot add." );
-				}
-				$modifyArray[] = [
-					'tmp_id' => $bannerId,
-					'dev_id' => $knownDevices[$device]['id']
-				];
-			}
-			$db->newInsertQueryBuilder()
-				->insertInto( 'cn_template_devices' )
-				->rows( $modifyArray )
-				->caller( __METHOD__ )
-				->execute();
-		}
-	}
 }
