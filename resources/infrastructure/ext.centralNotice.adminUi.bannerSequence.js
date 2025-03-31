@@ -680,7 +680,7 @@
 	};
 
 	BannerSequenceUiModel.prototype.validateSkipWithIdentifier = function ( id ) {
-		return ( typeof id === 'string' && id.indexOf( '|' ) === -1 ) || id === null;
+		return ( typeof id === 'string' && !id.includes( '|' ) ) || id === null;
 	};
 
 	BannerSequenceUiModel.prototype.validateDays = function ( days ) {
@@ -719,7 +719,7 @@
 		for ( let i = 0; i < sequence.length; i++ ) {
 			const banner = sequence[ i ].banner;
 
-			if ( banner !== null && assignedBanners.indexOf( banner ) === -1 ) {
+			if ( banner !== null && !assignedBanners.includes( banner ) ) {
 				stepsWithMissingBanners.push( i );
 				sequence[ i ].banner = this.defaultBanner();
 			}

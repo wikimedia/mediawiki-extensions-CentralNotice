@@ -184,7 +184,7 @@
 		 * @return {boolean}
 		 */
 		doSaveBanner: function () {
-			if ( $( '#mw-input-wpbanner-body' ).prop( 'value' ).indexOf( 'document.write' ) > -1 ) {
+			if ( $( '#mw-input-wpbanner-body' ).prop( 'value' ).includes( 'document.write' ) ) {
 				// eslint-disable-next-line no-alert
 				alert( mw.msg( 'centralnotice-documentwrite-error' ) );
 			} else {

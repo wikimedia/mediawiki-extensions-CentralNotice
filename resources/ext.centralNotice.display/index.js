@@ -424,7 +424,7 @@
 				// Do not check user preferences on anon users
 				if (
 					campaign.type === 0 ||
-					state.getData().optedOutCampaigns.indexOf( campaign.type ) !== -1
+					state.getData().optedOutCampaigns.includes( campaign.type )
 				) {
 					// User opted out of viewing this type of campaigns
 					// or campaign does not have a type set

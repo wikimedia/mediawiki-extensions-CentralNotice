@@ -365,8 +365,8 @@
 		 */
 		setItem: function ( key, value, context, ttl, multiStorageOption ) {
 			// Check validity of key
-			if ( ( key.indexOf( SEPARATOR ) !== -1 ) ||
-				( key.indexOf( SEPARATOR_IN_COOKIES ) !== -1 ) ) {
+			if ( ( key.includes( SEPARATOR ) ) ||
+				( key.includes( SEPARATOR_IN_COOKIES ) ) ) {
 
 				setError( 'Invalid key', key, value, context );
 				return false;

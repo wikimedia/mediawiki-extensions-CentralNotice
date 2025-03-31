@@ -165,7 +165,7 @@
 			}
 
 			// Filter for device
-			if ( banner.devices.indexOf( device ) === -1 ) {
+			if ( !banner.devices.includes( device ) ) {
 				continue;
 			}
 
@@ -279,8 +279,8 @@
 
 				// Filter for country if geotargeted
 				if ( campaign.geotargeted && (
-					campaign.countries.indexOf( country ) === -1 && // No country wide match
-					campaign.regions.indexOf( uniqueRegionCode ) === -1 // And no region match
+					!campaign.countries.includes( country ) && // No country wide match
+					!campaign.regions.includes( uniqueRegionCode ) // And no region match
 				) ) {
 					continue;
 				}
@@ -298,7 +298,7 @@
 					}
 
 					// Device
-					if ( banner.devices.indexOf( device ) === -1 ) {
+					if ( !banner.devices.includes( device ) ) {
 						continue;
 					}
 
