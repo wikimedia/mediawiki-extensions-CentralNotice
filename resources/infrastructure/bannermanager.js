@@ -267,7 +267,7 @@
 		 * @param $origFilterStr
 		 */
 		sanitizeFilterStr: function ( $origFilterStr ) {
-			return $origFilterStr.replace( /[^0-9a-zA-Z_-]/g, '' );
+			return $origFilterStr.replace( /\s/g, '_' ).replace( /[^0-9a-zA-Z_-]/g, '' );
 		}
 	};
 
