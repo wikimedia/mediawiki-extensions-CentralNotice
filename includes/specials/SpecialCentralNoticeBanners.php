@@ -39,6 +39,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		SpecialPage::__construct( 'CentralNoticeBanners' );
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}
@@ -538,7 +539,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		}
 	}
 
-	private function generateBannerEditForm() {
+	private function generateBannerEditForm(): array {
 		global $wgCentralNoticeBannerMixins, $wgNoticeUseTranslateExtension, $wgLanguageCode;
 
 		$languages = MediaWikiServices::getInstance()->getLanguageNameUtils()
