@@ -1059,42 +1059,36 @@ class Banner {
 		$db = CNDatabase::getPrimaryDb();
 		$action = 'modified';
 
-		try {
-			// Don't move this to saveBannerInternal--can't be in a transaction
-			// TODO: explain why not. Is text in another database?
-			$this->saveBodyContent( $summary, $user );
+		// Don't move this to saveBannerInternal--can't be in a transaction
+		// TODO: explain why not. Is text in another database?
+		$this->saveBodyContent( $summary, $user );
 
-			// Open a transaction so that everything is consistent
-			$db->startAtomic( __METHOD__ );
+		// Open a transaction so that everything is consistent
+		$db->startAtomic( __METHOD__ );
 
-			if ( !$this->exists() ) {
-				$action = 'created';
-				$this->initializeDbForNewBanner( $db );
-			}
-			$this->saveBannerInternal( $db );
-			$this->logBannerChange( $action, $user, $summary );
+		if ( !$this->exists() ) {
+			$action = 'created';
+			$this->initializeDbForNewBanner( $db );
+		}
+		$this->saveBannerInternal( $db );
+		$this->logBannerChange( $action, $user, $summary );
 
-			$db->endAtomic( __METHOD__ );
+		$db->endAtomic( __METHOD__ );
 
-			// Clear the dirty flags
-			foreach ( $this->dirtyFlags as $flag => &$value ) {
-				$value = false;
-			}
+		// Clear the dirty flags
+		foreach ( $this->dirtyFlags as $flag => &$value ) {
+			$value = false;
+		}
 
-			if ( $this->runTranslateJob ) {
-				// Must be run after banner has finished saving due to some dependencies that
-				// exist in the render job.
-				// TODO: This will go away if we start tracking messages in database :)
-				MessageGroups::singleton()->recache();
-				MediaWikiServices::getInstance()->getJobQueueGroup()->push(
-					RebuildMessageIndexJob::newJob()
-				);
-				$this->runTranslateJob = false;
-			}
-
-		} catch ( Exception $ex ) {
-			$db->rollback( __METHOD__ );
-			throw $ex;
+		if ( $this->runTranslateJob ) {
+			// Must be run after banner has finished saving due to some dependencies that
+			// exist in the render job.
+			// TODO: This will go away if we start tracking messages in database :)
+			MessageGroups::singleton()->recache();
+			MediaWikiServices::getInstance()->getJobQueueGroup()->push(
+				RebuildMessageIndexJob::newJob()
+			);
+			$this->runTranslateJob = false;
 		}
 
 		return $this;
