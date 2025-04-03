@@ -1362,13 +1362,14 @@ class Banner {
 	 *
 	 * @param string $bannerName name of banner
 	 * @param bool $detailed if true, get some more expensive info
+	 * @param bool $fromPrimary Whether to get the Banner Settings from the Primary DB
 	 *
 	 * @return array an array of banner settings
 	 * @throws RangeException
 	 */
-	public static function getBannerSettings( $bannerName, $detailed = true ) {
+	public static function getBannerSettings( $bannerName, $detailed = true, $fromPrimary = false ) {
 		$banner = self::fromName( $bannerName );
-		if ( !$banner->exists() ) {
+		if ( !$banner->exists( $fromPrimary ) ) {
 			throw new RangeException( "Banner doesn't exist!" );
 		}
 
@@ -1535,7 +1536,7 @@ class Banner {
 
 		$endSettings = [];
 		if ( $action !== 'removed' ) {
-			$endSettings = self::getBannerSettings( $this->getName(), true );
+			$endSettings = self::getBannerSettings( $this->getName(), true, true );
 		}
 
 		$dbw = CNDatabase::getPrimaryDb();
@@ -1582,11 +1583,10 @@ class Banner {
 	/**
 	 * Check to see if a banner actually exists in the database
 	 *
-	 * @return bool
 	 * @throws BannerDataException If it's a silly query
 	 */
-	public function exists() {
-		$db = CNDatabase::getReplicaDb();
+	public function exists( bool $fromPrimary = false ): bool {
+		$db = $fromPrimary ? CNDatabase::getPrimaryDb() : CNDatabase::getReplicaDb();
 		if ( $this->name !== null ) {
 			$selector = [ 'tmp_name' => $this->name ];
 		} elseif ( $this->id !== null ) {
