@@ -1066,7 +1066,7 @@ class Banner {
 		// Open a transaction so that everything is consistent
 		$db->startAtomic( __METHOD__ );
 
-		if ( !$this->exists() ) {
+		if ( !$this->exists( true ) ) {
 			$action = 'created';
 			$this->initializeDbForNewBanner( $db );
 		}
