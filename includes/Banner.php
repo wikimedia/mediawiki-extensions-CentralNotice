@@ -206,30 +206,26 @@ class Banner {
 	}
 
 	/**
-	 * Should we allocate this banner to anonymous users.
-	 *
-	 * @return bool
+	 * Should we allocate this banner to anonymous users?
 	 */
-	public function allocateToAnon() {
-		$this->populateBasicData();
+	public function allocateToAnon( bool $fromPrimary = false ): bool {
+		$this->populateBasicData( $fromPrimary );
 		return $this->allocateAnon;
 	}
 
 	/**
-	 * Should we allocate this banner to logged in users.
-	 *
-	 * @return bool
+	 * Should we allocate this banner to logged in users?
 	 */
-	public function allocateToLoggedIn() {
-		$this->populateBasicData();
+	public function allocateToLoggedIn( bool $fromPrimary = false ): bool {
+		$this->populateBasicData( $fromPrimary );
 		return $this->allocateLoggedIn;
 	}
 
 	/**
 	 * Set user state allocation properties for this banner
 	 *
-	 * @param bool $anon Should the banner be allocated to logged out users.
-	 * @param bool $loggedIn Should the banner be allocated to logged in users.
+	 * @param bool $anon Should the banner be allocated to logged out users?
+	 * @param bool $loggedIn Should the banner be allocated to logged in users?
 	 *
 	 * @return $this
 	 */
@@ -351,15 +347,15 @@ class Banner {
 	/**
 	 * Populates basic banner data by querying the cn_templates table
 	 *
-	 * @throws BannerDataException If neither a name or ID can be used to query for data
+	 * @throws BannerDataException If neither a name or an ID can be used to query for data
 	 * @throws BannerExistenceException If no banner data was received
 	 */
-	private function populateBasicData() {
+	private function populateBasicData( bool $fromPrimary = false ) {
 		if ( $this->dirtyFlags['basic'] !== null ) {
 			return;
 		}
 
-		$db = CNDatabase::getReplicaDb();
+		$db = $fromPrimary ? CNDatabase::getPrimaryDb() : CNDatabase::getReplicaDb();
 
 		// What are we using to select on?
 		if ( $this->name !== null ) {
@@ -1374,7 +1370,7 @@ class Banner {
 		}
 
 		$details = [
-			'anon'             => (int)$banner->allocateToAnon(),
+			'anon'             => (int)$banner->allocateToAnon( $fromPrimary ),
 			'account'          => (int)$banner->allocateToLoggedIn(),
 			// TODO: Death to this!
 			'fundraising'      => (int)( $banner->getCategory() === 'fundraising' ),
