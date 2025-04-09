@@ -4,6 +4,23 @@
 			"Don Alessandro"
 		]
 	},
+	"centralnotice-view": "Köster",
+	"centralnotice-save-banner": "Saqla",
+	"centralnotice-live-preview": "Saqlanğan soñki versiyağa baq",
+	"centralnotice-templates": "Bannerler",
 	"centralnotice-settings": "Sazlamalar",
-	"centralnotice-languages": "Tiller"
+	"centralnotice-languages": "Tiller",
+	"centralnotice-view-logs": "Jurnallarnı köster",
+	"prefs-centralnotice-banners": "Bannerler",
+	"prefs-centralnotice-display-banner-types": "Kösterilecek banner türleri",
+	"prefs-description-centralnotice-banners": "Körecek ilân türleriñizni idare etiñiz.",
+	"centralnotice-campaign-type-advocacy": "Advokatlıq",
+	"centralnotice-campaign-type-article-writing": "Maqale yazuv",
+	"centralnotice-campaign-type-event": "Vaqia",
+	"centralnotice-campaign-type-fundraising": "Aqça toplanuvı",
+	"centralnotice-campaign-type-governance": "İdarecilik",
+	"centralnotice-campaign-type-maintenance": "Tehnikiy baqım",
+	"centralnotice-campaign-type-photography": "Fotografiya",
+	"centralnotice-campaign-type-special": "Mahsus",
+	"centralnotice-user-prefs-intro": "Bannerlerde Vikimedia toplulıqlar ve qullanıcıları içün meraqlı ilânlar kösterile.\n\nAşağıda körecek ilân türleriñizni idare etmege imkân bergen parametrler bar. Saytta yapılğan tehnikiy işlernen bağlı olğan ve bütün qullanıcılar içün kerekli sayılğan mahsus bildirmeler episi bir kösterilecek. Daa ziyade malümat içün [[metawikimedia:Special:MyLanguage/CentralNotice|Meta-Vikideki vesiqalarnı]] oquñız."
 }

@@ -29,7 +29,8 @@
 			"Wrightbus",
 			"Xiplus",
 			"Zhxy 519",
-			"捍粵者"
+			"捍粵者",
+			"Cookai1205"
 		]
 	},
 	"centralnotice": "中央公告管理",
@@ -37,7 +38,7 @@
 	"bannerallocation": "中央公告管理",
 	"centralnoticelogs": "中央公告管理",
 	"right-centralnotice-admin": "管理中央公告",
-	"protect-level-centralnotice-admin": "僅允許中央通知管理員",
+	"protect-level-centralnotice-admin": "僅允許中央公告管理員",
 	"restriction-level-centralnotice-admin": "中央通知管理員已保護",
 	"action-centralnotice-admin": "管理中央公告",
 	"centralnotice-desc": "增加中央網站公告",
