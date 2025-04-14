@@ -14,7 +14,8 @@
 			"Robby",
 			"The Evil IP address",
 			"Umherirrender",
-			"Brettchenweber"
+			"Brettchenweber",
+			"Johannnes89"
 		]
 	},
 	"centralnotice": "Verwaltung zentraler Meldungen",
@@ -22,8 +23,8 @@
 	"bannerallocation": "Verwaltung zentraler Meldungen",
 	"centralnoticelogs": "Verwaltung zentraler Meldungen",
 	"right-centralnotice-admin": "Zentrale Meldungen verwalten",
-	"protect-level-centralnotice-admin": "Nur Zentrale-Meldungen-Administratoren erlauben",
-	"restriction-level-centralnotice-admin": "für Zentrale-Meldungen-Administratoren geschützt",
+	"protect-level-centralnotice-admin": "Nur CentralNotice-Administratoren erlauben",
+	"restriction-level-centralnotice-admin": "für CentralNotice-Administratoren geschützt",
 	"action-centralnotice-admin": "zentrale Meldungen verwalten",
 	"centralnotice-desc": "Ermöglicht das Erstellen wikiweiter Meldungen",
 	"centralnotice-summary": "Diese Erweiterung erlaubt die Konfiguration zentraler Meldungen.\nSie kann auch zur Erstellung neuer und Löschung alter Meldungen verwendet werden.",
