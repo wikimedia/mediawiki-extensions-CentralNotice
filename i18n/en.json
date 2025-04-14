@@ -251,7 +251,7 @@
 	"centralnotice-end-time": "End time (UTC)",
 	"centralnotice-banner-not-found-title": "Banner not found",
 	"centralnotice-banner-not-found-contents": "There is no banner with this exact name.",
-	"centralnotice-csp-violation-alert": "Content Security Policy violation detected! Tried to load something from $1.",
+	"centralnotice-csp-violation-alert": "Content Security Policy violation detected. Loading content from off-wiki sources leaks reader data. Please preview banners with no gadgets or third-party addons. Violating URL: $1.",
 	"hidebanners": "Hide banners",
 	"centralnotice-specialhidebanners-p3p": "Some browsers require a P3P compact policy to set cookies in certain situations. However, no compact policy is currently available. Please see the site's human-readable privacy policy.",
 	"centralnotice-banner-history-logger": "Banner history logger",

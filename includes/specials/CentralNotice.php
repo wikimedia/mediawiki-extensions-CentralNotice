@@ -47,6 +47,7 @@ class CentralNotice extends UnlistedSpecialPage {
 		parent::__construct( 'CentralNotice' );
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}

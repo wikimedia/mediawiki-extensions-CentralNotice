@@ -5,6 +5,7 @@
 		"wikimedia/qunit"
 	],
 	"rules": {
-		"no-jquery/no-parse-html-literal": "off"
+		"no-jquery/no-parse-html-literal": "off",
+		"no-jquery/no-done-fail": "warn"
 	}
 }

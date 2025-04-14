@@ -114,7 +114,7 @@
 			}
 
 			// Fallback cookies? LocalStorage seems to work, so purge them.
-			if ( document.cookie.indexOf( PREFIX_AND_SEPARATOR_IN_COOKIES ) !== -1 ) {
+			if ( document.cookie.includes( PREFIX_AND_SEPARATOR_IN_COOKIES ) ) {
 				purgeFallbackCookies();
 			}
 

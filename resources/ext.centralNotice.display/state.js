@@ -441,7 +441,7 @@
 			// Is the campaign category among the categories configured to use
 			// legacy mechanisms?
 			state.data.campaignCategoryUsesLegacy =
-				config.categoriesUsingLegacy.indexOf( campaignCategory ) !== -1;
+				config.categoriesUsingLegacy.includes( campaignCategory );
 		},
 
 		/**
@@ -609,7 +609,7 @@
 			const tests = state.data.tests = state.data.tests || [];
 
 			// Add if it isn't already registered.
-			if ( tests.indexOf( identifier ) === -1 ) {
+			if ( !tests.includes( identifier ) ) {
 				tests.push( identifier );
 
 				if ( tests.length === 1 ) {

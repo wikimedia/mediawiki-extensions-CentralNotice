@@ -626,7 +626,7 @@
 			const $this = $( this ),
 				assignedBucket = +$this.val(),
 				bannerName = $this.data( 'banner-name' ),
-				removed = ( removedBanners.indexOf( bannerName ) !== -1 );
+				removed = ( removedBanners.includes( bannerName ) );
 
 			// Iterate over all buckets, adding banners to the index or removeing them,
 			// as needed. (assignedBanners has elements for all possible buckets.)

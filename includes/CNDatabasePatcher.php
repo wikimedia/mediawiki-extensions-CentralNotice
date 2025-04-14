@@ -22,7 +22,14 @@ class CNDatabasePatcher implements LoadExtensionSchemaUpdatesHook {
 	public function onLoadExtensionSchemaUpdates( $updater ) {
 		$base = __DIR__ . '/../sql';
 		$dbType = $updater->getDB()->getType();
-		$updater->addExtensionTable( 'cn_notices', "$base/$dbType/tables-generated.sql" );
+
+		$updater->addExtensionUpdateOnVirtualDomain( [
+			'virtual-centralnotice',
+			'addTable',
+			'cn_notices',
+			"$base/$dbType/tables-generated.sql",
+			true
+		] );
 
 		if ( $dbType === 'mysql' ) {
 			// 1.35
@@ -118,5 +125,45 @@ class CNDatabasePatcher implements LoadExtensionSchemaUpdatesHook {
 			'nr_notice_id_region',
 			"$base/$dbType/patch-cn_notice_regions-unique-to-pk.sql"
 		] );
+
+		$updater->addExtensionUpdateOnVirtualDomain( [
+			'virtual-centralnotice',
+			[ __CLASS__, 'doOnSchemaUpdatesPopulateKnownDevices' ],
+		] );
+	}
+
+	/**
+	 * While this is pre-1.24... The schema updates do not insert these necessary rows.
+	 */
+	public static function doOnSchemaUpdatesPopulateKnownDevices( DatabaseUpdater $updater ): void {
+		$updateKey = 'populateKnownDevices-1.24';
+		if ( $updater->updateRowExists( $updateKey ) ) {
+			$updater->output( "...default known devices already added\n" );
+			return;
+		}
+
+		$updater->output( "Adding known devices...\n" );
+		$dbw = $updater->getDB();
+		$dbw->newInsertQueryBuilder()
+			->insertInto( 'cn_known_devices' )
+			->ignore()
+			->rows( [
+				[ 'dev_id' => 1, 'dev_name' => 'desktop',
+					'dev_display_label' => '{{int:centralnotice-devicetype-desktop}}' ],
+				// 1.24
+				[ 'dev_id' => 2, 'dev_name' => 'android',
+					'dev_display_label' => '{{int:centralnotice-devicetype-android}}' ],
+				[ 'dev_id' => 3, 'dev_name' => 'iphone',
+					'dev_display_label' => '{{int:centralnotice-devicetype-iphone}}' ],
+				[ 'dev_id' => 4, 'dev_name' => 'ipad',
+					'dev_display_label' => '{{int:centralnotice-devicetype-ipad}}' ],
+				[ 'dev_id' => 5, 'dev_name' => 'unknown',
+					'dev_display_label' => '{{int:centralnotice-devicetype-unknown}}' ],
+			] )
+			->caller( __METHOD__ )
+			->execute();
+
+		$updater->output( "Done\n" );
+		$updater->insertUpdateRow( $updateKey );
 	}
 }
