@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Exception\ErrorPageError;
+use MediaWiki\Exception\ReadOnlyError;
 use MediaWiki\Html\Html;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;

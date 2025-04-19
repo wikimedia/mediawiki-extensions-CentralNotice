@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Exception\ErrorPageError;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\Field\HTMLButtonField;
 use MediaWiki\HTMLForm\Field\HTMLCheckField;
