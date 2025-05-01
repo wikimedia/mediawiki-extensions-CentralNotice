@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"IJzeren Jan"
+		]
+	},
+	"centralnotice": "Upravljenje centralnymi uvědomjenjami",
+	"bannerallocation": "Upravljenje centralnymi uvědomjenjami",
+	"centralnoticelogs": "Upravljenje centralnymi uvědomjenjami",
+	"right-centralnotice-admin": "Upravljenje centralnymi uvědomjenjami",
+	"prefs-centralnotice-banners": "Banery",
+	"prefs-centralnotice-display-banner-types": "Pokazyvane tipy banerov",
+	"centralntoice-deleted-campaign-type": "$1 (udaljeny tip)",
+	"centralnotice-campaign-type-advocacy": "Zastupničstvo",
+	"centralnotice-campaign-type-article-writing": "Pisanje člankov",
+	"centralnotice-campaign-type-event": "Sobytje",
+	"centralnotice-campaign-type-fundraising": "Sbiranje srědstv",
+	"centralnotice-campaign-type-governance": "Rukovodstvo",
+	"centralnotice-campaign-type-maintenance": "Poddržka",
+	"centralnotice-campaign-type-photography": "Fotografija",
+	"centralnotice-campaign-type-special": "Specialny",
+	"centralnotice-user-prefs-intro": "Banery pokazyvajut oglašenja, ktore mogut zainteresovati občiny i koristnikov Wikimedia.\n\nPoniže nahodet se opcije, ktorymi vy možete ustaviti, ktore tipy oglašenij vy hočete uviděti. Někoje uvědomjenja o platformě, napr. o poddržkě sajta i specialne uvědomjenja neobhodime za vsih koristnikov, vsegda budut pokazyvane. Za podrobnu informaciju, prosimo, pročitajte [[metawikimedia:Special:MyLanguage/CentralNotice|dokumentaciji v Meta-Viki]]."
+}
