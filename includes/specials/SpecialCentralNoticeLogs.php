@@ -140,7 +140,12 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 						[ 'class' => 'cn-log-filter-label' ] )
 				) .
 				Html::rawElement( 'td', [],
-					Xml::input( 'campaign', 25, ( $reset || $campaign === null ? '' : $campaign ) )
+					Html::input(
+						'campaign',
+						( $reset || $campaign === null ? '' : $campaign ),
+						'text',
+						[ 'size' => 25 ]
+					)
 				)
 			);
 
@@ -150,7 +155,7 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 						[ 'class' => 'cn-log-filter-label' ] )
 				) .
 				Html::rawElement( 'td', [],
-					Xml::input( 'user', 25, ( $reset || $user === null ? '' : $user ) )
+					Html::input( 'user', ( $reset || $user === null ? '' : $user ), 'text', [ 'size' => 25 ] )
 				)
 			);
 
