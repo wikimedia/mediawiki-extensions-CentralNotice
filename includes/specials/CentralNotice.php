@@ -513,7 +513,7 @@ class CentralNotice extends UnlistedSpecialPage {
 				$this->msg( 'centralnotice-notice-name' )->text()
 			) .
 			Html::rawElement( 'td', [],
-				Xml::input( 'noticeName', 25, $request->getVal( 'noticeName', '' ) )
+				Html::input( 'noticeName', $request->getVal( 'noticeName', '' ), 'text', [ 'size' => 25 ] )
 			)
 		);
 
@@ -1882,17 +1882,17 @@ class CentralNotice extends UnlistedSpecialPage {
 			)
 		);
 
-		$hiddenInputs = Xml::input(
+		$hiddenInputs = Html::input(
 			'geo_countries',
-			false,
 			implode( ',', $selectedCountries ),
+			'text',
 			[ 'type' => 'hidden', 'id' => 'geo_countries_value' ]
 		);
 
-		$hiddenInputs .= Xml::input(
+		$hiddenInputs .= Html::input(
 			'geo_regions',
-			false,
 			implode( ',', $selectedRegions ),
+			'text',
 			[ 'type' => 'hidden', 'id' => 'geo_regions_value' ]
 		);
 
