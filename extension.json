@@ -167,7 +167,6 @@
 				"ext.centralNotice.kvStore",
 				"ext.eventLogging",
 				"mediawiki.cookie",
-				"mediawiki.Uri",
 				"mediawiki.util",
 				"mediawiki.storage"
 			]
@@ -249,6 +248,7 @@
 		"remoteExtPath": "CentralNotice",
 		"scripts": [
 			"tests/qunit/ext.centralNotice.display/index.tests.js",
+			"tests/qunit/ext.centralNotice.display/hide.tests.js",
 			"tests/qunit/ext.centralNotice.display/chooser.tests.js",
 			"tests/qunit/ext.centralNotice.kvStore/kvStore.tests.js",
 			"tests/qunit/ext.centralNotice.startUp/kvStoreMaintenance.tests.js",

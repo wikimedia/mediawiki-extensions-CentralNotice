@@ -117,21 +117,35 @@
 				{ expires: date, path: '/' }
 			);
 
-			// Iterate over all configured URLs to hide this category of banner
-			// for all wikis in a cluster
-			mw.config.get( 'wgNoticeHideUrls' ).forEach( ( val ) => {
+			this.fetchHideUrls(
+				mw.config.get( 'wgNoticeHideUrls' ),
+				duration,
+				category,
+				newReason
+			);
+		},
 
-				const url = new mw.Uri( val );
-				url.extend(
-					{
-						duration: duration,
-						category: category,
-						reason: newReason
-					}
-				);
+		/**
+		 * Iterate over all configured URLs to hide this category of banner
+		 * for all wikis in a cluster
+		 *
+		 * @param {string[]} hideUrls
+		 * @param {number} duration Cookie duration, in seconds
+		 * @param {string} categoryName Reason to store in the hide cookie
+		 * @param {string} newReason Reason to store in the hide cookie
+		 */
+		fetchHideUrls: function ( hideUrls, duration, categoryName, newReason ) {
+			return hideUrls.map( ( hideUrl ) => {
+				const url = new URL( hideUrl, location );
+				url.searchParams.set( 'duration', duration );
+				url.searchParams.set( 'category', categoryName );
+				url.searchParams.set( 'reason', newReason );
 
-				// TODO Can we use sendBeacon here? Would it be worth it?
-				document.createElement( 'img' ).src = url.toString();
+				// NOTE: We can't use sendBeacon here since that would
+				// trigger tons of uncachable POST requests from readers.
+				const img = document.createElement( 'img' );
+				img.src = url.toString();
+				return img;
 			} );
 		},
 

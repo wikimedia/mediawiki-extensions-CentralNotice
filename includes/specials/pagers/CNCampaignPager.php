@@ -2,7 +2,6 @@
 
 use MediaWiki\Html\Html;
 use MediaWiki\Pager\TablePager;
-use MediaWiki\Xml\Xml;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -381,10 +380,10 @@ class CNCampaignPager extends TablePager {
 
 			$htmlOut .= $this->onSpecialCN->makeSummaryField();
 
-			$htmlOut .= Xml::input(
+			$htmlOut .= Html::input(
 				'centralnoticesubmit',
-				false,
 				$this->msg( 'centralnotice-modify' )->text(),
+				'text',
 				[
 					'type' => 'button',
 					'id' => 'cn-campaign-pager-submit'

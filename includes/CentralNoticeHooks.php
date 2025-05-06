@@ -15,6 +15,7 @@ use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\ResourceLoader\Hook\ResourceLoaderRegisterModulesHook;
 use MediaWiki\ResourceLoader\ResourceLoader;
+use MediaWiki\Skin\Skin;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\User\User;
 
@@ -107,7 +108,6 @@ class CentralNoticeHooks implements
 						'jquery.ui',
 						'mediawiki.jqueryMsg',
 						'mediawiki.util',
-						'mediawiki.Uri'
 					],
 					'scripts' => [
 						'vendor/jquery.ui.multiselect/ui.multiselect.js',
@@ -136,7 +136,6 @@ class CentralNoticeHooks implements
 					'dependencies' => [
 						'ext.centralNotice.adminUi',
 						'jquery.ui',
-						'mediawiki.Uri'
 					],
 					'scripts' => 'infrastructure/bannermanager.js',
 					'styles' => 'infrastructure/bannermanager.less',
@@ -160,7 +159,6 @@ class CentralNoticeHooks implements
 						'jquery.ui',
 						'ext.centralNotice.kvStore',
 						'mediawiki.api',
-						'mediawiki.Uri',
 						'mediawiki.Title',
 						'mediawiki.user',
 					],
