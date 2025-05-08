@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Sasan700",
+			"Stjn",
 			"Исмаил Садуев",
 			"Умар"
 		]
@@ -287,18 +288,25 @@
 	"centralnotice-large-banner-limit-help": "Цкъа йоккха баннер гайта, тӀаккха кегийчу баннерашна тӀе дӀадерзаде. А а, В а талламашкахь йаккхий баннерш хӀиттайе, ткъа С а, Д а талламашкахь кегий баннерш хӀиттайе.",
 	"centralnotice-large-banner-limit-days": "ДӀатохаран хан",
 	"centralnotice-large-banner-limit-days-help": "Дуьххьара гайтиначул тӀаьхьа йоккха баннер гайтар дӀадаккхаран денойн терахь.",
+	"centralnotice-large-banner-limit-randomize": "Лаамаза масала хийцадалар",
+	"centralnotice-large-banner-limit-randomize-help": "Сегменташна йукъахь нормалан хийцам бу А-ра С-га, В-ра Д-га, нагахь санна и хьаьрк хьаькхча, йешархой ларамаза дӀабоьлху С йа Д сегменташка.",
 	"centralnotice-large-banner-limit-identifier": "Клиентан лармин идентификатор",
+	"centralnotice-large-banner-limit-identifier-help": "Йоккха баннер гайтар дӀатоьхна ду цхьана идентификаторца йолчу кампанешна йукъахь. Стандартан маьӀна 'centralnotice-frbanner-seen-fullscreen' лело мегар ду ширйелла кукиш дӀасайаржош.",
 	"centralnotice-banner-sequence": "Баннерийн рогӀалла",
 	"centralnotice-banner-sequence-help": "Масех баннер дӀахӀоттайе билгалчу рогӀаллехь.",
 	"centralnotice-banner-sequence-days": "ДӀатохаран хан (денош)",
+	"centralnotice-banner-sequence-days-error": "Нулел доккха дерриге терахь хила деза.",
+	"centralnotice-banner-sequence-days-help": "«Идентификаторца дӀасалела» меттигашкахула (лахахь) байракхаш хӀиттийна денош лелаш хир ду, гӀулчахь массо агӀонан хьажарийн йуьхьанца гайтарна тӀаьхьа.",
 	"centralnotice-banner-sequence-bucket-seq": "Сегментехь $1 рогӀалла ($2 {{PLURAL:$2|агӀо хьажар}})",
 	"centralnotice-banner-sequence-bucket-add-step": "Цхьа гӀулч тӀетоха",
 	"centralnotice-banner-sequence-banner": "Баннер",
 	"centralnotice-banner-sequence-page-views": "АгӀонашка хьовсийна",
 	"centralnotice-banner-sequence-skip-with-id": "Идентификаторехула чекхйаккха",
+	"centralnotice-banner-sequence-banner-removed-error": "Оцу гӀулчана баннер харжар меттахӀоттийра, хӀунда аьлча баннер дӀайаккха хӀоттийна йара йа кхечу контейнере дӀахийцира. Кхин цхьа харжам бехьара ахь.",
 	"centralnotice-banner-sequence-page-views-error": "ГӀулч лаххара а цхьа агӀо хьаьжна йеза.",
 	"centralnotice-banner-sequence-skip-with-id-error": "Идентификатор чохь хила йиш йац \"|\".",
 	"centralnotice-banner-sequence-no-banner": "(баннер йац)",
+	"centralnotice-banner-sequence-detailed-help": "ХӀора сегментана къаьстина рогӀаллаш хӀиттайо. Муьлххачу а гӀулчана рогӀаллин сегментана тӀедиллина баннерш бен ца леладо. Даима гӀулч гайта, \"Идентификаторца дӀасалела\" меттиг йаьсса йита. Нагахь санна идентификатор хӀоттийна йелахь, тӀаккха гӀулч чекхйаьлча, и идентификатор лела а йеш, браузерехь байракх латтор йу, ткъа рогӀера лелоран оццу идентификаторца гӀулч кхаьчча, иза дӀайоккхур йу. \"Боккха баннер доза а, хийцам а\" миксинера идентификаторш цхьаьнадогӀуш ду, иштта тидаме оьцур ду. Цкъа рогӀалла чекхйаьлча, иза йуха а йуьххьера дуьйна дӀайолало. (Цхьа рогӀалла карла ца йалийта, леладе \"Гайтамийн цатоам\" миксин, гайтамаш лахйаран Ӏалашонца.)",
 	"centralnotice-impression-events-sample-rate": "Хиламийн гайтаран кесталла",
 	"centralnotice-impression-events-sample-rate-help": "Хиламийн регистраци йан стандартан йолчух къаьсташ йолу кесталла хӀоттаде.",
 	"centralnotice-impression-events-sample-rate-field": "Хиламийн гайтаран кесталла (0-0,01 йукъахь хила беза, йукъа а лоцуш)",
@@ -330,5 +338,6 @@
 	"centralnotice-campaign-type-maintenance": "Хьашташ кхочушдар",
 	"centralnotice-campaign-type-photography": "Сурт",
 	"centralnotice-campaign-type-special": "Леррина",
-	"centralnotice-user-prefs-intro": "Баннерш гойту Викимедиан йукъараллина а, декъашхошна а хьашто йолу дӀакхайкхорш.\n\nЛахахь гойту хьуна гур йолу дӀакхайкхоршна урхалладан аьтто беш йолу параметраш. Платформин цхьадолу дӀахаийтарш  — сайтан хьашташ кхочушдеш долу а, чӀогӀа оьшу дӀахаийтарш  а берриге декъашхошна оьшуш лоруш дерш а, — гуттара гуш хира ду. Кхин сов хаа, дехар до, йеша [[metawikimedia:Special:MyLanguage/CentralNotice|Мета-вики тӀера документаци]]."
+	"centralnotice-user-prefs-intro": "Баннерш гойту Викимедиан йукъараллина а, декъашхошна а хьашто йолу дӀакхайкхорш.\n\nЛахахь гойту хьуна гур йолу дӀакхайкхоршна урхалладан аьтто беш йолу параметраш. Платформин цхьадолу дӀахаийтарш  — сайтан хьашташ кхочушдеш долу а, чӀогӀа оьшу дӀахаийтарш  а берриге декъашхошна оьшуш лоруш дерш а, — гуттара гуш хира ду. Кхин сов хаа, дехар до, йеша [[metawikimedia:Special:MyLanguage/CentralNotice|Мета-вики тӀера документаци]].",
+	"namespaceinfo-description-ns866": "[[mw:Special:MyLanguage/Extension:CentralNotice|CentralNotice]] баннерашкахь лелош долу хаамаш а, церан гочдарш а"
 }
