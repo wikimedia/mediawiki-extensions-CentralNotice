@@ -317,8 +317,11 @@
 	"tag-centralnotice": "Центран хаам",
 	"tag-centralnotice-description": "Администраторан интерфейс CentralNotice тӀехь бина хийцамаш",
 	"tag-centralnotice_translation": "Центран хаамийн гочдар",
+	"tag-centralnotice_translation-description": "Translate-шордарца кхоьллина CentralNotice чулацам хийца",
 	"centralnotice-banner-template": "Баннеран кеп",
+	"centralnotice-banner-is-template": "ХӀара баннер — баннераш кхолла лерина кеп йу",
 	"centralnotice-banner-template-info": "(кеп)",
+	"centralnotice-banner-template-error": "Баннер кхолла йиш йац нийса йоцчу баннеран буха тӀехь, йа кеп санна билгалйаьккхина йоцу баннеран буха тӀехь.\nТӀетохар дац",
 	"centralnotice-add-banner-from-template": "Кепан чуьра баннер тӀетоха",
 	"centralnotice-messages-banner-in-campaign": "Цхьана я масех кампанешна тӀедиллина долчу хенахь хӀара баннер кеп санна билгалйаккха йиш йац. ХӀара баннер хӀокху кампанешна лерина йу:",
 	"centralnotice-create-from-template-checkbox-label": "Кепах кхолла",
@@ -339,5 +342,6 @@
 	"centralnotice-campaign-type-photography": "Сурт",
 	"centralnotice-campaign-type-special": "Леррина",
 	"centralnotice-user-prefs-intro": "Баннерш гойту Викимедиан йукъараллина а, декъашхошна а хьашто йолу дӀакхайкхорш.\n\nЛахахь гойту хьуна гур йолу дӀакхайкхоршна урхалладан аьтто беш йолу параметраш. Платформин цхьадолу дӀахаийтарш  — сайтан хьашташ кхочушдеш долу а, чӀогӀа оьшу дӀахаийтарш  а берриге декъашхошна оьшуш лоруш дерш а, — гуттара гуш хира ду. Кхин сов хаа, дехар до, йеша [[metawikimedia:Special:MyLanguage/CentralNotice|Мета-вики тӀера документаци]].",
-	"namespaceinfo-description-ns866": "[[mw:Special:MyLanguage/Extension:CentralNotice|CentralNotice]] баннерашкахь лелош долу хаамаш а, церан гочдарш а"
+	"namespaceinfo-description-ns866": "[[mw:Special:MyLanguage/Extension:CentralNotice|CentralNotice]] баннерашкахь лелош долу хаамаш а, церан гочдарш а",
+	"namespaceinfo-description-ns867": "Центран хаамийн баннеран хаамашна лерина дийцарийн агӀонаш"
 }
