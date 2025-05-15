@@ -290,11 +290,10 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 		$fullUrlEnc = Html::encodeJsVar( $fullUrl );
 		$typeEnc = Html::encodeJsVar( $type );
 		$htmlOut = '';
-		$htmlOut .= Xml::radio(
+		$htmlOut .= Html::radio(
 			'log_type',
-			$id,
 			$this->logType == $type,
-			[ 'onclick' => "switchLogs( " . $fullUrlEnc . ", " . $typeEnc . " )" ]
+			[ 'value' => $id, 'onclick' => "switchLogs( " . $fullUrlEnc . ", " . $typeEnc . " )" ]
 		);
 		$htmlOut .= Xml::label( $this->msg( $message )->text(), $id );
 		return $htmlOut;

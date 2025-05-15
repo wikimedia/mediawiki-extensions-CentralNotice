@@ -232,7 +232,7 @@
 	"centralnotice-country-a2": "Label for MaxMind country \"A2\", Satellite Provider, used when the IP address belongs to a global internet provider",
 	"centralnotice-country-o1": "Label for MaxMind country \"O1\", Other Country, used very rarely in foggy circumstances that MaxMind doesn't elaborate on",
 	"centralnotice-country-unknown": "Label for country \"XX\", the generic place where all the people we cannot geolocate live.",
-	"centralnotice-buckets": "Label for the option to enable user bucketing for a campaign, i.e. assigning users to groups that only see certain banners.",
+	"centralnotice-buckets": "Label for the option to enable user bucketing for a campaign, i.e. assigning users to groups that only see certain banners. Each of these groups is called a \"bucket\". See the English Wikipedia article [[:w:en:Data binning|Data binning]].",
 	"centralnotice-bucket": "Label for the select list that the campaign manager uses to assign a banner to a certain user bucket.",
 	"centralnotice-bucket-letter": "Label for specifying what bucket is being used. Parameters:\n* $1 - a bucket letter (uppercase alphabet)",
 	"centralnotice-banner-empty-bucket": "Warning that a campaign bucket is misconfigured and no banners are assigned.",
