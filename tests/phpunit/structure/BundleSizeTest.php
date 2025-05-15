@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extensions\FlaggedRevs\Tests\Structure;
+namespace MediaWiki\Extensions\CentralNotice\Tests\Structure;
 
 use MediaWiki\Tests\Structure\BundleSizeTestBase;
 
