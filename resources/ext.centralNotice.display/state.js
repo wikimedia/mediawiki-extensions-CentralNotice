@@ -147,12 +147,9 @@
 	 */
 	function setInitialData() {
 		// Keep existing properties of state.urlParams, which may be set by tests
-		const urlParams = Object.assign(
-			{},
-			state.urlParams
-		);
-		( new URL( location ) ).searchParams.forEach( ( [ key, value ] ) => {
-			urlParams[ key ] = value;
+		const urlParams = state.urlParams;
+		( new URL( location ) ).searchParams.forEach( ( value, key ) => {
+			state.urlParams[ key ] = value;
 		} );
 
 		state.data.anonymous = ( !mw.user.isNamed() );
