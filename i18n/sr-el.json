@@ -9,7 +9,7 @@
 			"Сербијана"
 		]
 	},
-	"centralnotice": "Administrator centralnog obaveštavanja",
+	"centralnotice": "Admin centralnog obaveštavanja",
 	"noticetemplate": "Administrator centralnog obaveštavanja",
 	"bannerallocation": "Administrator centralnog obaveštavanja",
 	"centralnoticelogs": "Administrator centralnog obaveštavanja",
@@ -70,6 +70,7 @@
 	"centralnotice-project-lang": "Ime projekta",
 	"centralnotice-select-all": "Izaberi sve",
 	"centralnotice-remove-all": "Ukloni sve",
+	"centralnotice-items-selected": "$1 {{PLURAL:$1|stavka izabrana|stavke izabrane}}",
 	"centralnotice-project-name": "Naziv projekta",
 	"centralnotice-assigned-templates": "Dodeljeni šabloni",
 	"centralnotice-no-templates": "Nema šablona. Dodajte neke.",
@@ -187,6 +188,7 @@
 	"centralnotice-devicetype-iphone": "iPhone",
 	"centralnotice-all": "Sve",
 	"centralnotice-all-except": "Sve osim $1",
+	"centralnotice-excluding-list": "$1 (neračunajući $2)",
 	"centralnotice-user-role": "Korisnička uloga",
 	"centralnotice-user-role-anonymous": "Anoniman",
 	"centralnotice-user-role-logged-in": "Prijavljeni",
