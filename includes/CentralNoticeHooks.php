@@ -7,7 +7,6 @@ use MediaWiki\ChangeTags\Hook\ListDefinedTagsHook;
 use MediaWiki\Hook\CanonicalNamespacesHook;
 use MediaWiki\Hook\PreferencesGetIconHook;
 use MediaWiki\Hook\SkinTemplateNavigation__UniversalHook;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
@@ -17,6 +16,7 @@ use MediaWiki\ResourceLoader\Hook\ResourceLoaderRegisterModulesHook;
 use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\Skin\Skin;
 use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\User\User;
 
 /**
@@ -54,6 +54,14 @@ class CentralNoticeHooks implements
 	GetPreferencesHook,
 	PreferencesGetIconHook
 {
+
+	private SpecialPageFactory $specialPageFactory;
+
+	public function __construct(
+		SpecialPageFactory $specialPageFactory
+	) {
+		$this->specialPageFactory = $specialPageFactory;
+	}
 
 	/**
 	 * Conditional configuration
@@ -664,8 +672,7 @@ class CentralNoticeHooks implements
 			return;
 		}
 
-		[ $alias, ] = MediaWikiServices::getInstance()->getSpecialPageFactory()->
-			resolveAlias( $title->getText() );
+		[ $alias, ] = $this->specialPageFactory->resolveAlias( $title->getText() );
 
 		if ( !array_key_exists( $alias, $wgNoticeTabifyPages ) ) {
 			return;

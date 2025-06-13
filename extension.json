@@ -283,7 +283,10 @@
 	},
 	"HookHandlers": {
 		"main": {
-			"class": "CentralNoticeHooks"
+			"class": "CentralNoticeHooks",
+			"services": [
+				"SpecialPageFactory"
+			]
 		},
 		"usermerge": {
 			"class": "UserMergeHookHandlers"
