@@ -2,6 +2,7 @@
 
 // phpcs:disable MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName
 
+use MediaWiki\Config\Config;
 use MediaWiki\Extension\UserMerge\Hooks\AccountFieldsHook;
 
 /**
@@ -31,13 +32,20 @@ use MediaWiki\Extension\UserMerge\Hooks\AccountFieldsHook;
  */
 
 class UserMergeHookHandlers implements AccountFieldsHook {
+	private Config $config;
+
+	public function __construct(
+		Config $config
+	) {
+		$this->config = $config;
+	}
+
 	/**
 	 * Tell the UserMerge extension where we store user ids
 	 * @param array[] &$updateFields
 	 */
 	public function onUserMergeAccountFields( array &$updateFields ): void {
-		global $wgNoticeInfrastructure;
-		if ( $wgNoticeInfrastructure ) {
+		if ( $this->config->get( 'NoticeInfrastructure' ) ) {
 			// array( tableName, idField, textField )
 			$updateFields[] = [ 'cn_notice_log', 'notlog_user_id' ];
 			$updateFields[] = [ 'cn_template_log', 'tmplog_user_id' ];
