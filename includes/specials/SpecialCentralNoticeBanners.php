@@ -9,7 +9,7 @@ use MediaWiki\HTMLForm\Field\HTMLInfoField;
 use MediaWiki\HTMLForm\Field\HTMLSelectLimitField;
 use MediaWiki\HTMLForm\Field\HTMLSubmitField;
 use MediaWiki\HTMLForm\Field\HTMLTextField;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Xml\Xml;
@@ -36,8 +36,13 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	/** @var array|null Names of the banners that are marked as templates */
 	private $templateBannerNames = null;
 
-	public function __construct() {
+	private LanguageNameUtils $languageNameUtils;
+
+	public function __construct(
+		LanguageNameUtils $languageNameUtils
+	) {
 		SpecialPage::__construct( 'CentralNoticeBanners' );
+		$this->languageNameUtils = $languageNameUtils;
 	}
 
 	/** @inheritDoc */
@@ -543,7 +548,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	private function generateBannerEditForm(): array {
 		global $wgCentralNoticeBannerMixins, $wgNoticeUseTranslateExtension, $wgLanguageCode;
 
-		$languages = MediaWikiServices::getInstance()->getLanguageNameUtils()
+		$languages = $this->languageNameUtils
 			->getLanguageNames( $this->getLanguage()->getCode() );
 		array_walk(
 			$languages,
@@ -909,7 +914,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		// Retrieve the list of languages in user's language
 		// FIXME Similar code in SpecialBannerAllocation::execute(), maybe switch
 		// to language selector?
-		$languages = MediaWikiServices::getInstance()->getLanguageNameUtils()
+		$languages = $this->languageNameUtils
 			->getLanguageNames( $this->getLanguage()->getCode() );
 		ksort( $languages );
 

@@ -94,9 +94,19 @@ class CentralNoticeHooks implements
 
 			$wgSpecialPages['CentralNotice'] = CentralNotice::class;
 			$wgSpecialPages['NoticeTemplate'] = SpecialNoticeTemplate::class;
-			$wgSpecialPages['BannerAllocation'] = SpecialBannerAllocation::class;
+			$wgSpecialPages['BannerAllocation'] = [
+				'class' => SpecialBannerAllocation::class,
+				'services' => [
+					'LanguageNameUtils'
+				],
+			];
 			$wgSpecialPages['CentralNoticeLogs'] = SpecialCentralNoticeLogs::class;
-			$wgSpecialPages['CentralNoticeBanners'] = SpecialCentralNoticeBanners::class;
+			$wgSpecialPages['CentralNoticeBanners'] = [
+				'class' => SpecialCentralNoticeBanners::class,
+				'services' => [
+					'LanguageNameUtils'
+				],
+			];
 
 			$moduleTemplate = [
 				'localBasePath' => dirname( __DIR__ ) . '/resources',
