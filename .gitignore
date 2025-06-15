@@ -6,3 +6,4 @@
 /vendor/
 .eslintcache
 /tests/selenium/log
+/.stylelintcache
