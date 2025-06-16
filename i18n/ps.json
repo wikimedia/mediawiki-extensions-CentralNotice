@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ahmed-Najib-Biabani-Ibrahimkhel"
+			"Ahmed-Najib-Biabani-Ibrahimkhel",
+			"شاه زمان پټان"
 		]
 	},
 	"centralnotice-desc": "يو مرکزي ويبځی-يادښت ورگډول",
@@ -43,7 +44,7 @@
 	"centralnotice-insert": "ورټومبل: $1",
 	"centralnotice-close-button": "د تړلو تڼۍ",
 	"centralnotice-close-title": "تړل",
-	"centralnotice-translate-button": "د تړنې د ژباړلو مرسته وکړۍ",
+	"centralnotice-translate-button": "وېبتړنې ژباړه کې مرسته کول",
 	"centralnotice-donate-button": "د بسپنې تڼۍ",
 	"centralnotice-banner-anonymous": "ورکنومي کارنان",
 	"centralnotice-banner-logged-in": "ننوتي کارنان",
