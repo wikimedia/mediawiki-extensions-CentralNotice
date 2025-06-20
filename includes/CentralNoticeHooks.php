@@ -319,8 +319,7 @@ class CentralNoticeHooks implements
 	 * $wgExtensionFunctions.
 	 */
 	public static function initCentralNotice() {
-		global $wgCentralBannerRecorder, $wgCentralSelectedBannerDispatcher,
-			$wgCentralSelectedMobileBannerDispatcher;
+		global $wgCentralBannerRecorder, $wgCentralSelectedBannerDispatcher;
 
 		// Defaults for infrastructure wiki URLs
 		if ( !$wgCentralBannerRecorder ) {
@@ -331,12 +330,6 @@ class CentralNoticeHooks implements
 		if ( !$wgCentralSelectedBannerDispatcher ) {
 			$wgCentralSelectedBannerDispatcher =
 				SpecialPage::getTitleFor( 'BannerLoader' )->getLocalUrl();
-		}
-
-		if ( !$wgCentralSelectedMobileBannerDispatcher &&
-			ExtensionRegistry::getInstance()->isLoaded( 'MobileFrontend' )
-		) {
-			$wgCentralSelectedMobileBannerDispatcher = $wgCentralSelectedBannerDispatcher;
 		}
 	}
 
@@ -519,7 +512,7 @@ class CentralNoticeHooks implements
 			$wgNoticeNumberOfControllerBuckets, $wgNoticeCookieDurations,
 			$wgNoticeHideUrls, $wgCentralNoticeSampleRate,
 			$wgCentralNoticeImpressionEventSampleRate,
-			$wgCentralSelectedBannerDispatcher, $wgCentralSelectedMobileBannerDispatcher,
+			$wgCentralSelectedBannerDispatcher,
 			$wgCentralNoticePerCampaignBucketExtension, $wgCentralNoticeCampaignMixins,
 			$wgCentralNoticeMaxCampaignFallback;
 
@@ -531,20 +524,12 @@ class CentralNoticeHooks implements
 		// Set infrastructure URL variables, which change between mobile/desktop
 		if ( ExtensionRegistry::getInstance()->isLoaded( 'MobileFrontend' ) ) {
 			$mc = MobileContext::singleton();
-			$displayMobile = $mc->shouldDisplayMobileView();
-		} else {
-			$displayMobile = false;
+			if ( $mc->shouldDisplayMobileView() ) {
+				$wgCentralBannerRecorder = $mc->getMobileUrl( $wgCentralBannerRecorder );
+			}
 		}
 
-		if ( $displayMobile ) {
-			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable
-			$wgCentralBannerRecorder = $mc->getMobileUrl( $wgCentralBannerRecorder );
-			$bannerDispatcher = $wgCentralSelectedMobileBannerDispatcher;
-		} else {
-			$bannerDispatcher = $wgCentralSelectedBannerDispatcher;
-		}
-
-		$vars[ 'wgCentralNoticeActiveBannerDispatcher' ] = $bannerDispatcher;
+		$vars[ 'wgCentralNoticeActiveBannerDispatcher' ] = $wgCentralSelectedBannerDispatcher;
 		$vars[ 'wgCentralBannerRecorder' ] = $wgCentralBannerRecorder;
 		$vars[ 'wgCentralNoticeSampleRate' ] = $wgCentralNoticeSampleRate;
 
