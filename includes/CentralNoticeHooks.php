@@ -10,7 +10,6 @@ use MediaWiki\Hook\SkinTemplateNavigation__UniversalHook;
 use MediaWiki\Message\Message;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
-use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\ResourceLoader\Hook\ResourceLoaderRegisterModulesHook;
 use MediaWiki\ResourceLoader\ResourceLoader;
@@ -520,14 +519,6 @@ class CentralNoticeHooks implements
 		// Making these calls too soon will causes issues with the namespace localisation cache.
 		// This seems to be just right. We require them at all because MW will 302 page requests
 		// made to non localised namespaces which results in wasteful extra calls.
-
-		// Set infrastructure URL variables, which change between mobile/desktop
-		if ( ExtensionRegistry::getInstance()->isLoaded( 'MobileFrontend' ) ) {
-			$mc = MobileContext::singleton();
-			if ( $mc->shouldDisplayMobileView() ) {
-				$wgCentralBannerRecorder = $mc->getMobileUrl( $wgCentralBannerRecorder );
-			}
-		}
 
 		$vars[ 'wgCentralNoticeActiveBannerDispatcher' ] = $wgCentralSelectedBannerDispatcher;
 		$vars[ 'wgCentralBannerRecorder' ] = $wgCentralBannerRecorder;
