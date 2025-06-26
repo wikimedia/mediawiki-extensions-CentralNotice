@@ -190,7 +190,7 @@
 	"centralnotice-devicetype-ipad": "Kaikki iPadeiksi tunnistetut laitteet, muttei iPhoneja",
 	"centralnotice-devicetype-iphone": "Kaikki iPhone-versiot",
 	"centralnotice-all": "Kaikki",
-	"centralnotice-generic-error": "Sinulla ei ole oikeuksia pyydetyn toiminnon suorittamiseen tai toiminto ei ole kelvollinen.",
+	"centralnotice-generic-error": "Sinulla ei ole oikeutta pyydetyn toiminnon suorittamiseen tai toiminto ei ole kelvollinen.",
 	"centralnotice-all-except": "Kaikki paitsi $1",
 	"centralnotice-user-role": "Käyttäjärooli",
 	"centralnotice-user-role-anonymous": "Anonyymi",
