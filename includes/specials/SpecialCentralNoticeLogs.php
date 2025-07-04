@@ -2,15 +2,21 @@
 
 use MediaWiki\Html\Html;
 use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\Utils\UrlUtils;
 use MediaWiki\Xml\Xml;
 
 class SpecialCentralNoticeLogs extends CentralNotice {
 	/** @var string */
 	public $logType = 'campaignsettings';
 
-	public function __construct() {
+	private UrlUtils $urlUtils;
+
+	public function __construct(
+		UrlUtils $urlUtils
+	) {
 		// Register special page
 		SpecialPage::__construct( "CentralNoticeLogs" );
+		$this->urlUtils = $urlUtils;
 	}
 
 	/**
@@ -56,7 +62,8 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 		$htmlOut .= Html::element( 'h2', [], $this->msg( 'centralnotice-view-logs' )->text() );
 		$htmlOut .= Html::openElement( 'div', [ 'id' => 'cn-log-switcher' ] );
 		$title = SpecialPage::getTitleFor( 'CentralNoticeLogs' );
-		$fullUrl = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
+
+		$fullUrl = $this->urlUtils->expand( $title->getFullURL(), PROTO_CURRENT ) ?? '';
 
 		// Build the radio buttons for switching the log type
 		$htmlOut .= $this->getLogSwitcher( 'campaignsettings', 'campaignSettings',

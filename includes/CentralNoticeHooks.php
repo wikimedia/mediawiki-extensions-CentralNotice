@@ -108,7 +108,12 @@ class CentralNoticeHooks implements
 					'LanguageNameUtils'
 				],
 			];
-			$wgSpecialPages['CentralNoticeLogs'] = SpecialCentralNoticeLogs::class;
+			$wgSpecialPages['CentralNoticeLogs'] = [
+				'class' => SpecialCentralNoticeLogs::class,
+				'services' => [
+					'UrlUtils',
+				],
+			];
 			$wgSpecialPages['CentralNoticeBanners'] = [
 				'class' => SpecialCentralNoticeBanners::class,
 				'services' => [
