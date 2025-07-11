@@ -836,6 +836,9 @@ class Banner {
 		return $this;
 	}
 
+	/**
+	 * @throws BannerContentException
+	 */
 	private function populateBodyContent() {
 		if ( $this->dirtyFlags['content'] !== null ) {
 			return;
@@ -1139,6 +1142,10 @@ class Banner {
 		return $this;
 	}
 
+	/**
+	 * @throws BannerDataException
+	 * @throws BannerExistenceException
+	 */
 	public function cloneBanner( string $destination, User $user, ?string $summary = null ): self {
 		if ( !self::isValidBannerName( $destination ) ) {
 			throw new BannerDataException( "Banner name must be in format /^[A-Za-z0-9_]+$/" );

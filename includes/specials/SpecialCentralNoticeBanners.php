@@ -375,7 +375,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 								Banner::removeBanner(
 									$parts[1], $this->getUser(), $summary );
 
-							} catch ( Exception $ex ) {
+							} catch ( Exception ) {
 								$failed[] = $parts[1];
 							}
 						}

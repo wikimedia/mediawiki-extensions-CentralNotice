@@ -60,7 +60,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 			$this->getParamsAndSetState();
 			$out = $this->getJsNotice();
 
-		} catch ( EmptyBannerException $e ) {
+		} catch ( EmptyBannerException ) {
 			$out = "mw.centralNotice.handleBannerLoaderError( 'Empty banner' );";
 
 			// Force reduced cache time
@@ -97,6 +97,10 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		echo $out;
 	}
 
+	/**
+	 * @throws MissingRequiredParamsException
+	 * @throws BannerPreviewPermissionsException
+	 */
 	public function getParamsAndSetState() {
 		$request = $this->getRequest();
 

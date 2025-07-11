@@ -712,7 +712,7 @@ class CentralNotice extends UnlistedSpecialPage {
 					]
 				)
 			);
-		} catch ( CampaignExistenceException $ex ) {
+		} catch ( CampaignExistenceException ) {
 			throw new ErrorPageError( 'centralnotice', 'centralnotice-notice-doesnt-exist' );
 		}
 
