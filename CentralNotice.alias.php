@@ -430,12 +430,26 @@ $specialPageAliases['vi'] = [
 	'HideBanners' => [ 'Ẩn_bảng' ],
 ];
 
-/** Simplified Chinese (中文（简体）‎) */
+/** Chinese (中文) */
+$specialPageAliases['zh'] = [
+	'CentralNotice' => [ 'CentralNotice' ],
+	'CentralNoticeBanners' => [ 'CentralNoticeBanners' ],
+	'CentralNoticeLogs' => [ 'CentralNoticeLogs' ],
+	'NoticeTemplate' => [ 'NoticeTemplate' ],
+	'BannerAllocation' => [ 'BannerAllocation' ],
+	'BannerController' => [ 'BannerController' ],
+	'BannerLoader' => [ 'BannerLoader' ],
+	'BannerRandom' => [ 'BannerRandom' ],
+	'RecordImpression' => [ 'RecordImpression' ],
+	'HideBanners' => [ 'HideBanners' ],
+];
+
+/** Simplified Chinese (中文（简体）) */
 $specialPageAliases['zh-hans'] = [
-	'CentralNotice' => [ '中心通告' ],
-	'CentralNoticeBanners' => [ '中心通告横幅' ],
-	'CentralNoticeLogs' => [ '中心通告日志' ],
-	'NoticeTemplate' => [ '通告模板' ],
+	'CentralNotice' => [ '中央公告', '中心通告' ],
+	'CentralNoticeBanners' => [ '中央公告横幅', '中心通告横幅' ],
+	'CentralNoticeLogs' => [ '中央公告日志', '中心通告日志' ],
+	'NoticeTemplate' => [ '公告模板', '通告模板' ],
 	'BannerAllocation' => [ '横幅分配' ],
 	'BannerController' => [ '横幅控制器' ],
 	'BannerLoader' => [ '横幅装载器' ],
@@ -444,7 +458,7 @@ $specialPageAliases['zh-hans'] = [
 	'HideBanners' => [ '隐藏横幅' ],
 ];
 
-/** Traditional Chinese (中文（繁體）‎) */
+/** Traditional Chinese (中文（繁體）) */
 $specialPageAliases['zh-hant'] = [
 	'CentralNotice' => [ '中央公告' ],
 	'CentralNoticeBanners' => [ '中央公告橫幅' ],
