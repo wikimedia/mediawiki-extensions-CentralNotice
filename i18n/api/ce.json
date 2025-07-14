@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Умар"
+		]
+	},
+	"apierror-centralnotice-cdn-lang-code-error": "Талхийна меттан код.",
+	"apierror-centralnotice-cdn-banner-name-error": "Талхийна баннеран цӀе.",
+	"apierror-centralnotice-cdn-banner-not-found": "Баннер ца карийна",
+	"apihelp-centralnoticeallocations-param-device": "Фильтрацин гӀирсан цӀе.",
+	"apihelp-query+centralnoticelogs-example-1": "Журналаш гайта"
+}
