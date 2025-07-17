@@ -191,7 +191,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 			}
 			$htmlOut .= Html::closeElement( 'td' );
 
-			// End log entry primary row
+			// End log entry secondary row
 			$htmlOut .= Html::closeElement( 'tr' );
 		}
 
