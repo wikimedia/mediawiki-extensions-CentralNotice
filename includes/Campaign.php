@@ -1724,7 +1724,6 @@ class Campaign {
 	public static function campaignLogs(
 		$campaign = false, $username = false, $start = false, $end = false, $limit = 50, $offset = 0
 	) {
-		// Read from the primary database to avoid concurrency problems
 		$dbr = CNDatabase::getReplicaDb();
 		$conds = [];
 		if ( $start ) {
