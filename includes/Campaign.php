@@ -341,14 +341,15 @@ class Campaign {
 	 * Return settings for a campaign
 	 *
 	 * @param string $campaignName The name of the campaign
+	 * @param bool $fromPrimary Whether to use the primary database or the replica database
 	 *
 	 * @return array|bool an array of settings or false if the campaign does not exist
 	 */
-	public static function getCampaignSettings( $campaignName ) {
-		$dbr = CNDatabase::getReplicaDb();
+	public static function getCampaignSettings( $campaignName, $fromPrimary = false ) {
+		$db = $fromPrimary ? CNDatabase::getPrimaryDb() : CNDatabase::getReplicaDb();
 
 		// Get campaign info from database
-		$row = $dbr->newSelectQueryBuilder()
+		$row = $db->newSelectQueryBuilder()
 			->select( [
 				'not_id',
 				'not_start',
@@ -366,46 +367,37 @@ class Campaign {
 			->where( [ 'not_name' => $campaignName ] )
 			->caller( __METHOD__ )
 			->fetchRow();
-		if ( $row ) {
-			$campaign = [
-				'start'     => $row->not_start,
-				'end'       => $row->not_end,
-				'enabled'   => $row->not_enabled,
-				'preferred' => $row->not_preferred,
-				'locked'    => $row->not_locked,
-				'archived'  => $row->not_archived,
-				'geo'       => $row->not_geo,
-				'buckets'   => $row->not_buckets,
-				'throttle'  => $row->not_throttle,
-				'type'      => $row->not_type
-			];
-		} else {
+		if ( !$row ) {
 			return false;
 		}
 
-		$projects = self::getNoticeProjects( $campaignName );
-		$languages = self::getNoticeLanguages( $campaignName );
-		$geo_countries = self::getNoticeCountries( $campaignName );
-		$geo_regions = self::getNoticeRegions( $campaignName );
-		$campaign[ 'projects' ] = implode( ", ", $projects );
-		$campaign[ 'languages' ] = implode( ", ", $languages );
-		$campaign[ 'countries' ] = implode( ", ", $geo_countries );
-		$campaign[ 'regions' ] = implode( ", ", $geo_regions );
-
-		$bannersIn = Banner::getCampaignBanners( $row->not_id );
-		$bannersOut = [];
+		$banners = [];
 		// All we want are the banner names, weights, and buckets
-		foreach ( $bannersIn as $row ) {
-			$outKey = $row['name'];
-			$bannersOut[$outKey]['weight'] = $row['weight'];
-			$bannersOut[$outKey]['bucket'] = $row['bucket'];
+		foreach ( Banner::getCampaignBanners( $row->not_id ) as $banner ) {
+			$outKey = $banner['name'];
+			$banners[$outKey]['weight'] = $banner['weight'];
+			$banners[$outKey]['bucket'] = $banner['bucket'];
 		}
-		// Encode into a JSON string for storage
-		$campaign[ 'banners' ] = FormatJson::encode( $bannersOut );
-		$campaign[ 'mixins' ] =
-			FormatJson::encode( self::getCampaignMixins( $campaignName, true ) );
 
-		return $campaign;
+		return [
+			'start'     => $row->not_start,
+			'end'       => $row->not_end,
+			'enabled'   => $row->not_enabled,
+			'preferred' => $row->not_preferred,
+			'locked'    => $row->not_locked,
+			'archived'  => $row->not_archived,
+			'geo'       => $row->not_geo,
+			'buckets'   => $row->not_buckets,
+			'throttle'  => $row->not_throttle,
+			'type'      => $row->not_type,
+			'projects'  => implode( ", ", self::getNoticeProjects( $campaignName ) ),
+			'languages' => implode( ", ", self::getNoticeLanguages( $campaignName ) ),
+			'countries' => implode( ", ", self::getNoticeCountries( $campaignName ) ),
+			'regions'   => implode( ", ", self::getNoticeRegions( $campaignName ) ),
+			// Encode into a JSON string for storage
+			'banners'   => FormatJson::encode( $banners ),
+			'mixins'    => FormatJson::encode( self::getCampaignMixins( $campaignName, true ) ),
+		];
 	}
 
 	/**
