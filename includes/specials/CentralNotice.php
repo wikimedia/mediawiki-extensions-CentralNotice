@@ -2064,6 +2064,6 @@ class CentralNotice extends UnlistedSpecialPage {
 		if ( !$navBar->isDisabled() ) {
 			$this->getOutput()->addHTML( $navBar->parseAsBlock() );
 		}
-		return parent::outputHeader( $summaryMsg );
+		parent::outputHeader( $summaryMsg );
 	}
 }
