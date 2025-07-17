@@ -1,8 +1,8 @@
 <?php
 
-use MediaWiki\Api\ApiBase;
 use MediaWiki\Api\ApiQuery;
 use MediaWiki\Api\ApiQueryBase;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * Query of currently active CentralNotice campaigns.
@@ -19,10 +19,7 @@ class ApiCentralNoticeQueryActiveCampaigns extends ApiQueryBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 
-		// Obtain the ApiResults object from the base class
-		$result = $this->getResult();
-
-		$result->addValue(
+		$this->getResult()->addValue(
 			[ 'query', $this->getModuleName() ],
 			'campaigns',
 			Campaign::getActiveCampaignsAndBanners( $params[ 'includefuture' ] )
@@ -33,7 +30,7 @@ class ApiCentralNoticeQueryActiveCampaigns extends ApiQueryBase {
 	public function getAllowedParams() {
 		return [
 			'includefuture' => [
-				ApiBase::PARAM_TYPE => 'boolean'
+				ParamValidator::PARAM_TYPE => 'boolean',
 			]
 		];
 	}

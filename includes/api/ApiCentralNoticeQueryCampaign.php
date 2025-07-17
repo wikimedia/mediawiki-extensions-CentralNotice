@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Api\ApiBase;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /** @todo: This needs some major cleanup to work more like the rest of the API. */
 class ApiCentralNoticeQueryCampaign extends ApiBase {
@@ -12,15 +13,15 @@ class ApiCentralNoticeQueryCampaign extends ApiBase {
 	private const CAMPAIGNS_FILTER = '/^[a-zA-Z0-9 _|\-]+$/';
 
 	public function execute() {
-		// Obtain the ApiResults object from the base
-		$result = $this->getResult();
-
 		// Get our language/project/country
 		$params = $this->extractRequestParams();
 
 		if ( !preg_match( self::CAMPAIGNS_FILTER, $params['campaign'] ) ) {
 			return;
 		}
+
+		$result = $this->getResult();
+
 		$campaigns = explode( '|', $params['campaign'] );
 
 		foreach ( $campaigns as $campaign ) {
@@ -46,7 +47,12 @@ class ApiCentralNoticeQueryCampaign extends ApiBase {
 
 	/** @inheritDoc */
 	public function getAllowedParams() {
-		return [ 'campaign' => '' ];
+		return [
+			'campaign' => [
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => true,
+			],
+		];
 	}
 
 	/**
