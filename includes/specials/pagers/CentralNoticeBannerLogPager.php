@@ -125,9 +125,9 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 				'&nbsp;'
 			);
 			$htmlOut .= Html::openElement( 'td', [ 'valign' => 'top', 'colspan' => '5' ] );
-			if ( $row->tmplog_action == 'created' ) {
+			if ( $row->tmplog_action === 'created' ) {
 				$htmlOut .= $this->showInitialSettings( $row );
-			} elseif ( $row->tmplog_action == 'modified' ) {
+			} elseif ( $row->tmplog_action === 'modified' ) {
 				$htmlOut .= $this->showChanges( $row );
 			}
 			$htmlOut .= Html::closeElement( 'td' );

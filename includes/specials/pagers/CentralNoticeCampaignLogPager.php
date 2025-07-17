@@ -184,9 +184,9 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 				'&nbsp;'
 			);
 			$htmlOut .= Html::openElement( 'td', [ 'valign' => 'top', 'colspan' => '6' ] );
-			if ( $row->notlog_action == 'created' ) {
+			if ( $row->notlog_action === 'created' ) {
 				$htmlOut .= $this->showInitialSettings( $row );
-			} elseif ( $row->notlog_action == 'modified' ) {
+			} elseif ( $row->notlog_action === 'modified' ) {
 				$htmlOut .= $this->showChanges( $row );
 			}
 			$htmlOut .= Html::closeElement( 'td' );
