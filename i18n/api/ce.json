@@ -8,5 +8,6 @@
 	"apierror-centralnotice-cdn-banner-name-error": "Талхийна баннеран цӀе.",
 	"apierror-centralnotice-cdn-banner-not-found": "Баннер ца карийна",
 	"apihelp-centralnoticeallocations-param-device": "Фильтрацин гӀирсан цӀе.",
+	"apihelp-query+centralnoticelogs-param-user": "Декъашхочун цӀе (лаамехь).",
 	"apihelp-query+centralnoticelogs-example-1": "Журналаш гайта"
 }
