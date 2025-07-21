@@ -253,7 +253,7 @@
 	"centralnotice-end-time": "Hora de fin (UTC)",
 	"centralnotice-banner-not-found-title": "Cartel non atopado",
 	"centralnotice-banner-not-found-contents": "Non existe un cartel con ese nome exacto.",
-	"centralnotice-csp-violation-alert": "Foi detectada unha violación das normas de seguridade do contidoǃ Tentou cargar unha cousa desde $1.",
+	"centralnotice-csp-violation-alert": "Detectouse unha violación das normas de seguridade de contidos. A carga de contidos de fontes externas ao wiki filtra datos do lector. Previsualiza os carteis sen trebellos nin complementos de terceiros. Enderezo URL problemático: $1.",
 	"hidebanners": "Agochar carteis",
 	"centralnotice-specialhidebanners-p3p": "Algúns navegadores requiren unha política P3P compacta para fixar as cookies en certas situacións. Pero actualmente non está dispoñible unha política compacta. Por favor, consulte a política de privacidade lexible do sitio.",
 	"centralnotice-banner-history-logger": "Rexistro do historial dos carteis",

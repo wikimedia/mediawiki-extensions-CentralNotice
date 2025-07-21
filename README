@@ -16,10 +16,6 @@ Configuration
   Set to false for wikis that only use a sister site for the control.
   Default: true
 
-* $wgCentralDBname: The name of the database which hosts the centralized
-  campaign data.  If false, we will default to using the primary database.
-  Default: false
-
 * $wgCentralBannerRecorder: URL which is hit after a banner is loaded, for
   compatibility with analytics.
   Default: false
@@ -40,9 +36,8 @@ Configuration
 * $wgCentralNoticeApiUrl: The API path on the wiki that hosts the CentralNotice
   infrastructure, for example "http://meta.wikimedia.org/api.php".
   This must be set if you enable the selection of banners on the client and you
-  don't have direct access to the infrastructure database (see
-  $wgCentralDBname).  Note that when this is set, it will override your
-  database settings.
+  don't have direct access to the infrastructure database. Note that when this
+  is set, it will override your database settings.
   Default: false
 
 * $wgCentralSelectedBannerDispatcher: URL for BannerLoader, for requests to
@@ -55,7 +50,7 @@ Configuration
   sites. See $wgCentralSelectedBannerDispatcher. If false, and if
   MobileFrontEnd is enabled for this site, this defaults to the same
   value as $wgCentralSelectedBannerDispatcher. (This is a temporary
-  solution; see bug T156847.).
+  solution; see bug T156847).
   Default: false
 
 * $wgCentralNoticeLoader: Enable the loader itself

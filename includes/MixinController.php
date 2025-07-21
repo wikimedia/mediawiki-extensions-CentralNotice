@@ -37,6 +37,8 @@ class MixinController {
 
 	/**
 	 * Initialize php modules.
+	 *
+	 * @throws MixinNotFoundException
 	 */
 	public function loadPhp() {
 		foreach ( $this->mixins as $name => $info ) {
@@ -56,6 +58,9 @@ class MixinController {
 		}
 	}
 
+	/**
+	 * @throws MixinNotFoundException
+	 */
 	public function getPreloadJsSnippets(): array {
 		$snippets = [];
 		foreach ( $this->mixins as $name => $info ) {

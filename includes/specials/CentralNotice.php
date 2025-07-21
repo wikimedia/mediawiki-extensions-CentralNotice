@@ -185,7 +185,7 @@ class CentralNotice extends UnlistedSpecialPage {
 
 		// Make the changes requested
 		foreach ( $changes as $campaignName => $campaignChanges ) {
-			$initialSettings = Campaign::getCampaignSettings( $campaignName );
+			$initialSettings = Campaign::getCampaignSettings( $campaignName, true );
 
 			// Next campaign if somehow this one doesn't exist
 			if ( !$initialSettings ) {
@@ -235,7 +235,7 @@ class CentralNotice extends UnlistedSpecialPage {
 			}
 
 			// Log any differences in settings
-			$newSettings = Campaign::getCampaignSettings( $campaignName );
+			$newSettings = Campaign::getCampaignSettings( $campaignName, true );
 			$diffs = array_diff_assoc( $initialSettings, $newSettings );
 
 			if ( $diffs ) {
@@ -712,7 +712,7 @@ class CentralNotice extends UnlistedSpecialPage {
 					]
 				)
 			);
-		} catch ( CampaignExistenceException $ex ) {
+		} catch ( CampaignExistenceException ) {
 			throw new ErrorPageError( 'centralnotice', 'centralnotice-notice-doesnt-exist' );
 		}
 
@@ -814,7 +814,7 @@ class CentralNotice extends UnlistedSpecialPage {
 					Campaign::setBooleanCampaignSetting( $notice, 'archived', true );
 				}
 
-				$initialCampaignSettings = Campaign::getCampaignSettings( $notice );
+				$initialCampaignSettings = Campaign::getCampaignSettings( $notice, true );
 
 				// Handle locking/unlocking campaign
 				Campaign::setBooleanCampaignSetting(
@@ -1002,15 +1002,20 @@ class CentralNotice extends UnlistedSpecialPage {
 					}
 				}
 
-				$finalCampaignSettings = Campaign::getCampaignSettings( $notice );
+				$finalCampaignSettings = Campaign::getCampaignSettings( $notice, true );
 				$campaignId = Campaign::getNoticeId( $notice );
 
 				$summary = $this->getSummaryFromRequest( $request );
 
 				Campaign::processAfterCampaignChange(
-					'modified', $campaignId, $notice, $this->getUser(),
-					$initialCampaignSettings, $finalCampaignSettings,
-					$summary );
+					'modified',
+					$campaignId,
+					$notice,
+					$this->getUser(),
+					$initialCampaignSettings,
+					$finalCampaignSettings,
+					$summary
+				);
 
 				// If there were no errors, reload the page to prevent duplicate form submission
 				if ( !$this->centralNoticeError ) {
@@ -1038,7 +1043,7 @@ class CentralNotice extends UnlistedSpecialPage {
 	}
 
 	/**
-	 * Create form for managing campaign settings (start date, end date, languages, etc.)
+	 * Create the form for managing campaign settings (start date, end date, languages, etc.)
 	 * @param string $notice
 	 * @return string HTML
 	 */
@@ -1049,13 +1054,15 @@ class CentralNotice extends UnlistedSpecialPage {
 			$readonly = [ 'disabled' => 'disabled' ];
 		}
 
-		$campaign = Campaign::getCampaignSettings( $notice );
+		$request = $this->getRequest();
+		$wasPosted = $request->wasPosted();
+
+		// If it's being posted, it's probably a write, so read from primary
+		$campaign = Campaign::getCampaignSettings( $notice, $wasPosted );
 
 		if ( $campaign ) {
 			// If there was an error, we'll need to restore the state of the form
-			$request = $this->getRequest();
-
-			if ( $request->wasPosted() ) {
+			if ( $wasPosted ) {
 				$start = $this->getDateTime( 'start' );
 				$end = $this->getDateTime( 'end' );
 				$isEnabled = $request->getCheck( 'enabled' );
@@ -1092,9 +1099,7 @@ class CentralNotice extends UnlistedSpecialPage {
 			$isThrottled = ( $throttle < 100 );
 			$type = $type === self::EMPTY_CAMPAIGN_TYPE_OPTION ? null : $type;
 
-			// Build Html
-			$htmlOut = '';
-			$htmlOut .= Html::rawElement( 'h2', [],
+			$htmlOut = Html::rawElement( 'h2', [],
 				$this->msg( 'centralnotice-notice-heading', $notice )->parse() );
 			$htmlOut .= Html::openElement( 'table', [ 'cellpadding' => 9 ] );
 
@@ -1201,7 +1206,7 @@ class CentralNotice extends UnlistedSpecialPage {
 					Xml::label( $this->msg( 'centralnotice-preferred' )->text(), 'priority' )
 				) .
 				Html::rawElement( 'td', [],
-					$this::prioritySelector( false, $this->editable, $priority )
+					$this->prioritySelector( false, $this->editable, $priority )
 				)
 			);
 			// Throttle impressions
@@ -1321,9 +1326,9 @@ class CentralNotice extends UnlistedSpecialPage {
 			}
 
 			return $htmlOut;
-		} else {
-			return '';
 		}
+
+		return '';
 	}
 
 	private static function makeNoticeMixinControlName(
@@ -2064,6 +2069,6 @@ class CentralNotice extends UnlistedSpecialPage {
 		if ( !$navBar->isDisabled() ) {
 			$this->getOutput()->addHTML( $navBar->parseAsBlock() );
 		}
-		return parent::outputHeader( $summaryMsg );
+		parent::outputHeader( $summaryMsg );
 	}
 }

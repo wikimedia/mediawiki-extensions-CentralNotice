@@ -17,7 +17,7 @@
  */
 
 use MediaWiki\Html\Html;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Xml\Xml;
 
@@ -63,9 +63,14 @@ class SpecialBannerAllocation extends CentralNotice {
 	 */
 	public $locationRegion = '';
 
-	public function __construct() {
+	private LanguageNameUtils $languageNameUtils;
+
+	public function __construct(
+		LanguageNameUtils $languageNameUtils
+	) {
 		// Register special page
 		SpecialPage::__construct( 'BannerAllocation' );
+		$this->languageNameUtils = $languageNameUtils;
 	}
 
 	/**
@@ -142,7 +147,7 @@ class SpecialBannerAllocation extends CentralNotice {
 		$htmlOut .= Html::openElement( 'td' );
 
 		// Retrieve the list of languages in user's language
-		$languages = MediaWikiServices::getInstance()->getLanguageNameUtils()
+		$languages = $this->languageNameUtils
 			->getLanguageNames( $this->getLanguage()->getCode() );
 		// Make sure the site language is in the list; a custom language code
 		// might not have a defined name...
