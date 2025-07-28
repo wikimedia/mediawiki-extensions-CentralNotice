@@ -381,16 +381,7 @@ class CentralNoticeHooks implements
 	 * @return bool
 	 */
 	public static function onBeforePageDisplay( $out, $skin ) {
-		global $wgCentralHost, $wgServer, $wgCentralNoticeContentSecurityPolicy,
-			$wgCentralNoticeESITestString;
-
-		// Add ESI test string (see T308799)
-		// It is expected that only HTML comments in the form of '<!--esi ...' will be
-		// injected here.
-		// TODO Remove this once ESI tests are complete.
-		if ( $wgCentralNoticeESITestString ) {
-			$out->addHTML( $wgCentralNoticeESITestString );
-		}
+		global $wgCentralHost, $wgServer, $wgCentralNoticeContentSecurityPolicy;
 
 		// Always add geoIP
 		// TODO Separate geoIP from CentralNotice
