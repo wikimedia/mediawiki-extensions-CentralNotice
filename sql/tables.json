@@ -537,7 +537,7 @@
 				"type": "mwenum",
 				"options": {
 					"notnull": true,
-					"CustomSchemaOptions": {
+					"PlatformOptions": {
 						"enum_values": [ "created", "modified", "removed" ]
 					},
 					"default": "modified"
@@ -781,7 +781,7 @@
 				"type": "mwenum",
 				"options": {
 					"notnull": true,
-					"CustomSchemaOptions": {
+					"PlatformOptions": {
 						"enum_values": [ "created", "modified", "removed" ]
 					},
 					"default": "modified"

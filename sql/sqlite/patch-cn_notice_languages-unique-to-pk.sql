@@ -2,13 +2,26 @@
 -- Source: sql/abstractSchemaChanges/patch-cn_notice_languages-unique-to-pk.json
 -- Do not modify this file directly.
 -- See https://www.mediawiki.org/wiki/Manual:Schema_changes
-DROP  INDEX nl_notice_id_language;
 CREATE TEMPORARY TABLE /*_*/__temp__cn_notice_languages AS
-SELECT  nl_notice_id,  nl_language
-FROM  /*_*/cn_notice_languages;
-DROP  TABLE  /*_*/cn_notice_languages;
-CREATE TABLE  /*_*/cn_notice_languages (    nl_notice_id INTEGER UNSIGNED NOT NULL,    nl_language VARCHAR(32) NOT NULL,    PRIMARY KEY(nl_notice_id, nl_language)  );
-INSERT INTO  /*_*/cn_notice_languages (nl_notice_id, nl_language)
-SELECT  nl_notice_id,  nl_language
-FROM  /*_*/__temp__cn_notice_languages;
-DROP  TABLE /*_*/__temp__cn_notice_languages;
+SELECT
+  nl_notice_id,
+  nl_language
+FROM /*_*/cn_notice_languages;
+
+DROP TABLE /*_*/cn_notice_languages;
+
+
+CREATE TABLE /*_*/cn_notice_languages (
+  nl_notice_id INTEGER UNSIGNED NOT NULL,
+  nl_language VARCHAR(32) NOT NULL,
+  PRIMARY KEY(nl_notice_id, nl_language)
+);
+
+INSERT INTO /*_*/cn_notice_languages (nl_notice_id, nl_language)
+SELECT
+  nl_notice_id,
+  nl_language
+FROM
+  /*_*/__temp__cn_notice_languages;
+
+DROP TABLE /*_*/__temp__cn_notice_languages;

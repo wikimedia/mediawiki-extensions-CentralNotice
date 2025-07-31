@@ -2,6 +2,7 @@
 -- Source: sql/abstractSchemaChanges/patch-cn_notice_regions-unique-to-pk.json
 -- Do not modify this file directly.
 -- See https://www.mediawiki.org/wiki/Manual:Schema_changes
-DROP  INDEX nr_notice_id_region;
-ALTER TABLE  cn_notice_regions
-ADD  PRIMARY KEY (nr_notice_id, nr_region);
+DROP INDEX nr_notice_id_region;
+
+ALTER TABLE cn_notice_regions
+  ADD PRIMARY KEY (nr_notice_id, nr_region);
