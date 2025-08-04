@@ -587,9 +587,6 @@
 					"onForAll": true
 				}
 			}
-		},
-		"CentralNoticeESITestString": {
-			"value": false
 		}
 	},
 	"DatabaseVirtualDomains": [

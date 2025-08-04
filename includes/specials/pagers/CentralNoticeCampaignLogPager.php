@@ -184,9 +184,9 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 				'&nbsp;'
 			);
 			$htmlOut .= Html::openElement( 'td', [ 'valign' => 'top', 'colspan' => '6' ] );
-			if ( $row->notlog_action == 'created' ) {
+			if ( $row->notlog_action === 'created' ) {
 				$htmlOut .= $this->showInitialSettings( $row );
-			} elseif ( $row->notlog_action == 'modified' ) {
+			} elseif ( $row->notlog_action === 'modified' ) {
 				$htmlOut .= $this->showChanges( $row );
 			}
 			$htmlOut .= Html::closeElement( 'td' );
@@ -308,7 +308,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 				)->text()
 			)->parse() . "<br />";
 		}
-		// When adding new params, update possible generated
+		// When adding new params, update the possibly generated
 		// i18n keys in the respective functions.
 		$details .= $this->testBooleanChange( 'enabled', $row );
 		$details .= $this->testPriorityChange( 'preferred', $row );
@@ -331,32 +331,8 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 
 		if ( $row->notlog_begin_banners !== $row->notlog_end_banners ) {
 			// Show changes to banner weights and assignment
-			$beginBannersObject = json_decode( $row->notlog_begin_banners, true );
-			$endBannersObject = json_decode( $row->notlog_end_banners, true );
-			$beginBanners = [];
-			$endBanners = [];
-			foreach ( $beginBannersObject as $key => $params ) {
-				if ( is_array( $params ) ) {
-					$weight = $params['weight'];
-					$bucket = chr( 65 + $params['bucket'] );
-				} else {
-					// Legacy, we used to only store the weight
-					$weight = $params;
-					$bucket = 0;
-				}
-				$beginBanners[$key] = "$key ($bucket, $weight)";
-			}
-			foreach ( $endBannersObject as $key => $params ) {
-				if ( is_array( $params ) ) {
-					$weight = $params['weight'];
-					$bucket = chr( 65 + $params['bucket'] );
-				} else {
-					// Legacy, we used to only store the weight
-					$weight = $params;
-					$bucket = 0;
-				}
-				$endBanners[$key] = "$key ($bucket, $weight)";
-			}
+			$beginBanners = $this->getBannerStats( json_decode( $row->notlog_begin_banners, true ) );
+			$endBanners = $this->getBannerStats( json_decode( $row->notlog_end_banners, true ) );
 			if ( $beginBanners ) {
 				$before = $lang->commaList( $beginBanners );
 			} else {
@@ -374,6 +350,23 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 			)->parse() . "<br />";
 		}
 		return $details;
+	}
+
+	private function getBannerStats( array $array ): array {
+		$ret = [];
+		foreach ( $array as $key => $params ) {
+			if ( is_array( $params ) ) {
+				$weight = $params['weight'];
+				$bucket = chr( 65 + $params['bucket'] );
+			} else {
+				// Legacy, we used to only store the weight
+				$weight = $params;
+				$bucket = 0;
+			}
+			$ret[$key] = "$key ($bucket, $weight)";
+		}
+
+		return $ret;
 	}
 
 	/**
@@ -468,40 +461,9 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		$beginField = 'notlog_begin_' . $param;
 		$endField = 'notlog_end_' . $param;
 		if ( $row->$beginField !== $row->$endField ) {
-			switch ( $row->$beginField ) {
-				case CentralNotice::LOW_PRIORITY:
-					$beginMessage = $this->msg( 'centralnotice-priority-low' )->text();
-					break;
-				case CentralNotice::NORMAL_PRIORITY:
-					$beginMessage = $this->msg( 'centralnotice-priority-normal' )->text();
-					break;
-				case CentralNotice::HIGH_PRIORITY:
-					$beginMessage = $this->msg( 'centralnotice-priority-high' )->text();
-					break;
-				case CentralNotice::EMERGENCY_PRIORITY:
-					$beginMessage = $this->msg( 'centralnotice-priority-emergency' )->text();
-					break;
-				default:
-					$beginMessage = '';
-					break;
-			}
-			switch ( $row->$endField ) {
-				case CentralNotice::LOW_PRIORITY:
-					$endMessage = $this->msg( 'centralnotice-priority-low' )->text();
-					break;
-				case CentralNotice::NORMAL_PRIORITY:
-					$endMessage = $this->msg( 'centralnotice-priority-normal' )->text();
-					break;
-				case CentralNotice::HIGH_PRIORITY:
-					$endMessage = $this->msg( 'centralnotice-priority-high' )->text();
-					break;
-				case CentralNotice::EMERGENCY_PRIORITY:
-					$endMessage = $this->msg( 'centralnotice-priority-emergency' )->text();
-					break;
-				default:
-					$endMessage = '';
-					break;
-			}
+			$beginMessage = $this->getPriorityMessage( $row->$beginField );
+			$endMessage = $this->getPriorityMessage( $row->$endField );
+
 			// The following messages are generated here:
 			// * centralnotice-preferred
 			$result .= $this->msg(
@@ -515,6 +477,16 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 			)->parse() . "<br />";
 		}
 		return $result;
+	}
+
+	private function getPriorityMessage( int $value ): string {
+		return match ( $value ) {
+			CentralNotice::LOW_PRIORITY => $this->msg( 'centralnotice-priority-low' )->text(),
+			CentralNotice::NORMAL_PRIORITY => $this->msg( 'centralnotice-priority-normal' )->text(),
+			CentralNotice::HIGH_PRIORITY => $this->msg( 'centralnotice-priority-high' )->text(),
+			CentralNotice::EMERGENCY_PRIORITY => $this->msg( 'centralnotice-priority-emergency' )->text(),
+			default => '',
+		};
 	}
 
 	/**
@@ -628,8 +600,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	 * @return string HTML
 	 */
 	public function getStartBody() {
-		$htmlOut = '';
-		$htmlOut .= Html::openElement( 'table', [ 'id' => 'cn-campaign-logs', 'cellpadding' => 3 ] );
+		$htmlOut = Html::openElement( 'table', [ 'id' => 'cn-campaign-logs', 'cellpadding' => 3 ] );
 		$htmlOut .= Html::openElement( 'tr' );
 		$htmlOut .= Html::element( 'th', [ 'style' => 'width: 20px;' ] );
 		$htmlOut .= Html::element( 'th', [ 'align' => 'left', 'style' => 'width: 130px;' ],

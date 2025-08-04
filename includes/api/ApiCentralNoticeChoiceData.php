@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Api\ApiBase;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * Module for the centralnoticechoicedata Web API.
@@ -28,10 +29,7 @@ class ApiCentralNoticeChoiceData extends ApiBase {
 			$choices = ChoiceDataProvider::getChoices( $project, $lang );
 		}
 
-		// Get the result object for creating the output
-		$apiResult = $this->getResult();
-
-		$apiResult->addValue(
+		$this->getResult()->addValue(
 			null,
 			'choices',
 			$choices
@@ -42,12 +40,12 @@ class ApiCentralNoticeChoiceData extends ApiBase {
 	public function getAllowedParams() {
 		return [
 			'project' => [
-					ApiBase::PARAM_TYPE => 'string',
-					ApiBase::PARAM_REQUIRED => true
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => true,
 			],
 			'language' => [
-					ApiBase::PARAM_TYPE => 'string',
-					ApiBase::PARAM_REQUIRED => true
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => true,
 			]
 		];
 	}

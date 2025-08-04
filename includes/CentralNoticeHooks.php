@@ -10,7 +10,6 @@ use MediaWiki\Hook\SkinTemplateNavigation__UniversalHook;
 use MediaWiki\Message\Message;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
-use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\ResourceLoader\Hook\ResourceLoaderRegisterModulesHook;
 use MediaWiki\ResourceLoader\ResourceLoader;
@@ -319,8 +318,7 @@ class CentralNoticeHooks implements
 	 * $wgExtensionFunctions.
 	 */
 	public static function initCentralNotice() {
-		global $wgCentralBannerRecorder, $wgCentralSelectedBannerDispatcher,
-			$wgCentralSelectedMobileBannerDispatcher;
+		global $wgCentralBannerRecorder, $wgCentralSelectedBannerDispatcher;
 
 		// Defaults for infrastructure wiki URLs
 		if ( !$wgCentralBannerRecorder ) {
@@ -331,12 +329,6 @@ class CentralNoticeHooks implements
 		if ( !$wgCentralSelectedBannerDispatcher ) {
 			$wgCentralSelectedBannerDispatcher =
 				SpecialPage::getTitleFor( 'BannerLoader' )->getLocalUrl();
-		}
-
-		if ( !$wgCentralSelectedMobileBannerDispatcher &&
-			ExtensionRegistry::getInstance()->isLoaded( 'MobileFrontend' )
-		) {
-			$wgCentralSelectedMobileBannerDispatcher = $wgCentralSelectedBannerDispatcher;
 		}
 	}
 
@@ -389,16 +381,7 @@ class CentralNoticeHooks implements
 	 * @return bool
 	 */
 	public static function onBeforePageDisplay( $out, $skin ) {
-		global $wgCentralHost, $wgServer, $wgCentralNoticeContentSecurityPolicy,
-			$wgCentralNoticeESITestString;
-
-		// Add ESI test string (see T308799)
-		// It is expected that only HTML comments in the form of '<!--esi ...' will be
-		// injected here.
-		// TODO Remove this once ESI tests are complete.
-		if ( $wgCentralNoticeESITestString ) {
-			$out->addHTML( $wgCentralNoticeESITestString );
-		}
+		global $wgCentralHost, $wgServer, $wgCentralNoticeContentSecurityPolicy;
 
 		// Always add geoIP
 		// TODO Separate geoIP from CentralNotice
@@ -519,7 +502,7 @@ class CentralNoticeHooks implements
 			$wgNoticeNumberOfControllerBuckets, $wgNoticeCookieDurations,
 			$wgNoticeHideUrls, $wgCentralNoticeSampleRate,
 			$wgCentralNoticeImpressionEventSampleRate,
-			$wgCentralSelectedBannerDispatcher, $wgCentralSelectedMobileBannerDispatcher,
+			$wgCentralSelectedBannerDispatcher,
 			$wgCentralNoticePerCampaignBucketExtension, $wgCentralNoticeCampaignMixins,
 			$wgCentralNoticeMaxCampaignFallback;
 
@@ -528,23 +511,7 @@ class CentralNoticeHooks implements
 		// This seems to be just right. We require them at all because MW will 302 page requests
 		// made to non localised namespaces which results in wasteful extra calls.
 
-		// Set infrastructure URL variables, which change between mobile/desktop
-		if ( ExtensionRegistry::getInstance()->isLoaded( 'MobileFrontend' ) ) {
-			$mc = MobileContext::singleton();
-			$displayMobile = $mc->shouldDisplayMobileView();
-		} else {
-			$displayMobile = false;
-		}
-
-		if ( $displayMobile ) {
-			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable
-			$wgCentralBannerRecorder = $mc->getMobileUrl( $wgCentralBannerRecorder );
-			$bannerDispatcher = $wgCentralSelectedMobileBannerDispatcher;
-		} else {
-			$bannerDispatcher = $wgCentralSelectedBannerDispatcher;
-		}
-
-		$vars[ 'wgCentralNoticeActiveBannerDispatcher' ] = $bannerDispatcher;
+		$vars[ 'wgCentralNoticeActiveBannerDispatcher' ] = $wgCentralSelectedBannerDispatcher;
 		$vars[ 'wgCentralBannerRecorder' ] = $wgCentralBannerRecorder;
 		$vars[ 'wgCentralNoticeSampleRate' ] = $wgCentralNoticeSampleRate;
 

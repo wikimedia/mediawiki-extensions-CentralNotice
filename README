@@ -46,13 +46,6 @@ Configuration
   but no other URL parameters or fragment identifiers may be used.
   Default: false
 
-* $wgCentralMobileSelectedBannerDispatcher: URL for BannerLoader on Mobile
-  sites. See $wgCentralSelectedBannerDispatcher. If false, and if
-  MobileFrontEnd is enabled for this site, this defaults to the same
-  value as $wgCentralSelectedBannerDispatcher. (This is a temporary
-  solution; see bug T156847).
-  Default: false
-
 * $wgCentralNoticeLoader: Enable the loader itself
   Allows control over the loader visibility, without destroying infrastructure
   for cached content

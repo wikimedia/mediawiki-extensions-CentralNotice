@@ -2,6 +2,8 @@
 
 use MediaWiki\Api\ApiBase;
 use MediaWiki\Api\ApiQueryBase;
+use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\TypeDef\NumericDef;
 
 # TODO: bannerlogs
 
@@ -12,9 +14,6 @@ class ApiCentralNoticeLogs extends ApiQueryBase {
 	private const CAMPAIGNS_FILTER = '/[a-zA-Z0-9_|\-]+/';
 
 	public function execute() {
-		// Obtain the ApiResults object from the base
-		$result = $this->getResult();
-
 		$params = $this->extractRequestParams();
 
 		$start = $params['start'];
@@ -28,34 +27,34 @@ class ApiCentralNoticeLogs extends ApiQueryBase {
 
 		$logs = Campaign::campaignLogs( $campaign, $user, $start, $end, $limit, $offset );
 
-		$result->addValue( [ 'query', $this->getModuleName() ], 'logs', $logs );
+		$this->getResult()->addValue( [ 'query', $this->getModuleName() ], 'logs', $logs );
 	}
 
 	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'campaign' => [
-				ApiBase::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_TYPE => 'string',
 			],
 			'user' => [
-				ApiBase::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_TYPE => 'string',
 			],
 			'limit' => [
-				ApiBase::PARAM_DFLT => 50,
-				ApiBase::PARAM_TYPE => 'limit',
-				ApiBase::PARAM_MIN  => 1,
-				ApiBase::PARAM_MAX  => ApiBase::LIMIT_BIG1,
-				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2,
+				ParamValidator::PARAM_DEFAULT => 50,
+				ParamValidator::PARAM_TYPE => 'limit',
+				NumericDef::PARAM_MIN  => 1,
+				NumericDef::PARAM_MAX  => ApiBase::LIMIT_BIG1,
+				NumericDef::PARAM_MAX2 => ApiBase::LIMIT_BIG2,
 			],
 			'offset' => [
-				ApiBase::PARAM_DFLT => 0,
-				ApiBase::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_DEFAULT => 0,
+				ParamValidator::PARAM_TYPE => 'integer',
 			],
 			'start' => [
-				ApiBase::PARAM_TYPE => 'timestamp',
+				ParamValidator::PARAM_TYPE => 'timestamp',
 			],
 			'end' => [
-				ApiBase::PARAM_TYPE => 'timestamp',
+				ParamValidator::PARAM_TYPE => 'timestamp',
 			],
 		];
 	}
