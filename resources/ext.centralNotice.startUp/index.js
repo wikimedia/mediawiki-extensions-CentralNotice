@@ -33,7 +33,7 @@
 	// case other code has grown up around it.
 	// TODO Add this only if there's a banner one day?
 	$( () => {
-		$( '#siteNotice' ).prepend( '<div id="centralNotice"></div>' );
+		$( '#siteNotice' ).prepend( '<div id="centralNotice" data-nosnippet=""></div>' );
 	} );
 
 	// Testing banner or forced no banner
