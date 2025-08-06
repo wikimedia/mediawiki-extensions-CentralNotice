@@ -11,7 +11,8 @@
 			"Tryvix1509",
 			"Trần Nguyễn Minh Huy",
 			"Vinhtantran",
-			"පසිඳු කාවින්ද"
+			"පසිඳු කාවින්ද",
+			"Nvdtn19"
 		]
 	},
 	"centralnotice": "Quản lý các thông báo trung ương",
@@ -46,7 +47,7 @@
 	"centralnotice-list-templates": "Liệt kê các bảng",
 	"centralnotice-language-listing": "$1 – $2",
 	"centralnotice-translations": "Bản dịch",
-	"centralnotice-translate-to": "Dịch ra",
+	"centralnotice-translate-to": "Dịch sang",
 	"centralnotice-translate": "Biên dịch",
 	"centralnotice-english": "tiếng Anh",
 	"centralnotice-banner-name": "Tên biểu ngữ:",
@@ -61,6 +62,7 @@
 	"centralnotice-notice-mixins-fieldset": "Tính năng bổ sung cho chiến dịch",
 	"centralnotice-notice-mixins-int-required": "Yêu cầu số nguyên",
 	"centralnotice-notice-mixins-float-required": "Yêu cầu số điểm phù động",
+	"centralnotice-notice-mixins-out-of-bound": "Giá trị vượt quá giới hạn",
 	"centralnotice-notice": "Cuộc vận động",
 	"centralnotice-notice-heading": "Cuộc vận động: $1",
 	"centralnotice-notices": "Thông báo",
@@ -143,6 +145,8 @@
 	"centralnotice-countries": "Quốc gia",
 	"centralnotice-regions": "Khu vực",
 	"centralnotice-location": "Quốc gia và khu vực",
+	"centralnotice-location-filter": "Bộ lọc",
+	"centralnotice-location-filter-clear": "xóa",
 	"centralnotice-allocation": "Phân bổ",
 	"centralnotice-view-allocation": "Xem cách phân phối bảng",
 	"centralnotice-allocation-instructions": "Chọn môi trường để xem cách phân phối bảng:",
@@ -241,6 +245,7 @@
 	"centralnotice-archive-campaign-confirm": "Việc lưu trữ đánh dấu một chiến dịch là không còn hoạt động, không thể khôi phục.",
 	"centralnotice-archive-campaign-cancel": "Hủy bỏ",
 	"centralnotice-archive-edit-prevented": "Không thể sửa đổi chiến dịch này vì nó đã bị khóa hoặc lưu trữ. Chiến dịch có thể được kích hoặt lại tại [[Special:CentralNotice]].",
+	"centralnotice-archived-campaigns": "Các chiến dịch đã lưu trữ",
 	"centralnotice-add-new-banner-title": "Thêm biểu ngữ",
 	"centralnotice-delete-banner": "Xóa",
 	"centralnotice-delete-banner-title": "Xóa {{PLURAL:$1|biểu ngữ|các biểu ngữ}}",
@@ -256,7 +261,7 @@
 	"centralnotice-end-time": "Lúc kết thức (UTC)",
 	"centralnotice-banner-not-found-title": "Không tìm thấy biểu ngữ",
 	"centralnotice-banner-not-found-contents": "Không có biểu ngữ đúng tên này.",
-	"centralnotice-csp-violation-alert": "Phát hiện có vi phạm Quy định Bảo mật Nội dung! Cố gắng tải gì đó từ $1.",
+	"centralnotice-csp-violation-alert": "Đã phát hiện vi phạm Chính sách Bảo mật Nội dung. Việc tải nội dung từ các nguồn ngoài wiki sẽ làm rò rỉ dữ liệu người đọc. Vui lòng xem trước biểu ngữ mà không sử dụng tiện ích hoặc tiện ích bổ sung của bên thứ ba. URL vi phạm: $1.",
 	"hidebanners": "Ẩn biểu ngữ",
 	"centralnotice-specialhidebanners-p3p": "Một số trình duyệt cần một chính sách P3P ngắn để đặt cookie trong một số trường hợp. Tuy nhiên, không có sẵn chính sách ngắn nào. Xin vui lòng xem chính sách cho người đọc của trang này.",
 	"centralnotice-banner-history-logger": "Trình ghi lịch sử biểu ngữ",
@@ -328,6 +333,7 @@
 	"centralnotice-campaign-view-logs": "Xem nhật trình thiết lập chiến dịch",
 	"prefs-centralnotice-banners": "Biểu ngữ",
 	"prefs-centralnotice-display-banner-types": "Kiểu biểu ngữ hiển thị",
+	"prefs-description-centralnotice-banners": "Quản lý các loại biểu ngữ mà bạn muốn thấy.",
 	"centralnotice-campaign-type": "Kiểu chiến dịch",
 	"centralnotice-empty-campaign-type-option": "Không có kiểu nhất định (luôn hiển thị)",
 	"centralnotice-non-existent-campaign-type-error": "Kiểu chiến dịch được chọn không tồn tại",
@@ -340,5 +346,7 @@
 	"centralnotice-campaign-type-maintenance": "Bảo trì",
 	"centralnotice-campaign-type-photography": "Nhiếp ảnh",
 	"centralnotice-campaign-type-special": "Đặc biệt",
-	"centralnotice-user-prefs-intro": "Biểu ngữ dành để thông báo những việc mà cộng đồng và người dùng Wikimedia quan tâm.\n\nBạn có thể lựa chọn những loại thông báo nào bạn muốn nhìn thấy. Một số thông báo về kỹ thuật, như việc bảo trì trang và thông báo đặc biệt được cho là tất cả thành viên cần biết, sẽ luôn được hiển thị. Để biết thêm, vui lòng đọc [[metawikimedia:Special:MyLanguage/CentralNotice|tài liệu hướng dẫn trên Meta-Wiki]]."
+	"centralnotice-user-prefs-intro": "Biểu ngữ dành để thông báo những việc mà cộng đồng và người dùng Wikimedia quan tâm.\n\nBạn có thể lựa chọn những loại thông báo nào bạn muốn nhìn thấy. Một số thông báo về kỹ thuật, như việc bảo trì trang và thông báo đặc biệt được cho là tất cả thành viên cần biết, sẽ luôn được hiển thị. Để biết thêm, vui lòng đọc [[metawikimedia:Special:MyLanguage/CentralNotice|tài liệu hướng dẫn trên Meta-Wiki]].",
+	"namespaceinfo-description-ns866": "Các thông điệp được sử dụng trong biểu ngữ [[mw:Special:MyLanguage/Extension:CentralNotice|CentralNotice]] và bản dịch của chúng",
+	"namespaceinfo-description-ns867": "Trang thảo luận cho các thông điệp biểu ngữ CentralNotice"
 }
