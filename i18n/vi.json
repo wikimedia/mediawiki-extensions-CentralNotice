@@ -11,7 +11,8 @@
 			"පසිඳු කාවින්ද",
 			"NguyenHung",
 			"Tryvix1509",
-			"Hide on Rosé"
+			"Hide on Rosé",
+			"Nvdtn19"
 		]
 	},
 	"centralnotice": "Quản lý các thông báo trung ương",
@@ -46,7 +47,7 @@
 	"centralnotice-list-templates": "Liệt kê các bảng",
 	"centralnotice-language-listing": "$1 – $2",
 	"centralnotice-translations": "Bản dịch",
-	"centralnotice-translate-to": "Dịch ra",
+	"centralnotice-translate-to": "Dịch sang",
 	"centralnotice-translate": "Biên dịch",
 	"centralnotice-english": "tiếng Anh",
 	"centralnotice-banner-name": "Tên biểu ngữ:",
@@ -61,6 +62,7 @@
 	"centralnotice-notice-mixins-fieldset": "Tính năng bổ sung cho chiến dịch",
 	"centralnotice-notice-mixins-int-required": "Yêu cầu số nguyên",
 	"centralnotice-notice-mixins-float-required": "Yêu cầu số điểm phù động",
+	"centralnotice-notice-mixins-out-of-bound": "Giá trị vượt quá giới hạn",
 	"centralnotice-notice": "Cuộc vận động",
 	"centralnotice-notice-heading": "Cuộc vận động: $1",
 	"centralnotice-notices": "Thông báo",

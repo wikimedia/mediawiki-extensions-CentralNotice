@@ -11,15 +11,16 @@
 			"Siddhartha Ghai",
 			"Suman",
 			"Venky2834",
-			"Abijeet Patro"
+			"Abijeet Patro",
+			"Saurmandal"
 		]
 	},
 	"centralnotice": "केन्द्रीय सूचना प्रबन्धक",
 	"noticetemplate": "केन्द्रीय सूचना प्रबन्धक",
 	"bannerallocation": "केन्द्रीय सूचना प्रबन्धक",
 	"centralnoticelogs": "केन्द्रीय सूचना प्रबन्धक",
-	"right-centralnotice-admin": "केन्द्रीय सूचनाएँ संभालें",
-	"action-centralnotice-admin": "केन्द्रीय सूचनाएँ संभालें",
+	"right-centralnotice-admin": "केंद्रीय सूचनाएँ प्रबंधित करना",
+	"action-centralnotice-admin": "केंद्रीय सूचनाएँ प्रबंधित करने",
 	"centralnotice-desc": "सेंट्रल साईटनोटिस बढ़ायें",
 	"centralnotice-query": "बर्त्तमान की अभियान को संशोधित करें",
 	"centralnotice-notice-name": "अभियान का नाम",
