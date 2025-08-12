@@ -1,17 +1,44 @@
 {
 	"@metadata": {
 		"authors": [
-			"Winston Sung"
+			"Winston Sung",
+			"Ktchankt",
+			"Yueman"
 		]
 	},
 	"centralnotice": "統一通告管理",
+	"noticetemplate": "統一通告管理",
+	"bannerallocation": "統一通告管理",
+	"centralnoticelogs": "統一通告管理",
 	"centralnotice-desc": "加入一個中央公告欄",
+	"centralnotice-modify": "遞交",
+	"centralnotice-add-notice-button": "開",
+	"centralnotice-add-notice-cancel-button": "取消",
+	"centralnotice-english": "英文",
+	"centralnotice-banner": "橫額",
+	"centralnotice-templates": "橫額",
+	"centralnotice-settings": "自定喜好",
+	"centralnotice-clone-name": "名：",
+	"centralnotice-clone-cancel": "取消",
+	"centralnotice-close-title": "閂",
+	"centralnotice-logs": "日誌",
+	"centralnotice-user": "用戶",
+	"centralnotice-action": "動作",
+	"centralnotice-talk-link": "傾偈",
+	"centralnotice-date": "日子",
+	"centralnotice-all": "全部",
+	"centralnotice-archive-banner-cancel": "取消",
+	"centralnotice-archive-campaign-cancel": "取消",
+	"centralnotice-delete-banner-cancel": "取消",
 	"prefs-centralnotice-banners": "橫額",
 	"prefs-centralnotice-display-banner-types": "顯示嘅橫額類型",
+	"centralnotice-campaign-type-advocacy": "推廣",
 	"centralnotice-campaign-type-article-writing": "寫文",
 	"centralnotice-campaign-type-event": "事件",
 	"centralnotice-campaign-type-fundraising": "籌款",
+	"centralnotice-campaign-type-governance": "管治",
 	"centralnotice-campaign-type-maintenance": "維修",
 	"centralnotice-campaign-type-photography": "攝影",
-	"centralnotice-campaign-type-special": "特殊"
+	"centralnotice-campaign-type-special": "特殊",
+	"centralnotice-user-prefs-intro": "橫額係顯示維基媒體社群同用戶有興趣睇嘅通告。\n\n下面選項畀你管理想睇嘅通告類型。有啲通告冇得停用，包括同網站維護相關嘅通知，同埋所有用戶都一定要知嘅特別通知。想知多啲，請睇[[metawikimedia:Special:MyLanguage/CentralNotice|維基元文件]]。"
 }
