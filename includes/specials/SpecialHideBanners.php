@@ -85,11 +85,14 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 		setcookie(
 			"centralnotice_hide_{$category}",
 			json_encode( $value ),
-			$exp,
-			'/',
-			$cookieDomain,
-			false,
-			false
+			[
+				'expires' => $exp,
+				'path' => '/',
+				'domain' => $cookieDomain,
+				'secure' => true,
+				'httponly' => false,
+				'samesite' => 'None',
+			]
 		);
 	}
 
