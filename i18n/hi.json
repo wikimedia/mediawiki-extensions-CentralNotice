@@ -20,6 +20,7 @@
 	"bannerallocation": "केन्द्रीय सूचना प्रबन्धक",
 	"centralnoticelogs": "केन्द्रीय सूचना प्रबन्धक",
 	"right-centralnotice-admin": "केंद्रीय सूचनाएँ प्रबंधित करना",
+	"restriction-level-centralnotice-admin": "सिर्फ केंद्रीय सूचना प्रबंधकों को अनुमति है",
 	"action-centralnotice-admin": "केंद्रीय सूचनाएँ प्रबंधित करने",
 	"centralnotice-desc": "सेंट्रल साईटनोटिस बढ़ायें",
 	"centralnotice-query": "बर्त्तमान की अभियान को संशोधित करें",
