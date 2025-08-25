@@ -29,7 +29,7 @@
 	"apihelp-centralnoticechoicedata-description": "Pridobi podatke, potrebne za izbiro pasice za določen projekt in jezik",
 	"apihelp-centralnoticechoicedata-summary": "Pridobi podatke, potrebne za izbiro pasice za določen projekt in jezik",
 	"apihelp-centralnoticechoicedata-param-project": "Projekt, za katerega naj se pridobijo podatki za izbiro pasice.",
-	"apihelp-centralnoticechoicedata-param-language": "Jezik, ya katerega naj se pridobijo podatki za izbiro pasice.",
+	"apihelp-centralnoticechoicedata-param-language": "Jezik, za katerega naj se pridobijo podatki za izbiro pasice.",
 	"apihelp-centralnoticechoicedata-example-1": "Pridobi podatke za izbiro pasice za uporabnike angleške vikipedije.",
 	"apihelp-query+centralnoticelogs-description": "Pridobi dnevnik sprememb konfiguracije kampanje.",
 	"apihelp-query+centralnoticelogs-summary": "Pridobi dnevnik sprememb konfiguracije kampanje.",
