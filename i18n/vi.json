@@ -12,7 +12,8 @@
 			"Trần Nguyễn Minh Huy",
 			"Vinhtantran",
 			"පසිඳු කාවින්ද",
-			"Nvdtn19"
+			"Nvdtn19",
+			"Noeruchan"
 		]
 	},
 	"centralnotice": "Quản lý các thông báo trung ương",
@@ -291,7 +292,7 @@
 	"centralnotice-impression-diet-skip-initial-help": "Mặc định là 0, có nghĩa là sẽ không bỏ qua lần xem nào. Khi chu trình bắt đầu, chúng tôi sẽ bỏ qua số lần xem triển vọng này trước khi hiện biểu ngữ.",
 	"centralnotice-large-banner-limit": "Giới hạn biểu ngữ lớn và đổi",
 	"centralnotice-large-banner-limit-help": "Hiện biểu ngữ lớn một lần duy nhất, sau đó chuyển sang biểu ngữ nhỏ. Đặt các biểu ngữ lớn trong gói A và B và các biểu ngữ nhỏ trong gói C và D.",
-	"centralnotice-large-banner-limit-days": "Thời gian cầm lại",
+	"centralnotice-large-banner-limit-days": "Thời gian tắt",
 	"centralnotice-large-banner-limit-days-help": "Số ngày tắt biểu ngữ lớn sau lần xem đầu tiên.",
 	"centralnotice-large-banner-limit-randomize": "Làm ngẫu nhiên sự chuyển tiếp xô",
 	"centralnotice-large-banner-limit-randomize-help": "Gói biểu ngữ thông thường sẽ là chuyển từ A sang C, B sang D. Khi được chọn, người xem sẽ được chuyển ngẫu nhiên sang gói C hoặc D.",
