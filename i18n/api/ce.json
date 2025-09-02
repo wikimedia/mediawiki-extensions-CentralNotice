@@ -4,10 +4,16 @@
 			"Умар"
 		]
 	},
+	"apierror-centralnotice-cdn-permissions-error": "Декъашхочун бакъо йац фронтендан кэш дӀайаккха.",
 	"apierror-centralnotice-cdn-lang-code-error": "Талхийна меттан код.",
 	"apierror-centralnotice-cdn-banner-name-error": "Талхийна баннеран цӀе.",
 	"apierror-centralnotice-cdn-banner-not-found": "Баннер ца карийна",
+	"apihelp-centralnoticeallocations-summary": "Параметрийн фильтраца массо а декъашхойн тайпанашна CentralNotice баннерийн тӀедилларш схьаэца.",
+	"apihelp-centralnoticeallocations-extended-description": "ХӀара кхайкхам JSON-на бен леррина бац.",
 	"apihelp-centralnoticeallocations-param-device": "Фильтрацин гӀирсан цӀе.",
+	"apihelp-centralnoticecdncacheupdatebanner-summary": "CDN (front-end) кэшехь латтош болу баннеран чулацам цӀанбар дехар дан анониман декъашхошна, дехар динчу баннерна а, маттана а",
 	"apihelp-query+centralnoticelogs-param-user": "Декъашхочун цӀе (лаамехь).",
-	"apihelp-query+centralnoticelogs-example-1": "Журналаш гайта"
+	"apihelp-query+centralnoticelogs-example-1": "Журналаш гайта",
+	"apihelp-query+centralnoticeactivecampaigns-summary": "Карарчу хенахь жигара йолчу кампанийн могӀам схьаэца, дӀайолалуш а, чекхйолуш а денош а, цаьрца йоьзна баннерш а йолуш.",
+	"apihelp-query+centralnoticeactivecampaigns-example-1": "Карарчу хенахь жигара йолчу кампанийн могӀам схьаэца, дӀайолалуш а, чекхйолуш а денош а, цаьрца йоьзна баннерш а йолуш."
 }
