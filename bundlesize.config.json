@@ -4,6 +4,10 @@
 		"maxSize": "0.7 kB"
 	},
 	{
+		"resourceModule": "ext.centralNotice.choiceData",
+		"maxSize": "0.2 kB"
+	},
+	{
 		"ignoreDependencies": true,
 		"resourceModule": "ext.centralNotice.startUp",
 		"maxSize": "1.2 kB"
