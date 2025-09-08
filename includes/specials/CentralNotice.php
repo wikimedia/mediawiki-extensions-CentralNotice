@@ -472,7 +472,6 @@ class CentralNotice extends UnlistedSpecialPage {
 
 	/**
 	 * Output a form for adding a campaign.
-	 *
 	 */
 	private function addNoticeForm() {
 		$request = $this->getRequest();
@@ -676,7 +675,6 @@ class CentralNotice extends UnlistedSpecialPage {
 	 * Show the interface for viewing/editing an individual campaign
 	 *
 	 * @param string $notice The name of the campaign to view
-	 *
 	 */
 	private function outputNoticeDetail( $notice ) {
 		$out = $this->getOutput();

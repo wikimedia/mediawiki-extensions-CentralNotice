@@ -7,7 +7,7 @@ use Wikimedia\ParamValidator\TypeDef\NumericDef;
 
 # TODO: bannerlogs
 
-/** @todo: This needs some major cleanup to work more like the rest of the API. */
+/** @todo This needs some major cleanup to work more like the rest of the API. */
 class ApiCentralNoticeLogs extends ApiQueryBase {
 
 	private const USER_FILTER = '/[a-zA-Z0-9_.]+/';
