@@ -3,7 +3,7 @@
 use MediaWiki\Api\ApiBase;
 use Wikimedia\ParamValidator\ParamValidator;
 
-/** @todo: This needs some major cleanup to work more like the rest of the API. */
+/** @todo This needs some major cleanup to work more like the rest of the API. */
 class ApiCentralNoticeQueryCampaign extends ApiBase {
 
 	/**

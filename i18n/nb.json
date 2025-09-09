@@ -261,7 +261,7 @@
 	"centralnotice-end-time": "Sluttid (UTC)",
 	"centralnotice-banner-not-found-title": "Banner ikke funnet",
 	"centralnotice-banner-not-found-contents": "Det er ingen bannere med dette navnet.",
-	"centralnotice-csp-violation-alert": "Brudd på innholdssikkerhetspolitikken oppdaget! Prøvde å laste noe fra $1.",
+	"centralnotice-csp-violation-alert": "Brudd på innholdssikkerhetspolitikken oppdaget. Å laste innhold fra kilder utenom wikien kan kompromittere lesernes data. Forhåndsvis bannere uten tilleggsfunksjoner eller eksterne utvidelser. Den blokkerte URL-en er: $1.\n\nPrøvde å laste noe fra $1.",
 	"hidebanners": "Skjul bannere",
 	"centralnotice-specialhidebanners-p3p": "Noen nettlesere krever en P3P kompakt-policy for å sette informasjonskapsler i visse situasjoner. Ingen kompakt-policy er tilgjengelig for øyeblikket. Vennligst se nettstedets menneske-leselige personvernspolicy.",
 	"centralnotice-banner-history-logger": "Bannerhistorikklogger",
@@ -346,5 +346,7 @@
 	"centralnotice-campaign-type-maintenance": "Vedlikehold",
 	"centralnotice-campaign-type-photography": "Fotografi",
 	"centralnotice-campaign-type-special": "Spesielle",
-	"centralnotice-user-prefs-intro": "Bannere viser kunngjøringer som kan være interessante for Wikimedia-brukere.\n\nNedenfor er alternativer som lar deg velge hva slags kunngjøringer du vil se. Visse typer kunngjøringer vises alltid, som de som gjelder vedlikehold eller spesielle saker som anses som nødvendige for alle brukere. Se [[metawikimedia:Special:MyLanguage/CentralNotice|dokumentasjonen på Meta-Wiki]] for mer informasjon."
+	"centralnotice-user-prefs-intro": "Bannere viser kunngjøringer som kan være interessante for Wikimedia-brukere.\n\nNedenfor er alternativer som lar deg velge hva slags kunngjøringer du vil se. Visse typer kunngjøringer vises alltid, som de som gjelder vedlikehold eller spesielle saker som anses som nødvendige for alle brukere. Se [[metawikimedia:Special:MyLanguage/CentralNotice|dokumentasjonen på Meta-Wiki]] for mer informasjon.",
+	"namespaceinfo-description-ns866": "Meldinger som brukes i [[mw:Special:MyLanguage/Extension:CentralNotice|CentralNotice]]-bannere og deres oversettelser",
+	"namespaceinfo-description-ns867": "Diskusjonssider for CentralNotice-bannermeldinger"
 }

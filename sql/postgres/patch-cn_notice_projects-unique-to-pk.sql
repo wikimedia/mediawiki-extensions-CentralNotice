@@ -2,6 +2,7 @@
 -- Source: sql/abstractSchemaChanges/patch-cn_notice_projects-unique-to-pk.json
 -- Do not modify this file directly.
 -- See https://www.mediawiki.org/wiki/Manual:Schema_changes
-DROP  INDEX np_notice_id_project;
-ALTER TABLE  cn_notice_projects
-ADD  PRIMARY KEY (np_notice_id, np_project);
+DROP INDEX np_notice_id_project;
+
+ALTER TABLE cn_notice_projects
+  ADD PRIMARY KEY (np_notice_id, np_project);

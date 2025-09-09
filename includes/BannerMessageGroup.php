@@ -20,7 +20,6 @@ class BannerMessageGroup extends WikiMessageGroup {
 
 	/**
 	 * @var int
-	 * @suppress PhanUndeclaredConstant NS_CN_BANNER defined in extension.json
 	 */
 	protected $namespace = NS_CN_BANNER;
 
