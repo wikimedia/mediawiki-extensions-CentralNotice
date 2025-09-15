@@ -4,7 +4,8 @@
 			"Les Meloures",
 			"Robby",
 			"Soued031",
-			"Volvox"
+			"Volvox",
+			"GilPe"
 		]
 	},
 	"centralnotice": "Administratioun vun den zentrale Matdeelungen",
@@ -137,7 +138,7 @@
 	"centralnotice-timestamp": "Zäitstempel",
 	"centralnotice-user": "Benotzer",
 	"centralnotice-action": "Aktioun",
-	"centralnotice-change-summary-heading": "Resumé",
+	"centralnotice-change-summary-heading": "Resümmee",
 	"centralnotice-action-created": "ugeluecht",
 	"centralnotice-action-modified": "geännert",
 	"centralnotice-action-removed": "ewech geholl",
@@ -195,7 +196,7 @@
 	"centralnotice-archive-banner": "Archiv",
 	"centralnotice-archive-banner-title": "{{PLURAL:$1|Banner|Banneren}} archivéieren?",
 	"centralnotice-archive-banner-cancel": "Ofbriechen",
-	"centralnotice-change-summary-label": "Resumé",
+	"centralnotice-change-summary-label": "Resümmee",
 	"centralnotice-change-summary-prompt": "Message iwwer dës Ännerungen (fakultativ)",
 	"centralnotice-change-summary-action-prompt": "Message iwwer dës Aktioun (fakultativ)",
 	"centralnotice-archive-show": "Archivéiert Kampagne weisen",
