@@ -7,6 +7,7 @@
 			"Ex13",
 			"Herr Mlinka",
 			"MaGa",
+			"Neptune, the Mystic",
 			"Ponor",
 			"Roberta F.",
 			"SpeedyGonsales",
@@ -172,5 +173,5 @@
 	"centralnotice-campaign-type-maintenance": "Održavanje",
 	"centralnotice-campaign-type-photography": "Fotografija",
 	"centralnotice-campaign-type-special": "Posebne",
-	"centralnotice-user-prefs-intro": "Obavjesnice prikazuju objave od interesa za wikimedijine zajednice i suradnike.\n\nNiže su navedene opcije koje Vam daju mogućnost upravljanja tipovima objava koje želite primati. Određene platformske obavijesti vezane uz održavanje poslužitelja i posebne obavijesti koje se smatraju nužnima za sve suradnike, bit će uvijek prikazane. Za više informacija, molimo Vas, pročitajte [[metawikimedia:Special:MyLanguage/CentralNotice|dokumentaciju na Meta-Wikiju]]."
+	"centralnotice-user-prefs-intro": "Obavjesnice prikazuju objave od interesa za Wikimedijine zajednice i suradnike.\n\nNiže su navedene opcije koje vam omogućuju da birate kakve vrste objava želite primati. Određene platformske obavijesti vezane uz održavanje poslužitelja i posebne obavijesti koje se smatraju nužnima za sve suradnike uvijek će se prikazivati. Za više informacija pročitajte [[metawikimedia:Special:MyLanguage/CentralNotice|dokumentaciju na Meta-Wikiju]]."
 }
