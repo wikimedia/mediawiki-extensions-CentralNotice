@@ -126,7 +126,7 @@
 	"centralnotice-banner-mixins": "«Эдинарш»:",
 	"centralnotice-banner-mixins-help": "Хьайн баннер дӀакхачош хьайна йукъайаккха лууш йолу хӀора «тӀетохар» билгалдаккха. (Хьажа  [https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins Banner mixins] кхин а хаамаш лаха)",
 	"centralnotice-banner-cdn-controls": "Фронтэндан кэш",
-	"centralnotice-banner-cdn-label": "РогӀера меттана фронтэндан кэш цӀанъе:",
+	"centralnotice-banner-cdn-label": "РогӀера меттана фронтэндан кэш цӀанйе:",
 	"centralnotice-banner-cdn-button": "ЦӀанйан",
 	"centralnotice-banner-cdn-help": "ДӀабоккху баннерийн чулацам фронтэндан кэшехь анониман декъашхошна, хаьржинчу маттана. (Авторизаци йиначу декъашхошна баннерш кэш йеш йац).",
 	"centralnotice-banner-cdn-dialog-waiting-text": "Фронтэндан кэш дӀацӀанйан дехар дӀахьажор...",
