@@ -29,7 +29,8 @@
 			"Wayiran",
 			"ZxxZxxZ",
 			"پسر یاس",
-			"Ebrahim"
+			"Ebrahim",
+			"LordProfo"
 		]
 	},
 	"centralnotice": "مدیر اعلان متمرکز",
@@ -257,7 +258,7 @@
 	"centralnotice-archive-campaign-confirm": "بایگانی‌کردن یک کمپین را به عنوان به‌طور همیشگی غیرفعال علامت می‌زند.",
 	"centralnotice-archive-campaign-cancel": "فسخ",
 	"centralnotice-archive-edit-prevented": "ویرایش این کمپین عیرفعال‌شده به این دلیل که یا قفل شده یا بایگانی شده است. تغییر این وضعیت از [[Special:CentralNotice]].",
-	"centralnotice-add-new-banner-title": "اضافه کردن بنر جدید",
+	"centralnotice-add-new-banner-title": "افزودن بنر جدید",
 	"centralnotice-delete-banner": "حذف",
 	"centralnotice-delete-banner-title": "پاک‌کردن {{PLURAL:$1|پرچم|پرچم‌ها}}",
 	"centralnotice-delete-banner-confirm": "هشدار: پاک‌کردن همه تنظیمات و پیام‌ها را حذف می‌کند. این عمل نمی‌تواند برگردانده شود. به جای این بایگانی‌کردن را در نظر بگیرید.",
