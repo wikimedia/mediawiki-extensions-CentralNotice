@@ -274,7 +274,7 @@
 	"centralnotice-end-time": "Bitiş zamanı (UTC)",
 	"centralnotice-banner-not-found-title": "Banner bulunamadı",
 	"centralnotice-banner-not-found-contents": "Bu tam adı taşıyan bir banner yok.",
-	"centralnotice-csp-violation-alert": "İçerik Güvenliği Politikası ihlali tespit edildi! $1 bir şey yüklemeye çalıştı.",
+	"centralnotice-csp-violation-alert": "İçerik Güvenlik Politikası ihlâli tespit edildi. Viki dışı kaynaklardan içerik yüklenmesi, okuyucu verilerinin sızdırılmasına neden oluyor. Lütfen herhangi bir küçük araç veya üçüncü taraf eklentisi içermeyen başlıkları önizleyin. İhlal edilen URL: $1.",
 	"hidebanners": "Banner'ları gizle",
 	"centralnotice-specialhidebanners-p3p": "Bazı tarayıcılar, belirli durumlarda çerezleri ayarlamak için P3P kompakt politikası gerektirir. Ancak, şu anda kompakt bir politika mevcut değildir. Lütfen sitenin insan tarafından okunabilir gizlilik politikasına bakın.",
 	"centralnotice-banner-history-logger": "Banner geçmişi günlüğü",
