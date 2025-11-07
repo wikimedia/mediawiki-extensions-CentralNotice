@@ -781,22 +781,6 @@ class Campaign {
 	}
 
 	/**
-	 * Get all the campaigns in the database
-	 *
-	 * @todo Unused
-	 *
-	 * @return array an array of campaign names
-	 */
-	public static function getAllCampaignNames() {
-		$dbr = CNDatabase::getReplicaDb();
-		return $dbr->newSelectQueryBuilder()
-			->select( 'not_name' )
-			->from( 'cn_notices' )
-			->caller( __METHOD__ )
-			->fetchFieldValues();
-	}
-
-	/**
 	 * Add a new campaign to the database
 	 *
 	 * @param string $noticeName Name of the campaign
@@ -1085,30 +1069,6 @@ class Campaign {
 			->caller( __METHOD__ )
 			->fetchRow();
 		return $row ? $row->not_id : null;
-	}
-
-	/**
-	 * Lookup the name of a campaign based on the campaign ID
-	 *
-	 * @todo Unused
-	 *
-	 * @param int $noticeId
-	 * @return null|string
-	 */
-	public static function getNoticeName( $noticeId ) {
-		$dbr = CNDatabase::getReplicaDb();
-		if ( is_numeric( $noticeId ) ) {
-			$row = $dbr->newSelectQueryBuilder()
-				->select( 'not_name' )
-				->from( 'cn_notices' )
-				->where( [ 'not_id' => $noticeId ] )
-				->caller( __METHOD__ )
-				->fetchRow();
-			if ( $row ) {
-				return $row->not_name;
-			}
-		}
-		return null;
 	}
 
 	/**
