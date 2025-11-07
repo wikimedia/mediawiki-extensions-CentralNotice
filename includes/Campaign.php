@@ -1623,6 +1623,22 @@ class Campaign {
 		$dbw = CNDatabase::getPrimaryDb();
 		$time = $dbw->timestamp();
 
+		( new CentralNoticeHookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
+			->onCentralNoticeCampaignChange(
+				$action,
+				$time,
+				$campaignName,
+				$user,
+				self::processSettingsForHook( $beginSettings ),
+				self::processSettingsForHook( $endSettings ),
+				$summary
+			);
+
+		// Only log the change if it is done by an actual user (rather than a testing script)
+		if ( !$user->isNamed() ) {
+			return;
+		}
+
 		$log = [
 			'notlog_timestamp' => $time,
 			'notlog_user_id'   => $user->getId(),
@@ -1636,35 +1652,21 @@ class Campaign {
 			if ( !self::settingNameIsValid( $key ) ) {
 				throw new InvalidArgumentException( "Invalid setting name" );
 			}
-				$log[ 'notlog_begin_' . $key ] = $value;
+			$log[ 'notlog_begin_' . $key ] = $value;
 		}
 
 		foreach ( $endSettings as $key => $value ) {
 			if ( !self::settingNameIsValid( $key ) ) {
 				throw new InvalidArgumentException( "Invalid setting name" );
 			}
-				$log[ 'notlog_end_' . $key ] = $value;
+			$log[ 'notlog_end_' . $key ] = $value;
 		}
 
-		( new CentralNoticeHookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
-			->onCentralNoticeCampaignChange(
-				$action,
-				$time,
-				$campaignName,
-				$user,
-				self::processSettingsForHook( $beginSettings ),
-				self::processSettingsForHook( $endSettings ),
-				$summary
-			);
-
-		// Only log the change if it is done by an actual user (rather than a testing script)
-		if ( $user->isNamed() ) {
-			$dbw->newInsertQueryBuilder()
-				->insertInto( 'cn_notice_log' )
-				->row( $log )
-				->caller( __METHOD__ )
-				->execute();
-		}
+		$dbw->newInsertQueryBuilder()
+			->insertInto( 'cn_notice_log' )
+			->row( $log )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	/**
