@@ -1,20 +1,9 @@
 <?php
 
-// phpcs:disable MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName
-
-use MediaWiki\Config\Config;
-use MediaWiki\Extension\UserMerge\Hooks\AccountFieldsHook;
-
 /**
- * All hooks from the UserMerge extension which is optional to use with this extension.
- *
  * This file is part of the CentralNotice Extension to MediaWiki
  * https://www.mediawiki.org/wiki/Extension:CentralNotice
  *
- * @file
- * @ingroup Extensions
- *
- * @section LICENSE
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -29,8 +18,18 @@ use MediaWiki\Extension\UserMerge\Hooks\AccountFieldsHook;
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
  */
 
+use MediaWiki\Config\Config;
+use MediaWiki\Extension\UserMerge\Hooks\AccountFieldsHook;
+
+/**
+ * All hooks from the UserMerge extension which is optional to use with this extension.
+ *
+ * @ingroup Extensions
+ */
 class UserMergeHookHandlers implements AccountFieldsHook {
 	private Config $config;
 

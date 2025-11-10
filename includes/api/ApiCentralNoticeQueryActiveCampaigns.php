@@ -7,7 +7,6 @@ use Wikimedia\ParamValidator\ParamValidator;
 /**
  * Query of currently active CentralNotice campaigns.
  */
-
 class ApiCentralNoticeQueryActiveCampaigns extends ApiQueryBase {
 
 	public function __construct( ApiQuery $query, string $moduleName ) {

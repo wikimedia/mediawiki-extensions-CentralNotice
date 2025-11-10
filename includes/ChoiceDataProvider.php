@@ -124,8 +124,12 @@ class ChoiceDataProvider {
 				'templates.tmp_display_anon',
 				'templates.tmp_display_account',
 				'templates.tmp_category'
-			] )
-			->from( 'cn_notices', 'notices' )
+			] );
+		// Could be null if database is disabled e.g. during tests
+		if ( $dbRows === null ) {
+			return [];
+		}
+		$dbRows = $dbRows->from( 'cn_notices', 'notices' )
 			->join(	'cn_assignments', 'assignments', 'notices.not_id = assignments.not_id' )
 			->join(	'cn_templates', 'templates', 'assignments.tmp_id = templates.tmp_id' )
 			->join(	'cn_notice_projects', 'notice_projects', 'notices.not_id = notice_projects.np_notice_id' )

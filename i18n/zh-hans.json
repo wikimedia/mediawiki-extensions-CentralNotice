@@ -298,7 +298,7 @@
 	"centralnotice-end-time": "结束时间（UTC）",
 	"centralnotice-banner-not-found-title": "找不到横幅",
 	"centralnotice-banner-not-found-contents": "没有匹配此名称的横幅。",
-	"centralnotice-csp-violation-alert": "检测到违反“内容安全策略（CSP）”！请尝试从$1加载内容。",
+	"centralnotice-csp-violation-alert": "检测到违反内容安全策略（CSP）。加载来自非wiki来源的内容会泄露读者数据。请预览未包含任何小工具或第三方插件的横幅说明。违规URL：$1。",
 	"hidebanners": "隐藏横幅",
 	"centralnotice-specialhidebanners-p3p": "部分浏览器需要P3P紧凑策略以在某些情况下设置Cookie。然而目前没有可用的紧凑策略。请参见网站的隐私政策。",
 	"centralnotice-banner-history-logger": "横幅历史记录器",

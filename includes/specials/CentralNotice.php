@@ -239,7 +239,7 @@ class CentralNotice extends UnlistedSpecialPage {
 			$diffs = array_diff_assoc( $initialSettings, $newSettings );
 
 			if ( $diffs ) {
-				$campaignId = Campaign::getNoticeId( $campaignName );
+				$campaignId = Campaign::getNoticeId( $campaignName, true );
 				Campaign::processAfterCampaignChange(
 					'modified',
 					$campaignId,
@@ -1001,7 +1001,7 @@ class CentralNotice extends UnlistedSpecialPage {
 				}
 
 				$finalCampaignSettings = Campaign::getCampaignSettings( $notice, true );
-				$campaignId = Campaign::getNoticeId( $notice );
+				$campaignId = Campaign::getNoticeId( $notice, true );
 
 				$summary = $this->getSummaryFromRequest( $request );
 
@@ -1262,7 +1262,7 @@ class CentralNotice extends UnlistedSpecialPage {
 			// Create controls for campaign-associated mixins (if there are any)
 			$centralNoticeCampaignMixins = $config->get( 'CentralNoticeCampaignMixins' );
 			if ( $centralNoticeCampaignMixins ) {
-				$mixinsThisNotice = Campaign::getCampaignMixins( $notice );
+				$mixinsThisNotice = Campaign::getCampaignMixins( $notice, $wasPosted );
 
 				$htmlOut .= Xml::fieldset(
 					$this->msg( 'centralnotice-notice-mixins-fieldset' )->text() );

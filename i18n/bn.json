@@ -10,6 +10,7 @@
 			"Wikitanvir",
 			"YahyA",
 			"Yahya",
+			"আজিজ",
 			"আফতাবুজ্জামান"
 		]
 	},
@@ -96,6 +97,7 @@
 	"centralnotice-fieldset-preview": "সরাসরি প্রাকদর্শন",
 	"centralnotice-update-preview": "প্রাকদর্শন হালনাগাদ",
 	"centralnotice-preview-page": "[ উইকিতে প্রাকদর্শন ]",
+	"centralnotice-preview-loader-error-dialog-title": "ব্যানারের প্রাকদর্শন লোডে ত্রুটি",
 	"centralnotice-clone": "হুবুহু অনুলিপি",
 	"centralnotice-clone-notice": "ব্যানারের অনুলিপি তৈরি করো",
 	"centralnotice-clone-name": "নাম:",
