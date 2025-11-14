@@ -997,10 +997,15 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 				}
 
 				$this->ensureBanner( $this->bannerName );
-				$this->banner->cloneBanner(
-					$newBannerName, $this->getUser(),
-					$formData[ 'cloneEditSummary' ]
-				);
+				try {
+					$this->banner->cloneBanner(
+						$newBannerName,
+						$this->getUser(),
+						$formData['cloneEditSummary']
+					);
+				} catch ( BannerExistenceException ) {
+					return $this->msg( 'centralnotice-template-exists', $this->bannerName )->parse();
+				}
 
 				$this->getOutput()->redirect(
 					$this->getPageTitle( "Edit/$newBannerName" )->getCanonicalURL()
