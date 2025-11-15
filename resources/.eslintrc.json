@@ -11,6 +11,9 @@
 	"rules": {
 		"no-jquery/no-global-selector": "off",
 		"compat/compat": "warn",
-		"no-jquery/no-done-fail": "warn"
+		"no-jquery/no-done-fail": "warn",
+		"mediawiki/no-storage": "warn",
+		"mediawiki/no-cookie": "warn",
+		"mediawiki/no-unlabeled-buttonwidget": "warn"
 	}
 }
