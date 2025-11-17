@@ -1450,13 +1450,13 @@ class Banner {
 	/**
 	 * @param string $name
 	 * @param User $user
-	 * @param Banner $template
+	 * @param self $template
 	 * @param string|null $summary
 	 * @return string|null error message key or null on success
 	 * @throws BannerDataException
 	 * @throws BannerExistenceException
 	 */
-	public static function addFromBannerTemplate( $name, $user, Banner $template, $summary = null ) {
+	public static function addFromBannerTemplate( $name, $user, self $template, $summary = null ) {
 		if ( !$template->isTemplate() ) {
 			return 'centralnotice-banner-template-error';
 		}
