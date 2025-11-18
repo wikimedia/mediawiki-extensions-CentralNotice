@@ -13,6 +13,8 @@ use MediaWiki\SpecialPage\UnlistedSpecialPage;
 class SpecialHideBanners extends UnlistedSpecialPage {
 	// Cache this blank response for a day or so (60 * 60 * 24 s.)
 	private const CACHE_EXPIRY = 86400;
+	// Hard-coded upper limit of 10 years for the user-provided …&duration=… parameter
+	private const MAX_COOKIE_DURATION = 10 * 365 * 86400;
 	private const P3P_SUBPAGE = 'P3P';
 
 	public function __construct() {
@@ -35,14 +37,14 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 
 		// No duration parameter for a custom reason is not expected; we have a
 		// fallback value, but we log that this happened.
-		$duration = $this->getRequest()->getInt( 'duration', 0 );
-		if ( !$duration ) {
+		$duration = $this->getRequest()->getInt( 'duration' );
+		if ( $duration <= 0 || $duration > self::MAX_COOKIE_DURATION ) {
 			$noticeCookieDurations = $config->get( 'NoticeCookieDurations' );
 			if ( isset( $noticeCookieDurations[$reason] ) ) {
 				$duration = $noticeCookieDurations[$reason];
 			} else {
 				$duration = $config->get( 'CentralNoticeFallbackHideCookieDuration' );
-				wfLogWarning( 'Missing or 0 duration for hide cookie reason '
+				wfLogWarning( 'Missing or invalid duration for hide cookie reason '
 					. $reason . '.' );
 			}
 		}
