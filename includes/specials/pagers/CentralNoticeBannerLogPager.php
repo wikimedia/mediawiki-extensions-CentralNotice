@@ -6,13 +6,6 @@ use MediaWiki\User\User;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
-	/** @var SpecialCentralNoticeLogs */
-	public $special;
-
-	public function __construct( SpecialCentralNoticeLogs $special ) {
-		$this->special = $special;
-		parent::__construct( $special );
-	}
 
 	/**
 	 * Sort the log list by timestamp

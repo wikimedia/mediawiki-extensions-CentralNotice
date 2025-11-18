@@ -31,12 +31,10 @@ use MediaWiki\Extension\UserMerge\Hooks\AccountFieldsHook;
  * @ingroup Extensions
  */
 class UserMergeHookHandlers implements AccountFieldsHook {
-	private Config $config;
 
 	public function __construct(
-		Config $config
+		private readonly Config $config,
 	) {
-		$this->config = $config;
 	}
 
 	/**

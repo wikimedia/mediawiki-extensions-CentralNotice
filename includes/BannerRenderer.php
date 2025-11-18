@@ -10,40 +10,9 @@ use MediaWiki\SpecialPage\SpecialPage;
  * Produce HTML and JSON output for a given banner and context
  */
 class BannerRenderer {
-	/**
-	 * @var IContextSource
-	 */
-	private $context;
-
-	/**
-	 * @var Banner
-	 */
-	private $banner;
-
-	/**
-	 * Campaign in which context the rendering is taking place.  Empty during preview.
-	 * @var string
-	 */
-	private $campaignName = "";
-
-	/**
-	 * Unsaved raw banner content to use for rendering an unsaved preview.
-	 * @var string|null
-	 */
-	private $previewContent;
-
-	/**
-	 * Associative array of banner message names and values, for rendering an unsaved
-	 * preview.
-	 * @var array|null
-	 */
-	private $previewMessages;
 
 	/** @var MixinController|null */
 	private $mixinController = null;
-
-	/** @var bool */
-	private $debug;
 
 	/**
 	 * Creates a new renderer for a given banner and context
@@ -59,21 +28,13 @@ class BannerRenderer {
 	 * @param bool $debug If false, minify the output.
 	 */
 	public function __construct(
-		IContextSource $context,
-		Banner $banner,
-		$campaignName = null,
-		$previewContent = null,
-		$previewMessages = null,
-		$debug = false
+		private readonly IContextSource $context,
+		private readonly Banner $banner,
+		private readonly ?string $campaignName = null,
+		private readonly ?string $previewContent = null,
+		private readonly ?array $previewMessages = null,
+		private readonly bool $debug = false,
 	) {
-		$this->context = $context;
-
-		$this->banner = $banner;
-		$this->campaignName = $campaignName;
-		$this->previewContent = $previewContent;
-		$this->previewMessages = $previewMessages;
-		$this->debug = $debug;
-
 		$this->mixinController = new MixinController( $this->context, $this->banner->getMixins() );
 
 		// FIXME: it should make sense to do this:

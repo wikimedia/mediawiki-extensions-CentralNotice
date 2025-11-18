@@ -1,18 +1,15 @@
 <?php
 
 class CNCountry {
-	/** @var string */
-	private $name;
-	/** @var string[] */
-	private $regions;
 
 	/**
 	 * @param string $name
-	 * @param array $regions
+	 * @param string[] $regions
 	 */
-	public function __construct( $name, array $regions ) {
-		$this->name = $name;
-		$this->regions = $regions;
+	public function __construct(
+		private string $name,
+		private array $regions,
+	) {
 	}
 
 	/**

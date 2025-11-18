@@ -11,48 +11,27 @@ use Wikimedia\Rdbms\LikeValue;
 
 class CNBannerPager extends ReverseChronologicalPager {
 
-	/** @var bool True if the form is to be created with editable elements */
-	private $editable = false;
-
-	/** @var string Space separated strings to filter banner titles on */
-	private $filter = '';
-
-	/** @var array[] HTMLFormFields to add to the results before every banner entry */
-	private $prependPrototypes = [];
-
-	/** @var array[] HTMLFormFields to add to the results after every banner entry */
-	private $appendPrototypes = [];
-
-	/** @var string 'Section' attribute to apply to the banner elements generated */
-	private $formSection = null;
-
-	/** @var SpecialCentralNoticeBanners the page on which we appear */
-	private $hostSpecialPage;
-
 	/**
-	 * @param SpecialCentralNoticeBanners $hostSpecialPage
-	 * @param string|null $formSection
-	 * @param array $prependPrototypes
-	 * @param array $appendPrototypes
-	 * @param string $bannerFilter
-	 * @param bool $editable
+	 * @param SpecialCentralNoticeBanners $hostSpecialPage the page on which we appear
+	 * @param string|null $formSection 'Section' attribute to apply to the banner elements generated
+	 * @param array[] $prependPrototypes HTMLFormFields to add to the results before every banner entry
+	 * @param array[] $appendPrototypes HTMLFormFields to add to the results after every banner entry
+	 * @param string $bannerFilter Space separated strings to filter banner titles on
+	 * @param bool $editable True if the form is to be created with editable elements
 	 */
-	public function __construct( SpecialCentralNoticeBanners $hostSpecialPage,
-		$formSection = null, $prependPrototypes = [],
-		$appendPrototypes = [], $bannerFilter = '', $editable = false
+	public function __construct(
+		private readonly SpecialCentralNoticeBanners $hostSpecialPage,
+		private readonly ?string $formSection = null,
+		private readonly array $prependPrototypes = [],
+		private readonly array $appendPrototypes = [],
+		private readonly string $bannerFilter = '',
+		private readonly bool $editable = false,
 	) {
-		$this->editable = $editable;
-		$this->filter = $bannerFilter;
 		// Set database before parent constructor to avoid setting it there
 		$this->mDb = CNDatabase::getReplicaDb();
 
 		parent::__construct();
 
-		$this->prependPrototypes = $prependPrototypes;
-		$this->appendPrototypes = $appendPrototypes;
-		$this->formSection = $formSection;
-
-		$this->hostSpecialPage = $hostSpecialPage;
 		// Override paging defaults
 		[ $this->mLimit, $this->mOffset ] = $this->mRequest->getLimitOffsetForUser(
 			$this->getUser(),
@@ -96,7 +75,7 @@ class CNBannerPager extends ReverseChronologicalPager {
 	 */
 	public function getQueryInfo() {
 		// When the filter comes in it is space delimited, so break that...
-		$likeArray = preg_split( '/\s/', $this->filter );
+		$likeArray = preg_split( '/\s/', $this->bannerFilter );
 
 		// ...and then insert all the wildcards between search terms
 		if ( !$likeArray ) {

@@ -36,13 +36,10 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	/** @var array|null Names of the banners that are marked as templates */
 	private $templateBannerNames = null;
 
-	private LanguageNameUtils $languageNameUtils;
-
 	public function __construct(
-		LanguageNameUtils $languageNameUtils
+		private readonly LanguageNameUtils $languageNameUtils,
 	) {
 		parent::__construct( 'CentralNoticeBanners' );
-		$this->languageNameUtils = $languageNameUtils;
 	}
 
 	/** @inheritDoc */

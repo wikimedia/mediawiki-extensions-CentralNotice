@@ -12,21 +12,13 @@ use Wikimedia\Rdbms\IDBAccessObject;
 
 class BannerMessage {
 
-	/** @var string */
-	private $banner_name;
-	/** @var string */
-	private $name;
-
 	private const SPAN_TAG_PLACEHOLDER_START = '%%%spantagplaceholderstart%%%';
 	private const SPAN_TAG_PLACEHOLDER_END = '%%%spantagplaceholderend%%%';
 
-	/**
-	 * @param string $banner_name
-	 * @param string $name
-	 */
-	public function __construct( $banner_name, $name ) {
-		$this->banner_name = $banner_name;
-		$this->name = $name;
+	public function __construct(
+		private readonly string $banner_name,
+		private readonly string $name,
+	) {
 	}
 
 	/**

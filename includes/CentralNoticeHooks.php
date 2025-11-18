@@ -53,12 +53,9 @@ class CentralNoticeHooks implements
 	PreferencesGetIconHook
 {
 
-	private SpecialPageFactory $specialPageFactory;
-
 	public function __construct(
-		SpecialPageFactory $specialPageFactory
+		private readonly SpecialPageFactory $specialPageFactory,
 	) {
-		$this->specialPageFactory = $specialPageFactory;
 	}
 
 	/**

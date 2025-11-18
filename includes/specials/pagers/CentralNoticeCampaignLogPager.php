@@ -11,11 +11,10 @@ use Wikimedia\Rdbms\LikeValue;
 class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	/** @var Title */
 	public $viewPage;
-	/** @var SpecialCentralNoticeLogs */
-	public $special;
 
-	public function __construct( SpecialCentralNoticeLogs $special ) {
-		$this->special = $special;
+	public function __construct(
+		protected readonly SpecialCentralNoticeLogs $special,
+	) {
 		parent::__construct();
 
 		// Override paging defaults

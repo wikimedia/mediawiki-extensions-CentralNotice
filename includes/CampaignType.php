@@ -2,12 +2,6 @@
 
 class CampaignType {
 
-	/** @var string */
-	private $id;
-
-	/** @var bool */
-	private $onForAll;
-
 	// Prefix for creating i18n message key from id.
 	// Note: Coordinate with message keys (en.json and qqq.json) for types included
 	// as default values for $wgCentralNoticeCampaignTypes.
@@ -19,13 +13,10 @@ class CampaignType {
 	/** @var self[] */
 	private static $types;
 
-	/**
-	 * @param string $id
-	 * @param bool $onForAll
-	 */
-	public function __construct( $id, $onForAll ) {
-		$this->id = $id;
-		$this->onForAll = $onForAll;
+	public function __construct(
+		private readonly string $id,
+		private readonly bool $onForAll,
+	) {
 	}
 
 	/**

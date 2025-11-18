@@ -8,8 +8,6 @@ class CentralNoticeTestFixtures {
 
 	/** @var array */
 	public $spec = [];
-	/** @var User */
-	private $user;
 	/** @var array */
 	private $addedDeviceIds = [];
 	/** @var array|null */
@@ -20,9 +18,9 @@ class CentralNoticeTestFixtures {
 	/** @var array */
 	private static $defaultBanner;
 
-	public function __construct( User $user ) {
-		$this->user = $user;
-
+	public function __construct(
+		private readonly User $user,
+	) {
 		static::$defaultCampaign = [
 			'enabled' => 1,
 			// inclusive comparison is used, so this does not cause a race condition.

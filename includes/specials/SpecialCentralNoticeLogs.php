@@ -9,14 +9,11 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 	/** @var string */
 	public $logType = 'campaignsettings';
 
-	private UrlUtils $urlUtils;
-
 	public function __construct(
-		UrlUtils $urlUtils
+		private readonly UrlUtils $urlUtils,
 	) {
 		// Register special page
 		parent::__construct( 'CentralNoticeLogs' );
-		$this->urlUtils = $urlUtils;
 	}
 
 	/**

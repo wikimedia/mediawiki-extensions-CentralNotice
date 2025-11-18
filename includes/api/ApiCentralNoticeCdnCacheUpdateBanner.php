@@ -13,21 +13,12 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class ApiCentralNoticeCdnCacheUpdateBanner extends ApiBase {
 
-	/** @var LanguageNameUtils */
-	private $languageNameUtils;
-
-	/**
-	 * @param ApiMain $mainModule
-	 * @param string $moduleName
-	 * @param LanguageNameUtils $languageNameUtils
-	 */
 	public function __construct(
 		ApiMain $mainModule,
 		string $moduleName,
-		LanguageNameUtils $languageNameUtils
+		private readonly LanguageNameUtils $languageNameUtils,
 	) {
 		parent::__construct( $mainModule, $moduleName );
-		$this->languageNameUtils = $languageNameUtils;
 	}
 
 	/**

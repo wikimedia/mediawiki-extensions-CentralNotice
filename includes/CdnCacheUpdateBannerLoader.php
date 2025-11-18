@@ -6,24 +6,12 @@ use MediaWiki\Deferred\DeferrableUpdate;
 class CdnCacheUpdateBannerLoader implements DeferrableUpdate {
 
 	/**
-	 * @var string
-	 */
-	private $langCode;
-
-	/**
-	 * @var Banner
-	 */
-	private $banner;
-
-	/**
 	 * Create a DeferrableUpdate to purge CDN content for a given banner and language
-	 *
-	 * @param string $langCode Language code
-	 * @param Banner $banner
 	 */
-	public function __construct( $langCode, Banner $banner ) {
-		$this->langCode = $langCode;
-		$this->banner = $banner;
+	public function __construct(
+		private readonly string $langCode,
+		private readonly Banner $banner,
+	) {
 	}
 
 	/**

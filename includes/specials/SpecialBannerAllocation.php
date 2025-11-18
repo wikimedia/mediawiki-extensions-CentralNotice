@@ -62,14 +62,11 @@ class SpecialBannerAllocation extends CentralNotice {
 	 */
 	public $locationRegion = '';
 
-	private LanguageNameUtils $languageNameUtils;
-
 	public function __construct(
-		LanguageNameUtils $languageNameUtils
+		private readonly LanguageNameUtils $languageNameUtils,
 	) {
 		// Register special page
 		parent::__construct( 'BannerAllocation' );
-		$this->languageNameUtils = $languageNameUtils;
 	}
 
 	/**
