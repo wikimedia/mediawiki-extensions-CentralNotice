@@ -272,7 +272,7 @@ class Campaign {
 			->from( 'cn_notices' )
 			->where( [ 'not_name' => $campaignName ] )
 			->caller( __METHOD__ )
-			->fetchRow();
+			->fetchField();
 	}
 
 	/**
@@ -426,7 +426,7 @@ class Campaign {
 	public static function getHistoricalCampaigns( $ts ) {
 		$dbr = CNDatabase::getReplicaDb();
 
-		$res = $dbr->newSelectQueryBuilder()
+		$logIds = $dbr->newSelectQueryBuilder()
 			->select( [
 				"log_id" => "MAX(notlog_id)",
 			] )
@@ -436,10 +436,10 @@ class Campaign {
 			] )
 			->groupBy( 'notlog_not_id' )
 			->caller( __METHOD__ )
-			->fetchResultSet();
+			->fetchFieldValues();
 
 		$campaigns = [];
-		foreach ( $res as $row ) {
+		foreach ( $logIds as $logId ) {
 			$campaignRow = $dbr->newSelectQueryBuilder()
 				->select( [
 					"id" => "notlog_not_id",
@@ -457,7 +457,7 @@ class Campaign {
 				] )
 				->from( 'cn_notice_log' )
 				->where( [
-					"notlog_id" => $row->log_id,
+					'notlog_id' => $logId,
 					$dbr->expr( 'notlog_end_start', '<=', $dbr->timestamp( $ts ) ),
 					$dbr->expr( 'notlog_end_end', '>=', $dbr->timestamp( $ts ) ),
 					'notlog_end_enabled' => 1,
@@ -928,21 +928,19 @@ class Campaign {
 	public static function removeCampaign( $campaignName, $user ) {
 		$dbr = CNDatabase::getReplicaDb();
 
-		$res = $dbr->newSelectQueryBuilder()
+		$locked = $dbr->newSelectQueryBuilder()
 			->select( 'not_locked' )
 			->from( 'cn_notices' )
 			->where( [ 'not_name' => $campaignName ] )
 			->caller( __METHOD__ )
 			->fetchField();
-		if ( $res === false ) {
+		if ( $locked === false ) {
 			return 'centralnotice-remove-notice-doesnt-exist';
-		}
-		if ( $res ) {
+		} elseif ( $locked ) {
 			return 'centralnotice-notice-is-locked';
 		}
 
 		self::removeCampaignByName( $campaignName, $user );
-
 		return true;
 	}
 
@@ -1004,7 +1002,7 @@ class Campaign {
 
 		$noticeId = self::getNoticeId( $noticeName, true );
 		$templateId = Banner::fromName( $templateName )->getId();
-		$res = $dbw->newSelectQueryBuilder()
+		$exists = (bool)$dbw->newSelectQueryBuilder()
 			->select( 'asn_id' )
 			->from( 'cn_assignments' )
 			->where( [
@@ -1012,9 +1010,9 @@ class Campaign {
 				'not_id' => $noticeId
 			] )
 			->caller( __METHOD__ )
-			->fetchResultSet();
+			->fetchField();
 
-		if ( $res->numRows() > 0 ) {
+		if ( $exists ) {
 			return 'centralnotice-template-already-exists';
 		}
 
@@ -1059,13 +1057,12 @@ class Campaign {
 	 */
 	public static function getNoticeId( $noticeName, $fromPrimary = false ) {
 		$db = $fromPrimary ? CNDatabase::getPrimaryDb() : CNDatabase::getReplicaDb();
-		$row = $db->newSelectQueryBuilder()
+		return (int)$db->newSelectQueryBuilder()
 			->select( 'not_id' )
 			->from( 'cn_notices' )
 			->where( [ 'not_name' => $noticeName ] )
 			->caller( __METHOD__ )
-			->fetchRow();
-		return $row ? $row->not_id : null;
+			->fetchField() ?: null;
 	}
 
 	/**
