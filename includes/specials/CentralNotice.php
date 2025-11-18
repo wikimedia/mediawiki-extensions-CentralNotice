@@ -44,9 +44,9 @@ class CentralNotice extends UnlistedSpecialPage {
 	/** @var array */
 	private $campaignWarnings = [];
 
-	public function __construct() {
+	public function __construct( string $name = 'CentralNotice' ) {
 		// Register special page
-		parent::__construct( 'CentralNotice' );
+		parent::__construct( $name );
 	}
 
 	/** @inheritDoc */

@@ -18,7 +18,6 @@
 
 use MediaWiki\Html\Html;
 use MediaWiki\Languages\LanguageNameUtils;
-use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Xml\Xml;
 
 /**
@@ -69,7 +68,7 @@ class SpecialBannerAllocation extends CentralNotice {
 		LanguageNameUtils $languageNameUtils
 	) {
 		// Register special page
-		SpecialPage::__construct( 'BannerAllocation' );
+		parent::__construct( 'BannerAllocation' );
 		$this->languageNameUtils = $languageNameUtils;
 	}
 

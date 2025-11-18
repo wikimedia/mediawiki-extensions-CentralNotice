@@ -41,7 +41,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	public function __construct(
 		LanguageNameUtils $languageNameUtils
 	) {
-		SpecialPage::__construct( 'CentralNoticeBanners' );
+		parent::__construct( 'CentralNoticeBanners' );
 		$this->languageNameUtils = $languageNameUtils;
 	}
 

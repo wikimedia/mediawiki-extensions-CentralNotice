@@ -15,7 +15,7 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 		UrlUtils $urlUtils
 	) {
 		// Register special page
-		SpecialPage::__construct( "CentralNoticeLogs" );
+		parent::__construct( 'CentralNoticeLogs' );
 		$this->urlUtils = $urlUtils;
 	}
 
