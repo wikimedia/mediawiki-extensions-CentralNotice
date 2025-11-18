@@ -320,13 +320,11 @@ class Campaign {
 
 			// The first time we see any campaign, create the corresponding outer K/V
 			// entry. Note that these keys don't make it into data structure we return.
-			if ( !isset( $campaigns[$campaignId] ) ) {
-				$campaigns[$campaignId] = [
-					'name' => $dbRow->not_name,
-					'start' => $dbRow->not_start,
-					'end' => $dbRow->not_end,
-				];
-			}
+			$campaigns[$campaignId] ??= [
+				'name' => $dbRow->not_name,
+				'start' => $dbRow->not_start,
+				'end' => $dbRow->not_end,
+			];
 
 			$bannerName = $dbRow->tmp_name;
 			// Automagically PHP creates the inner array as needed
@@ -489,10 +487,10 @@ class Campaign {
 					}
 				}
 			}
-			if ( $campaign['bucket_count'] === null ) {
-				// Fix for legacy logs before bucketing
-				$campaign['bucket_count'] = 1;
-			}
+
+			// Fix for legacy logs before bucketing
+			$campaign['bucket_count'] ??= 1;
+
 			foreach ( $campaign['banners'] as $name => &$banner ) {
 				$historical_banner = Banner::getHistoricalBanner( $name, $ts );
 
@@ -649,8 +647,7 @@ class Campaign {
 				if ( $compact ) {
 					$campaignMixins[$mixinName][$paramName] = $paramVal;
 				} else {
-					$campaignMixins[$mixinName]['parameters'][$paramName]
-						= $paramVal;
+					$campaignMixins[$mixinName]['parameters'][$paramName] = $paramVal;
 				}
 			}
 		}
@@ -1672,8 +1669,8 @@ class Campaign {
 	 * @param string $settingName
 	 * @return bool
 	 */
-	private static function settingNameIsValid( $settingName ) {
-		return ( preg_match( '/^[a-z_]*$/', $settingName ) === 1 );
+	private static function settingNameIsValid( $settingName ): bool {
+		return (bool)preg_match( '/^[a-z_]*$/', $settingName );
 	}
 
 	/**

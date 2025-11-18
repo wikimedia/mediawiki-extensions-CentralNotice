@@ -367,7 +367,7 @@ class CentralNoticeTestFixtures {
 		}
 
 		// Remove any devices we added
-		if ( !empty( $this->addedDeviceIds ) ) {
+		if ( $this->addedDeviceIds ) {
 			$dbw = CNDatabase::getPrimaryDb();
 			$dbw->newDeleteQueryBuilder()
 				->deleteFrom( 'cn_known_devices' )
@@ -427,9 +427,7 @@ class CentralNoticeTestFixtures {
 	 * @param string[] $deviceNames
 	 */
 	private function ensureDevices( $deviceNames ) {
-		if ( !$this->knownDevices ) {
-			$this->knownDevices = CNDeviceTarget::getAvailableDevices( true );
-		}
+		$this->knownDevices ??= CNDeviceTarget::getAvailableDevices( true );
 
 		$devicesChanged = false;
 

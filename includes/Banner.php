@@ -931,7 +931,7 @@ class Banner {
 		return $cache->getWithSetCallback(
 			$key,
 			$cache::TTL_MONTH,
-			[ $this, 'extractMessageFields' ],
+			$this->extractMessageFields( ... ),
 			[ 'checkKeys' => [ $key ], 'lockTSE' => 60 ]
 		);
 	}

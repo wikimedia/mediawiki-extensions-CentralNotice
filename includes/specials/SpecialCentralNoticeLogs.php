@@ -236,17 +236,12 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 	 * @param string $logType which type of log to show
 	 */
 	private function showLog( $logType ) {
-		switch ( $logType ) {
-			case 'bannersettings':
-				$pager = new CentralNoticeBannerLogPager( $this );
-				break;
-			case 'bannercontent':
-			case 'bannermessages':
-				$pager = new CentralNoticePageLogPager( $this, $logType );
-				break;
-			default:
-				$pager = new CentralNoticeCampaignLogPager( $this );
-		}
+		$pager = match ( $logType ) {
+			'bannersettings' => new CentralNoticeBannerLogPager( $this ),
+			'bannercontent',
+			'bannermessages' => new CentralNoticePageLogPager( $this, $logType ),
+			default => new CentralNoticeCampaignLogPager( $this ),
+		};
 
 		$htmlOut = '';
 
