@@ -119,7 +119,7 @@ class Banner {
 	/**
 	 * Create a banner object from a known ID. Must already be
 	 * an object in the database. If a fully new banner is to be created
-	 * use @see newFromName().
+	 * use {@link newFromName}.
 	 *
 	 * @param int $id Unique database ID of the banner
 	 *
@@ -134,7 +134,7 @@ class Banner {
 	/**
 	 * Create a banner object from a known banner name. Must already be
 	 * an object in the database. If a fully new banner is to be created
-	 * use @see newFromName().
+	 * use {@link newFromName}.
 	 *
 	 * @param string $name
 	 *
@@ -576,7 +576,7 @@ class Banner {
 	 * Set the banner mixins to enable.
 	 *
 	 * @param array $mixins Names of mixins to enable on this banner. Valid values
-	 * come from @see $wgCentralNoticeBannerMixins
+	 * come from $wgCentralNoticeBannerMixins.
 	 *
 	 * @throws RangeException
 	 * @return $this
