@@ -747,7 +747,7 @@ class CentralNotice extends UnlistedSpecialPage {
 		if ( $output_assigned == '' && $output_templates == '' ) {
 			$htmlOut .= $this->msg( 'centralnotice-no-templates' )->escaped();
 			$htmlOut .= Html::element( 'p' );
-			$newPage = $this->getTitleFor( 'NoticeTemplate', 'add' );
+			$newPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'add' );
 			$htmlOut .= $this->getLinkRenderer()->makeLink(
 				$newPage,
 				$this->msg( 'centralnotice-add-template' )->text()
