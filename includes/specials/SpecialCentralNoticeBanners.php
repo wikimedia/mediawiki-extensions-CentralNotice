@@ -560,7 +560,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		);
 		$languages = array_flip( $languages );
 
-		$bannerSettings = $this->banner->getBannerSettings( $this->bannerName, true );
+		$bannerSettings = Banner::getBannerSettings( $this->bannerName, true );
 
 		$formDescriptor = [];
 
