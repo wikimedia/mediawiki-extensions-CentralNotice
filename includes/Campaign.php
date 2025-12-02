@@ -374,7 +374,7 @@ class Campaign {
 
 		$banners = [];
 		// All we want are the banner names, weights, and buckets
-		foreach ( Banner::getCampaignBanners( $row->not_id ) as $banner ) {
+		foreach ( Banner::getCampaignBanners( $row->not_id, $fromPrimary ) as $banner ) {
 			$outKey = $banner['name'];
 			$banners[$outKey]['weight'] = $banner['weight'];
 			$banners[$outKey]['bucket'] = $banner['bucket'];
