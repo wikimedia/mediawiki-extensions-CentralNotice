@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Winston Sung"
+			"Winston Sung",
+			"Aca"
 		]
 	},
 	"centralnotice": "Administrator središnjeg obavještenja",
@@ -254,10 +255,12 @@
 	"centralnotice-impression-events-sample-rate-field": "Uzorkovni stop posjetâ (treba da bude između 0 i 0.01)",
 	"centralnotice-banner-protection-log-reason": "Automatski zaštićen CentralNoticeom; uredite samo putem [[Special:CentralNotice]] ili [[Special:Translate]].",
 	"tag-centralnotice": "Središnje obavjesnice",
-	"tag-centralnotice-description": "Izmjena načinjena upotrebom korisničkoga sučelja za administratore središnjih obavjesnica",
+	"tag-centralnotice-description": "Izmjena načinjena putem korisničkoga sučelja za administratore središnjih obavjesnica",
 	"tag-centralnotice_translation": "Prijevod središnjih obavjesnica",
-	"tag-centralnotice_translation-description": "Uređivanje sadržaja središnjih obavjesnica načinjeno upotrebom proširenja za prevođenje",
+	"tag-centralnotice_translation-description": "Uređivanje sadržaja središnjih obavjesnica načinjeno putem proširenja za prevođenje",
 	"centralnotice-banner-template-info": "(predložak)",
+	"prefs-centralnotice-banners": "Baneri",
+	"prefs-centralnotice-display-banner-types": "Vrste banera za prikaz",
 	"centralnotice-campaign-type": "Vrsta kampanje",
 	"centralnotice-empty-campaign-type-option": "Bez vrste (uvijek prikazan)",
 	"centralnotice-non-existent-campaign-type-error": "Izabrana vrsta kampanje ne postoji",
@@ -269,5 +272,5 @@
 	"centralnotice-campaign-type-maintenance": "Održavanje",
 	"centralnotice-campaign-type-photography": "Fotografija",
 	"centralnotice-campaign-type-special": "Posebno",
-	"centralnotice-user-prefs-intro": "Obavjesnice prikazuju objave od interesa za wikimedijine zajednice i korisnike.\n\nNiže su pretstavljene značajke koje Vam daju mogućnost da izaberete koje vrste obavještenja bit će prikazane. Određene platformske obavijesti, poput onih o održavanju poslužitelja i posebne obavijesti koje se smatraju nužnima za sve suradnike bit će uvijek prikazane. Za više o ovome, molimo Vas, pročitajte [[metawikimedia:Special:MyLanguage/CentralNotice|dokumentaciju na Meta]]."
+	"centralnotice-user-prefs-intro": "Baneri prikazuju objave od interesa za Wikimedijine zajednice i korisnike.\n\nOpcije ispod omogućuju vam da izaberete koje vrste obavijesti želite primati. Određene platformske obavijesti, poput onih o radovima na sajtu ili posebnih obavijesti za koje se smatra da ih svi korisnici trebaju vidjeti, uvijek će biti prikazane. Za više informacija pročitajte [[metawikimedia:Special:MyLanguage/CentralNotice|dokumentaciju na Meta-Wikiju]]."
 }
