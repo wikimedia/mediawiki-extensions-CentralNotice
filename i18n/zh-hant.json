@@ -278,7 +278,7 @@
 	"centralnotice-end-time": "結束時間 (UTC)",
 	"centralnotice-banner-not-found-title": "查無橫幅",
 	"centralnotice-banner-not-found-contents": "沒有符合此確切名稱的橫幅。",
-	"centralnotice-csp-violation-alert": "偵測到違反安全方針的內容！嘗試從 $1 載入項目。",
+	"centralnotice-csp-violation-alert": "偵測到違反安全方針的內容。從 wiki 以外的來源載入內容會洩漏讀者資料，請預覽不包含小工具或第三方外掛程式的橫幅。違規 URL：$1",
 	"hidebanners": "隱藏橫幅",
 	"centralnotice-specialhidebanners-p3p": "一些瀏覽器需要 P3P 精簡原則來在某些情況下設定 cookie。然而，目前沒有可用的精簡原則。請參閱網站的可讀性隱私方針。",
 	"centralnotice-banner-history-logger": "橫幅歷史日誌器",
@@ -363,5 +363,7 @@
 	"centralnotice-campaign-type-maintenance": "維護",
 	"centralnotice-campaign-type-photography": "攝影",
 	"centralnotice-campaign-type-special": "特殊",
-	"centralnotice-user-prefs-intro": "以橫幅顯示維基媒體社群和使用者感興趣的公告。\n\n以下選項允許您管理想要看到的公告類型。與網站維護相關的通知，以及所有使用者有必要了解的特殊通知，不能停用。更多資訊詳見[[metawikimedia:Special:MyLanguage/CentralNotice|元維基文件]]。"
+	"centralnotice-user-prefs-intro": "以橫幅顯示維基媒體社群和使用者感興趣的公告。\n\n以下選項允許您管理想要看到的公告類型。與網站維護相關的通知，以及所有使用者有必要了解的特殊通知，不能停用。更多資訊詳見[[metawikimedia:Special:MyLanguage/CentralNotice|元維基文件]]。",
+	"namespaceinfo-description-ns866": "[[mw:Special:MyLanguage/Extension:CentralNotice|CentralNotice]] 橫幅中使用的訊息及其翻譯",
+	"namespaceinfo-description-ns867": "CentralNotice 橫幅訊息的討論頁"
 }
