@@ -44,8 +44,8 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 				$duration = $noticeCookieDurations[$reason];
 			} else {
 				$duration = $config->get( 'CentralNoticeFallbackHideCookieDuration' );
-				wfLogWarning( 'Missing or invalid duration for hide cookie reason '
-					. $reason . '.' );
+				wfLogWarning( 'Missing or invalid duration for hide cookie reason "'
+					. $reason . '".' );
 			}
 		}
 
