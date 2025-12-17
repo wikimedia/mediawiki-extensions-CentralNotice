@@ -8,7 +8,8 @@
 			"W",
 			"Wizardist",
 			"Zedlik",
-			"Александр Сигачёв"
+			"Александр Сигачёв",
+			"Ucukor"
 		]
 	},
 	"centralnotice": "Кіраваньне цэнтралізаванымі паведамленьнямі",
@@ -49,7 +50,7 @@
 	"centralnotice-banner-name": "Назва паведамленьня:",
 	"centralnotice-banner": "Паведамленьне",
 	"centralnotice-banner-heading": "Банэр: $1",
-	"centralnotice-templates": "Паведамленьні",
+	"centralnotice-templates": "Банэры",
 	"centralnotice-throttle": "Абмежаваньне трафіку",
 	"centralnotice-throttle-amount": "Абмежаваць трафік прапарцыйна ад агульнага",
 	"centralnotice-balanced": "Надаць усім банэрам аднолькавую вагу",
@@ -86,7 +87,7 @@
 	"centralnotice-assigned-templates": "Прызначаныя паведамленьні",
 	"centralnotice-no-templates": "Паведамленьні ня знойдзеныя.\nДадайце якія-небудзь!",
 	"centralnotice-no-templates-assigned": "Няма зьвязаных з кампаніяй паведамленьняў.\nДадайце якое-небудзь!",
-	"centralnotice-available-templates": "Даступныя паведамленьні",
+	"centralnotice-available-templates": "Даступныя банэры",
 	"centralnotice-template-already-exists": "Паведамленьне ужо выкарыстоўваецца ў кампаніі.\nНе дададзенае.",
 	"centralnotice-change-lang": "Зьмяніць мову перакладу",
 	"centralnotice-weights": "Вагі",
@@ -155,7 +156,7 @@
 	"centralnotice-off": "выключыць",
 	"centralnotice-added": "Дададзенае <span class=\"cn-new-value\">$1</span>",
 	"centralnotice-removed": "Выдаленае <span class=\"cn-old-value\">$1</span>",
-	"centralnotice-no-assignments": "паведамленьні не прызначаныя",
+	"centralnotice-no-assignments": "няма прызначаных банэраў",
 	"centralnotice-talk-link": "абмеркаваньне",
 	"centralnotice-campaign-settings": "Налады кампаніі",
 	"centralnotice-banner-settings": "Налады паведамленьня",
