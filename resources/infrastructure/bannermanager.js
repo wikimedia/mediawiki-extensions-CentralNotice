@@ -250,7 +250,8 @@
 		 * Filter text box keypress handler; applies the filter when enter is
 		 * pressed.
 		 *
-		 * @param e
+		 * @param {jQuery.Event} e
+		 * @return {boolean|undefined}
 		 */
 		filterTextBoxKeypress: function ( e ) {
 			if ( e.which === 13 ) {
@@ -264,10 +265,11 @@
 		 * Banner::isValidBannerName() and
 		 * SpecialCentralNotice::sanitizeSearchTerms().
 		 *
-		 * @param $origFilterStr
+		 * @param {string} origFilter
+		 * @return {string}
 		 */
-		sanitizeFilterStr: function ( $origFilterStr ) {
-			return $origFilterStr.replace( /\s/g, '_' ).replace( /[^0-9a-zA-Z_-]/g, '' );
+		sanitizeFilterStr: function ( origFilter ) {
+			return origFilter.replace( /\s/g, '_' ).replace( /[^0-9a-zA-Z_-]/g, '' );
 		}
 	};
 

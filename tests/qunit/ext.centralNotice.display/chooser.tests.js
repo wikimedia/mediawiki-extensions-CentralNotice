@@ -38,8 +38,9 @@
 	 * Return a function for an allocation test, with the required values
 	 * closured in.
 	 *
-	 * @param contextAndOutput
-	 * @param bucket
+	 * @param {Object} contextAndOutput
+	 * @param {number} bucket
+	 * @return {Function}
 	 */
 	function makeAllocationTestFunction( contextAndOutput, bucket ) {
 		return function ( assert ) {
@@ -194,7 +195,7 @@
 	 * in days from the current time. Note: this logic is repeated in PHP for
 	 * PHPUnit tests that use the same fixtures.
 	 *
-	 * @param choices
+	 * @param {Object[]} choices
 	 * @see CentralNoticeTestFixtures::setTestCaseStartEnd()
 	 */
 	function setChoicesStartEnd( choices ) {

@@ -24,7 +24,7 @@
 		MIN_WORK_TIME = 3;
 
 	/**
-	 * @return {jQuery.Promise} List of key strings
+	 * @return {jQuery.Promise<string[]>} List of key strings
 	 */
 	function getKeys() {
 		return $.Deferred( ( d ) => {
@@ -48,7 +48,7 @@
 	}
 
 	/**
-	 * @param queue
+	 * @param {string[]} queue
 	 * @return {jQuery.Promise}
 	 */
 	function processKeys( queue ) {

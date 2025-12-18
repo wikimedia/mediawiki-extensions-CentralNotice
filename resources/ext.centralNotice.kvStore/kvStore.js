@@ -50,6 +50,8 @@
 	/**
 	 * Are cookies enabled on this client?
 	 * TODO Should this go in core?
+	 *
+	 * @return {boolean}
 	 */
 	function areCookiesEnabled() {
 		// On the first call, set a cookie and try to read it back
@@ -67,6 +69,8 @@
 	/**
 	 * Is LocalStorage available as a storage option? (Browser
 	 * compatibility and certain user privacy options are required.)
+	 *
+	 * @return {boolean}
 	 */
 	function isLocalStorageAvailable() {
 		if ( localStorageAvailable === null ) {
@@ -401,6 +405,7 @@
 		 * @param {string} [multiStorageOption] A key from among
 		 *   kvStore.multiStorageOptions, to indicate how to store the item.
 		 *   Defaults to kvStore.multiStorageOptions.LOCAL_STORAGE.
+		 *   @return {any}
 		 */
 		getItem: function ( key, context, multiStorageOption ) {
 			multiStorageOption =
@@ -459,6 +464,8 @@
 		/**
 		 * Convenience method to check for availability of storage without
 		 * falling back to cookies.
+		 *
+		 * @return {boolean}
 		 */
 		isAvailable: function () {
 			return ( kvStore.getMultiStorageOption( false ) !==
