@@ -104,7 +104,9 @@
 			},
 
 			getAttemptedCampaigns: function () {
-				return state.data.campaignStatuses.map( ( statusObj ) => state.attemptedCampaignsByName[ statusObj.campaign ] );
+				return state.data.campaignStatuses.map(
+					( statusObj ) => state.attemptedCampaignsByName[ statusObj.campaign ]
+				);
 			}
 		};
 	}() );

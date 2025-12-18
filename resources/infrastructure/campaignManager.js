@@ -794,7 +794,9 @@
 	// before initializing everything
 	$( () => {
 		// eslint-disable-next-line no-jquery/no-map-util
-		const customControlsModules = $.map( mixinDefs, ( mixinDef ) => mixinDef.customAdminUIControlsModule );
+		const customControlsModules = $.map(
+			mixinDefs, ( mixinDef ) => mixinDef.customAdminUIControlsModule
+		);
 
 		// Custom mixin control modules depend on this module so they can access base
 		// classes here when they declare subclasses. So, this module can't depend on

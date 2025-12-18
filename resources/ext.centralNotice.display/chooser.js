@@ -329,7 +329,8 @@
 
 				// Remove campaign from available campaigns list
 				// Find campaign object index by name
-				cIndex = newAvailableCampaigns.map( ( c ) => c.name ).indexOf( failedCampaign.name );
+				cIndex = newAvailableCampaigns.map( ( c ) => c.name )
+					.indexOf( failedCampaign.name );
 
 			// Sanity check: Verify the failed campaign was in the list of available
 			// campaigns. (That should always be the case, so this conditional should
