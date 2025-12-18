@@ -121,6 +121,7 @@
 
 				geoPromise = mw.loader.using( lookupModule )
 					.then( () => {
+						// eslint-disable-next-line security/detect-non-literal-require
 						const lookupCallback = require( lookupModule );
 
 						// Chaining lookup: here we return the promise provided by
