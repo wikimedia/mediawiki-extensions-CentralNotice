@@ -18,6 +18,7 @@
 
 use MediaWiki\Html\Html;
 use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Xml\Xml;
 
 /**
@@ -352,7 +353,7 @@ class SpecialBannerAllocation extends CentralNotice {
 	 * @return string HTML
 	 */
 	public function createRows( $banners ) {
-		$viewCampaign = $this->getTitleFor( 'CentralNotice' );
+		$viewCampaign = SpecialPage::getTitleFor( 'CentralNotice' );
 		$htmlOut = '';
 		if ( count( $banners ) > 0 ) {
 			$linkRenderer = $this->getLinkRenderer();
@@ -368,7 +369,7 @@ class SpecialBannerAllocation extends CentralNotice {
 				);
 
 				// Banner name
-				$viewBanner = $this->getTitleFor( 'CentralNoticeBanners', "edit/{$banner['name']}" );
+				$viewBanner = SpecialPage::getTitleFor( 'CentralNoticeBanners', "edit/{$banner['name']}" );
 
 				$htmlOut .= Html::rawElement( 'td', [ 'valign' => 'top' ],
 					Html::rawElement( 'span',
