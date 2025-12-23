@@ -220,7 +220,7 @@
 	"centralnotice-devicetype-android": "Android",
 	"centralnotice-devicetype-ipad": "Semua perangkat yang dikenali sebagai iPad tetapi bukan iPhone",
 	"centralnotice-devicetype-iphone": "Semua versi iPhone",
-	"centralnotice-devicetype-unknown": "Perangkat di situs peranti bergerak yang bukan iPhone, iPad, atau Android ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/modules/ext.centralNotice.bannerController/mobile/device.js Logika pemilih])",
+	"centralnotice-devicetype-unknown": "Perangkat di situs seluler yang bukan iPhone, iPad, atau Android ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/modules/ext.centralNotice.bannerController/mobile/device.js Logika pemilih])",
 	"centralnotice-all": "Semua",
 	"centralnotice-all-except": "Semua kecuali $1",
 	"centralnotice-excluding-list": "$1 (kecuali $2)",
