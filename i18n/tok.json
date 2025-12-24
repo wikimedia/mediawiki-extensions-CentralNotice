@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Robin van der Vliet"
+			"Robin van der Vliet",
+			"Tamzin"
 		]
 	},
+	"right-centralnotice-admin": "ona li ken ante e toki suli tawa ma ale",
 	"centralnotice-english": "toki Inli",
 	"centralnotice-language": "toki"
 }
