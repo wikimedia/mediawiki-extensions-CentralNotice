@@ -272,7 +272,7 @@
 	"centralnotice-end-time": "Czas zakończenia (UTC)",
 	"centralnotice-banner-not-found-title": "Nie znaleziono banera",
 	"centralnotice-banner-not-found-contents": "Nie ma banera o dokładnie takiej nazwie.",
-	"centralnotice-csp-violation-alert": "Wykryto naruszenie polityki bezpieczeństwa treści! Próbowano załadować coś z $1.",
+	"centralnotice-csp-violation-alert": "Wykryto naruszenie polityki bezpieczeństwa treści. Ładowanie treści spoza wiki powoduje wyciek danych o czytelniku. Sprawdź podgląd bannerów bez gadżetów i zewnętrznych dodatków. Naruszający URL: $1.",
 	"hidebanners": "Ukryj banery",
 	"centralnotice-specialhidebanners-p3p": "Niektóre przeglądarki wymagają polityki kompaktowej P3P do ustawiania plików cookie w określonych sytuacjach. Jednak obecnie nie jest dostępna żadna taka polityka. Zapoznaj się z czytelną dla ludzi polityką prywatności witryny.",
 	"centralnotice-banner-history-logger": "Rejestrator historii banerów",
