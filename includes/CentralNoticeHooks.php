@@ -667,7 +667,7 @@ class CentralNoticeHooks implements
 		[ $alias, ] = MediaWikiServices::getInstance()->getSpecialPageFactory()->
 			resolveAlias( $title->getText() );
 
-		if ( !array_key_exists( $alias, $wgNoticeTabifyPages ) ) {
+		if ( $alias === null || !array_key_exists( $alias, $wgNoticeTabifyPages ) ) {
 			return;
 		}
 
