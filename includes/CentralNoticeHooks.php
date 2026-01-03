@@ -652,7 +652,7 @@ class CentralNoticeHooks implements
 
 		[ $alias, ] = $this->specialPageFactory->resolveAlias( $title->getText() );
 
-		if ( !array_key_exists( $alias, $wgNoticeTabifyPages ) ) {
+		if ( $alias === null || !array_key_exists( $alias, $wgNoticeTabifyPages ) ) {
 			return;
 		}
 
