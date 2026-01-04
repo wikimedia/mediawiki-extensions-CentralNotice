@@ -754,7 +754,8 @@ class CentralNotice extends UnlistedSpecialPage {
 			);
 			$htmlOut .= Html::element( 'p' );
 		} elseif ( $output_assigned == '' ) {
-			$htmlOut .= Xml::fieldset( $this->msg( 'centralnotice-assigned-templates' )->text() );
+			$htmlOut .= Html::openElement( 'fieldset' ) . "\n" .
+				Html::element( 'legend', [], $this->msg( 'centralnotice-assigned-templates' )->text() ) . "\n";
 			$htmlOut .= $this->msg( 'centralnotice-no-templates-assigned' )->escaped();
 			$htmlOut .= Html::closeElement( 'fieldset' );
 			if ( $this->editable ) {
@@ -1264,8 +1265,8 @@ class CentralNotice extends UnlistedSpecialPage {
 			if ( $centralNoticeCampaignMixins ) {
 				$mixinsThisNotice = Campaign::getCampaignMixins( $notice, false, $wasPosted );
 
-				$htmlOut .= Xml::fieldset(
-					$this->msg( 'centralnotice-notice-mixins-fieldset' )->text() );
+				$htmlOut .= Html::openElement( 'fieldset' ) . "\n" .
+					Html::element( 'legend', [], $this->msg( 'centralnotice-notice-mixins-fieldset' )->text() ) . "\n";
 
 				foreach ( $centralNoticeCampaignMixins as $mixinName => $mixinDef ) {
 					$mixinControlName = self::makeNoticeMixinControlName( $mixinName );
@@ -1403,14 +1404,11 @@ class CentralNotice extends UnlistedSpecialPage {
 			$banners
 		);
 
-		$htmlOut .= Xml::fieldset(
-			$this->msg( 'centralnotice-assigned-templates' )->text(),
-			false,
-			[
+		$htmlOut .= Html::openElement( 'fieldset', [
 				'data-assigned-banners' => json_encode( $bannersForJS ),
 				'id' => 'centralnotice-assigned-banners'
-			]
-		);
+			] ) . "\n" .
+			Html::element( 'legend', [], $this->msg( 'centralnotice-assigned-templates' )->text() ) . "\n";
 
 		// Equal weight banners
 		$htmlOut .= Html::rawElement( 'tr', [],
@@ -1597,7 +1595,8 @@ class CentralNotice extends UnlistedSpecialPage {
 		$pager = new CentralNoticePager( $this, $searchTerms );
 
 		// Build HTML
-		$htmlOut = Xml::fieldset( $this->msg( 'centralnotice-available-templates' )->text() );
+		$htmlOut = Html::openElement( 'fieldset' ) . "\n" .
+			Html::element( 'legend', [], $this->msg( 'centralnotice-available-templates' )->text() ) . "\n";
 
 		// Banner search box
 		$htmlOut .= Html::openElement( 'fieldset', [ 'id' => 'cn-template-searchbox' ] );
