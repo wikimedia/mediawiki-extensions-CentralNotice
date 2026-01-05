@@ -20,7 +20,8 @@
 			"Technic2",
 			"Tobulos1",
 			"Umeaboy",
-			"WikiPhoenix"
+			"WikiPhoenix",
+			"Stefan2255"
 		]
 	},
 	"centralnotice": "Centralmeddelande-administration",
@@ -273,7 +274,7 @@
 	"centralnotice-banner-history-logger": "Bannerhistorikloggare",
 	"centralnotice-banner-history-logger-help": "Spåra sekvensen av banners som läsarna ser och skicka den då och då tillbaka till servern.",
 	"centralnotice-banner-history-logger-rate": "Provnivå",
-	"centralnotice-banner-history-logger-rate-help": "Sannolikhet att data samplas och skickas tillbaka till servern. Decimal mellan 0 (aldrig) och 1 (alltid).",
+	"centralnotice-banner-history-logger-rate-help": "Sannolikhet att data samplas och skickas tillbaka till servern. Decimal mellan 0 och 0.01.",
 	"centralnotice-banner-history-logger-max-entry-age": "Maximal ålder för loggposter (i dygn)",
 	"centralnotice-banner-history-logger-max-entry-age-help": "Loggposter som är äldre än detta kommer att löpas ut och inte skickas tillbaka till servern.",
 	"centralnotice-banner-history-logger-max-entries": "Maximalt antal poster att ha i loggen",
