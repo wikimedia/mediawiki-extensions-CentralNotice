@@ -12,7 +12,6 @@ use MediaWiki\HTMLForm\Field\HTMLTextField;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\SpecialPage\SpecialPage;
-use MediaWiki\Xml\Xml;
 
 /**
  * Special page for management of CentralNotice banners
@@ -921,9 +920,11 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		ksort( $languages );
 
 		foreach ( $languages as $code => $name ) {
-			$purgeControls .= Xml::option(
-				$this->msg( 'centralnotice-language-listing', $code, $name )->text(),
-				$code );
+			$purgeControls .= Html::element(
+				'option',
+				[ 'value' => $code ],
+				$this->msg( 'centralnotice-language-listing', $code, $name )->text()
+			);
 		}
 
 		$purgeControls .= Html::closeElement( 'select' );
