@@ -10,10 +10,10 @@
 	/**
 	 * Update changes object as needed
 	 *
-	 * @param campaignName
-	 * @param property
-	 * @param value
-	 * @param initialValue
+	 * @param {string} campaignName
+	 * @param {string} property
+	 * @param {any} value
+	 * @param {any} initialValue
 	 */
 	function setChange( campaignName, property, value, initialValue ) {
 

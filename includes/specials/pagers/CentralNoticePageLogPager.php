@@ -18,22 +18,18 @@ use Wikimedia\Rdbms\LikeValue;
 class CentralNoticePageLogPager extends ReverseChronologicalPager {
 	/** @var Title */
 	public $viewPage;
-	/** @var SpecialPage */
-	public $special;
-	/** @var string */
-	public $logType;
 
 	/**
-	 * Construct instance of class.
-	 * @param SpecialPage $special object calling object
-	 * @param string $type type of log - 'bannercontent' or 'bannermessages' (optional)
+	 * @param SpecialPage $special
+	 * @param string $logType type of log - 'bannercontent' or 'bannermessages' (optional)
 	 */
-	public function __construct( $special, $type = 'bannercontent' ) {
-		$this->special = $special;
+	public function __construct(
+		private readonly SpecialPage $special,
+		private readonly string $logType = 'bannercontent',
+	) {
 		parent::__construct();
 
 		$this->viewPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'view' );
-		$this->logType = $type;
 	}
 
 	/**

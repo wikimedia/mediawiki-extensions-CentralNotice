@@ -142,7 +142,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 
 	/**
 	 * Hook to handle message group review state changes. If the $newState
-	 * for a group is equal to @see $wgNoticeTranslateDeployStates then this
+	 * for a group is equal to $wgNoticeTranslateDeployStates then this
 	 * function will copy from the CNBanners namespace into the MW namespace
 	 * and protect them with right $wgCentralNoticeMessageProtectRight. This
 	 * implies that the user calling this hook must have site-edit permissions

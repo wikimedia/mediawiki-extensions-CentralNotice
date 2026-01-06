@@ -542,6 +542,7 @@
 
 	/**
 	 * @private
+	 * @return {Object[]}
 	 */
 	BannerSequenceUiModel.prototype.defaultBktSeq = function () {
 		return [ this.defaultStep() ];
@@ -549,6 +550,7 @@
 
 	/**
 	 * @private
+	 * @return {Object}
 	 */
 	BannerSequenceUiModel.prototype.defaultStep = function () {
 		return {
@@ -560,6 +562,7 @@
 
 	/**
 	 * @private
+	 * @return {Object|null}
 	 */
 	BannerSequenceUiModel.prototype.defaultBanner = function () {
 		return null;
@@ -567,6 +570,7 @@
 
 	/**
 	 * @private
+	 * @return {number}
 	 */
 	BannerSequenceUiModel.prototype.defaultNumPageViews = function () {
 		return 1;
@@ -574,6 +578,7 @@
 
 	/**
 	 * @private
+	 * @return {string|null}
 	 */
 	BannerSequenceUiModel.prototype.defaultSkipWithIdentifier = function () {
 		return null;
@@ -608,7 +613,7 @@
 	};
 
 	/**
-	 * @param seq
+	 * @param {Array} seq
 	 * @private
 	 * @return {boolean}
 	 */
@@ -632,7 +637,7 @@
 	};
 
 	/**
-	 * @param step
+	 * @param {Object} step
 	 * @private
 	 * @return {boolean}
 	 */
@@ -688,7 +693,8 @@
 	};
 
 	/**
-	 * @param n
+	 * @param {any} n
+	 * @return {boolean}
 	 * @private
 	 */
 	BannerSequenceUiModel.prototype.validateIntOneOrGreater = function ( n ) {
@@ -731,8 +737,8 @@
 	/**
 	 * Global container widget for the banner sequence administration UI.
 	 *
-	 * @param controller
-	 * @param model
+	 * @param {BannerSequenceUiController} controller
+	 * @param {BannerSequenceUiModel} model
 	 * @class BannerSequenceWidget
 	 * @constructor
 	 */
@@ -889,8 +895,8 @@
 	/**
 	 * Tell the sequence container for a bucket to remove a step
 	 *
-	 * @param bucket
-	 * @param stepNum
+	 * @param {Object} bucket
+	 * @param {number} stepNum
 	 */
 	BannerSequenceWidget.prototype.removeStepForBucket = function ( bucket, stepNum ) {
 		const seqContainerWidget = this.findItemFromData( bucket );
@@ -915,8 +921,8 @@
 	/**
 	 * Tell the sequence container for a bucket to update banners in drop-down inputs.
 	 *
-	 * @param bucket
-	 * @param banners
+	 * @param {Object} bucket
+	 * @param {string[]} banners
 	 */
 	BannerSequenceWidget.prototype.updateBannersForDropdownsForBucket = function (
 		bucket,
@@ -929,7 +935,7 @@
 	 * Tell the sequence container for a bucket to re-calculate total page views in the
 	 * sequence.
 	 *
-	 * @param bucket
+	 * @param {Object} bucket
 	 */
 	BannerSequenceWidget.prototype.updateTotalPageViewsForBucket = function ( bucket ) {
 		this.findItemFromData( bucket ).updateTotalPageViews();
@@ -941,9 +947,9 @@
 	 * Container widget for a sequence for a bucket and related controls (heading and add
 	 * step button).
 	 *
-	 * @param controller
-	 * @param model
-	 * @param config
+	 * @param {BannerSequenceUiController} controller
+	 * @param {BannerSequenceUiModel} model
+	 * @param {Object} config
 	 * @class BucketSeqContainerWidget
 	 * @constructor
 	 */
@@ -1047,8 +1053,8 @@
 	/**
 	 * Add a new step widget with the specified step model and index
 	 *
-	 * @param stepModel
-	 * @param index
+	 * @param {Object} stepModel
+	 * @param {number} index
 	 */
 	BucketSeqContainerWidget.prototype.addStepWidget = function ( stepModel, index ) {
 
@@ -1123,7 +1129,7 @@
 	/**
 	 * Update banners shown in drop-down input menus.
 	 *
-	 * @param banners
+	 * @param {string[]} banners
 	 */
 	BucketSeqContainerWidget.prototype.updateBannersForDropdowns = function ( banners ) {
 		const stepWidgets = this.bucketSeqWidget.getItems();
@@ -1178,15 +1184,14 @@
 	/**
 	 * Widget for a step in a sequence.
 	 *
-	 * @param controller
-	 * @param model
-	 * @param bucket
-	 * @param config
+	 * @param {BannerSequenceUiController} controller
+	 * @param {Object} model
+	 * @param {Object} bucket
+	 * @param {Object} config
 	 * @class StepWidget
 	 * @constructor
 	 */
 	StepWidget = function ( controller, model, bucket, config ) {
-
 		this.controller = controller;
 		this.model = model;
 		this.bucket = bucket;
@@ -1507,7 +1512,8 @@
 	};
 
 	/**
-	 * @param banners
+	 * @param {string[]} banners
+	 * @return {OO.ui.MenuOptionWidget[]}
 	 * @private
 	 */
 	StepWidget.prototype.makeDropMenuItems = function ( banners ) {

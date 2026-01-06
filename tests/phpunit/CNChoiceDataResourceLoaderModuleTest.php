@@ -32,9 +32,7 @@ class CNChoiceDataResourceLoaderModuleTest extends ResourceLoaderTestCase {
 		$this->cnFixtures->setupTestCaseFromFixtureData( $testCase );
 
 		foreach ( $testCase['contexts_and_outputs'] as $cAndOName => $contextAndOutput ) {
-			$this->overrideConfigValues( [
-				'NoticeProject' => $contextAndOutput['context']['project'],
-			] );
+			$this->overrideConfigValue( 'NoticeProject', $contextAndOutput['context']['project'] );
 
 			// Following pattern in other RL module tests
 			$rlContext = $this->getResourceLoaderContext(

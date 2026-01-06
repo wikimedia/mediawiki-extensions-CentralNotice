@@ -63,14 +63,11 @@ class SpecialBannerAllocation extends CentralNotice {
 	 */
 	public $locationRegion = '';
 
-	private LanguageNameUtils $languageNameUtils;
-
 	public function __construct(
-		LanguageNameUtils $languageNameUtils
+		private readonly LanguageNameUtils $languageNameUtils,
 	) {
 		// Register special page
-		SpecialPage::__construct( 'BannerAllocation' );
-		$this->languageNameUtils = $languageNameUtils;
+		parent::__construct( 'BannerAllocation' );
 	}
 
 	/**
@@ -356,7 +353,7 @@ class SpecialBannerAllocation extends CentralNotice {
 	 * @return string HTML
 	 */
 	public function createRows( $banners ) {
-		$viewCampaign = $this->getTitleFor( 'CentralNotice' );
+		$viewCampaign = SpecialPage::getTitleFor( 'CentralNotice' );
 		$htmlOut = '';
 		if ( count( $banners ) > 0 ) {
 			$linkRenderer = $this->getLinkRenderer();
@@ -372,7 +369,7 @@ class SpecialBannerAllocation extends CentralNotice {
 				);
 
 				// Banner name
-				$viewBanner = $this->getTitleFor( 'CentralNoticeBanners', "edit/{$banner['name']}" );
+				$viewBanner = SpecialPage::getTitleFor( 'CentralNoticeBanners', "edit/{$banner['name']}" );
 
 				$htmlOut .= Html::rawElement( 'td', [ 'valign' => 'top' ],
 					Html::rawElement( 'span',

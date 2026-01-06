@@ -53,12 +53,9 @@ class CentralNoticeHooks implements
 	PreferencesGetIconHook
 {
 
-	private SpecialPageFactory $specialPageFactory;
-
 	public function __construct(
-		SpecialPageFactory $specialPageFactory
+		private readonly SpecialPageFactory $specialPageFactory,
 	) {
-		$this->specialPageFactory = $specialPageFactory;
 	}
 
 	/**
@@ -392,6 +389,7 @@ class CentralNoticeHooks implements
 			>= RL\Module::ORIGIN_USER_SITEWIDE;
 
 		$request = $skin->getRequest();
+		$actionsToSkipBanners = [ 'edit', 'history', 'submit' ];
 		// If we're on a special page (or not a normal page view at all),
 		// editing, viewing history or a diff, bow out now
 		// This is to reduce the chance of bad misclicks from delayed banner loading
@@ -399,8 +397,7 @@ class CentralNoticeHooks implements
 			!$isSiteJsAllowed ||
 			!$out->getTitle() ||
 			$out->getTitle()->inNamespace( NS_SPECIAL ) ||
-			( $request->getText( 'action' ) === 'edit' ) ||
-			( $request->getText( 'action' ) === 'history' ) ||
+			in_array( $request->getText( 'action' ), $actionsToSkipBanners, true ) ||
 			$request->getCheck( 'diff' )
 		) {
 			return true;
@@ -655,7 +652,7 @@ class CentralNoticeHooks implements
 
 		[ $alias, ] = $this->specialPageFactory->resolveAlias( $title->getText() );
 
-		if ( !array_key_exists( $alias, $wgNoticeTabifyPages ) ) {
+		if ( $alias === null || !array_key_exists( $alias, $wgNoticeTabifyPages ) ) {
 			return;
 		}
 

@@ -21,8 +21,6 @@ class CNCampaignPager extends TablePager {
 	// This should be enough--Meta has less than 500 campaigns.
 	private const DEFAULT_LIMIT = 5000;
 
-	/** @var CentralNotice */
-	private $onSpecialCN;
 	/** @var string|false */
 	private $editable;
 	/** @var int|null */
@@ -40,10 +38,10 @@ class CNCampaignPager extends TablePager {
 	 * @param bool|null $showArchived Set true to only show archived campaigns,
 	 * 	 false to only show unarchived campaigns
 	 */
-	public function __construct( CentralNotice $onSpecialCN,
+	public function __construct(
+		private readonly CentralNotice $onSpecialCN,
 		$editable = false, $assignedBannerId = null, $showArchived = null
 	) {
-		$this->onSpecialCN = $onSpecialCN;
 		$this->assignedBannerId = $assignedBannerId;
 		$this->editable = $editable;
 		$this->showArchived = $showArchived;

@@ -36,13 +36,10 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	/** @var array|null Names of the banners that are marked as templates */
 	private $templateBannerNames = null;
 
-	private LanguageNameUtils $languageNameUtils;
-
 	public function __construct(
-		LanguageNameUtils $languageNameUtils
+		private readonly LanguageNameUtils $languageNameUtils,
 	) {
-		SpecialPage::__construct( 'CentralNoticeBanners' );
-		$this->languageNameUtils = $languageNameUtils;
+		parent::__construct( 'CentralNoticeBanners' );
 	}
 
 	/** @inheritDoc */
@@ -310,24 +307,29 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 						return $this->msg( 'centralnotice-template-exists' )->parse();
 					} else {
 						if ( !empty( $formData['newBannerTemplate'] ) ) {
+							$isError = false;
 							try {
 								$bannerTemplate = Banner::fromName( $formData['newBannerTemplate'] );
 								// This will do data load for the banner, confirming it actually exists in the DB
 								// without calling Banner::exists()
-								if ( !$bannerTemplate || !$bannerTemplate->isTemplate() ) {
-									throw new BannerDataException(
-										"Attempted to create a banner based on invalid template"
+								if ( !$bannerTemplate->isTemplate() ) {
+									$isError = true;
+									wfDebugLog(
+										'CentralNotice',
+										'Attempted to create a banner based on invalid template'
 									);
 								}
 							} catch ( BannerDataException $exception ) {
+								$isError = true;
 								wfDebugLog( 'CentralNotice', $exception->getMessage() );
-
-								// We do not want to show the actual exception to the user here,
-								// since the message does not actually refer to the template being created,
-								// but to the template it is being created from
-								return $this->msg( 'centralnotice-banner-template-error' )->plain();
+							} finally {
+								if ( $isError ) {
+									// We do not want to show the actual exception to the user here,
+									// since the message does not actually refer to the template being created,
+									// but to the template it is being created from
+									return $this->msg( 'centralnotice-banner-template-error' )->plain();
+								}
 							}
-
 							$retval = Banner::addFromBannerTemplate(
 								$this->bannerName,
 								$this->getUser(),
@@ -558,7 +560,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		);
 		$languages = array_flip( $languages );
 
-		$bannerSettings = $this->banner->getBannerSettings( $this->bannerName, true );
+		$bannerSettings = Banner::getBannerSettings( $this->bannerName, true );
 
 		$formDescriptor = [];
 
@@ -992,10 +994,15 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 				}
 
 				$this->ensureBanner( $this->bannerName );
-				$this->banner->cloneBanner(
-					$newBannerName, $this->getUser(),
-					$formData[ 'cloneEditSummary' ]
-				);
+				try {
+					$this->banner->cloneBanner(
+						$newBannerName,
+						$this->getUser(),
+						$formData['cloneEditSummary']
+					);
+				} catch ( BannerExistenceException ) {
+					return $this->msg( 'centralnotice-template-exists', $this->bannerName )->parse();
+				}
 
 				$this->getOutput()->redirect(
 					$this->getPageTitle( "Edit/$newBannerName" )->getCanonicalURL()

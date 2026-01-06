@@ -3,22 +3,18 @@
 use MediaWiki\Context\IContextSource;
 
 class MixinController {
-	/** @var array */
-	private $mixins;
 
 	/** @var array */
 	private $magicWords = [];
-	/** @var IContextSource */
-	private $uiContext;
 
 	/**
 	 * @param IContextSource $uiContext
-	 * @param array $mixins
+	 * @param array<string,array> $mixins
 	 */
-	public function __construct( IContextSource $uiContext, $mixins ) {
-		$this->uiContext = $uiContext;
-		$this->mixins = $mixins;
-
+	public function __construct(
+		private readonly IContextSource $uiContext,
+		private readonly array $mixins,
+	) {
 		$this->loadPhp();
 	}
 

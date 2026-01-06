@@ -116,6 +116,8 @@
 
 	/**
 	 * Get a code for the general category the user's device is in.
+	 *
+	 * @return {string}
 	 */
 	function getDeviceCode() {
 		// If we're on the desktop site, all your device are belong to DESKTOP
@@ -300,7 +302,7 @@
 		 * Call this with geo data before calling setUp() or
 		 * setUpForTestingBanner().
 		 *
-		 * @param geo
+		 * @param {Object} geo
 		 */
 		setGeoData: function ( geo ) {
 			if ( geo ) {
@@ -339,6 +341,8 @@
 		 * selection, and data about the state of the selection process. The
 		 * returned object should be considered read-only; i.e., don't modify
 		 * it.
+		 *
+		 * @return {Object}
 		 */
 		getData: function () {
 			return state.data;
@@ -355,6 +359,7 @@
 		 * data properties that do not conform to that schema.
 		 *
 		 * @param {boolean} prepareForLogging
+		 * @return {Object}
 		 */
 		getDataCopy: function ( prepareForLogging ) {
 
@@ -379,7 +384,7 @@
 		 * Set a list of campaigns that may be selected for this pageview. This method
 		 * will be called to update the list on each iteration of the fallback loop.
 		 *
-		 * @param availableCampaigns
+		 * @param {Array} availableCampaigns
 		 */
 		setAvailableCampaigns: function ( availableCampaigns ) {
 			state.data.availableCampaigns = availableCampaigns;
@@ -409,7 +414,7 @@
 			setStatus( STATUSES.CAMPAIGN_CHOSEN );
 
 			// Provide the names of mixins enabled in this campaign. (By re-setting each time a
-			// campaign is attempted, we'll get here only mixins enabled for this specific campaign.)
+			// campaign is attempted, we'll only get mixins enabled for this specific campaign.)
 			// This is used in in-banner js to sanity-check that specific mixins are available and
 			// enabled.
 			state.data.mixins = {};
@@ -449,6 +454,8 @@
 		/**
 		 * Return the campaign currently being attempted, or null if no campaign has
 		 * been attempted yet.
+		 *
+		 * @return {Object|null}
 		 */
 		getAttemptingCampaign: function () {
 			return state.campaign === undefined ? null : state.campaign;
@@ -485,7 +492,7 @@
 		/**
 		 * Marks a campaign as failed.
 		 *
-		 * @param reason
+		 * @param {string} reason
 		 */
 		failCampaign: function ( reason ) {
 			state.data.bannerCanceledReason = reason;
@@ -498,6 +505,8 @@
 
 		/**
 		 * Legacy metod, deprecated. Use isCampaignFailed().
+		 *
+		 * @return {boolean}
 		 */
 		isBannerCanceled: function () {
 			return state.isCampaignFailed();
@@ -547,7 +556,7 @@
 		/**
 		 * Sets banner_count, a legacy field for Special:RecordImpression
 		 *
-		 * @param bannerCount
+		 * @param {number} bannerCount
 		 */
 		setBannerCount: function ( bannerCount ) {
 			// eslint-disable-next-line camelcase
@@ -557,7 +566,7 @@
 		/**
 		 * Sets minimal impression sample rate, the highest rate set will be used
 		 *
-		 * @param rate
+		 * @param {number} rate
 		 */
 		setMinRecordImpressionSampleRate: function ( rate ) {
 			// Update rate only if supplied rate is higher than current one
@@ -570,7 +579,7 @@
 		 * Sets minimal impression event sample rate, the highest rate set will be used
 		 * (unless it was overridden by a URL parameter, in which that takes precedence).
 		 *
-		 * @param rate
+		 * @param {number} rate
 		 */
 		setMinImpressionEventSampleRate: function ( rate ) {
 			if (

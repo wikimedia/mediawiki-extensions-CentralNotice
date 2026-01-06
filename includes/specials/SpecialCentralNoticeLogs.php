@@ -3,20 +3,16 @@
 use MediaWiki\Html\Html;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Utils\UrlUtils;
-use MediaWiki\Xml\Xml;
 
 class SpecialCentralNoticeLogs extends CentralNotice {
 	/** @var string */
 	public $logType = 'campaignsettings';
 
-	private UrlUtils $urlUtils;
-
 	public function __construct(
-		UrlUtils $urlUtils
+		private readonly UrlUtils $urlUtils,
 	) {
 		// Register special page
-		SpecialPage::__construct( "CentralNoticeLogs" );
-		$this->urlUtils = $urlUtils;
+		parent::__construct( 'CentralNoticeLogs' );
 	}
 
 	/**
@@ -123,7 +119,7 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 
 			$htmlOut .= Html::rawElement( 'tr', [],
 				Html::rawElement( 'td', [],
-					Xml::label( $this->msg( 'centralnotice-start-date' )->text(), 'month',
+					Html::label( $this->msg( 'centralnotice-start-date' )->text(), 'month',
 						[ 'class' => 'cn-log-filter-label' ] )
 				) .
 				Html::rawElement( 'td', [],
@@ -133,7 +129,7 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 
 			$htmlOut .= Html::rawElement( 'tr', [],
 				Html::rawElement( 'td', [],
-					Xml::label( $this->msg( 'centralnotice-end-date' )->text(), 'month',
+					Html::label( $this->msg( 'centralnotice-end-date' )->text(), 'month',
 						[ 'class' => 'cn-log-filter-label' ] )
 				) .
 				Html::rawElement( 'td', [],
@@ -143,7 +139,7 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 
 			$htmlOut .= Html::rawElement( 'tr', [],
 				Html::rawElement( 'td', [],
-					Xml::label( $this->msg( 'centralnotice-notice' )->text(), 'campaign',
+					Html::label( $this->msg( 'centralnotice-notice' )->text(), 'campaign',
 						[ 'class' => 'cn-log-filter-label' ] )
 				) .
 				Html::rawElement( 'td', [],
@@ -158,7 +154,7 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 
 			$htmlOut .= Html::rawElement( 'tr', [],
 				Html::rawElement( 'td', [],
-					Xml::label( $this->msg( 'centralnotice-user' )->text(), 'user',
+					Html::label( $this->msg( 'centralnotice-user' )->text(), 'user',
 						[ 'class' => 'cn-log-filter-label' ] )
 				) .
 				Html::rawElement( 'td', [],
@@ -239,17 +235,12 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 	 * @param string $logType which type of log to show
 	 */
 	private function showLog( $logType ) {
-		switch ( $logType ) {
-			case 'bannersettings':
-				$pager = new CentralNoticeBannerLogPager( $this );
-				break;
-			case 'bannercontent':
-			case 'bannermessages':
-				$pager = new CentralNoticePageLogPager( $this, $logType );
-				break;
-			default:
-				$pager = new CentralNoticeCampaignLogPager( $this );
-		}
+		$pager = match ( $logType ) {
+			'bannersettings' => new CentralNoticeBannerLogPager( $this ),
+			'bannercontent',
+			'bannermessages' => new CentralNoticePageLogPager( $this, $logType ),
+			default => new CentralNoticeCampaignLogPager( $this ),
+		};
 
 		$htmlOut = '';
 
@@ -302,7 +293,7 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 			$this->logType == $type,
 			[ 'value' => $id, 'onclick' => "switchLogs( " . $fullUrlEnc . ", " . $typeEnc . " )" ]
 		);
-		$htmlOut .= Xml::label( $this->msg( $message )->text(), $id );
+		$htmlOut .= Html::label( $this->msg( $message )->text(), $id );
 		return $htmlOut;
 	}
 }

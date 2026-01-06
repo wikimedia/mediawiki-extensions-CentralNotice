@@ -2,12 +2,6 @@
 
 class CampaignType {
 
-	/** @var string */
-	private $id;
-
-	/** @var bool */
-	private $onForAll;
-
 	// Prefix for creating i18n message key from id.
 	// Note: Coordinate with message keys (en.json and qqq.json) for types included
 	// as default values for $wgCentralNoticeCampaignTypes.
@@ -16,16 +10,13 @@ class CampaignType {
 	// Prefix for creating preference key from id.
 	private const PREFERENCE_KEY_PREFIX = 'centralnotice-display-campaign-type-';
 
-	/** @var CampaignType[] */
+	/** @var self[] */
 	private static $types;
 
-	/**
-	 * @param string $id
-	 * @param bool $onForAll
-	 */
-	public function __construct( $id, $onForAll ) {
-		$this->id = $id;
-		$this->onForAll = $onForAll;
+	public function __construct(
+		private readonly string $id,
+		private readonly bool $onForAll,
+	) {
 	}
 
 	/**
@@ -77,7 +68,7 @@ class CampaignType {
 	/**
 	 * Get all available campaign types
 	 *
-	 * @return CampaignType[]
+	 * @return self[]
 	 */
 	public static function getTypes() {
 		self::ensureTypes();
@@ -88,7 +79,7 @@ class CampaignType {
 	 * Get a campaign type by id
 	 *
 	 * @param string $id
-	 * @return CampaignType|null Campaign type requested, or null if it doesn't exist
+	 * @return self|null Campaign type requested, or null if it doesn't exist
 	 */
 	public static function getById( string $id ) {
 		self::ensureTypes();
@@ -104,7 +95,7 @@ class CampaignType {
 			self::$types = [];
 			foreach ( $wgCentralNoticeCampaignTypes as $id => $props ) {
 				self::$types[ $id ] =
-					new CampaignType( $id, $props[ "onForAll" ] );
+					new self( $id, $props[ "onForAll" ] );
 			}
 		}
 	}

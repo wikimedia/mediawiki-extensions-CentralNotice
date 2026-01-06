@@ -119,7 +119,7 @@ class Banner {
 	/**
 	 * Create a banner object from a known ID. Must already be
 	 * an object in the database. If a fully new banner is to be created
-	 * use @see newFromName().
+	 * use {@link newFromName}.
 	 *
 	 * @param int $id Unique database ID of the banner
 	 *
@@ -134,7 +134,7 @@ class Banner {
 	/**
 	 * Create a banner object from a known banner name. Must already be
 	 * an object in the database. If a fully new banner is to be created
-	 * use @see newFromName().
+	 * use {@link newFromName}.
 	 *
 	 * @param string $name
 	 *
@@ -576,7 +576,7 @@ class Banner {
 	 * Set the banner mixins to enable.
 	 *
 	 * @param array $mixins Names of mixins to enable on this banner. Valid values
-	 * come from @see $wgCentralNoticeBannerMixins
+	 * come from $wgCentralNoticeBannerMixins.
 	 *
 	 * @throws RangeException
 	 * @return $this
@@ -931,7 +931,7 @@ class Banner {
 		return $cache->getWithSetCallback(
 			$key,
 			$cache::TTL_MONTH,
-			[ $this, 'extractMessageFields' ],
+			$this->extractMessageFields( ... ),
 			[ 'checkKeys' => [ $key ], 'lockTSE' => 60 ]
 		);
 	}
@@ -1298,66 +1298,81 @@ class Banner {
 	 * Given one or more campaign ids, return all banners bound to them
 	 *
 	 * @param int|array $campaigns list of campaign numeric IDs
+	 * @param bool $fromPrimary Whether to use the primary database or the replica database
 	 *
 	 * @return array a 2D array of banners with associated weights and settings
 	 */
-	public static function getCampaignBanners( $campaigns ) {
-		$dbr = CNDatabase::getReplicaDb();
+	public static function getCampaignBanners( $campaigns, bool $fromPrimary = false ) {
+		if ( !$campaigns ) {
+			return [];
+		}
 
+		$db = $fromPrimary ? CNDatabase::getPrimaryDb() : CNDatabase::getReplicaDb();
 		$banners = [];
 
-		if ( $campaigns ) {
-			$res = $dbr->newSelectQueryBuilder()
-				// Aliases (keys) are needed to avoid problems with table prefixes
-				->select( [
-					'tmp_name',
-					'tmp_weight',
-					'tmp_display_anon',
-					'tmp_display_account',
-					'tmp_category',
-					'not_name',
-					'not_preferred',
-					'asn_bucket',
-					'not_buckets',
-					'not_throttle',
-					'dev_name',
-				] )
-				->from( 'cn_notices', 'notices' )
-				->join( 'cn_assignments', 'assignments', 'notices.not_id = assignments.not_id' )
-				->join( 'cn_templates', 'templates', 'assignments.tmp_id = templates.tmp_id' )
-				->leftJoin( 'cn_template_devices', 'template_devices', 'template_devices.tmp_id = assignments.tmp_id' )
-				->join( 'cn_known_devices', 'known_devices', 'known_devices.dev_id = template_devices.dev_id' )
-				->where( [
+		$res = $db->newSelectQueryBuilder()
+			// Aliases (keys) are needed to avoid problems with table prefixes
+			->select( [
+				'tmp_name',
+				'tmp_weight',
+				'tmp_display_anon',
+				'tmp_display_account',
+				'tmp_category',
+				'not_name',
+				'not_preferred',
+				'asn_bucket',
+				'not_buckets',
+				'not_throttle',
+				'dev_name',
+			] )->from(
+				'cn_notices',
+				'notices'
+			)->join(
+				'cn_assignments',
+				'assignments',
+				'notices.not_id = assignments.not_id'
+			)->join(
+				'cn_templates',
+				'templates',
+				'assignments.tmp_id = templates.tmp_id'
+			)->leftJoin(
+				'cn_template_devices',
+				'template_devices',
+				'template_devices.tmp_id = assignments.tmp_id'
+			)->join(
+				'cn_known_devices',
+				'known_devices',
+				'known_devices.dev_id = template_devices.dev_id'
+			)->where(
+				[
 					'notices.not_id' => $campaigns,
-				] )
-				->caller( __METHOD__ )
-				->fetchResultSet();
+				]
+			)->caller( __METHOD__ )->fetchResultSet();
 
-			foreach ( $res as $row ) {
-				$banners[] = [
-					// name of the banner
-					'name'             => $row->tmp_name,
-					// weight assigned to the banner
-					'weight'           => intval( $row->tmp_weight ),
-					// display to anonymous users?
-					'display_anon'     => intval( $row->tmp_display_anon ),
-					// display to logged in users?
-					'display_account'  => intval( $row->tmp_display_account ),
-					// fundraising banner?
-					'fundraising'      => intval( $row->tmp_category === 'fundraising' ),
-					// device this banner can target
-					'device'           => $row->dev_name,
-					// campaign the banner is assigned to
-					'campaign'         => $row->not_name,
-					// z level of the campaign
-					'campaign_z_index' => $row->not_preferred,
-					'campaign_num_buckets' => intval( $row->not_buckets ),
-					'campaign_throttle' => intval( $row->not_throttle ),
-					'bucket'           => ( intval( $row->not_buckets ) == 1 )
-						? 0 : intval( $row->asn_bucket ),
-				];
-			}
+		foreach ( $res as $row ) {
+			$banners[] = [
+				// name of the banner
+				'name' => $row->tmp_name,
+				// weight assigned to the banner
+				'weight' => (int)$row->tmp_weight,
+				// display to anonymous users?
+				'display_anon' => (int)$row->tmp_display_anon,
+				// display to logged in users?
+				'display_account' => (int)$row->tmp_display_account,
+				// fundraising banner?
+				'fundraising' => (int)( $row->tmp_category === 'fundraising' ),
+				// device this banner can target
+				'device' => $row->dev_name,
+				// campaign the banner is assigned to
+				'campaign' => $row->not_name,
+				// z level of the campaign
+				'campaign_z_index' => $row->not_preferred,
+				'campaign_num_buckets' => (int)$row->not_buckets,
+				'campaign_throttle' => (int)$row->not_throttle,
+				'bucket' => ( (int)$row->not_buckets === 1 ) ? 0 : (int)$row->asn_bucket,
+			];
 		}
+
 		return $banners;
 	}
 
@@ -1450,13 +1465,13 @@ class Banner {
 	/**
 	 * @param string $name
 	 * @param User $user
-	 * @param Banner $template
+	 * @param self $template
 	 * @param string|null $summary
 	 * @return string|null error message key or null on success
 	 * @throws BannerDataException
 	 * @throws BannerExistenceException
 	 */
-	public static function addFromBannerTemplate( $name, $user, Banner $template, $summary = null ) {
+	public static function addFromBannerTemplate( $name, $user, self $template, $summary = null ) {
 		if ( !$template->isTemplate() ) {
 			return 'centralnotice-banner-template-error';
 		}

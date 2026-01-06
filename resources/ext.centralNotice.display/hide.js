@@ -133,6 +133,7 @@
 		 * @param {number} duration Cookie duration, in seconds
 		 * @param {string} categoryName Reason to store in the hide cookie
 		 * @param {string} newReason Reason to store in the hide cookie
+		 * @return {HTMLImageElement[]}
 		 */
 		fetchHideUrls: function ( hideUrls, duration, categoryName, newReason ) {
 			return hideUrls.map( ( hideUrl ) => {

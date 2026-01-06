@@ -45,7 +45,8 @@
 	/**
 	 * Escape '*' and '!' in a campaign name to make it safe for serialization.
 	 *
-	 * @param name
+	 * @param {string} name
+	 * @return {string}
 	 */
 	function escapeCampaignName( name ) {
 		return name.replace( /[*!]/g, ( match ) => '&#' + match.charCodeAt( 0 ) );
@@ -54,7 +55,8 @@
 	/**
 	 * Decode any escaped '*' and '!' characters in a serialized campaign name.
 	 *
-	 * @param name
+	 * @param {string} name
+	 * @return {string}
 	 */
 	function decodeCampaignName( name ) {
 		return name.replace( /&#(33|42)/, ( match, $1 ) => String.fromCharCode( $1 ) );

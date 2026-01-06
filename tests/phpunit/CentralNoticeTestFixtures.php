@@ -8,8 +8,6 @@ class CentralNoticeTestFixtures {
 
 	/** @var array */
 	public $spec = [];
-	/** @var User */
-	private $user;
 	/** @var array */
 	private $addedDeviceIds = [];
 	/** @var array|null */
@@ -20,9 +18,9 @@ class CentralNoticeTestFixtures {
 	/** @var array */
 	private static $defaultBanner;
 
-	public function __construct( User $user ) {
-		$this->user = $user;
-
+	public function __construct(
+		private readonly User $user,
+	) {
 		static::$defaultCampaign = [
 			'enabled' => 1,
 			// inclusive comparison is used, so this does not cause a race condition.
@@ -369,7 +367,7 @@ class CentralNoticeTestFixtures {
 		}
 
 		// Remove any devices we added
-		if ( !empty( $this->addedDeviceIds ) ) {
+		if ( $this->addedDeviceIds ) {
 			$dbw = CNDatabase::getPrimaryDb();
 			$dbw->newDeleteQueryBuilder()
 				->deleteFrom( 'cn_known_devices' )
@@ -429,9 +427,7 @@ class CentralNoticeTestFixtures {
 	 * @param string[] $deviceNames
 	 */
 	private function ensureDevices( $deviceNames ) {
-		if ( !$this->knownDevices ) {
-			$this->knownDevices = CNDeviceTarget::getAvailableDevices( true );
-		}
+		$this->knownDevices ??= CNDeviceTarget::getAvailableDevices( true );
 
 		$devicesChanged = false;
 

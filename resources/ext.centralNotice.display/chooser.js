@@ -20,7 +20,7 @@
 	 * campaign priority and throttling. The equivalent server-side method
 	 * is AllocationCalculator::calculateCampaignAllocations().
 	 *
-	 * @param availableCampaigns
+	 * @param {Object[]} availableCampaigns
 	 */
 	function setCampaignAllocations( availableCampaigns ) {
 
@@ -137,10 +137,11 @@
 	 * The equivalent server-side method
 	 * AllocationCalculator::makePossibleBanners().
 	 *
-	 * @param campaign
-	 * @param bucket
-	 * @param anon
-	 * @param device
+	 * @param {Object} campaign
+	 * @param {number} bucket
+	 * @param {boolean} anon
+	 * @param {string} device
+	 * @return {Object[]}
 	 */
 	function makePossibleBanners( campaign, bucket, anon, device ) {
 
@@ -181,7 +182,7 @@
 	 * server-side method is
 	 * AllocationCalculator::calculateBannerAllocations().
 	 *
-	 * @param possibleBanners
+	 * @param {Object[]} possibleBanners
 	 */
 	function setBannerAllocations( possibleBanners ) {
 		let totalWeights = 0;
@@ -258,12 +259,12 @@
 		 * The server-side equivalent of this method is
 		 * AllocationCalculator::makeAvailableCampaigns().
 		 *
-		 * @param choiceData
-		 * @param country
-		 * @param region
-		 * @param anon
-		 * @param device
-		 * @return {Array}
+		 * @param {Object[]} choiceData
+		 * @param {string} country
+		 * @param {string} region
+		 * @param {boolean} anon
+		 * @param {string} device
+		 * @return {Object[]}
 		 */
 		makeAvailableCampaigns: function ( choiceData, country, region, anon, device ) {
 
@@ -347,7 +348,8 @@
 		 * incorrect caching of choiceData between us and the user. This check can easily
 		 * result in false positives.
 		 *
-		 * @param choiceData
+		 * @param {Object[]} choiceData
+		 * @return {boolean}
 		 */
 		choiceDataSeemsFresh: function ( choiceData ) {
 
