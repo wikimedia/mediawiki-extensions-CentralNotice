@@ -17,7 +17,8 @@
 			"Rhaijin",
 			"SandroHc",
 			"Tks4Fish",
-			"Vitorvicentevalente"
+			"Vitorvicentevalente",
+			"RogueScholar"
 		]
 	},
 	"centralnotice": "Administração de avisos centralizados",
@@ -265,7 +266,7 @@
 	"centralnotice-end-time": "Hora de fim (UTC)",
 	"centralnotice-banner-not-found-title": "A faixa não foi encontrada",
 	"centralnotice-banner-not-found-contents": "Não existe nenhuma faixa com este nome exato.",
-	"centralnotice-csp-violation-alert": "Foi detetada uma violação das normas de segurança do conteúdo! Tentou fazer um carregamento de $1.",
+	"centralnotice-csp-violation-alert": "Violação da Política de Segurança de Conteúdo (CSP) detectada. Carregar conteúdo de fontes externas à wiki compromete os dados do leitor. Por favor, faça uma pré-visualização dos banners sem gadgets ou complementos de terceiros. URL em violação: $1.",
 	"hidebanners": "Ocultar faixas",
 	"centralnotice-specialhidebanners-p3p": "Alguns navegadores da Internet exigem uma norma P3P compacta para definir <i>cookies</i> em certas situações. Neste momento, não está disponível nenhuma norma compacta. Consulte as normas de privacidade do <i>site</i>, por favor.",
 	"centralnotice-banner-history-logger": "Registador do historial de faixas",
@@ -350,5 +351,7 @@
 	"centralnotice-campaign-type-maintenance": "Manutenção",
 	"centralnotice-campaign-type-photography": "Fotografia",
 	"centralnotice-campaign-type-special": "Especial",
-	"centralnotice-user-prefs-intro": "As faixas apresentam anúncios de interesse para as comunidades e utilizadores da Wikimedia.\n\nEncontra abaixo opções que lhe permitem gerir os tipos de anúncios que verá. Certas notificações da plataforma, como aquelas relacionadas com a manutenção do <i>site</i> e notificações consideradas necessárias para todos os utilizadores, serão sempre apresentadas. Para mais informações, consulte a [[metawikimedia:Special:MyLanguage/CentralNotice|documentação na Meta-Wiki]], por favor."
+	"centralnotice-user-prefs-intro": "As faixas apresentam anúncios de interesse para as comunidades e utilizadores da Wikimedia.\n\nEncontra abaixo opções que lhe permitem gerir os tipos de anúncios que verá. Certas notificações da plataforma, como aquelas relacionadas com a manutenção do <i>site</i> e notificações consideradas necessárias para todos os utilizadores, serão sempre apresentadas. Para mais informações, consulte a [[metawikimedia:Special:MyLanguage/CentralNotice|documentação na Meta-Wiki]], por favor.",
+	"namespaceinfo-description-ns866": "Mensagens utilizadas nos cartazes da [[mw:Special:MyLanguage/Extension:CentralNotice|AvisoCentral]] e suas traduções",
+	"namespaceinfo-description-ns867": "Páginas de discussão para mensagens de cartaz do AvisoCentral"
 }
