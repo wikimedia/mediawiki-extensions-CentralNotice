@@ -8,6 +8,7 @@
 			"Kuldeepburjbhalaike"
 		]
 	},
+	"centralnotice-translate-heading": "$1 ਲਈ ਉਲਥਾ",
 	"centralnotice-translations": "ਤਰਜਮੇ",
 	"centralnotice-translate-to": "ਵਿੱਚ ਤਰਜਮਾ ਕਰੋ",
 	"centralnotice-translate": "ਤਰਜਮਾ ਕਰੋ",
@@ -17,6 +18,8 @@
 	"centralnotice-archive-banner": "ਪੁਰਾਲੇਖ",
 	"centralnotice-archive-campaign": "ਪੁਰਾਲੇਖ",
 	"hidebanners": "ਬੈਨਰ ਲਕੋਵੋ",
+	"centralnotice-banner-sequence-page-views": "ਵਰਕਾ ਝਾਤਾਂ",
+	"tag-centralnotice_translation": "ਕੇਂਦਰੀ ਸੁਨੇਹਾ ਉਲਥਾ",
 	"centralnotice-banner-template-info": "(ਫਰਮਾ)",
 	"centralnotice-create-from-template-checkbox-label": "ਫਰਮੇ ਤੋਂ ਬਣਾਓ"
 }
