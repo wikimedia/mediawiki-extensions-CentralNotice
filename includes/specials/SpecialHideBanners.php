@@ -58,6 +58,8 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 		wfResetOutputBuffers();
 
 		header( 'Content-Type: image/png' );
+		header( 'access-control-allow-origin: *' );
+
 		if ( !$this->getUser()->isRegistered() ) {
 			$expiry = self::CACHE_EXPIRY;
 			header( "Cache-Control: public, s-maxage={$expiry}, max-age=0" );

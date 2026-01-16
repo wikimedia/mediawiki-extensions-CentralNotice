@@ -329,9 +329,6 @@
 		"CentralSelectedBannerDispatcher": {
 			"value": false
 		},
-		"CentralMobileSelectedBannerDispatcher": {
-			"value": false
-		},
 		"CentralNoticeLoader": {
 			"value": true
 		},

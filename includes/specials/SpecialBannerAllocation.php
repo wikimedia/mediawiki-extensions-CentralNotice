@@ -19,7 +19,6 @@
 use MediaWiki\Html\Html;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\SpecialPage\SpecialPage;
-use MediaWiki\Xml\Xml;
 
 /**
  * SpecialBannerAllocation
@@ -131,7 +130,11 @@ class SpecialBannerAllocation extends CentralNotice {
 		$htmlOut .= Html::openElement( 'select', [ 'name' => 'project' ] );
 
 		foreach ( $wgNoticeProjects as $value ) {
-			$htmlOut .= Xml::option( $value, $value, $value === $this->project );
+			$htmlOut .= Html::element(
+				'option',
+				[ 'value' => $value, 'selected' => $value === $this->project ],
+				$value
+			);
 		}
 
 		$htmlOut .= Html::closeElement( 'select' );
@@ -157,9 +160,11 @@ class SpecialBannerAllocation extends CentralNotice {
 		$htmlOut .= Html::openElement( 'select', [ 'name' => 'language' ] );
 
 		foreach ( $languages as $code => $name ) {
-			$htmlOut .= Xml::option(
-				$this->msg( 'centralnotice-language-listing', $code, $name )->text(),
-				$code, $code === $this->language );
+			$htmlOut .= Html::element(
+				'option',
+				[ 'value' => $code, 'selected' => $code === $this->language ],
+				$this->msg( 'centralnotice-language-listing', $code, $name )->text()
+			);
 		}
 
 		$htmlOut .= Html::closeElement( 'select' );
@@ -179,8 +184,10 @@ class SpecialBannerAllocation extends CentralNotice {
 		);
 
 		foreach ( $countries as $code => $country ) {
-			$htmlOut .= Xml::option(
-				$country->getName(), $code, $code === $this->locationCountry
+			$htmlOut .= Html::element(
+				'option',
+				[ 'value' => $code, 'selected' => $code === $this->locationCountry ],
+				$country->getName()
 			);
 		}
 

@@ -345,31 +345,32 @@ class CentralNotice extends UnlistedSpecialPage {
 	public function campaignTypeSelector( $editable, $selectedTypeId, $index = null ) {
 		$types = CampaignType::getTypes();
 		if ( $editable ) {
-			$options = Xml::option(
-				$this->msg( 'centralnotice-empty-campaign-type-option' )->plain(),
-				self::EMPTY_CAMPAIGN_TYPE_OPTION
+			$options = Html::element(
+				'option',
+				[ 'value' => self::EMPTY_CAMPAIGN_TYPE_OPTION ],
+				$this->msg( 'centralnotice-empty-campaign-type-option' )->plain()
 			);
 
 			foreach ( $types as $type ) {
 				$message = $this->msg( $type->getMessageKey() );
 				$text = $message->exists() ? $message->text() : $type->getId();
-				$options .= Xml::option(
-					$text,
-					$type->getId(),
-					$selectedTypeId === $type->getId()
+				$options .= Html::element(
+					'option',
+					[ 'value' => $type->getId(), 'selected' => $selectedTypeId === $type->getId() ],
+					$text
 				);
 			}
 
 			// Handle the case of a type removed from config but still assigned to
 			// a campaign in the DB.
 			if ( $selectedTypeId && !CampaignType::getById( $selectedTypeId ) ) {
-				$options .= Xml::option(
+				$options .= Html::element(
+					'option',
+					[ 'value' => $selectedTypeId, 'selected' => true ],
 					$this->msg(
 						'centralntoice-deleted-campaign-type',
 						$selectedTypeId
-					)->text(),
-					$selectedTypeId,
-					true
+					)->text()
 				);
 			}
 
@@ -431,7 +432,11 @@ class CentralNotice extends UnlistedSpecialPage {
 			// The HTML for the select list options
 			$options = '';
 			foreach ( $priorities as $key => $labelMsg ) {
-				$options .= Xml::option( $labelMsg->text(), (string)$key, $priorityValue == $key );
+				$options .= Html::element(
+					'option',
+					[ 'value' => (string)$key, 'selected' => $priorityValue == $key ],
+					$labelMsg->text()
+				);
 			}
 
 			// Data attributes set below (data-campaign-name and
@@ -1512,7 +1517,11 @@ class CentralNotice extends UnlistedSpecialPage {
 		if ( $this->editable ) {
 			$html = Html::openElement( 'select', [ 'name' => $name ] );
 			foreach ( range( 5, 100, 5 ) as $value ) {
-				$html .= Xml::option( $value, (string)$value, $value === $selected );
+				$html .= Html::element(
+					'option',
+					[ 'value' => (string)$value, 'selected' => $value === $selected ],
+					(string)$value
+				);
 			}
 			$html .= Html::closeElement( 'select' );
 			return $html;
@@ -1545,12 +1554,14 @@ class CentralNotice extends UnlistedSpecialPage {
 			] );
 
 			foreach ( range( 0, $this->getConfig()->get( 'NoticeNumberOfBuckets' ) - 1 ) as $value ) {
-				$attribs = [];
-				if ( $value >= $numberCampaignBuckets ) {
-					$attribs['disabled'] = 'disabled';
-				}
-				$html .= Xml::option(
-					$bucketLabel( $value ), $value, $value === $selected, $attribs
+				$html .= Html::element(
+					'option',
+					[
+						'value' => $value,
+						'selected' => $value === $selected,
+						'disabled' => $value >= $numberCampaignBuckets,
+					],
+					$bucketLabel( $value )
 				);
 			}
 			$html .= Html::closeElement( 'select' );
@@ -1575,7 +1586,11 @@ class CentralNotice extends UnlistedSpecialPage {
 			$html = Html::openElement( 'select', [ 'name' => 'buckets', 'id' => 'buckets' ] );
 			foreach ( range( 0, intval( log( $numBuckets, 2 ) ) ) as $value ) {
 				$value = pow( 2, $value );
-				$html .= Xml::option( (string)$value, (string)$value, $value === $selected );
+				$html .= Html::element(
+					'option',
+					[ 'value' => (string)$value, 'selected' => $value === $selected ],
+					(string)$value
+				);
 			}
 			$html .= Html::closeElement( 'select' );
 			return $html;
@@ -1659,10 +1674,10 @@ class CentralNotice extends UnlistedSpecialPage {
 
 		$options = "\n";
 		foreach ( $languages as $code => $name ) {
-			$options .= Xml::option(
-				$this->msg( 'centralnotice-language-listing', $code, $name )->text(),
-				$code,
-				in_array( $code, $selected )
+			$options .= Html::element(
+				'option',
+				[ 'value' => $code, 'selected' => in_array( $code, $selected ) ],
+				$this->msg( 'centralnotice-language-listing', $code, $name )->text()
 			) . "\n";
 		}
 
@@ -1690,10 +1705,10 @@ class CentralNotice extends UnlistedSpecialPage {
 	private function projectMultiSelector( $selected = [] ) {
 		$options = "\n";
 		foreach ( $this->getConfig()->get( 'NoticeProjects' ) as $project ) {
-			$options .= Xml::option(
-				$project,
-				$project,
-				in_array( $project, $selected )
+			$options .= Html::element(
+				'option',
+				[ 'value' => $project, 'selected' => in_array( $project, $selected ) ],
+				$project
 			) . "\n";
 		}
 

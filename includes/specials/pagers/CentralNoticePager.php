@@ -162,7 +162,11 @@ class CentralNoticePager extends TemplatePager {
 
 		$html = '';
 		foreach ( range( 0, $wgNoticeNumberOfBuckets - 1 ) as $value ) {
-			$html .= Xml::option( chr( $value + ord( 'A' ) ), $value, false, [] );
+			$html .= Html::element(
+				'option',
+				[ 'value' => $value ],
+				chr( $value + ord( 'A' ) )
+			);
 		}
 
 		return Html::rawElement( 'select', [
