@@ -255,7 +255,7 @@
 	"centralnotice-impression-events-sample-rate-field": "Uzorkovni stop posjetâ (treba da bude između 0 i 0.01)",
 	"centralnotice-banner-protection-log-reason": "Automatski zaštićen CentralNoticeom; uredite samo putem [[Special:CentralNotice]] ili [[Special:Translate]].",
 	"tag-centralnotice": "Središnje obavjesnice",
-	"tag-centralnotice-description": "Izmjena načinjena putem korisničkoga sučelja za administratore središnjih obavjesnica",
+	"tag-centralnotice-description": "Izmjena načinjena pomoću interfejsa za administratore centralnih obavijesti",
 	"tag-centralnotice_translation": "Prijevod središnjih obavjesnica",
 	"tag-centralnotice_translation-description": "Uređivanje sadržaja središnjih obavjesnica načinjeno putem proširenja za prevođenje",
 	"centralnotice-banner-template-info": "(predložak)",
