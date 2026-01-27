@@ -5,7 +5,8 @@
 			"Mar(c)",
 			"McDutchie",
 			"Romaine",
-			"Siebrand"
+			"Siebrand",
+			"Erik Baas"
 		]
 	},
 	"apierror-centralnotice-cdn-permissions-error": "De gebruiker heeft geen toestemming om de inhoud van de front-endbanner te wissen.",
@@ -31,7 +32,7 @@
 	"apihelp-centralnoticechoicedata-summary": "Gegevens opvragen die nodig zijn om een banner te kiezen voor een bepaald project en een bepaalde taal",
 	"apihelp-centralnoticechoicedata-param-project": "Het project te krijgen banner keuze data voor.",
 	"apihelp-centralnoticechoicedata-param-language": "De taal waarvoor bannerkeuzegegevens moeten worden opgehaald.",
-	"apihelp-centralnoticechoicedata-example-1": "De gegevens voor het kiezen van een banner voor engelse Wikipedia-gebruikers.",
+	"apihelp-centralnoticechoicedata-example-1": "De gegevens voor het kiezen van een banner voor Engelstalige Wikipedia-gebruikers.",
 	"apihelp-query+centralnoticelogs-summary": "Een logboek opvragen met wijzigingen in de campagne-instellingen.",
 	"apihelp-query+centralnoticelogs-param-campaign": "Campagne naam (optioneel). Scheid meerdere waarden met een \"|\" (verticale balk).",
 	"apihelp-query+centralnoticelogs-param-user": "Gebruikersnaam (optioneel).",
