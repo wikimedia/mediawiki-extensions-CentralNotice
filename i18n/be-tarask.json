@@ -179,7 +179,7 @@
 	"centralnotice-priority-low": "нізкі",
 	"centralnotice-priority-normal": "звычайны",
 	"centralnotice-priority-high": "вялікі",
-	"centralnotice-priority-emergency": "тэрміновы",
+	"centralnotice-priority-emergency": "неадкладны",
 	"centralnotice-prioritylangs": "Прыярытэтныя мовы",
 	"centralnotice-prioritylangs-explain": "Пазначэньне прыярытэтных моваў можа заахвоціць перакладчыкаў перакладаць спачатку на гэтыя мовы.",
 	"centralnotice-aggregate-group-desc": "Усе паведамленьні з гэтай групы ўключаныя ў банэры Central Notice.",
