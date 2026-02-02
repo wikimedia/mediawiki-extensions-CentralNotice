@@ -11,7 +11,6 @@ use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
-use MediaWiki\Xml\Xml;
 
 class CentralNotice extends UnlistedSpecialPage {
 
@@ -467,10 +466,15 @@ class CentralNotice extends UnlistedSpecialPage {
 	private function createSelector( $prefix, $fields ) {
 		$out = '';
 		foreach ( $fields as [ $field, $label, $set, $current ] ) {
-			$out .= Xml::listDropdown( "{$prefix}[{$field}]",
+			$options = Html::listDropdownOptions(
 				self::dropdownList( $this->msg( $label )->text(), $set ),
-				'',
-				$current );
+				[ 'other' => '' ]
+			);
+
+			$xmlSelect = new XmlSelect( "{$prefix}[{$field}]", "{$prefix}[{$field}]", $current );
+			$xmlSelect->addOptions( $options );
+
+			$out .= $xmlSelect->getHTML();
 		}
 		return $out;
 	}

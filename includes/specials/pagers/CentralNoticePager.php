@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Html\Html;
-use MediaWiki\Xml\Xml;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
 
@@ -98,14 +97,14 @@ class CentralNoticePager extends TemplatePager {
 			);
 
 			// Weight select
+			$options = Html::listDropdownOptions(
+				CentralNotice::dropdownList( $this->msg( 'centralnotice-weight' )->text(), range( 0, 100, 5 ) ),
+				[ 'other' => '' ]
+			);
+			$xmlSelect = new XmlSelect( "weight[$row->tmp_id]", "weight[$row->tmp_id]", '25' );
+			$xmlSelect->addOptions( $options );
 			$htmlOut .= Html::rawElement( 'td', [ 'valign' => 'top', 'class' => 'cn-weight' ],
-				Xml::listDropdown( "weight[$row->tmp_id]",
-					CentralNotice::dropdownList(
-						$this->msg( 'centralnotice-weight' )->text(), range( 0, 100, 5 )
-					),
-					'',
-					'25'
-				)
+				$xmlSelect->getHTML()
 			);
 		}
 
