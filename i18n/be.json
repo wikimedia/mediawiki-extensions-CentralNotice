@@ -6,17 +6,23 @@
 			"Kareyac",
 			"Mikalai Udodau",
 			"ZlyiLev",
-			"Тест"
+			"Тест",
+			"Ucukor"
 		]
 	},
 	"centralnotice-add": "Дадаць",
+	"centralnotice-add-notice-cancel-button": "Скасаваць",
 	"centralnotice-translations": "Пераклады",
 	"centralnotice-translate": "Пераклад",
 	"centralnotice-message": "Паведамленне",
+	"centralnotice-clone-cancel": "Скасаваць",
 	"centralnotice-close-title": "Закрыць",
 	"centralnotice-languages": "Мовы",
 	"centralnotice-language": "Мова",
 	"centralnotice-date": "Дата",
 	"centralnotice-banner-messages": "Паведамленні банераў, якія магчыма перакласці",
-	"centralnotice-all": "Усе"
+	"centralnotice-all": "Усе",
+	"centralnotice-archive-banner-cancel": "Скасаваць",
+	"centralnotice-archive-campaign-cancel": "Скасаваць",
+	"centralnotice-delete-banner-cancel": "Скасаваць"
 }
