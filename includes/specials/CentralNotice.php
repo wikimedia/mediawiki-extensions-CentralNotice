@@ -1819,6 +1819,9 @@ class CentralNotice extends UnlistedSpecialPage {
 						'opened' => $isSelected,
 						'selected' => $isSelected
 					];
+					if ( !$this->editable ) {
+						$data['disabled'] = true;
+					}
 					$regions .= Html::element(
 						'li',
 						[
@@ -1841,6 +1844,9 @@ class CentralNotice extends UnlistedSpecialPage {
 				'opened' => $isSelected,
 				'selected' => $isSelected
 			];
+			if ( !$this->editable ) {
+				$data['disabled'] = true;
+			}
 
 			$countryNameAndCode = $this->msg(
 				'centralnotice-location-name-and-code',
@@ -1906,15 +1912,15 @@ class CentralNotice extends UnlistedSpecialPage {
 		$hiddenInputs = Html::input(
 			'geo_countries',
 			implode( ',', $selectedCountries ),
-			'text',
-			[ 'type' => 'hidden', 'id' => 'geo_countries_value' ]
+			'hidden',
+			[ 'id' => 'geo_countries_value' ]
 		);
 
 		$hiddenInputs .= Html::input(
 			'geo_regions',
 			implode( ',', $selectedRegions ),
-			'text',
-			[ 'type' => 'hidden', 'id' => 'geo_regions_value' ]
+			'hidden',
+			[ 'id' => 'geo_regions_value' ]
 		);
 
 		return Html::rawElement(
