@@ -83,7 +83,7 @@
 			}
 		);
 
-		$( 'select[multiple]' ).multiselect(
+		$( 'select[multiple]:not(:disabled)' ).multiselect(
 			{ sortable: false, dividerLocation: 0.5 }
 		);
 
