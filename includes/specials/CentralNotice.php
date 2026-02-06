@@ -72,6 +72,7 @@ class CentralNotice extends UnlistedSpecialPage {
 
 		// Check permissions
 		$this->editable = $this->getUser()->isAllowed( 'centralnotice-admin' );
+		$this->getOutput()->addJsConfigVars( [ 'CentralNoticeEditable' => $this->editable ] );
 
 		// Initialize error variable
 		$this->centralNoticeError = false;

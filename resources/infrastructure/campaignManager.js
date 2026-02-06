@@ -416,6 +416,7 @@
 	function makeMixinParamControlSet( mixinName, paramValues ) {
 
 		const paramDefs = mixinDefs[ mixinName ].parameters,
+			editable = mw.config.get( 'CentralNoticeEditable' ),
 			templateVars = {
 				divId: mixinParamControlsId( mixinName ),
 				params: []
@@ -433,7 +434,8 @@
 				dataType: paramDef.type,
 				minVal: paramDef.minVal,
 				maxVal: paramDef.maxVal,
-				step: paramDef.step
+				step: paramDef.step,
+				disabled: !editable
 			};
 
 			switch ( paramDef.type ) {
