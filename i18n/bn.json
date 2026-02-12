@@ -11,7 +11,8 @@
 			"YahyA",
 			"Yahya",
 			"আজিজ",
-			"আফতাবুজ্জামান"
+			"আফতাবুজ্জামান",
+			"Nokib Sarkar"
 		]
 	},
 	"centralnotice": "কেন্দ্রীয় বিজ্ঞপ্তি প্রশাসক",
@@ -57,7 +58,7 @@
 	"centralnotice-notice": "ক্যাম্পেইন",
 	"centralnotice-notice-heading": "ক্যাম্পেইন: $1",
 	"centralnotice-notices": "বিজ্ঞপ্তি",
-	"centralnotice-notice-exists": "সাইট নোটশ ইতিমধ্যে রয়েছে।\nযোগ হয়নি",
+	"centralnotice-notice-exists": "সাইট নোটিশ ইতিমধ্যে রয়েছে।\nযোগ হয়নি",
 	"centralnotice-no-language": "এই ক্যাম্পেইনের জন্য কোনো ভাষা নির্বাচন করা হয়নি। যুক্ত হচ্ছে না।",
 	"centralnotice-no-project": "এই ক্যাম্পেইনের জন্য কোনো প্রকল্প নির্বাচন করা হয়নি। যুক্ত হচ্ছে না।",
 	"centralnotice-template-exists": "ব্যানার ইতিমধ্যে রয়েছে।\nযোগ হয়নি।",
