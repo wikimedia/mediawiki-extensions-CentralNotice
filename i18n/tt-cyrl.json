@@ -3,6 +3,7 @@
 		"authors": [
 			"Don Alessandro",
 			"Ерней",
+			"Ильгиз",
 			"Ильнар"
 		]
 	},
@@ -20,7 +21,7 @@
 	"centralnotice-modify": "Җибәрү",
 	"centralnotice-view": "Карау",
 	"centralnotice-save-banner": "Саклау",
-	"centralnotice-live-preview": "Соңгы сакланган версияне алдан карау",
+	"centralnotice-live-preview": "Соңгы сакланган юраманы карап алу",
 	"centralnotice-add-new": "Яңа үзәк белдерү өстәү",
 	"centralnotice-remove": "Бетерү",
 	"centralnotice-translate-heading": "$1 өчен тәрҗемә",
