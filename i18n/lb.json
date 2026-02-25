@@ -237,6 +237,7 @@
 	"centralnotice-banner-template-info": "(Schabloun)",
 	"prefs-centralnotice-banners": "Banneren",
 	"prefs-centralnotice-display-banner-types": "Typpe vu Banneren, déi gewise ginn",
+	"prefs-description-centralnotice-banners": "Geréiert d'Typpe vun Annoncen, déi Dir ze gesi kritt.",
 	"centralnotice-empty-campaign-type-option": "Keen Typ (gëtt ëmmer gewisen)",
 	"centralnotice-campaign-type-advocacy": "Plädoyer",
 	"centralnotice-campaign-type-article-writing": "Artikel schreiwen",
@@ -246,5 +247,5 @@
 	"centralnotice-campaign-type-maintenance": "Maintenance",
 	"centralnotice-campaign-type-photography": "Fotografie",
 	"centralnotice-campaign-type-special": "Spezial",
-	"centralnotice-user-prefs-intro": "Banner weisen Annoncen, déi fir d'Wikimedia-Communautéiten a -Benotzer vun Interesse sinn.\n\nHei drënner fannt Dir Optiounen, déi Iech et erlaben anzestellen wat fir eng Ukënnegungen Dir gewise kritt. Verschidden Hiweiser iwwer d'Plattform, z. B. déi, déi sech op eng Maintenance bezéien vum Site bezéien oder speziell Hiweiser, déi fir all Benotzer als noutwendeg ugesi ginn, ginn ëmmer gewisen. Fir méi Informatiounen liest wgl. d'[[metawikimedia:Special:MyLanguage/CentralNotice|Dokumentatioun op der Meta-Wiki]]."
+	"centralnotice-user-prefs-intro": "Bannere weisen Annoncen, déi fir d'Wikimedia-Communautéiten a -Benotzer vun Interesse sinn.\n\nHei drënner fannt Dir Optiounen, déi Iech et erlaben anzestellen, wat fir eng Annoncen Dir gewise kritt. Verschidden Hiweiser iwwer d'Plattform, z. B. déi, déi sech op eng Maintenance vum Site bezéien, oder speziell Hiweiser, déi fir all Benotzer als noutwendeg ugesi ginn, ginn ëmmer gewisen. Fir méi Informatioune liest wgl. d'[[metawikimedia:Special:MyLanguage/CentralNotice|Dokumentatioun op der Meta-Wiki]]."
 }
