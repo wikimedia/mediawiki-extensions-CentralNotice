@@ -450,23 +450,6 @@ class CentralNoticeHooks implements
 				$wgCentralNoticeGeoIPBackgroundLookupModule;
 		}
 
-		// Output the user's registration date, total edit count, and past year's edit count.
-		// This is useful for banners that need to be targeted to specific types of users.
-		// Only do this for logged-in users, keeping anonymous user output equal (for Squid-cache).
-		$user = $out->getUser();
-		if ( $user->isRegistered() ) {
-			if ( $user->isBot() ) {
-				$userData = false;
-			} else {
-				$userData = [
-					// Add the user's registration date (TS_MW)
-					'registration' => $user->getRegistration() ?: 0
-				];
-			}
-			// Set the variable that will be output to the page
-			$vars[ 'wgNoticeUserData' ] = $userData;
-		}
-
 		return true;
 	}
 
