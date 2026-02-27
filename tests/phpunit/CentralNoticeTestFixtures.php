@@ -8,10 +8,6 @@ class CentralNoticeTestFixtures {
 
 	/** @var array */
 	public $spec = [];
-	/** @var array */
-	private $addedDeviceIds = [];
-	/** @var array|null */
-	private $knownDevices = null;
 
 	/** @var array For legacy test that don't use fixture data: use exactly the api defaults where available */
 	private static $defaultCampaign;
@@ -58,10 +54,6 @@ class CentralNoticeTestFixtures {
 
 	public static function getDefaultRegion(): string {
 		return 'XX';
-	}
-
-	public static function getDefaultDevice(): string {
-		return 'desktop';
 	}
 
 	/**
@@ -254,8 +246,14 @@ class CentralNoticeTestFixtures {
 		// use this (but may be dependent on non-test config).
 		global $wgNoticeNumberOfBuckets;
 
-		// Needed due to hardcoded default desktop device hack in Banner
-		$this->ensureDesktopDevice();
+		// PHPUnit gives us an empty database clone for each test case,
+		// which means the default values added by maintenance/update.php are missing.
+		//
+		// Relied upon by:
+		// - Banner::getHistoricalBanner (desktop)
+		// - Campaign::getHistoricalCampaigns (desktop)
+		// - 'devices' in AllocationsFixtures.json (desktop, iphone)
+		CNDatabasePatcher::populateKnownDevices( CNDatabase::getPrimaryDb() );
 
 		foreach ( $testCaseSetup['campaigns'] as $campaign ) {
 			$campaign['id'] = Campaign::addCampaign(
@@ -344,7 +342,6 @@ class CentralNoticeTestFixtures {
 
 				if ( isset( $bannerSpec['devices'] ) ) {
 					$devices = $bannerSpec['devices'];
-					$this->ensureDevices( $devices );
 					$bannerObj->setDevices( $devices );
 					$bannerObj->save( $this->user );
 				}
@@ -364,16 +361,6 @@ class CentralNoticeTestFixtures {
 
 				Campaign::removeCampaign( $campaign['name'], $this->user );
 			}
-		}
-
-		// Remove any devices we added
-		if ( $this->addedDeviceIds ) {
-			$dbw = CNDatabase::getPrimaryDb();
-			$dbw->newDeleteQueryBuilder()
-				->deleteFrom( 'cn_known_devices' )
-				->where( [ 'dev_id' => $this->addedDeviceIds ] )
-				->caller( __METHOD__ )
-				->execute();
 		}
 	}
 
@@ -409,41 +396,6 @@ class CentralNoticeTestFixtures {
 			if ( is_array( $v ) ) {
 				$this->deepMultisort( $v );
 			}
-		}
-	}
-
-	/**
-	 * Ensure there is a known device called "desktop". This is a workaround
-	 * for a hack (or maybe a hack for a workaround?) in Banner.
-	 */
-	private function ensureDesktopDevice() {
-		$this->ensureDevices( [ 'desktop' ] );
-	}
-
-	/**
-	 * Ensure that among the known devices in the database are all those named
-	 * in $deviceNames.
-	 *
-	 * @param string[] $deviceNames
-	 */
-	private function ensureDevices( $deviceNames ) {
-		$this->knownDevices ??= CNDeviceTarget::getAvailableDevices( true );
-
-		$devicesChanged = false;
-
-		// Add any devices not in the database
-		foreach ( $deviceNames as $deviceName ) {
-			if ( !isset( $this->knownDevices[$deviceName] ) ) {
-				// Remember the IDs for teardown
-				$this->addedDeviceIds[] =
-					CNDeviceTarget::addDeviceTarget( $deviceName, $deviceName );
-				$devicesChanged = true;
-			}
-		}
-
-		// If necessary, update the in-memory list of available devices
-		if ( $devicesChanged ) {
-			$this->knownDevices = CNDeviceTarget::getAvailableDevices( true );
 		}
 	}
 

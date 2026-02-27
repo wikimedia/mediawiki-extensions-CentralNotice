@@ -6,6 +6,7 @@
 
 use MediaWiki\Installer\DatabaseUpdater;
 use MediaWiki\Installer\Hook\LoadExtensionSchemaUpdatesHook;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Maintenance helper class that updates the database schema when required.
@@ -143,7 +144,12 @@ class CNDatabasePatcher implements LoadExtensionSchemaUpdatesHook {
 		}
 
 		$updater->output( "Adding known devices...\n" );
-		$dbw = $updater->getDB();
+		self::populateKnownDevices( $updater->getDB() );
+		$updater->output( "Done\n" );
+		$updater->insertUpdateRow( $updateKey );
+	}
+
+	public static function populateKnownDevices( IDatabase $dbw ) {
 		$dbw->newInsertQueryBuilder()
 			->insertInto( 'cn_known_devices' )
 			->ignore()
@@ -162,8 +168,5 @@ class CNDatabasePatcher implements LoadExtensionSchemaUpdatesHook {
 			] )
 			->caller( __METHOD__ )
 			->execute();
-
-		$updater->output( "Done\n" );
-		$updater->insertUpdateRow( $updateKey );
 	}
 }
