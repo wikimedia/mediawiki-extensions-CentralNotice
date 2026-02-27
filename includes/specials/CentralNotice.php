@@ -1686,18 +1686,16 @@ class CentralNotice extends UnlistedSpecialPage {
 			) . "\n";
 		}
 
-		$properties = [
-			'multiple' => 'multiple',
+		$attribs = [
+			'multiple' => true,
 			'id' => 'project_languages',
 			'name' => 'project_languages[]',
 			'class' => 'cn-multiselect',
-			'autocomplete' => 'off'
+			'autocomplete' => 'off',
+			'disabled' => !$this->editable,
 		];
-		if ( !$this->editable ) {
-			$properties['disabled'] = 'disabled';
-		}
 
-		return Html::rawElement( 'select', $properties, $options );
+		return Html::rawElement( 'select', $attribs, $options );
 	}
 
 	/**
@@ -1717,18 +1715,16 @@ class CentralNotice extends UnlistedSpecialPage {
 			) . "\n";
 		}
 
-		$properties = [
-			'multiple' => 'multiple',
+		$attribs = [
+			'multiple' => true,
 			'id' => 'projects',
 			'name' => 'projects[]',
 			'class' => 'cn-multiselect',
-			'autocomplete' => 'off'
+			'autocomplete' => 'off',
+			'disabled' => !$this->editable,
 		];
-		if ( !$this->editable ) {
-			$properties['disabled'] = 'disabled';
-		}
 
-		return Html::rawElement( 'select', $properties, $options );
+		return Html::rawElement( 'select', $attribs, $options );
 	}
 
 	/**
