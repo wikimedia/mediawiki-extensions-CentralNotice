@@ -1057,11 +1057,7 @@ class CentralNotice extends UnlistedSpecialPage {
 	 * @return string HTML
 	 */
 	private function noticeDetailForm( $notice ) {
-		if ( $this->editable ) {
-			$readonly = [];
-		} else {
-			$readonly = [ 'disabled' => 'disabled' ];
-		}
+		$readonly = [ 'disabled' => !$this->editable ];
 
 		$request = $this->getRequest();
 		$wasPosted = $request->wasPosted();
@@ -1174,7 +1170,7 @@ class CentralNotice extends UnlistedSpecialPage {
 				) .
 				Html::rawElement( 'td', [],
 					Html::check( 'geotargeted', $isGeotargeted,
-						array_replace( $readonly, [ 'value' => $notice, 'id' => 'geotargeted' ] )
+						[ ...$readonly, 'value' => $notice, 'id' => 'geotargeted' ]
 					)
 				)
 			);
@@ -1205,7 +1201,7 @@ class CentralNotice extends UnlistedSpecialPage {
 				) .
 				Html::rawElement( 'td', [],
 					Html::check( 'enabled', $isEnabled,
-						array_replace( $readonly, [ 'value' => $notice, 'id' => 'enabled' ] )
+						[ ...$readonly, 'value' => $notice, 'id' => 'enabled' ]
 					)
 				)
 			);
@@ -1225,7 +1221,7 @@ class CentralNotice extends UnlistedSpecialPage {
 				) .
 				Html::rawElement( 'td', [],
 					Html::check( 'throttle-enabled', $isThrottled,
-						array_replace( $readonly, [ 'value' => $notice, 'id' => 'throttle-enabled' ] )
+						[ ...$readonly, 'value' => $notice, 'id' => 'throttle-enabled' ]
 					)
 				)
 			);
@@ -1253,7 +1249,7 @@ class CentralNotice extends UnlistedSpecialPage {
 				) .
 				Html::rawElement( 'td', [],
 					Html::check( 'locked', $isLocked,
-						array_replace( $readonly, [ 'value' => $notice, 'id' => 'locked' ] )
+						[ ...$readonly, 'value' => $notice, 'id' => 'locked' ]
 					)
 				)
 			);
@@ -1285,7 +1281,8 @@ class CentralNotice extends UnlistedSpecialPage {
 						'value' => $notice,
 						'class' => 'noticeMixinCheck',
 						'id' => $mixinControlName,
-						'data-mixin-name' => $mixinName
+						'data-mixin-name' => $mixinName,
+						...$readonly,
 					];
 
 					if ( isset( $mixinsThisNotice[$mixinName] ) ) {
@@ -1311,7 +1308,7 @@ class CentralNotice extends UnlistedSpecialPage {
 					$htmlOut .= Html::check(
 						$mixinControlName,
 						$checked,
-						array_replace( $readonly, $attribs )
+						$attribs
 					);
 
 					$htmlOut .= Html::label(
@@ -1381,12 +1378,6 @@ class CentralNotice extends UnlistedSpecialPage {
 			return '';
 		}
 
-		if ( $this->editable ) {
-			$readonly = [];
-		} else {
-			$readonly = [ 'disabled' => 'disabled' ];
-		}
-
 		$weights = [];
 
 		$banners = [];
@@ -1414,6 +1405,8 @@ class CentralNotice extends UnlistedSpecialPage {
 			$banners
 		);
 
+		$readonly = [ 'disabled' => !$this->editable ];
+
 		$htmlOut .= Html::openElement( 'fieldset', [
 				'data-assigned-banners' => json_encode( $bannersForJS ),
 				'id' => 'centralnotice-assigned-banners'
@@ -1427,7 +1420,7 @@ class CentralNotice extends UnlistedSpecialPage {
 			) .
 			Html::rawElement( 'td', [],
 				Html::check( 'balanced', $isBalanced,
-					array_replace( $readonly, [ 'value' => $notice, 'id' => 'balanced' ] )
+					[ ...$readonly, 'value' => $notice, 'id' => 'balanced' ]
 				)
 			)
 		);
