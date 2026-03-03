@@ -261,6 +261,7 @@
 	"centralnotice-banner-template-info": "(predložak)",
 	"prefs-centralnotice-banners": "Baneri",
 	"prefs-centralnotice-display-banner-types": "Vrste banera za prikaz",
+	"prefs-description-centralnotice-banners": "Upravljajte vrstama banera koje želite vidjeti",
 	"centralnotice-campaign-type": "Vrsta kampanje",
 	"centralnotice-empty-campaign-type-option": "Bez vrste (uvijek prikazan)",
 	"centralnotice-non-existent-campaign-type-error": "Izabrana vrsta kampanje ne postoji",
