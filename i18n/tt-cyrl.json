@@ -3,6 +3,7 @@
 		"authors": [
 			"Don Alessandro",
 			"Ерней",
+			"Ильгиз",
 			"Ильнар"
 		]
 	},
@@ -20,10 +21,9 @@
 	"centralnotice-modify": "Җибәрү",
 	"centralnotice-view": "Карау",
 	"centralnotice-save-banner": "Саклау",
-	"centralnotice-live-preview": "Соңгы сакланган версияне алдан карау",
+	"centralnotice-live-preview": "Соңгы сакланган юраманы карап алу",
 	"centralnotice-add-new": "Яңа үзәк белдерү өстәү",
 	"centralnotice-remove": "Бетерү",
-	"centralnotice-translate-heading": "$1 өчен тәрҗемә",
 	"centralnotice-manage": "Хәбәрләр белән идарә итү",
 	"centralnotice-manage-templates": "Өлгеләр белән идарә итү",
 	"centralnotice-add": "Өстәү",
@@ -76,7 +76,6 @@
 	"centralnotice-no-templates-assigned": "Кампания белән бәйле игъланнамәләр юк.\nНинди дә булса өстәгез!",
 	"centralnotice-available-templates": "Файдалана алырлык игъланнамәләр",
 	"centralnotice-template-already-exists": "Игъланнамә кампаниягә бәйләнгән инде.\nӨстәлмәде.",
-	"centralnotice-change-lang": "Тәрҗемә телен үзгәртү",
 	"centralnotice-weights": "Үлчәү",
 	"centralnotice-notice-is-locked": "Белдерү тыелган.\nБетерелми.",
 	"centralnotice-overlap": "Хәбәр башка хәбәр белән чикләнә",

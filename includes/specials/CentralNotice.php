@@ -72,6 +72,7 @@ class CentralNotice extends UnlistedSpecialPage {
 
 		// Check permissions
 		$this->editable = $this->getUser()->isAllowed( 'centralnotice-admin' );
+		$this->getOutput()->addJsConfigVars( [ 'CentralNoticeEditable' => $this->editable ] );
 
 		// Initialize error variable
 		$this->centralNoticeError = false;
@@ -1056,11 +1057,7 @@ class CentralNotice extends UnlistedSpecialPage {
 	 * @return string HTML
 	 */
 	private function noticeDetailForm( $notice ) {
-		if ( $this->editable ) {
-			$readonly = [];
-		} else {
-			$readonly = [ 'disabled' => 'disabled' ];
-		}
+		$readonly = [ 'disabled' => !$this->editable ];
 
 		$request = $this->getRequest();
 		$wasPosted = $request->wasPosted();
@@ -1173,7 +1170,7 @@ class CentralNotice extends UnlistedSpecialPage {
 				) .
 				Html::rawElement( 'td', [],
 					Html::check( 'geotargeted', $isGeotargeted,
-						array_replace( $readonly, [ 'value' => $notice, 'id' => 'geotargeted' ] )
+						[ ...$readonly, 'value' => $notice, 'id' => 'geotargeted' ]
 					)
 				)
 			);
@@ -1204,7 +1201,7 @@ class CentralNotice extends UnlistedSpecialPage {
 				) .
 				Html::rawElement( 'td', [],
 					Html::check( 'enabled', $isEnabled,
-						array_replace( $readonly, [ 'value' => $notice, 'id' => 'enabled' ] )
+						[ ...$readonly, 'value' => $notice, 'id' => 'enabled' ]
 					)
 				)
 			);
@@ -1224,7 +1221,7 @@ class CentralNotice extends UnlistedSpecialPage {
 				) .
 				Html::rawElement( 'td', [],
 					Html::check( 'throttle-enabled', $isThrottled,
-						array_replace( $readonly, [ 'value' => $notice, 'id' => 'throttle-enabled' ] )
+						[ ...$readonly, 'value' => $notice, 'id' => 'throttle-enabled' ]
 					)
 				)
 			);
@@ -1252,7 +1249,7 @@ class CentralNotice extends UnlistedSpecialPage {
 				) .
 				Html::rawElement( 'td', [],
 					Html::check( 'locked', $isLocked,
-						array_replace( $readonly, [ 'value' => $notice, 'id' => 'locked' ] )
+						[ ...$readonly, 'value' => $notice, 'id' => 'locked' ]
 					)
 				)
 			);
@@ -1284,7 +1281,8 @@ class CentralNotice extends UnlistedSpecialPage {
 						'value' => $notice,
 						'class' => 'noticeMixinCheck',
 						'id' => $mixinControlName,
-						'data-mixin-name' => $mixinName
+						'data-mixin-name' => $mixinName,
+						...$readonly,
 					];
 
 					if ( isset( $mixinsThisNotice[$mixinName] ) ) {
@@ -1310,7 +1308,7 @@ class CentralNotice extends UnlistedSpecialPage {
 					$htmlOut .= Html::check(
 						$mixinControlName,
 						$checked,
-						array_replace( $readonly, $attribs )
+						$attribs
 					);
 
 					$htmlOut .= Html::label(
@@ -1380,12 +1378,6 @@ class CentralNotice extends UnlistedSpecialPage {
 			return '';
 		}
 
-		if ( $this->editable ) {
-			$readonly = [];
-		} else {
-			$readonly = [ 'disabled' => 'disabled' ];
-		}
-
 		$weights = [];
 
 		$banners = [];
@@ -1413,6 +1405,8 @@ class CentralNotice extends UnlistedSpecialPage {
 			$banners
 		);
 
+		$readonly = [ 'disabled' => !$this->editable ];
+
 		$htmlOut .= Html::openElement( 'fieldset', [
 				'data-assigned-banners' => json_encode( $bannersForJS ),
 				'id' => 'centralnotice-assigned-banners'
@@ -1426,7 +1420,7 @@ class CentralNotice extends UnlistedSpecialPage {
 			) .
 			Html::rawElement( 'td', [],
 				Html::check( 'balanced', $isBalanced,
-					array_replace( $readonly, [ 'value' => $notice, 'id' => 'balanced' ] )
+					[ ...$readonly, 'value' => $notice, 'id' => 'balanced' ]
 				)
 			)
 		);
@@ -1685,18 +1679,16 @@ class CentralNotice extends UnlistedSpecialPage {
 			) . "\n";
 		}
 
-		$properties = [
-			'multiple' => 'multiple',
+		$attribs = [
+			'multiple' => true,
 			'id' => 'project_languages',
 			'name' => 'project_languages[]',
 			'class' => 'cn-multiselect',
-			'autocomplete' => 'off'
+			'autocomplete' => 'off',
+			'disabled' => !$this->editable,
 		];
-		if ( !$this->editable ) {
-			$properties['disabled'] = 'disabled';
-		}
 
-		return Html::rawElement( 'select', $properties, $options );
+		return Html::rawElement( 'select', $attribs, $options );
 	}
 
 	/**
@@ -1716,18 +1708,16 @@ class CentralNotice extends UnlistedSpecialPage {
 			) . "\n";
 		}
 
-		$properties = [
-			'multiple' => 'multiple',
+		$attribs = [
+			'multiple' => true,
 			'id' => 'projects',
 			'name' => 'projects[]',
 			'class' => 'cn-multiselect',
-			'autocomplete' => 'off'
+			'autocomplete' => 'off',
+			'disabled' => !$this->editable,
 		];
-		if ( !$this->editable ) {
-			$properties['disabled'] = 'disabled';
-		}
 
-		return Html::rawElement( 'select', $properties, $options );
+		return Html::rawElement( 'select', $attribs, $options );
 	}
 
 	/**
@@ -1819,6 +1809,9 @@ class CentralNotice extends UnlistedSpecialPage {
 						'opened' => $isSelected,
 						'selected' => $isSelected
 					];
+					if ( !$this->editable ) {
+						$data['disabled'] = true;
+					}
 					$regions .= Html::element(
 						'li',
 						[
@@ -1841,6 +1834,9 @@ class CentralNotice extends UnlistedSpecialPage {
 				'opened' => $isSelected,
 				'selected' => $isSelected
 			];
+			if ( !$this->editable ) {
+				$data['disabled'] = true;
+			}
 
 			$countryNameAndCode = $this->msg(
 				'centralnotice-location-name-and-code',
@@ -1906,15 +1902,15 @@ class CentralNotice extends UnlistedSpecialPage {
 		$hiddenInputs = Html::input(
 			'geo_countries',
 			implode( ',', $selectedCountries ),
-			'text',
-			[ 'type' => 'hidden', 'id' => 'geo_countries_value' ]
+			'hidden',
+			[ 'id' => 'geo_countries_value' ]
 		);
 
 		$hiddenInputs .= Html::input(
 			'geo_regions',
 			implode( ',', $selectedRegions ),
-			'text',
-			[ 'type' => 'hidden', 'id' => 'geo_regions_value' ]
+			'hidden',
+			[ 'id' => 'geo_regions_value' ]
 		);
 
 		return Html::rawElement(

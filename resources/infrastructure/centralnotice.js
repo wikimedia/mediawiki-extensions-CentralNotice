@@ -83,7 +83,7 @@
 			}
 		);
 
-		$( 'select[multiple]' ).multiselect(
+		$( '.cn-multiselect:not(:disabled)' ).multiselect(
 			{ sortable: false, dividerLocation: 0.5 }
 		);
 

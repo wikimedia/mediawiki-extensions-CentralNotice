@@ -334,7 +334,9 @@
 		if ( random <= state.getData().recordImpressionSampleRate ) {
 			const url = new URL( mw.config.get( 'wgCentralBannerRecorder' ), location );
 			dataCopy = state.getDataCopy( true );
-			Object.keys( dataCopy ).forEach( ( key ) => url.searchParams.append( key, dataCopy[ key ] ) );
+			Object.keys( dataCopy ).forEach(
+				( key ) => url.searchParams.append( key, dataCopy[ key ] )
+			);
 			sendBeacon( url.toString() );
 		}
 

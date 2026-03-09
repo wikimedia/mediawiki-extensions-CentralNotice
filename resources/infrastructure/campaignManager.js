@@ -416,6 +416,7 @@
 	function makeMixinParamControlSet( mixinName, paramValues ) {
 
 		const paramDefs = mixinDefs[ mixinName ].parameters,
+			editable = mw.config.get( 'CentralNoticeEditable' ),
 			templateVars = {
 				divId: mixinParamControlsId( mixinName ),
 				params: []
@@ -433,7 +434,8 @@
 				dataType: paramDef.type,
 				minVal: paramDef.minVal,
 				maxVal: paramDef.maxVal,
-				step: paramDef.step
+				step: paramDef.step,
+				disabled: !editable
 			};
 
 			switch ( paramDef.type ) {
@@ -794,7 +796,9 @@
 	// before initializing everything
 	$( () => {
 		// eslint-disable-next-line no-jquery/no-map-util
-		const customControlsModules = $.map( mixinDefs, ( mixinDef ) => mixinDef.customAdminUIControlsModule );
+		const customControlsModules = $.map(
+			mixinDefs, ( mixinDef ) => mixinDef.customAdminUIControlsModule
+		);
 
 		// Custom mixin control modules depend on this module so they can access base
 		// classes here when they declare subclasses. So, this module can't depend on

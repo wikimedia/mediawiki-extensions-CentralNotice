@@ -70,26 +70,4 @@ class CNDeviceTarget {
 
 		return $devices;
 	}
-
-	/**
-	 * Add a new device target to the database
-	 *
-	 * @param string $deviceName Name of the device as sent by the controller (read: MobileFrontEnd)
-	 * @param string $displayLabel Friendly wikitext name of the device
-	 * @return int The ID of the device added
-	 */
-	public static function addDeviceTarget( $deviceName, $displayLabel ) {
-		$db = CNDatabase::getPrimaryDb();
-
-		$db->newInsertQueryBuilder()
-			->insertInto( 'cn_known_devices' )
-			->row( [
-				'dev_name' => $deviceName,
-				'dev_display_label' => $displayLabel
-			] )
-			->caller( __METHOD__ )
-			->execute();
-
-		return $db->insertId();
-	}
 }
