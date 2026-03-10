@@ -28,11 +28,6 @@ Configuration
   using EventLogging (meant to supersede custom URL for impression recording).
   Default: 0
 
-* $wgCentralHost: Protocol and host name of the wiki that hosts the
-  CentralNotice infrastructure, for example "//meta.wikimedia.org". This is
-  used for DNS prefetching.
-  Default: false
-
 * $wgCentralNoticeApiUrl: The API path on the wiki that hosts the CentralNotice
   infrastructure, for example "http://meta.wikimedia.org/api.php".
   This must be set if you enable the selection of banners on the client and you
@@ -40,10 +35,13 @@ Configuration
   is set, it will override your database settings.
   Default: false
 
-* $wgCentralSelectedBannerDispatcher: URL for BannerLoader, for requests to
-  fetch a banner that is already known (using the "banner" URL param). If
-  false, it will default to Special:BannerLoader. Note: Ugly URL format is allowed,
-  but no other URL parameters or fragment identifiers may be used.
+* $wgCentralSelectedBannerDispatcher: URL to Special:BannerLoader for requests to
+  fetch the banner HTML (using the "banner" URL param) after it is selected client-side
+  from banner choice data. It defaults to Special:BannerLoader on the local wiki.
+  While "ugly" index.php URLs are supported, only the "title" parameter may be set,
+  no other query parameters or fragment identifiers may be set.
+  When set to a different hostname (i.e. infrastructure wiki), subscribing wikis
+  will automatically perform a DNS prefetch on pageviews.
   Default: false
 
 * $wgCentralNoticeLoader: Enable the loader itself
