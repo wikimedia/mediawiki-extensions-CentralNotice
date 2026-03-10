@@ -314,7 +314,8 @@ class CentralNoticeHooks implements
 	 * $wgExtensionFunctions.
 	 */
 	public static function initCentralNotice() {
-		global $wgCentralBannerRecorder, $wgCentralSelectedBannerDispatcher;
+		global $wgCentralBannerRecorder, $wgCentralSelectedBannerDispatcher,
+			$wgNoticeProject, $wgNoticeProjects;
 
 		// Defaults for infrastructure wiki URLs
 		if ( !$wgCentralBannerRecorder ) {
@@ -325,6 +326,10 @@ class CentralNoticeHooks implements
 		if ( !$wgCentralSelectedBannerDispatcher ) {
 			$wgCentralSelectedBannerDispatcher =
 				SpecialPage::getTitleFor( 'BannerLoader' )->getLocalUrl();
+		}
+
+		if ( !$wgNoticeProjects ) {
+			$wgNoticeProjects = [ $wgNoticeProject ];
 		}
 	}
 

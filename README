@@ -10,7 +10,7 @@ Configuration
   Default: "wikipedia"
 
 * $wgNoticeProjects: List of available projects.
-  Default: []
+  Default: [ $wgNoticeProject ]
 
 * $wgNoticeInfrastructure: Enable the campaign hosting infrastructure on this wiki...
   Set to false for wikis that only use a sister site for the control.
