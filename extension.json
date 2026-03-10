@@ -320,9 +320,6 @@
 		"CentralNoticeImpressionEventSampleRate": {
 			"value": 0
 		},
-		"CentralHost": {
-			"value": false
-		},
 		"CentralNoticeApiUrl": {
 			"value": false
 		},
