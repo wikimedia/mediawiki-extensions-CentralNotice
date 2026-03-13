@@ -381,9 +381,8 @@ class CNCampaignPager extends TablePager {
 			$htmlOut .= Html::input(
 				'centralnoticesubmit',
 				$this->msg( 'centralnotice-modify' )->text(),
-				'text',
+				'button',
 				[
-					'type' => 'button',
 					'id' => 'cn-campaign-pager-submit'
 				]
 			);
