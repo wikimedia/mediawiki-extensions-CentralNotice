@@ -848,7 +848,7 @@ class CentralNotice extends UnlistedSpecialPage {
 				// Handle user bucketing setting for campaign
 				$numCampaignBuckets = min( $request->getInt( 'buckets', 1 ),
 					$noticeNumberOfBuckets );
-				$numCampaignBuckets = pow( 2, floor( log( $numCampaignBuckets, 2 ) ) );
+				$numCampaignBuckets = (int)pow( 2, floor( log( $numCampaignBuckets, 2 ) ) );
 
 				Campaign::setNumericCampaignSetting(
 					$notice,

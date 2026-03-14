@@ -332,6 +332,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 							$retval = Banner::addFromBannerTemplate(
 								$this->bannerName,
 								$this->getUser(),
+								// @phan-suppress-next-line PhanPossiblyUndeclaredVariable
 								$bannerTemplate,
 								$formData['newBannerEditSummary']
 							);

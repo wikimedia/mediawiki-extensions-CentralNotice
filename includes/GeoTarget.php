@@ -4591,6 +4591,7 @@ class GeoTarget {
 			} else {
 				$cldrNames = [];
 			}
+			self::$countries = [];
 			foreach ( $countries as $code => $country ) {
 				asort( $country['regions'] );
 				if ( isset( $cldrNames[$code] ) ) {

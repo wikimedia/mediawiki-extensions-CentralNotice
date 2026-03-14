@@ -301,7 +301,7 @@ class ChoiceDataProvider {
 
 				// Ensure consistent ordering (see comment below)
 				// FIXME: only sorting list for last assignmentKey?
-				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
+				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable,PhanPossiblyUndeclaredVariable
 				sort( $choices[$campaignId]['banners'][$assignmentKey]['devices'] );
 			}
 		}

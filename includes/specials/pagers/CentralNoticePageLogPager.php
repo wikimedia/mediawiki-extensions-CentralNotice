@@ -190,7 +190,7 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 			$bannerCell
 		);
 		if ( $this->logType == 'bannermessages' ) {
-			// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable,PhanTypeMismatchArgumentNullable
+			// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable
 			$htmlOut .= Html::rawElement( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
 				$messageCell
 			);
