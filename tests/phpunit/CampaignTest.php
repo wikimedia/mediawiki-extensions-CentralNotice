@@ -107,7 +107,7 @@ class CampaignTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetCampaignBanners() {
-		$campaignId = Campaign::getNoticeId( 'PHPUnitTestCampaign' );
+		$campaignId = Campaign::getNoticeId( 'PHPUnitTestCampaign', CNDatabase::getReplicaDb() );
 		$this->assertEquals(
 			$this->campaignBannersJson,
 			json_encode( Banner::getCampaignBanners( $campaignId ) )

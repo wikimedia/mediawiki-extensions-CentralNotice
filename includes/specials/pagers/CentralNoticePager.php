@@ -32,7 +32,7 @@ class CentralNoticePager extends TemplatePager {
 
 		// Get the current campaign and filter on that as well if required
 		$notice = $this->mRequest->getVal( 'notice' );
-		$noticeId = Campaign::getNoticeId( $notice );
+		$noticeId = Campaign::getNoticeId( $notice, $dbr );
 
 		if ( $noticeId ) {
 			// Return all the banners not already assigned to the current campaign
