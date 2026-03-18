@@ -622,6 +622,11 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$availableDevices = [];
 		foreach ( CNDeviceTarget::getAvailableDevices() as $k => $value ) {
 			$header = htmlspecialchars( $value[ 'header' ] );
+
+			// Messages keys via CNDeviceTarget and CNDatabasePatcher:
+			// centralnotice-devicetype-desktop, centralnotice-devicetype-android,
+			// centralnotice-devicetype-ipad, centralnotice-devicetype-iphone,
+			// centralnotice-devicetype-unknown
 			$label = $this->getOutput()->parseInlineAsInterface( $value[ 'label' ] );
 			$availableDevices[ "($header) $label" ] = $header;
 		}
