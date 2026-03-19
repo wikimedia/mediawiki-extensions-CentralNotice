@@ -202,7 +202,7 @@
 	"centralnotice-devicetype-android": "SO Android",
 	"centralnotice-devicetype-ipad": "Tolos preseos identificaos como iPads pero non iPhones",
 	"centralnotice-devicetype-iphone": "Toles versiones de iPhone",
-	"centralnotice-devicetype-unknown": "Preseos del sitiu pa móviles que nun son iPhones, iPads, o Android - ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/modules/ext.centralNotice.bannerController/mobile/device.js Selector lóxicu])",
+	"centralnotice-devicetype-unknown": "Preseos del sitiu pa móviles que nun son iPhones, iPads, o Android - ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/resources/ext.centralNotice.display/state.js#L120-L141 Selector lóxicu])",
 	"centralnotice-all": "Toos",
 	"centralnotice-generic-error": "Nun tien los permisos afayadizos pa facer l'aición solicitada o la mesma aición nun ye válida.",
 	"centralnotice-banner-name-error": "Diose un nome de cartel inválidu. Los nomes válidos contienen namái caráuteres alfanumbéricos y guiones baxos.",

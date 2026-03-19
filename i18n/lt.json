@@ -183,7 +183,7 @@
 	"centralnotice-devicetype-android": "Android OS",
 	"centralnotice-devicetype-ipad": "Visi įrenginiai, identifikuoti kaip iPad, bet ne iPhone",
 	"centralnotice-devicetype-iphone": "Visos iPhone versijos",
-	"centralnotice-devicetype-unknown": "Įrenginiai mobilioje svetainėje, kurie nėra iPhone, iPad ar Android - ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/modules/ext.centralNotice.bannerController/mobile/device.js Pasirinkimo logika])",
+	"centralnotice-devicetype-unknown": "Įrenginiai mobilioje svetainėje, kurie nėra iPhone, iPad ar Android - ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/resources/ext.centralNotice.display/state.js#L120-L141 Pasirinkimo logika])",
 	"centralnotice-all": "Visi",
 	"centralnotice-generic-error": "Jūs neturite teisingų teisių šiam veiksmui atlikti arba veiksmas buvo neteisingas.",
 	"centralnotice-all-except": "Visi išskyrus $1",

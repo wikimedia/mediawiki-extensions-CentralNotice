@@ -188,7 +188,7 @@
 	"centralnotice-devicetype-android": "Android",
 	"centralnotice-devicetype-ipad": "iPhone булып түгел, iPad булараҡ билдәләнгән барлыҡ ҡорамалдар",
 	"centralnotice-devicetype-iphone": "Барлыҡ iPhone версиялары",
-	"centralnotice-devicetype-unknown": "iPhone, iPad йәки Android платформаларынан айырмалы мобиль ҡоролмалар — ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/modules/ext.centralNotice.bannerController/mobile/device.js билдәләмәләр логикаһы])",
+	"centralnotice-devicetype-unknown": "iPhone, iPad йәки Android платформаларынан айырмалы мобиль ҡоролмалар — ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/resources/ext.centralNotice.display/state.js#L120-L141 билдәләмәләр логикаһы])",
 	"centralnotice-all": "Барыһы ла",
 	"centralnotice-generic-error": "Һеҙҙең һоралған ғәмәлде башҡарыу өсөн рөхсәтегеҙ юҡ йәки ғәмәл үҙе корректлы түгел.",
 	"centralnotice-banner-name-error": "Баннер атамаһы яраҡһыҙ. Рөхсәт ителгән атамалар бары тик хәреф-һан символдарынан һәм аҫтына һыҙыуҙан ғибәрәт.",

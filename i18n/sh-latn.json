@@ -189,7 +189,7 @@
 	"centralnotice-devicetype-android": "Android OS",
 	"centralnotice-devicetype-ipad": "Svi uređaji utvrđeni kao iPad, ali ne i iPhone",
 	"centralnotice-devicetype-iphone": "Sve verzije iPhone-a",
-	"centralnotice-devicetype-unknown": "Uređaje na mobilnom wikiju što nisu iPhone, iPad i Android — ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/modules/ext.centralNotice.bannerController/mobile/device.js Logika izbiratelja])",
+	"centralnotice-devicetype-unknown": "Uređaje na mobilnom wikiju što nisu iPhone, iPad i Android — ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/resources/ext.centralNotice.display/state.js#L120-L141 Logika izbiratelja])",
 	"centralnotice-all": "Sve",
 	"centralnotice-generic-error": "Nemate dopuštenje za izvršavanje zatražene radnje ili ista je pogrešna.",
 	"centralnotice-banner-name-error": "Navedeno je nevažeće ime obavijesti. Može sadržavati samo slova, brojeve i podvlake.",
