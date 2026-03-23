@@ -60,7 +60,7 @@ class Banner {
 
 	/**
 	 * Keys indicate a group of properties (which should be a 1-to-1 match to
-	 * a database table.) If the value is null it means the data is not yet
+	 * a database table.) If the value is null, it means the data is not yet
 	 * loaded. True means the data is clean and not modified. False means the
 	 * data should be saved on the next call to save().
 	 *
@@ -79,22 +79,22 @@ class Banner {
 	];
 
 	/** @var int Unique database identifier key. */
-	private $id = null;
+	private $id;
 
-	/** @var string Unique human friendly name of banner. */
-	private $name = null;
+	/** Unique human-friendly name of banner. */
+	private ?string $name = null;
 
-	/** @var bool True if the banner should be allocated to anonymous users. */
-	private $allocateAnon = false;
+	/** True if the banner should be allocated to anonymous users. */
+	private bool $allocateAnon = false;
 
-	/** @var bool True if the banner should be allocated to logged in users. */
-	private $allocateLoggedIn = false;
+	/** True if the banner should be allocated to logged-in users. */
+	private bool $allocateLoggedIn = false;
 
-	/** @var string Category that the banner belongs to. Will be special value expanded. */
-	private $category = '{{{campaign}}}';
+	/** Category that the banner belongs to. Will be special value expanded. */
+	private string $category = '{{{campaign}}}';
 
-	/** @var bool True if archived and hidden from default view. */
-	private $archived = false;
+	/** True if archived and hidden from the default view. */
+	private bool $archived = false;
 
 	/** @var string[] Devices this banner should be allocated to in the form
 	 * {Device ID => Device header name}
@@ -107,14 +107,13 @@ class Banner {
 	/** @var string[] Language codes considered a priority for translation. */
 	private $priorityLanguages = [];
 
-	/** @var string Wikitext content of the banner */
-	private $bodyContent = '';
+	/** Wikitext content of the banner */
+	private string $bodyContent = '';
 
-	/** @var bool */
-	private $runTranslateJob = false;
+	private bool $runTranslateJob = false;
 
-	/** @var bool Is banner meant to be used as a template for other banners */
-	private $template = false;
+	/** Is banner meant to be used as a template for other banners? */
+	private bool $template = false;
 
 	/**
 	 * Create a banner object from a known ID. Must already be
@@ -122,10 +121,8 @@ class Banner {
 	 * use {@link newFromName}.
 	 *
 	 * @param int $id Unique database ID of the banner
-	 *
-	 * @return self
 	 */
-	public static function fromId( $id ) {
+	public static function fromId( int $id ): self {
 		$obj = new self();
 		$obj->id = $id;
 		return $obj;
@@ -136,12 +133,9 @@ class Banner {
 	 * an object in the database. If a fully new banner is to be created
 	 * use {@link newFromName}.
 	 *
-	 * @param string $name
-	 *
-	 * @return self
 	 * @throws BannerDataException
 	 */
-	public static function fromName( $name ) {
+	public static function fromName( string $name ): self {
 		if ( !self::isValidBannerName( $name ) ) {
 			throw new BannerDataException( "Invalid banner name supplied." );
 		}
@@ -153,13 +147,9 @@ class Banner {
 
 	/**
 	 * Create a brand new banner object.
-	 *
-	 * @param string $name
-	 *
-	 * @return self
 	 * @throws BannerDataException
 	 */
-	public static function newFromName( $name ) {
+	public static function newFromName( string $name ): self {
 		if ( !self::isValidBannerName( $name ) ) {
 			throw new BannerDataException( "Invalid banner name supplied." );
 		}
@@ -167,9 +157,10 @@ class Banner {
 		$obj = new self();
 		$obj->name = $name;
 
-		foreach ( $obj->dirtyFlags as $flag => &$value ) {
+		foreach ( $obj->dirtyFlags as &$value ) {
 			$value = true;
 		}
+		unset( $value );
 
 		return $obj;
 	}
@@ -197,7 +188,7 @@ class Banner {
 		// BannerMessageGroup calls self::fromName which populates $this->name.
 		// Translate calls BannerMessageGroup::getKeys(), which calls
 		// self::getMessageFieldsFromCache to load the message keys.
-		// self::getMessageFieldsFromCache calls self::getMessageFieldsCacheKey which calls
+		// self::getMessageFieldsFromCache calls self::getMessageFieldsCacheKey which itself calls
 		// this method. self::populateBasicData does a database query, which is not needed
 		// if we only need to know the banner name, which we already have.
 		if ( $this->name === null ) {
@@ -215,7 +206,7 @@ class Banner {
 	}
 
 	/**
-	 * Should we allocate this banner to logged in users?
+	 * Should we allocate this banner to logged-in users?
 	 */
 	public function allocateToLoggedIn( bool $fromPrimary = false ): bool {
 		$this->populateBasicData( $fromPrimary );
@@ -225,12 +216,10 @@ class Banner {
 	/**
 	 * Set user state allocation properties for this banner
 	 *
-	 * @param bool $anon Should the banner be allocated to logged out users?
-	 * @param bool $loggedIn Should the banner be allocated to logged in users?
-	 *
-	 * @return $this
+	 * @param bool $anon Should the banner be allocated to logged-out users?
+	 * @param bool $loggedIn Should the banner be allocated to logged-in users?
 	 */
-	public function setAllocation( $anon, $loggedIn ) {
+	public function setAllocation( bool $anon, bool $loggedIn ): self {
 		$this->populateBasicData();
 
 		if ( ( $this->allocateAnon !== $anon ) || ( $this->allocateLoggedIn !== $loggedIn ) ) {
@@ -245,12 +234,10 @@ class Banner {
 	/**
 	 * Get the banner category.
 	 *
-	 * The category is the name of the cookie stored on the users computer. In this way
-	 * banners in the same category may share settings.
-	 *
-	 * @return string
+	 * The category is the name of the cookie stored on the user's computer.
+	 * In this way, banners in the same category may share settings.
 	 */
-	public function getCategory() {
+	public function getCategory(): string {
 		$this->populateBasicData();
 		return $this->category;
 	}
@@ -259,12 +246,8 @@ class Banner {
 	 * Set the banner category.
 	 *
 	 * @see Banner->getCategory()
-	 *
-	 * @param string $value
-	 *
-	 * @return $this
 	 */
-	public function setCategory( $value ) {
+	public function setCategory( string $value ): self {
 		$this->populateBasicData();
 
 		if ( $this->category !== $value ) {
@@ -276,12 +259,11 @@ class Banner {
 	}
 
 	/**
-	 * Obtain an array of all categories currently seen attached to banners
+	 * Gets an array of all categories currently seen attached to banners
 	 * @return string[]
 	 */
 	public static function getAllUsedCategories() {
-		$db = CNDatabase::getReplicaDb();
-		$res = $db->newSelectQueryBuilder()
+		$res = CNDatabase::getReplicaDb()->newSelectQueryBuilder()
 			->select( 'tmp_category' )
 			->distinct()
 			->from( 'cn_templates' )
@@ -301,31 +283,27 @@ class Banner {
 	 * word expanded.
 	 *
 	 * @param string $cat Category string to sanitize
-	 *
-	 * @return string
 	 */
-	public static function sanitizeRenderedCategory( $cat ) {
+	public static function sanitizeRenderedCategory( string $cat ): string {
 		return preg_replace( '/[^a-zA-Z0-9_]/', '', $cat );
 	}
 
 	/**
-	 * Should the banner be considered archived and hidden from default view
-	 *
-	 * @return bool
+	 * Should the banner be considered archived and hidden from the default view?
 	 */
-	public function isArchived() {
+	public function isArchived(): bool {
 		$this->populateBasicData();
 		return $this->archived;
 	}
 
 	/**
-	 * Is this banner meant to be used as a template for other banners
+	 * Is this banner meant to be used as a template for other banners?
 	 *
 	 * @return bool
 	 * @throws BannerDataException
 	 * @throws BannerExistenceException
 	 */
-	public function isTemplate() {
+	public function isTemplate(): bool {
 		$this->populateBasicData();
 		return $this->template;
 	}
@@ -337,7 +315,7 @@ class Banner {
 	 * @throws BannerDataException
 	 * @throws BannerExistenceException
 	 */
-	public function setIsTemplate( $value ) {
+	public function setIsTemplate( bool $value ) {
 		$this->populateBasicData();
 		if ( $this->template !== $value ) {
 			$this->setBasicDataDirty();
@@ -348,7 +326,7 @@ class Banner {
 	/**
 	 * Populates basic banner data by querying the cn_templates table
 	 *
-	 * @throws BannerDataException If neither a name or an ID can be used to query for data
+	 * @throws BannerDataException If neither a name nor an ID can be used to query for data
 	 * @throws BannerExistenceException If no banner data was received
 	 */
 	private function populateBasicData( bool $fromPrimary = false ) {
@@ -394,13 +372,13 @@ class Banner {
 			$this->category = $row->tmp_category;
 			$this->template = (bool)$row->tmp_is_template;
 		} else {
-			$keystr = [];
+			$keyStr = [];
 			foreach ( $selector as $key => $value ) {
-				$keystr[] = "{$key} = {$value}";
+				$keyStr[] = "{$key} = {$value}";
 			}
-			$keystr = implode( " AND ", $keystr );
+			$keyStr = implode( " AND ", $keyStr );
 			throw new BannerExistenceException(
-				"No banner exists where {$keystr}. Could not load."
+				"No banner exists where {$keyStr}. Could not load."
 			);
 		}
 
@@ -410,9 +388,8 @@ class Banner {
 
 	/**
 	 * Sets the flag which will save basic metadata on next save()
-	 * @param bool $dirty
 	 */
-	private function setBasicDataDirty( $dirty = true ) {
+	private function setBasicDataDirty( bool $dirty = true ) {
 		$this->dirtyFlags['basic'] = $dirty;
 	}
 
@@ -467,10 +444,9 @@ class Banner {
 	 *
 	 * @param string[]|string $devices Header name of devices. E.g. {'android', 'desktop'}
 	 *
-	 * @return $this
 	 * @throws BannerDataException on unknown device header name.
 	 */
-	public function setDevices( $devices ) {
+	public function setDevices( $devices ): self {
 		$this->populateDeviceTargetData();
 
 		$knownDevices = CNDeviceTarget::getAvailableDevices( true );
@@ -486,11 +462,13 @@ class Banner {
 				if ( !$device ) {
 					// Empty...
 					continue;
-				} elseif ( !array_key_exists( $device, $knownDevices ) ) {
-					throw new BannerDataException( "Device name '$device' not known! Cannot add." );
-				} else {
-					$this->devices[$knownDevices[$device]['id']] = $device;
 				}
+
+				if ( !array_key_exists( $device, $knownDevices ) ) {
+					throw new BannerDataException( "Device name '$device' not known! Cannot add." );
+				}
+
+				$this->devices[$knownDevices[$device]['id']] = $device;
 			}
 			$this->markDeviceTargetDataDirty();
 		}
@@ -508,9 +486,7 @@ class Banner {
 			return;
 		}
 
-		$db = CNDatabase::getReplicaDb();
-
-		$rowObj = $db->newSelectQueryBuilder()
+		$rowObj = CNDatabase::getReplicaDb()->newSelectQueryBuilder()
 			->select( [ 'devices.dev_id', 'dev_name' ] )
 			->from( 'cn_template_devices', 'tdev' )
 			->join( 'cn_known_devices', 'devices', 'tdev.dev_id = devices.dev_id' )
@@ -529,9 +505,8 @@ class Banner {
 
 	/**
 	 * Sets the flag which will force saving of device targeting data on next save()
-	 * @param bool $dirty
 	 */
-	private function markDeviceTargetDataDirty( $dirty = true ) {
+	private function markDeviceTargetDataDirty( bool $dirty = true ) {
 		$this->dirtyFlags['devices'] = $dirty;
 	}
 
@@ -563,7 +538,7 @@ class Banner {
 	}
 
 	/**
-	 * @return array Keys are names of enabled mixins; valeus are mixin params.
+	 * @return array Keys are names of enabled mixins; values are mixin params.
 	 * @see $wgCentralNoticeBannerMixins
 	 * TODO: Remove. See T225831.
 	 */
@@ -581,7 +556,7 @@ class Banner {
 	 * @throws RangeException
 	 * @return $this
 	 */
-	public function setMixins( $mixins ) {
+	public function setMixins( $mixins ): self {
 		global $wgCentralNoticeBannerMixins;
 
 		$this->populateMixinData();
@@ -614,9 +589,7 @@ class Banner {
 			return;
 		}
 
-		$dbr = CNDatabase::getReplicaDb();
-
-		$result = $dbr->newSelectQueryBuilder()
+		$result = CNDatabase::getReplicaDb()->newSelectQueryBuilder()
 			->select( 'mixin_name' )
 			->from( 'cn_template_mixins' )
 			->where( [
@@ -631,7 +604,7 @@ class Banner {
 				// We only want to warn here otherwise we'd never be able to
 				// edit the banner to fix the issue! The editor should warn
 				// when a deprecated mixin is being used; but also when we
-				// do deprecate something we should make sure nothing is using
+				// do deprecate something, we should make sure nothing is using
 				// it!
 				wfLogWarning(
 					"Mixin does not exist: {$row->mixin_name}, included from banner {$this->name}"
@@ -647,7 +620,7 @@ class Banner {
 	 * Sets the flag which will force saving of mixin data upon next save()
 	 * @param bool $dirty
 	 */
-	private function markMixinDataDirty( $dirty = true ) {
+	private function markMixinDataDirty( bool $dirty = true ) {
 		$this->dirtyFlags['mixins'] = $dirty;
 	}
 
@@ -681,7 +654,7 @@ class Banner {
 	/**
 	 * Returns language codes that are considered a priority for translations.
 	 *
-	 * If a language is in this list it means that the translation UI will promote
+	 * If a language is in this list, it means that the translation UI will promote
 	 * translating them, and discourage translating other languages.
 	 *
 	 * @return string[]
@@ -694,7 +667,7 @@ class Banner {
 	/**
 	 * Set language codes that should be considered a priority for translation.
 	 *
-	 * If a language is in this list it means that the translation UI will promote
+	 * If a language is in this list, it means that the translation UI will promote
 	 * translating them, and discourage translating other languages.
 	 *
 	 * @param string[] $languageCodes
@@ -744,28 +717,28 @@ class Banner {
 	private function savePriorityLanguageData() {
 		global $wgNoticeUseTranslateExtension;
 
-		if ( $wgNoticeUseTranslateExtension && $this->dirtyFlags['prioritylang'] ) {
-			$groupName = BannerMessageGroup::getTranslateGroupName( $this->getName() );
+		if ( !$wgNoticeUseTranslateExtension || !$this->dirtyFlags['prioritylang'] ) {
+			return;
+		}
+		$groupName = BannerMessageGroup::getTranslateGroupName( $this->getName() );
 
-			$services = Services::getInstance();
-			$messageGroupMetadata = $services->getMessageGroupMetadata();
+		$services = Services::getInstance();
+		$messageGroupMetadata = $services->getMessageGroupMetadata();
 
-			if ( $this->priorityLanguages === [] ) {
-				// Using false to delete the value instead of writing empty content
-				$messageGroupMetadata->set( $groupName, 'prioritylangs', false );
-			} else {
-				$messageGroupMetadata->set(
-					$groupName,
-					'prioritylangs',
-					implode( ',', $this->priorityLanguages )
-				);
-			}
+		if ( $this->priorityLanguages === [] ) {
+			// Using false to delete the value instead of writing empty content
+			$messageGroupMetadata->set( $groupName, 'prioritylangs', false );
+		} else {
+			$messageGroupMetadata->set(
+				$groupName,
+				'prioritylangs',
+				implode( ',', $this->priorityLanguages )
+			);
 		}
 	}
 
 	public function getDbKey(): string {
-		$name = $this->getName();
-		return "Centralnotice-template-{$name}";
+		return "Centralnotice-template-{$this->getName()}";
 	}
 
 	public function getTitle(): Title {
@@ -778,9 +751,7 @@ class Banner {
 	 * @return string[]
 	 */
 	public function getCampaignNames() {
-		$dbr = CNDatabase::getReplicaDb();
-
-		$result = $dbr->newSelectQueryBuilder()
+		$result = CNDatabase::getReplicaDb()->newSelectQueryBuilder()
 			->select( 'notices.not_name' )
 			->from( 'cn_notices', 'notices' )
 			->join( 'cn_assignments', 'assignments', 'notices.not_id = assignments.not_id' )
@@ -810,22 +781,16 @@ class Banner {
 
 	/**
 	 * Get the raw body HTML for the banner.
-	 *
-	 * @return string HTML
 	 */
-	public function getBodyContent() {
+	public function getBodyContent(): string {
 		$this->populateBodyContent();
 		return $this->bodyContent;
 	}
 
 	/**
 	 * Set the raw body HTML for the banner.
-	 *
-	 * @param string $text HTML
-	 *
-	 * @return $this
 	 */
-	public function setBodyContent( $text ) {
+	public function setBodyContent( string $text ): self {
 		$this->populateBodyContent();
 
 		if ( $this->bodyContent !== $text ) {
@@ -858,57 +823,52 @@ class Banner {
 	}
 
 	/**
-	 * @param bool $dirty If true, we're storing a flag that means the
-	 * in-memory banner content is newer than what's stored in the database.
-	 * If false, we're clearing that bit.
+	 * @param bool $dirty If true, we're storing a flag that means that the
+	 *  in-memory banner content is newer than what's stored in the database.
+	 *  If false, we're clearing that bit.
 	 */
 	private function markBodyContentDirty( $dirty = true ) {
 		$this->dirtyFlags['content'] = $dirty;
 	}
 
-	/**
-	 * @param string|null $summary
-	 * @param User $user
-	 */
-	private function saveBodyContent( $summary, User $user ) {
+	private function saveBodyContent( ?string $summary, User $user ) {
 		global $wgNoticeUseTranslateExtension;
 
-		if ( $this->dirtyFlags['content'] ) {
-			$wikiPage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $this->getTitle() );
+		if ( !$this->dirtyFlags['content'] ) {
+			return;
+		}
+		$wikiPage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $this->getTitle() );
 
-			$summary ??= '';
+		$summary ??= '';
 
-			$contentObj = ContentHandler::makeContent( $this->bodyContent, $wikiPage->getTitle() );
+		$contentObj = ContentHandler::makeContent( $this->bodyContent, $wikiPage->getTitle() );
 
-			$tags = [ 'centralnotice' ];
-			$pageResult = $wikiPage->doUserEditContent(
-				$contentObj,
-				$user,
-				$summary,
-				EDIT_FORCE_BOT,
-				false,
-				$tags
-			);
+		$tags = [ 'centralnotice' ];
+		$pageResult = $wikiPage->doUserEditContent(
+			$contentObj,
+			$user,
+			$summary,
+			EDIT_FORCE_BOT,
+			false,
+			$tags
+		);
 
-			self::protectBannerContent( $wikiPage, $user );
+		self::protectBannerContent( $wikiPage, $user );
 
-			if ( $wgNoticeUseTranslateExtension ) {
-				// Get the revision and page ID of the page that was created/modified
-				if ( $pageResult->value['revision-record'] ) {
-					$revisionRecord = $pageResult->value['revision-record'];
-					$revisionId = $revisionRecord->getId();
-					$pageId = $revisionRecord->getPageId();
+		// Get the revision and page ID of the page that was created/modified
+		if ( $wgNoticeUseTranslateExtension && $pageResult->value['revision-record'] ) {
+			$revisionRecord = $pageResult->value['revision-record'];
+			$revisionId = $revisionRecord->getId();
+			$pageId = $revisionRecord->getPageId();
 
-					// If the banner includes translatable messages, tag it for translation
-					$fields = $this->extractMessageFields();
-					if ( count( $fields ) > 0 ) {
-						// Tag the banner for translation
-						self::addTag( self::TRANSLATE_BANNER_TAG, $revisionId, $pageId, (string)$this->getId() );
-						$this->runTranslateJob = true;
-					}
-					$this->invalidateCache( $fields );
-				}
+			// If the banner includes translatable messages, tag it for translation
+			$fields = $this->extractMessageFields();
+			if ( count( $fields ) > 0 ) {
+				// Tag the banner for translation
+				self::addTag( self::TRANSLATE_BANNER_TAG, $revisionId, $pageId, (string)$this->getId() );
+				$this->runTranslateJob = true;
 			}
+			$this->invalidateCache( $fields );
 		}
 	}
 
@@ -999,20 +959,18 @@ class Banner {
 		$unique_fields = array_unique( array_flip( $fields[1] ) );
 		$fields = array_intersect_key( array_count_values( $fields[1] ), $unique_fields );
 
-		$fields = array_diff_key( $fields, array_flip( $renderer->getMagicWords() ) );
-
-		return $fields;
+		return array_diff_key( $fields, array_flip( $renderer->getMagicWords() ) );
 	}
 
 	/**
 	 * Returns a list of messages that are either published or in the CNBanner translation
 	 *
-	 * @param bool $inTranslation If true and using group translation this will return
+	 * @param bool $inTranslation If true and using group translation, this will return
 	 * all the messages that are in the translation system
 	 *
 	 * @return array A list of languages with existing field translations
 	 */
-	public function getAvailableLanguages( $inTranslation = false ) {
+	public function getAvailableLanguages( bool $inTranslation = false ) {
 		global $wgLanguageCode;
 		$availableLangs = [];
 
@@ -1055,7 +1013,7 @@ class Banner {
 	 * @return $this
 	 * @throws Exception
 	 */
-	public function save( User $user, $summary = null ) {
+	public function save( User $user, ?string $summary = null ) {
 		$db = CNDatabase::getPrimaryDb();
 		$action = 'modified';
 
@@ -1076,9 +1034,10 @@ class Banner {
 		$db->endAtomic( __METHOD__ );
 
 		// Clear the dirty flags
-		foreach ( $this->dirtyFlags as $flag => &$value ) {
+		foreach ( $this->dirtyFlags as &$value ) {
 			$value = false;
 		}
+		unset( $value );
 
 		if ( $this->runTranslateJob ) {
 			// Must be run after banner has finished saving due to some dependencies that
@@ -1193,8 +1152,7 @@ class Banner {
 
 		$bannerObj = self::fromName( $name );
 		$id = $bannerObj->getId();
-		$dbr = CNDatabase::getReplicaDb();
-		$res = $dbr->newSelectQueryBuilder()
+		$res = CNDatabase::getReplicaDb()->newSelectQueryBuilder()
 			->select( 'asn_id' )
 			->from( 'cn_assignments' )
 			->where( [ 'tmp_id' => $id ] )
@@ -1203,39 +1161,39 @@ class Banner {
 
 		if ( $res->numRows() > 0 ) {
 			throw new LogicException( 'Cannot remove a template still bound to a campaign!' );
-		} else {
-			// Log the removal of the banner
-			// FIXME: this log line will display changes with inverted sense
-			$bannerObj->logBannerChange( 'removed', $user, $summary );
+		}
 
-			// Delete banner record from the CentralNotice cn_templates table
-			$dbw = CNDatabase::getPrimaryDb();
-			$dbw->newDeleteQueryBuilder()
-				->deleteFrom( 'cn_templates' )
-				->where( [ 'tmp_id' => $id ] )
-				->caller( __METHOD__ )
-				->execute();
+		// Log the removal of the banner
+		// FIXME: this log line will display changes with inverted sense
+		$bannerObj->logBannerChange( 'removed', $user, $summary );
 
-			// Delete the MediaWiki page that contains the banner source
-			// TODO Inconsistency: deletion of banner content is not recorded
-			// as a bot edit, so it does not appear on the CN logs page. Also,
-			// related messages are not deleted.
-			$wikiPage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $bannerObj->getTitle() );
-			$wikiPage->doDeleteArticleReal( $summary ?: '', $user );
+		// Delete banner record from the CentralNotice cn_templates table
+		$dbw = CNDatabase::getPrimaryDb();
+		$dbw->newDeleteQueryBuilder()
+			->deleteFrom( 'cn_templates' )
+			->where( [ 'tmp_id' => $id ] )
+			->caller( __METHOD__ )
+			->execute();
 
-			if ( $wgNoticeUseTranslateExtension ) {
-				// Remove any revision tags related to the banner
-				self::removeTag( self::TRANSLATE_BANNER_TAG, $wikiPage->getId() );
+		// Delete the MediaWiki page that contains the banner source
+		// TODO Inconsistency: deletion of banner content is not recorded
+		// as a bot edit, so it does not appear on the CN logs page. Also,
+		// related messages are not deleted.
+		$wikiPage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $bannerObj->getTitle() );
+		$wikiPage->doDeleteArticleReal( $summary ?: '', $user );
 
-				$services = Services::getInstance();
-				// Add the preferred language metadata if it exists
+		if ( $wgNoticeUseTranslateExtension ) {
+			// Remove any revision tags related to the banner
+			self::removeTag( self::TRANSLATE_BANNER_TAG, $wikiPage->getId() );
 
-				$services->getMessageGroupMetadata()->set(
-					BannerMessageGroup::getTranslateGroupName( $name ),
-					'prioritylangs',
-					false
-				);
-			}
+			$services = Services::getInstance();
+			// Add the preferred language metadata if it exists
+
+			$services->getMessageGroupMetadata()->set(
+				BannerMessageGroup::getTranslateGroupName( $name ),
+				'prioritylangs',
+				false
+			);
 		}
 	}
 
@@ -1245,11 +1203,9 @@ class Banner {
 	 * @param int $revisionId ID of the revision
 	 * @param int $pageId ID of the MediaWiki page for the banner
 	 * @param string $bannerId ID of banner this revtag belongs to
-	 * @throws Exception
+	 * @throws LogicException
 	 */
 	public static function addTag( $tag, $revisionId, $pageId, $bannerId ) {
-		$dbw = CNDatabase::getPrimaryDb();
-
 		if ( is_object( $revisionId ) ) {
 			throw new LogicException( 'Got object, excepted id' );
 		}
@@ -1267,7 +1223,7 @@ class Banner {
 			$conds['rt_value'] = $bannerId;
 		}
 
-		$dbw->newInsertQueryBuilder()
+		CNDatabase::getPrimaryDb()->newInsertQueryBuilder()
 			->insertInto( 'revtag' )
 			->row( $conds )
 			->caller( __METHOD__ )
@@ -1275,21 +1231,18 @@ class Banner {
 	}
 
 	/**
-	 * Make sure banner is not tagged with specified tag
+	 * Make sure the banner is not tagged with the specified tag
 	 * @param string $tag The name of the tag
 	 * @param int $pageId ID of the MediaWiki page for the banner
 	 * @throws Exception
 	 */
 	private static function removeTag( $tag, $pageId ) {
-		$dbw = CNDatabase::getPrimaryDb();
-
-		$conds = [
-			'rt_page' => $pageId,
-			'rt_type' => $tag
-		];
-		$dbw->newDeleteQueryBuilder()
+		CNDatabase::getPrimaryDb()->newDeleteQueryBuilder()
 			->deleteFrom( 'revtag' )
-			->where( $conds )
+			->where( [
+				'rt_page' => $pageId,
+				'rt_type' => $tag
+			] )
 			->caller( __METHOD__ )
 			->execute();
 	}
@@ -1386,7 +1339,7 @@ class Banner {
 	 * @return array an array of banner settings
 	 * @throws RangeException
 	 */
-	public static function getBannerSettings( $bannerName, $detailed = true, $fromPrimary = false ) {
+	public static function getBannerSettings( string $bannerName, bool $detailed = true, bool $fromPrimary = false ) {
 		$banner = self::fromName( $bannerName );
 		if ( !$banner->exists( $fromPrimary ) ) {
 			throw new RangeException( "Banner doesn't exist!" );
@@ -1420,7 +1373,7 @@ class Banner {
 	 *    fundraising: 0/1, is in the fundraising group
 	 *    device: device key
 	 */
-	public static function getHistoricalBanner( $name, $ts ) {
+	public static function getHistoricalBanner( string $name, int $ts ) {
 		$id = self::fromName( $name )->getId();
 
 		$dbr = CNDatabase::getReplicaDb();
@@ -1471,7 +1424,9 @@ class Banner {
 	 * @throws BannerDataException
 	 * @throws BannerExistenceException
 	 */
-	public static function addFromBannerTemplate( $name, $user, self $template, $summary = null ) {
+	public static function addFromBannerTemplate(
+		string $name, User $user, Banner $template, ?string $summary = null
+	) {
 		if ( !$template->isTemplate() ) {
 			return 'centralnotice-banner-template-error';
 		}
@@ -1497,18 +1452,27 @@ class Banner {
 	 * @param bool $displayAnon flag for display to anonymous users
 	 * @param bool $displayAccount flag for display to logged in users
 	 * @param array $mixins list of mixins (optional)
-	 * @param array $priorityLangs Array of priority languages for the translate extension
+	 * @param array $priorityLangs Array of priority languages for the Translate extension
 	 * @param array|null $devices Array of device names this banner is targeted at
 	 * @param string|null $summary Optional summary of changes for logging
-	 * @param bool $isTemplate Is banner marked as a template
+	 * @param bool $isTemplate Is the banner marked as a template?
 	 * @param string|null $category Category of the banner
 	 *
 	 * @return string|null error message key or null on success
 	 * @throws BannerDataException
 	 */
-	public static function addBanner( $name, $body, $user, $displayAnon,
-		$displayAccount, $mixins = [], $priorityLangs = [], $devices = null,
-		$summary = null, $isTemplate = false, $category = null
+	public static function addBanner(
+		string $name,
+		string $body,
+		User $user,
+		bool $displayAnon,
+		bool $displayAccount,
+		$mixins = [],
+		$priorityLangs = [],
+		$devices = null,
+		?string $summary = null,
+		bool $isTemplate = false,
+		?string $category = null
 	) {
 		// Default initial value for devices
 		$devices ??= [ 'desktop' ];
@@ -1518,7 +1482,7 @@ class Banner {
 			$category = '{{{campaign}}}';
 		}
 
-		if ( $name == '' || !self::isValidBannerName( $name ) || $body == '' ) {
+		if ( $name === '' || !self::isValidBannerName( $name ) || $body === '' ) {
 			return 'centralnotice-null-string';
 		}
 
@@ -1547,11 +1511,8 @@ class Banner {
 	 * @param User $user The user causing the change
 	 * @param string|null $summary Summary (comment) for this action
 	 */
-	public function logBannerChange( $action, $user, $summary = null ) {
+	public function logBannerChange( string $action, User $user, ?string $summary = null ) {
 		ChoiceDataProvider::invalidateCache();
-
-		// Summary shouldn't actually come in null, but just in case...
-		$summary ??= '';
 
 		$endSettings = [];
 		if ( $action !== 'removed' ) {
@@ -1567,7 +1528,8 @@ class Banner {
 			'tmplog_template_id'   => $this->getId(),
 			'tmplog_template_name' => $this->getName(),
 			'tmplog_content_change' => (int)$this->dirtyFlags['content'],
-			'tmplog_comment'       => $summary,
+			// Summary shouldn't come in null, but just in case...
+			'tmplog_comment'       => $summary ?? '',
 		];
 
 		foreach ( $endSettings as $key => $value ) {
@@ -1588,15 +1550,11 @@ class Banner {
 	/**
 	 * Validation function for banner names. Will return true iff the name fits
 	 * the generic format of letters, numbers, and dashes.
-	 *
-	 * @param string $name The name to check
-	 *
-	 * @return bool True if valid
 	 */
-	public static function isValidBannerName( $name ) {
+	public static function isValidBannerName( string $name ): bool {
 		// Note: regex should coordinate with banner name validation
 		// in ext.centralNotice.adminUi.bannerSequence.js
-		return preg_match( '/^[A-Za-z0-9_]{1,230}$/', $name );
+		return (bool)preg_match( '/^[A-Za-z0-9_]{1,230}$/', $name );
 	}
 
 	/**
@@ -1625,12 +1583,8 @@ class Banner {
 
 	/**
 	 * Get BannerMessage defined in a specific banner.
-	 *
-	 * @param string $bannerName
-	 * @param string $messageName
-	 * @return BannerMessage
 	 */
-	public static function getMessageFieldForBanner( $bannerName, $messageName ) {
+	public static function getMessageFieldForBanner( string $bannerName, string $messageName ): BannerMessage {
 		return new BannerMessage( $bannerName, $messageName );
 	}
 
@@ -1643,7 +1597,7 @@ class Banner {
 	 * @throws BannerContentException
 	 */
 	public static function protectBannerContent(
-		WikiPage $wikiPage, User $user, $isTranslatedMessage = false
+		WikiPage $wikiPage, User $user, bool $isTranslatedMessage = false
 	) {
 		if ( $isTranslatedMessage ) {
 			global $wgCentralNoticeMessageProtectRight;
@@ -1672,7 +1626,7 @@ class Banner {
 		$status = $wikiPage->doUpdateRestrictions(
 			$limits, $expiry, $cascade, $reason, $user
 		);
-		if ( !$status->isGood() || !$cascade ) {
+		if ( !$cascade || !$status->isGood() ) {
 			throw new BannerContentException(
 				'Unable to protect banner' . $status->getMessage()->text()
 			);

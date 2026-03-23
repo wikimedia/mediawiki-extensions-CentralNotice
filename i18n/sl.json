@@ -214,7 +214,7 @@
 	"centralnotice-devicetype-android": "Android OS",
 	"centralnotice-devicetype-ipad": "Vse naprave so prepoznane kot iPadi, toda ne kot iPhoni",
 	"centralnotice-devicetype-iphone": "Vse različice iPhonov",
-	"centralnotice-devicetype-unknown": "Naprave na mobilnem mestu, ki niso iPhoni, iPadi ali Androidi – ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/modules/ext.centralNotice.bannerController/mobile/device.js logika izbirnika])",
+	"centralnotice-devicetype-unknown": "Naprave na mobilnem mestu, ki niso iPhoni, iPadi ali Androidi – ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/resources/ext.centralNotice.display/state.js#L120-L141 logika izbirnika])",
 	"centralnotice-all": "Vse",
 	"centralnotice-generic-error": "Nimate ustreznih dovoljenj za izvedbo želenega dejanja ali pa je bilo dejanje neveljavno.",
 	"centralnotice-banner-name-error": "Navedli ste neveljavno ime. Veljavna imena lahko vsebujejo samo alfanumerične znake in podčrtaj.",

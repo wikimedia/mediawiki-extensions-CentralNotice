@@ -170,7 +170,7 @@
 	"centralnotice-devicetype-android": "Et Bedriefssüßtehm <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"„nohjemaate Minsch“\">Android </i>",
 	"centralnotice-devicetype-ipad": "Alle Apparahte, di mer als <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\">iPad</i> ävver nit als <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\">iPhone</i> äkänne kann",
 	"centralnotice-devicetype-iphone": "Alle Väsjohne vum <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\">iPhone</i>",
-	"centralnotice-devicetype-unknown": "Alle Apparahte op de Wäbßaijt för de mohihle Apparahte, di kein <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\">iPhone</i>, <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\">iPad</i> sin udder et Bedrihfssüßtehm <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"„nohjemaate Minsch“\">Android</i> han ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/modules/ext.centralNotice.bannerController/mobile/device.js Esu weed dat täschnesch beschtemmp])",
+	"centralnotice-devicetype-unknown": "Alle Apparahte op de Wäbßaijt för de mohihle Apparahte, di kein <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\">iPhone</i>, <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\">iPad</i> sin udder et Bedrihfssüßtehm <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"„nohjemaate Minsch“\">Android</i> han ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/resources/ext.centralNotice.display/state.js#L120-L141 Esu weed dat täschnesch beschtemmp])",
 	"centralnotice-all": "Alle",
 	"centralnotice-generic-error": "Do häs nit de rescheje Rääschte, öm dat ze maache, wat De wells, udder wat De wells es sällver nit ze verschtonn.",
 	"centralnotice-all-except": "Alle bes op $1",

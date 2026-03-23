@@ -2,14 +2,15 @@
 	"@metadata": {
 		"authors": [
 			"Hosseinblue",
-			"Karthi.dr"
+			"Karthi.dr",
+			"Saurmandal"
 		]
 	},
 	"centralnotice-modify": "Submit karo",
 	"centralnotice-view": "Dekho",
 	"centralnotice-remove": "Hatao",
 	"centralnotice-add": "Jorro",
-	"centralnotice-english": "انگلیسی",
+	"centralnotice-english": "English",
 	"centralnotice-year": "Saal",
 	"centralnotice-clone-name": "Naam:",
 	"centralnotice-close-title": "Band karo",

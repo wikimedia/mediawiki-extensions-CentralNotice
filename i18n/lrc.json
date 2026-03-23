@@ -179,7 +179,7 @@
 	"centralnotice-devicetype-android": "اندروید او اس",
 	"centralnotice-devicetype-ipad": "همه دسگاسا شناسیاری بیه وا داسون آی پد نه آیفونیا",
 	"centralnotice-devicetype-iphone": "همه نسقه یا آی فون",
-	"centralnotice-devicetype-unknown": "دسگایایی که وه غیر د آیفون، آی پد یا اندروید که هان د ری موبایل ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/modules/ext.centralNotice.bannerController/mobile/device.js منطق انتخاو])",
+	"centralnotice-devicetype-unknown": "دسگایایی که وه غیر د آیفون، آی پد یا اندروید که هان د ری موبایل ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/resources/ext.centralNotice.display/state.js#L120-L141 منطق انتخاو])",
 	"centralnotice-all": "همه",
 	"centralnotice-generic-error": "شما مجوز درست نه سی انجوم گرتن انجومکاری حاسته بینه ناریت یا انجومکاری شما نامعتوره.",
 	"centralnotice-all-except": "همه وه جز $1",

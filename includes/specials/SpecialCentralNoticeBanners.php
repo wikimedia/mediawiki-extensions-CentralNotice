@@ -309,7 +309,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 							$isError = false;
 							try {
 								$bannerTemplate = Banner::fromName( $formData['newBannerTemplate'] );
-								// This will do data load for the banner, confirming it actually exists in the DB
+								// This will do data-load for the banner, confirming it actually exists in the DB
 								// without calling Banner::exists()
 								if ( !$bannerTemplate->isTemplate() ) {
 									$isError = true;
@@ -332,6 +332,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 							$retval = Banner::addFromBannerTemplate(
 								$this->bannerName,
 								$this->getUser(),
+								// @phan-suppress-next-line PhanPossiblyUndeclaredVariable
 								$bannerTemplate,
 								$formData['newBannerEditSummary']
 							);

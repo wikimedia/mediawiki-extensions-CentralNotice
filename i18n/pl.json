@@ -229,7 +229,7 @@
 	"centralnotice-devicetype-android": "Android OS",
 	"centralnotice-devicetype-ipad": "Wszystkie urządzenia zidentyfikowane jako iPady, ale nie iPhone'y",
 	"centralnotice-devicetype-iphone": "Wszystkie wersje iPhone'a",
-	"centralnotice-devicetype-unknown": "Urządzenia w witrynie mobilnej, które nie są iPhone'ami, iPadami ani Androidem - ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/modules/ext.centralNotice.bannerController/mobile/device.js Działanie selektora])",
+	"centralnotice-devicetype-unknown": "Urządzenia w witrynie mobilnej, które nie są iPhone'ami, iPadami ani Androidem - ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/resources/ext.centralNotice.display/state.js#L120-L141 Działanie selektora])",
 	"centralnotice-all": "Wszystko",
 	"centralnotice-generic-error": "Nie masz odpowiednich uprawnień do wykonania żądanej czynności lub sama czynność była nieprawidłowa.",
 	"centralnotice-banner-name-error": "Podano nieprawidłową nazwę banera. Prawidłowe nazwy zawierają tylko znaki alfanumeryczne i podkreślenia.",

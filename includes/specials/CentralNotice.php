@@ -848,7 +848,7 @@ class CentralNotice extends UnlistedSpecialPage {
 				// Handle user bucketing setting for campaign
 				$numCampaignBuckets = min( $request->getInt( 'buckets', 1 ),
 					$noticeNumberOfBuckets );
-				$numCampaignBuckets = pow( 2, floor( log( $numCampaignBuckets, 2 ) ) );
+				$numCampaignBuckets = (int)pow( 2, floor( log( $numCampaignBuckets, 2 ) ) );
 
 				Campaign::setNumericCampaignSetting(
 					$notice,
@@ -1068,11 +1068,19 @@ class CentralNotice extends UnlistedSpecialPage {
 		if ( $campaign ) {
 			// If there was an error, we'll need to restore the state of the form
 			if ( $wasPosted ) {
+				// TODO: Avoid duplicating handleNoticePostFromList which is where the logic
+				// for reading and parsing post data resides. While that method is used when
+				// saving changes, the one below is only used when clicking misc buttons
+				// like "Apply filters", thus leading to subtle bugs (T182343).
 				$start = $this->getDateTime( 'start' );
 				$end = $this->getDateTime( 'end' );
 				$isEnabled = $request->getCheck( 'enabled' );
 				$priority = $request->getInt( 'priority', self::NORMAL_PRIORITY );
-				$throttle = $request->getInt( 'throttle', 100 );
+				if ( $request->getCheck( 'throttle-enabled' ) ) {
+					$throttle = $request->getInt( 'throttle-cur', 100 );
+				} else {
+					$throttle = 100;
+				}
 				$isLocked = $request->getCheck( 'locked' );
 				$isArchived = $request->getCheck( 'archived' );
 				$noticeProjects = $request->getArray( 'projects', [] );
@@ -1081,7 +1089,7 @@ class CentralNotice extends UnlistedSpecialPage {
 				$numBuckets = $request->getInt( 'buckets', 1 );
 				$countries = $this->listToArray( $request->getVal( 'geo_countries' ) );
 				$regions = $this->listToArray( $request->getVal( 'geo_regions' ) );
-				$type = $request->getText( 'type' );
+				$type = $request->getText( 'campaign_type' );
 			} else {
 				// Defaults
 				$start = $campaign[ 'start' ];

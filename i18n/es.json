@@ -246,7 +246,7 @@
 	"centralnotice-devicetype-android": "SO Android",
 	"centralnotice-devicetype-ipad": "Todos los dispositivos identificados como iPads, pero no los iPhones.",
 	"centralnotice-devicetype-iphone": "Todas las versiones de iPhone",
-	"centralnotice-devicetype-unknown": "Dispositivos del sitio móvil que no son iPhones, iPads o Android ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/modules/ext.centralNotice.bannerController/mobile/device.js Selector lógico])",
+	"centralnotice-devicetype-unknown": "Dispositivos del sitio móvil que no son iPhones, iPads o Android ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/resources/ext.centralNotice.display/state.js#L120-L141 Selector lógico])",
 	"centralnotice-all": "Todos",
 	"centralnotice-generic-error": "No tienes los permisos necesarios para realizar la acción solicitada, o la accion misma fue inválida.",
 	"centralnotice-banner-name-error": "Nombre de pancarta inválido. Los nombres válidos contienen sólo caracteres alfanuméricos y guiones bajos.",
