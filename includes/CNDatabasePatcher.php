@@ -139,7 +139,7 @@ class CNDatabasePatcher implements LoadExtensionSchemaUpdatesHook {
 	public static function doOnSchemaUpdatesPopulateKnownDevices( DatabaseUpdater $updater ): void {
 		$updateKey = 'populateKnownDevices-1.24';
 		if ( $updater->updateRowExists( $updateKey ) ) {
-			$updater->output( "...default known devices already added\n" );
+			$updater->outputApplied( "...default known devices already added\n" );
 			return;
 		}
 
