@@ -223,7 +223,7 @@
 	"centralnotice-devicetype-android": "Sistema operativo Android",
 	"centralnotice-devicetype-ipad": "Todos os dispositivos identificados como iPads, mas não como iPhones",
 	"centralnotice-devicetype-iphone": "Todas as versões do iPhone",
-	"centralnotice-devicetype-unknown": "Dispositivos no sítio móvel que não são iPhones, iPads nem Android - ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/resources/ext.centralNotice.display/state.js#L120-L141 Lógica do seletor])",
+	"centralnotice-devicetype-unknown": "Dispositivos no sítio móvel que não são iPhones, iPads nem Android - ([https://gerrit.wikimedia.org/g/mediawiki/extensions/CentralNotice/+/master/resources/ext.centralNotice.display/state.js#119 Lógica do seletor])",
 	"centralnotice-all": "Tudo",
 	"centralnotice-generic-error": "Não tem as permissões corretas para executar a operação solicitada ou a operação em si mesma era inválida.",
 	"centralnotice-banner-name-error": "Foi fornecido um nome de faixa inválido. Os nomes válidos contêm somente caracteres alfanuméricos e o carácter sublinha.",

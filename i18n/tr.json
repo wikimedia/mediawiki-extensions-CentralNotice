@@ -231,7 +231,7 @@
 	"centralnotice-devicetype-android": "Android işletim sistemi",
 	"centralnotice-devicetype-ipad": "Tüm cihazlar iPad olarak (ancak iPhone değil) tanımlandı.",
 	"centralnotice-devicetype-iphone": "Tüm iPhone modelleri",
-	"centralnotice-devicetype-unknown": "iPhone, iPad veya Android olmayan mobil sitedeki cihazlar -([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/resources/ext.centralNotice.display/state.js#L120-L141 Seçici mantık])",
+	"centralnotice-devicetype-unknown": "iPhone, iPad veya Android olmayan mobil sitedeki cihazlar -([https://gerrit.wikimedia.org/g/mediawiki/extensions/CentralNotice/+/master/resources/ext.centralNotice.display/state.js#119 Seçici mantık])",
 	"centralnotice-all": "Hepsi",
 	"centralnotice-generic-error": "İstenen eylemi gerçekleştirmek için doğru izniniz yok veya eylemin kendisi geçersizdi.",
 	"centralnotice-banner-name-error": "Geçersiz banner adı sağlandı. Geçerli adlar sadece alfa-nümerik ve alt çizgi karakterlerini içerir.",

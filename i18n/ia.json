@@ -206,7 +206,7 @@
 	"centralnotice-devicetype-android": "Android OS",
 	"centralnotice-devicetype-ipad": "Tote le apparatos identificate como iPads ma non iPhones",
 	"centralnotice-devicetype-iphone": "Tote le versiones de iPhone",
-	"centralnotice-devicetype-unknown": "Apparatos sur le sito mobile le quales non es iPhones, iPads o Android - ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/resources/ext.centralNotice.display/state.js#L120-L141 Logica del selector])",
+	"centralnotice-devicetype-unknown": "Apparatos sur le sito mobile le quales non es iPhones, iPads o Android - ([https://gerrit.wikimedia.org/g/mediawiki/extensions/CentralNotice/+/master/resources/ext.centralNotice.display/state.js#119 Logica del selector])",
 	"centralnotice-all": "Totes",
 	"centralnotice-generic-error": "Tu non ha le permissiones necessari pro exequer le action requestate o le action mesme non es valide.",
 	"centralnotice-banner-name-error": "Le nomine de bandiera fornite non es valide. Le nomines valide contine solmente characteres alpha-numeric e de sublineamento.",

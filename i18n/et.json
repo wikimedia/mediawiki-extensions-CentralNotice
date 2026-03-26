@@ -179,7 +179,7 @@
 	"centralnotice-devicetype-android": "Androidi OS",
 	"centralnotice-devicetype-ipad": "Kõik seadmed, mis tuntakse ära kui iPadid, aga mitte iPhone'id",
 	"centralnotice-devicetype-iphone": "Kõik iPhone'i versioonid",
-	"centralnotice-devicetype-unknown": "Mobiilisaidi seadmed, mis ei ole iPhone'id, iPadid ega Androidid – ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/resources/ext.centralNotice.display/state.js#L120-L141 valikuloogika])",
+	"centralnotice-devicetype-unknown": "Mobiilisaidi seadmed, mis ei ole iPhone'id, iPadid ega Androidid – ([https://gerrit.wikimedia.org/g/mediawiki/extensions/CentralNotice/+/master/resources/ext.centralNotice.display/state.js#119 valikuloogika])",
 	"centralnotice-all": "Kõik",
 	"centralnotice-generic-error": "Sul pole soovitud toimingu sooritamiseks vajalikku õigust või oli toiming ise vigane.",
 	"centralnotice-banner-name-error": "Riba nimi on vigane. Sobiv nimi sisaldab ainult tähti, numbreid ja allkriipse.",

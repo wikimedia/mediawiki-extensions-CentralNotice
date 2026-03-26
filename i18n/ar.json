@@ -232,7 +232,7 @@
 	"centralnotice-devicetype-android": "نظام تشغيل أندرويد",
 	"centralnotice-devicetype-ipad": "جميع الأجهزة التي تم التعرف عليها على أنها  iPad وليس iPhone",
 	"centralnotice-devicetype-iphone": "جميع إصدارات آي فون",
-	"centralnotice-devicetype-unknown": "الأجهزة على موقع المحمول التي ليست أجهزة آيفون أو آييباد أو أندرويد، ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/resources/ext.centralNotice.display/state.js#L120-L141 منطق محدد])",
+	"centralnotice-devicetype-unknown": "الأجهزة على موقع المحمول التي ليست أجهزة آيفون أو آييباد أو أندرويد، ([https://gerrit.wikimedia.org/g/mediawiki/extensions/CentralNotice/+/master/resources/ext.centralNotice.display/state.js#119 منطق محدد])",
 	"centralnotice-all": "الكل",
 	"centralnotice-generic-error": "ليس لديك الصلاحيات اللازمة لتنفيذ الإجراء المطلوب أو أن الإجراء غير صالح.",
 	"centralnotice-banner-name-error": "الإسم الذي تم توفيره للافتة غير صالح. الأسماء الصالحة يجب أن تتكون من حروف أبجدية عددية وشروط سفلية فقط.",

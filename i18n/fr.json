@@ -238,7 +238,7 @@
 	"centralnotice-devicetype-android": "Android OS",
 	"centralnotice-devicetype-ipad": "Tous les appareils identifiés comme des iPad mais pas comme des iPhone",
 	"centralnotice-devicetype-iphone": "Toutes les versions d’iPhone",
-	"centralnotice-devicetype-unknown": "Appareils sur le site mobile qui ne sont ni des iPhone, ni des iPad, ni des Android — ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/resources/ext.centralNotice.display/state.js#L120-L141 Logique du sélecteur])",
+	"centralnotice-devicetype-unknown": "Appareils sur le site mobile qui ne sont ni des iPhone, ni des iPad, ni des Android — ([https://gerrit.wikimedia.org/g/mediawiki/extensions/CentralNotice/+/master/resources/ext.centralNotice.display/state.js#119 Logique du sélecteur])",
 	"centralnotice-all": "Tous",
 	"centralnotice-generic-error": "Vous n’avez pas les autorisations appropriées pour exécuter l’opération demandée ou l’action elle-même n’était pas valide.",
 	"centralnotice-banner-name-error": "Nom de bandeau fourni non valide. Les noms valides ne contiennent que des caractères alphanumériques et des caractères souligné.",

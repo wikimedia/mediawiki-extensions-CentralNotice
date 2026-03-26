@@ -180,7 +180,7 @@
 	"centralnotice-devicetype-android": "SO Android",
 	"centralnotice-devicetype-ipad": "Tuti j'angign identificà tanme iPads ma nen tanme iPhones",
 	"centralnotice-devicetype-iphone": "Tute le version d'iPhone",
-	"centralnotice-devicetype-unknown": "Angign an sël sit për sacociàbij ch'a son nen dj'iPhone, dj'iPad, o dj'Android - ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/resources/ext.centralNotice.display/state.js#L120-L141 Lògica dël seletor])",
+	"centralnotice-devicetype-unknown": "Angign an sël sit për sacociàbij ch'a son nen dj'iPhone, dj'iPad, o dj'Android - ([https://gerrit.wikimedia.org/g/mediawiki/extensions/CentralNotice/+/master/resources/ext.centralNotice.display/state.js#119 Lògica dël seletor])",
 	"centralnotice-all": "Tuti",
 	"centralnotice-generic-error": "A l'ha nen j'autorisassion giuste për fé l'assion ciamà o l'assion-midema a l'era nen vàlida.",
 	"centralnotice-banner-name-error": "Nòm ëd tilèt fornì nen bon. Ij nòm bon a conten-o mach ëd caràter alfa-numérich e ëd sot-lignadura.",
