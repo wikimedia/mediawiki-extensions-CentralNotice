@@ -19,33 +19,28 @@
 ( function () {
 	'use strict';
 
-	let identifier, multiStorageOption,
-		/**
-		 * Object with data used to determine whether to hide the banner
-		 * Properties:
-		 *   seenCount:        Total number of impressions seen by this user
-		 *   skippedThisCycle: Number of initial impressions we've skipped this cycle
-		 *   nextCycleStart:   Unix timestamp after which we can show more banners
-		 *   seenThisCycle:    Number of impressions seen this cycle
-		 */
-		counts;
+	const cn = mw.centralNotice;
+	const mixin = new cn.Mixin( 'impressionDiet' );
+	const now = Date.now();
+	const STORAGE_KEY = 'impression_diet';
+	// Suffix used with legacy cookies only
+	const WAIT_COOKIE_SUFFIX = '-wait';
+	// Time to store impression-counting data, in days
+	const COUNTS_STORAGE_TTL = 365;
 
-	const cn = mw.centralNotice,
-		mixin = new cn.Mixin( 'impressionDiet' ),
-
-		now = Date.now(),
-
-		STORAGE_KEY = 'impression_diet',
-
-		// Suffix used with legacy cookies only
-		WAIT_COOKIE_SUFFIX = '-wait',
-
-		// Time to store impression-counting data, in days
-		COUNTS_STORAGE_TTL = 365;
+	let identifier;
+	let multiStorageOption;
+	/**
+	 * Object with data used to determine whether to hide the banner
+	 * Properties:
+	 *   seenCount:        Total number of impressions seen by this user
+	 *   skippedThisCycle: Number of initial impressions we've skipped this cycle
+	 *   nextCycleStart:   Unix timestamp after which we can show more banners
+	 *   seenThisCycle:    Number of impressions seen this cycle
+	 */
+	let counts;
 
 	mixin.setPreBannerHandler( ( mixinParams ) => {
-		let hide;
-
 		// URL forced a banner
 		if ( mw.util.getParamValue( 'force' ) ) {
 			return;
@@ -55,10 +50,10 @@
 
 		// Check if and how we can store counts
 		multiStorageOption = cn.kvStore.getMultiStorageOption(
-			cn.getDataProperty( 'campaignCategoryUsesLegacy' ) );
+			cn.getDataProperty( 'campaignCategoryUsesLegacy' )
+		);
 
-		// In all cases, check for legacy cookies and try to migrate if
-		// found
+		// In all cases, check for legacy cookies and try to migrate if found
 		possiblyMigrateLegacyCookies();
 
 		// Banner was hidden already
@@ -75,9 +70,7 @@
 		// Reset counts if requested (for testing)
 		if ( mw.util.getParamValue( 'reset' ) === '1' ) {
 			counts = getZeroedCounts();
-
 		} else {
-
 			// Otherwise get counts from storage
 			counts = getCounts();
 		}
@@ -87,7 +80,6 @@
 		) {
 			// We're beyond the wait period, and have nothing to do except
 			// maybe start a new cycle.
-
 			if ( mixinParams.restartCycleDelay !== 0 ) {
 				// Begin a new cycle by clearing counters.
 				counts.skippedThisCycle = 0;
@@ -98,9 +90,9 @@
 		// Compare counts against campaign settings and decide whether to
 		// show a banner
 
+		let hide;
 		if ( counts.seenThisCycle < mixinParams.maximumSeen ) {
 			// You haven't seen the maximum count of banners per cycle!
-
 			if ( counts.skippedThisCycle < mixinParams.skipInitial ) {
 				// Skip initial impressions.
 				hide = 'waitimps';
@@ -164,14 +156,12 @@
 	}
 
 	function possiblyMigrateLegacyCookies() {
-
 		// Legacy cookies required an identifier
 		if ( !identifier ) {
 			return;
 		}
 
 		const rawCookie = $.cookie( identifier );
-
 		if ( !rawCookie ) {
 			return;
 		}
@@ -219,13 +209,11 @@
 		return fixCountNames( c );
 	}
 
-	/*
+	/**
 	 * Store updated counts
 	 */
 	function storeCounts( c ) {
-
 		if ( identifier ) {
-
 			cn.kvStore.setItem(
 				STORAGE_KEY + '_' + identifier,
 				c,
@@ -233,9 +221,7 @@
 				COUNTS_STORAGE_TTL,
 				multiStorageOption
 			);
-
 		} else {
-
 			cn.kvStore.setItem(
 				STORAGE_KEY,
 				c,

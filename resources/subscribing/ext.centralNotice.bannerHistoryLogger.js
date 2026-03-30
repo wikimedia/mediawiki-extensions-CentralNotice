@@ -8,38 +8,38 @@
  * cn.bannerHistoryLogger.ensureLogSent().
  */
 ( function () {
+	// Guaranteed to exist; we depend on display RL module
+	const cn = mw.centralNotice;
+	const mixin = new cn.Mixin( 'bannerHistoryLogger' );
+	const doNotTrackEnabled =
+		// Support: Firefox < 32 (yes/no)
+		/1|yes/.test( navigator.doNotTrack ) ||
+		// Support: IE 11, Safari 7.1.3+ (window.doNotTrack)
+		window.doNotTrack === '1';
+	const now = Math.round( Date.now() / 1000 );
+	const readyToLogDeferredObj = $.Deferred();
 
-	let bhLogger,
-		log,
-		logSent = false,
-		alreadyRun = false,
-		inSample;
-	const cn = mw.centralNotice, // Guaranteed to exist; we depend on display RL module
-		mixin = new cn.Mixin( 'bannerHistoryLogger' ),
-		doNotTrackEnabled =
-			// Support: Firefox < 32 (yes/no)
-			/1|yes/.test( navigator.doNotTrack ) ||
-			// Support: IE 11, Safari 7.1.3+ (window.doNotTrack)
-			window.doNotTrack === '1',
-		now = Math.round( Date.now() / 1000 ),
-		readyToLogDeferredObj = $.Deferred(),
+	const BANNER_HISTORY_KV_STORE_KEY = 'banner_history';
+	// Maximum time (in days) that the banner history store KV store item
+	// will persist if no entries are added to it.
+	const BANNER_HISTORY_KV_STORE_TTL = 365;
+	// Update this version when the log format changes
+	const BANNER_HISTORY_LOG_ENTRY_VERSION = 1;
+	const EVENT_LOGGING_SCHEMA = 'CentralNoticeBannerHistory';
 
-		BANNER_HISTORY_KV_STORE_KEY = 'banner_history',
+	// The maximum random shift applied to timestamps, for user privacy
+	const TIMESTAMP_RANDOM_SHIFT_MAX = 60;
 
-		// Maximum time (in days) that the banner history store KV store item
-		// will persist if no entries are added to it.
-		BANNER_HISTORY_KV_STORE_TTL = 365,
-		BANNER_HISTORY_LOG_ENTRY_VERSION = 1, // Update when log format changes
-		EVENT_LOGGING_SCHEMA = 'CentralNoticeBannerHistory',
-
-		// The maximum random shift applied to timestamps, for user privacy
-		TIMESTAMP_RANDOM_SHIFT_MAX = 60;
+	let bhLogger;
+	let log;
+	let logSent = false;
+	let alreadyRun = false;
+	let inSample;
 
 	/**
 	 * Load the banner history log from KV storage
 	 */
 	function loadLog() {
-
 		log = cn.kvStore.getItem(
 			BANNER_HISTORY_KV_STORE_KEY,
 			cn.kvStore.contexts.GLOBAL
@@ -56,31 +56,30 @@
 	 * @return {Object}
 	 */
 	function makeLogEntry() {
+		const data = cn.data;
 
-		const data = cn.data,
+		// Randomly shift timestamp +/- 0 to 10 seconds, so logs can't be
+		// linked to specific Web requests. This is to strengthen user
+		// privacy.
+		const randomTimeShift =
+			Math.round( Math.random() * TIMESTAMP_RANDOM_SHIFT_MAX ) -
+			( TIMESTAMP_RANDOM_SHIFT_MAX / 2 );
 
-			// Randomly shift timestamp +/- 0 to 10 seconds, so logs can't be
-			// linked to specific Web requests. This is to strengthen user
-			// privacy.
-			randomTimeShift =
-				Math.round( Math.random() * TIMESTAMP_RANDOM_SHIFT_MAX ) -
-				( TIMESTAMP_RANDOM_SHIFT_MAX / 2 ),
+		const time = now + randomTimeShift;
 
-			time = now + randomTimeShift,
-
-			logEntry = {
-				version: BANNER_HISTORY_LOG_ENTRY_VERSION,
-				language: data.uselang,
-				country: data.country,
-				isAnon: data.anonymous,
-				campaign: data.campaign,
-				campaignCategory: data.campaignCategory,
-				bucket: data.bucket,
-				time: time,
-				status: data.status,
-				statusCode: data.statusCode,
-				bannersNotGuaranteedToDisplay: !!data.bannersNotGuaranteedToDisplay
-			};
+		const logEntry = {
+			version: BANNER_HISTORY_LOG_ENTRY_VERSION,
+			language: data.uselang,
+			country: data.country,
+			isAnon: data.anonymous,
+			campaign: data.campaign,
+			campaignCategory: data.campaignCategory,
+			bucket: data.bucket,
+			time: time,
+			status: data.status,
+			statusCode: data.statusCode,
+			bannersNotGuaranteedToDisplay: !!data.bannersNotGuaranteedToDisplay
+		};
 
 		if ( data.banner ) {
 			logEntry.banner = data.banner;
@@ -143,9 +142,8 @@
 	 * @return {Object}
 	 */
 	function makeEventLoggingData( rate ) {
-
-		const elData = {},
-			kvError = cn.kvStore.getError();
+		const elData = {};
+		const kvError = cn.kvStore.getError();
 
 		// Log ID: should be generated before this is called, and should not be
 		// persisted anywhere on the client (see below).
