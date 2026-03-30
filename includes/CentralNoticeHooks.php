@@ -314,7 +314,8 @@ class CentralNoticeHooks implements
 	 * $wgExtensionFunctions.
 	 */
 	public static function initCentralNotice() {
-		global $wgCentralBannerRecorder, $wgCentralSelectedBannerDispatcher;
+		global $wgCentralBannerRecorder, $wgCentralSelectedBannerDispatcher,
+			$wgNoticeProject, $wgNoticeProjects;
 
 		// Defaults for infrastructure wiki URLs
 		if ( !$wgCentralBannerRecorder ) {
@@ -325,6 +326,10 @@ class CentralNoticeHooks implements
 		if ( !$wgCentralSelectedBannerDispatcher ) {
 			$wgCentralSelectedBannerDispatcher =
 				SpecialPage::getTitleFor( 'BannerLoader' )->getLocalUrl();
+		}
+
+		if ( !$wgNoticeProjects ) {
+			$wgNoticeProjects = [ $wgNoticeProject ];
 		}
 	}
 
@@ -377,7 +382,7 @@ class CentralNoticeHooks implements
 	 * @return bool
 	 */
 	public static function onBeforePageDisplay( $out, $skin ) {
-		global $wgCentralHost, $wgServer, $wgCentralNoticeContentSecurityPolicy;
+		global $wgCentralSelectedBannerDispatcher, $wgServerName, $wgCentralNoticeContentSecurityPolicy;
 
 		// Always add geoIP
 		// TODO Separate geoIP from CentralNotice
@@ -403,11 +408,12 @@ class CentralNoticeHooks implements
 			return true;
 		}
 
+		$centralHost = parse_url( $wgCentralSelectedBannerDispatcher, PHP_URL_HOST );
 		// Insert DNS prefetch for banner loading
-		if ( $wgCentralHost && $wgCentralHost !== $wgServer ) {
+		if ( $centralHost && $centralHost !== $wgServerName ) {
 			$out->addHeadItem(
 				'cn-dns-prefetch',
-				'<link rel="dns-prefetch" href="' . htmlspecialchars( $wgCentralHost ) . '" />'
+				'<link rel="dns-prefetch" href="//' . htmlspecialchars( $centralHost ) . '" />'
 			);
 		}
 

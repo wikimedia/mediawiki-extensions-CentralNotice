@@ -283,6 +283,10 @@ class SpecialBannerAllocation extends CentralNotice {
 					wfEscapeWikiText( $language ),
 					wfEscapeWikiText( $project ),
 					wfEscapeWikiText( $country ),
+					// Messages keys via CNDeviceTarget and CNDatabasePatcher:
+					// centralnotice-devicetype-desktop, centralnotice-devicetype-android,
+					// centralnotice-devicetype-ipad, centralnotice-devicetype-iphone,
+					// centralnotice-devicetype-unknown
 					$deviceData['label']
 				)->parse()
 			);

@@ -208,7 +208,7 @@
 	"centralnotice-devicetype-android": "Android OS",
 	"centralnotice-devicetype-ipad": "All devices identified as iPads but not iPhones",
 	"centralnotice-devicetype-iphone": "All iPhone versions",
-	"centralnotice-devicetype-unknown": "Devices on the mobile site which are not iPhones, iPads, or Android - ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/resources/ext.centralNotice.display/state.js#L120-L141 Selector logic])",
+	"centralnotice-devicetype-unknown": "Devices on the mobile site which are not iPhones, iPads, or Android - ([https://gerrit.wikimedia.org/g/mediawiki/extensions/CentralNotice/+/master/resources/ext.centralNotice.display/state.js#119 Selector logic])",
 	"centralnotice-all": "All",
 	"centralnotice-generic-error": "You do not have the correct permissions to perform the requested action or the action itself was invalid.",
 	"centralnotice-banner-name-error": "Invalid banner name provided. Valid names contain only alpha-numeric and underscore characters.",

@@ -227,7 +227,7 @@
 	"centralnotice-devicetype-android": "Android OS",
 	"centralnotice-devicetype-ipad": "iPhoneではなくiPadと特定された機器",
 	"centralnotice-devicetype-iphone": "すべてのiPhoneシリーズ",
-	"centralnotice-devicetype-unknown": "iPhone、iPad、Android以外のモバイルサイトの機器 - ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/resources/ext.centralNotice.display/state.js#L120-L141 選択論理])",
+	"centralnotice-devicetype-unknown": "iPhone、iPad、Android以外のモバイルサイトの機器 - ([https://gerrit.wikimedia.org/g/mediawiki/extensions/CentralNotice/+/master/resources/ext.centralNotice.display/state.js#119 選択論理])",
 	"centralnotice-all": "すべて",
 	"centralnotice-generic-error": "あなたには指定した操作を実行する正当な権限がないか、または操作自体が無効です。",
 	"centralnotice-banner-name-error": "指定したバナー名は無効です。バナー名に使用できるのは半角の英数字およびアンダースコア文字のみです。",

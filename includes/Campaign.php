@@ -6,6 +6,7 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 class Campaign {
@@ -686,7 +687,7 @@ class Campaign {
 		// Get the campaign ID
 		// Note: the need to fetch the ID here highlights the need for some
 		// kind of ORM.
-		$noticeId = self::getNoticeId( $campaignName, true );
+		$noticeId = self::getNoticeId( $campaignName, $dbw );
 
 		if ( $enable ) {
 			if ( $params === null ) {
@@ -944,11 +945,12 @@ class Campaign {
 	 * @param User $user
 	 */
 	private static function removeCampaignByName( $campaignName, $user ) {
+		$dbw = CNDatabase::getPrimaryDb();
+
 		// Log the removal of the campaign
-		$campaignId = self::getNoticeId( $campaignName, true );
+		$campaignId = self::getNoticeId( $campaignName, $dbw );
 		self::processAfterCampaignChange( 'removed', $campaignId, $campaignName, $user );
 
-		$dbw = CNDatabase::getPrimaryDb();
 		$dbw->startAtomic( __METHOD__ );
 		$dbw->newDeleteQueryBuilder()
 			->deleteFrom( 'cn_assignments' )
@@ -995,7 +997,7 @@ class Campaign {
 	public static function addTemplateTo( $noticeName, $templateName, $weight, $bucket = 0 ) {
 		$dbw = CNDatabase::getPrimaryDb();
 
-		$noticeId = self::getNoticeId( $noticeName, true );
+		$noticeId = self::getNoticeId( $noticeName, $dbw );
 		$templateId = Banner::fromName( $templateName )->getId();
 		$exists = (bool)$dbw->newSelectQueryBuilder()
 			->select( 'asn_id' )
@@ -1033,7 +1035,7 @@ class Campaign {
 	 */
 	public static function removeTemplateFor( $noticeName, $templateName ) {
 		$dbw = CNDatabase::getPrimaryDb();
-		$noticeId = self::getNoticeId( $noticeName, true );
+		$noticeId = self::getNoticeId( $noticeName, $dbw );
 		$templateId = Banner::fromName( $templateName )->getId();
 		$dbw->newDeleteQueryBuilder()
 			->deleteFrom( 'cn_assignments' )
@@ -1046,12 +1048,10 @@ class Campaign {
 	 * Lookup the ID for a campaign based on the campaign name
 	 *
 	 * @param string $noticeName
-	 * @param bool $fromPrimary
-	 *
+	 * @param IReadableDatabase $db
 	 * @return int|null
 	 */
-	public static function getNoticeId( $noticeName, $fromPrimary = false ) {
-		$db = $fromPrimary ? CNDatabase::getPrimaryDb() : CNDatabase::getReplicaDb();
+	public static function getNoticeId( $noticeName, IReadableDatabase $db ) {
 		return (int)$db->newSelectQueryBuilder()
 			->select( 'not_id' )
 			->from( 'cn_notices' )
@@ -1063,12 +1063,11 @@ class Campaign {
 	/**
 	 * @param string $noticeName
 	 * @param bool $fromPrimary
-	 *
 	 * @return string[]
 	 */
 	public static function getNoticeProjects( $noticeName, $fromPrimary = false ) {
 		$db = $fromPrimary ? CNDatabase::getPrimaryDb() : CNDatabase::getReplicaDb();
-		$noticeId = self::getNoticeId( $noticeName, $fromPrimary );
+		$noticeId = self::getNoticeId( $noticeName, $db );
 		$projects = [];
 		if ( $noticeId ) {
 			$projects = $db->newSelectQueryBuilder()
@@ -1090,7 +1089,7 @@ class Campaign {
 	 */
 	public static function getNoticeLanguages( $noticeName, $fromPrimary = false ) {
 		$db = $fromPrimary ? CNDatabase::getPrimaryDb() : CNDatabase::getReplicaDb();
-		$noticeId = self::getNoticeId( $noticeName, $fromPrimary );
+		$noticeId = self::getNoticeId( $noticeName, $db );
 		$languages = [];
 		if ( $noticeId ) {
 			$languages = $db->newSelectQueryBuilder()
@@ -1112,7 +1111,7 @@ class Campaign {
 	 */
 	public static function getNoticeCountries( $noticeName, $fromPrimary = false ) {
 		$db = $fromPrimary ? CNDatabase::getPrimaryDb() : CNDatabase::getReplicaDb();
-		$noticeId = self::getNoticeId( $noticeName, $fromPrimary );
+		$noticeId = self::getNoticeId( $noticeName, $db );
 		$countries = [];
 		if ( $noticeId ) {
 			$countries = $db->newSelectQueryBuilder()
@@ -1134,7 +1133,7 @@ class Campaign {
 	 */
 	public static function getNoticeRegions( $noticeName, $fromPrimary = false ) {
 		$db = $fromPrimary ? CNDatabase::getPrimaryDb() : CNDatabase::getReplicaDb();
-		$noticeId = self::getNoticeId( $noticeName, $fromPrimary );
+		$noticeId = self::getNoticeId( $noticeName, $db );
 		$regions = [];
 		if ( $noticeId ) {
 			$regions = $db->newSelectQueryBuilder()
@@ -1303,7 +1302,7 @@ class Campaign {
 	 */
 	public static function updateWeight( $noticeName, $templateId, $weight ) {
 		$dbw = CNDatabase::getPrimaryDb();
-		$noticeId = self::getNoticeId( $noticeName, true );
+		$noticeId = self::getNoticeId( $noticeName, $dbw );
 		$dbw->newUpdateQueryBuilder()
 			->update( 'cn_assignments' )
 			->set( [ 'tmp_weight' => $weight ] )
@@ -1325,7 +1324,7 @@ class Campaign {
 	 */
 	public static function updateBucket( $noticeName, $templateId, $bucket ) {
 		$dbw = CNDatabase::getPrimaryDb();
-		$noticeId = self::getNoticeId( $noticeName, true );
+		$noticeId = self::getNoticeId( $noticeName, $dbw );
 		$dbw->newUpdateQueryBuilder()
 			->update( 'cn_assignments' )
 			->set( [ 'asn_bucket' => $bucket ] )
@@ -1349,7 +1348,7 @@ class Campaign {
 		$oldProjects = self::getNoticeProjects( $notice, true );
 
 		// Get the notice id
-		$noticeId = self::getNoticeId( $notice, true );
+		$noticeId = self::getNoticeId( $notice, $dbw );
 
 		// Add newly assigned projects
 		$addProjects = array_diff( $newProjects, $oldProjects );
@@ -1391,7 +1390,7 @@ class Campaign {
 		$oldLanguages = self::getNoticeLanguages( $notice, true );
 
 		// Get the notice id
-		$noticeId = self::getNoticeId( $notice, true );
+		$noticeId = self::getNoticeId( $notice, $dbw );
 
 		// Add newly assigned languages
 		$addLanguages = array_diff( $newLanguages, $oldLanguages );
@@ -1434,7 +1433,7 @@ class Campaign {
 		$oldCountries = self::getNoticeCountries( $notice, true );
 
 		// Get the notice id
-		$noticeId = self::getNoticeId( $notice, true );
+		$noticeId = self::getNoticeId( $notice, $dbw );
 
 		// Add newly assigned countries
 		$addCountries = array_diff( $newCountries, $oldCountries );
@@ -1477,7 +1476,7 @@ class Campaign {
 		$oldRegions = self::getNoticeRegions( $notice, true );
 
 		// Get the notice id
-		$noticeId = self::getNoticeId( $notice, true );
+		$noticeId = self::getNoticeId( $notice, $dbw );
 
 		// Add newly assigned regions
 		$addRegions = array_diff( $newRegions, $oldRegions );

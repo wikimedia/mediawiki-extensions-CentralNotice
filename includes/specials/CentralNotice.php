@@ -239,7 +239,7 @@ class CentralNotice extends UnlistedSpecialPage {
 			$diffs = array_diff_assoc( $initialSettings, $newSettings );
 
 			if ( $diffs ) {
-				$campaignId = Campaign::getNoticeId( $campaignName, true );
+				$campaignId = Campaign::getNoticeId( $campaignName, CNDatabase::getPrimaryDb() );
 				Campaign::processAfterCampaignChange(
 					'modified',
 					$campaignId,
@@ -1012,7 +1012,7 @@ class CentralNotice extends UnlistedSpecialPage {
 				}
 
 				$finalCampaignSettings = Campaign::getCampaignSettings( $notice, true );
-				$campaignId = Campaign::getNoticeId( $notice, true );
+				$campaignId = Campaign::getNoticeId( $notice, CNDatabase::getPrimaryDb() );
 
 				$summary = $this->getSummaryFromRequest( $request );
 
