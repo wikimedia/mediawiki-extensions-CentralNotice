@@ -129,25 +129,17 @@
 	}
 
 	/**
-	 * Migrate older data to current format
+	 * Migrate or discard old or invalid data
 	 *
-	 * @param {Object} kvStoreCounts Possibly using legacy names
-	 * @return {Object} Counts object using current names
+	 * @param {Object|undefined} kvStoreCounts Possibly using previous schemas
+	 * @return {Object|undefined} Counts object using current names or undefined
+	 *  if data was invalid or too old.
 	 */
 	function fixCountNames( kvStoreCounts ) {
-		if ( kvStoreCounts.skippedThisCycle !== undefined ) {
-			// Return current version unchanged
-			return kvStoreCounts;
-		}
-
-		// T121178: March 2018
-		if ( kvStoreCounts.waitSeenCount !== undefined ) {
-			kvStoreCounts = {
-				seenCount: kvStoreCounts.seenCount,
-				skippedThisCycle: kvStoreCounts.waitCount,
-				nextCycleStart: kvStoreCounts.waitUntil,
-				seenThisCycle: kvStoreCounts.waitSeenCount
-			};
+		if ( !kvStoreCounts || kvStoreCounts.skippedThisCycle === undefined ) {
+			// * undefined
+			// * T121178: March 2018 schema change (rename waitCount to skippedThisCycle)
+			return undefined;
 		}
 
 		return kvStoreCounts;
@@ -175,9 +167,8 @@
 				multiStorageOption
 			);
 		}
-		c = c || getZeroedCounts();
 
-		return fixCountNames( c );
+		return fixCountNames( c ) || getZeroedCounts();
 	}
 
 	/**
