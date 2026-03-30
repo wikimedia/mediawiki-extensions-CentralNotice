@@ -10,7 +10,6 @@
 ( function () {
 
 	let bhLogger,
-		waitLogNoSendBeacon,
 		log,
 		logSent = false,
 		alreadyRun = false,
@@ -257,8 +256,6 @@
 			return;
 		}
 		alreadyRun = true;
-
-		waitLogNoSendBeacon = mixinParams.waitLogNoSendBeacon;
 
 		// Do this idly to avoid browser lock-ups
 		mw.requestIdleCallback( () => {

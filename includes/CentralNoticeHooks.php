@@ -227,8 +227,6 @@ class CentralNoticeHooks implements
 						'centralnotice-banner-history-logger-max-entry-age-help',
 						'centralnotice-banner-history-logger-max-entries',
 						'centralnotice-banner-history-logger-max-entries-help',
-						'centralnotice-banner-history-logger-wait-log-no-send-beacon',
-						'centralnotice-banner-history-logger-wait-log-no-send-beacon-help',
 						'centralnotice-set-record-impression-sample-rate',
 						'centralnotice-custom-record-impression-sample-rate',
 						'centralnotice-banners-not-guaranteed-to-display',
