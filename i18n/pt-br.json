@@ -159,6 +159,7 @@
 	"centralnotice-location": "Países e regiões",
 	"centralnotice-location-filter": "Filtro",
 	"centralnotice-location-filter-clear": "limpar",
+	"centralnotice-location-name-and-code": "$1 ($2)",
 	"centralnotice-allocation": "Atribuição",
 	"centralnotice-view-allocation": "Ver atribuição de modelos",
 	"centralnotice-allocation-instructions": "Escolha o ambiente para o qual deseja ver a atribuição de modelos:",
