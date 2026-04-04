@@ -9,7 +9,7 @@
  * in the CentralNotice campaign management UI.
  *
  * - Banner may be forced via URL parameter force=1.
- * - Cycle counters may be reset via URL parameter reset=1.
+ * - Cycle counters and daily limit may be reset via URL parameter reset=1.
  *
  * Flow chart: https://commons.wikimedia.org/wiki/File:CentralNotice_-_wait_cookie_code_flow.png
  * (FIXME: update ^^ with new parameter names)
@@ -60,6 +60,8 @@
 		 *   skippedThisCycle: Number of initial impressions we've skipped this cycle
 		 *   nextCycleStart:   Unix timestamp after which we can show more banners
 		 *   seenThisCycle:    Number of impressions seen this cycle
+		 *   nextDailyStart:   Unit timestamp when the daily limit resets
+		 *   seenThisDay:      Number of impressions seen this day
 		 */
 		let counts;
 
@@ -71,16 +73,20 @@
 			counts = getCounts();
 		}
 
-		if ( now > counts.nextCycleStart &&
+		if (
+			mixinParams.restartCycleDelay > 0 &&
+			now > counts.nextCycleStart &&
 			counts.seenThisCycle >= mixinParams.maximumSeen
 		) {
 			// We're beyond the wait period, and have nothing to do except
-			// maybe start a new cycle.
-			if ( mixinParams.restartCycleDelay !== 0 ) {
-				// Begin a new cycle by clearing counters.
-				counts.skippedThisCycle = 0;
-				counts.seenThisCycle = 0;
-			}
+			// begin a new cycle by clearing counters.
+			counts.skippedThisCycle = 0;
+			counts.seenThisCycle = 0;
+		}
+
+		if ( now > counts.nextDailyStart ) {
+			counts.seenThisDay = 0;
+			counts.nextDailyStart = makeNextDailyStart( now );
 		}
 
 		// Compare counts against campaign settings and decide whether to
@@ -93,6 +99,12 @@
 				// Skip initial impressions.
 				hide = 'waitimps';
 				counts.skippedThisCycle += 1;
+			} else if (
+				mixinParams.dailyLimit > 0 &&
+				counts.seenThisDay >= mixinParams.dailyLimit
+			) {
+				// Wait for the next day to begin.
+				hide = 'waitdaily';
 			} else {
 				// Show a banner--you win!
 				hide = false;
@@ -108,6 +120,7 @@
 		} else {
 			// Count shown impression.
 			counts.seenThisCycle += 1;
+			counts.seenThisDay += 1;
 			counts.seenCount += 1;
 
 			// Reset the wait timer on every impression.  The configured delay
@@ -122,12 +135,31 @@
 		storeCounts( counts );
 	}
 
+	/**
+	 * @param {number} now
+	 * @return {number} UNIX timestamp when the next window starts for the daily limit
+	 */
+	function makeNextDailyStart( now ) {
+		// Calculate the next 04:00 in local time, i.e. "tomorrow"
+		const d = new Date( now );
+		d.setMilliseconds( 0 );
+		d.setSeconds( 0 );
+		d.setMinutes( 0 );
+		if ( d.getHours() >= 4 ) {
+			d.setDate( d.getDate() + 1 );
+		}
+		d.setHours( 4 );
+		return d.getTime();
+	}
+
 	function getZeroedCounts() {
 		return {
 			seenCount: 0,
 			skippedThisCycle: 0,
 			nextCycleStart: 0,
-			seenThisCycle: 0
+			seenThisCycle: 0,
+			nextDailyStart: 0,
+			seenThisDay: 0
 		};
 	}
 
@@ -143,6 +175,12 @@
 			// * undefined
 			// * T121178: March 2018 schema change (rename waitCount to skippedThisCycle)
 			return undefined;
+		}
+
+		// T421662: April 2026 schema change (add seenThisDay)
+		if ( kvStoreCounts.seenThisDay === undefined ) {
+			kvStoreCounts.nextDailyStart = 0;
+			kvStoreCounts.seenThisDay = 0;
 		}
 
 		return kvStoreCounts;

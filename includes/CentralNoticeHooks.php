@@ -234,6 +234,8 @@ class CentralNoticeHooks implements
 						'centralnotice-impression-diet-identifier-help',
 						'centralnotice-impression-diet-maximum-seen',
 						'centralnotice-impression-diet-maximum-seen-help',
+						'centralnotice-impression-diet-daily-limit',
+						'centralnotice-impression-diet-daily-limit-help',
 						'centralnotice-impression-diet-restart-cycle-delay',
 						'centralnotice-impression-diet-restart-cycle-delay-help',
 						'centralnotice-impression-diet-skip-initial',
