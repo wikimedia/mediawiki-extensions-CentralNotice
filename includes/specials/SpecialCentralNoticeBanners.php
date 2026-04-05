@@ -481,6 +481,8 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 		$out = $this->getOutput();
 		$out->addModules( 'ext.centralNotice.adminUi.bannerEditor' );
+		$out->addJsConfigVars( [ 'CentralNoticeEditable' => $this->editable ] );
+
 		$this->addHelpLink(
 			'//meta.wikimedia.org/wiki/Special:MyLanguage/Help:CentralNotice',
 			true
@@ -668,6 +670,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 				'label-message' => 'centralnotice-language',
 				'options' => $languages,
 				'default' => $this->bannerLanguagePreview,
+				'disabled' => !$this->editable,
 				'cssclass' => 'separate-form-element',
 			];
 
@@ -705,6 +708,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 					'banner' => $this->bannerName,
 					'message' => $messageName,
 					'language' => $this->bannerLanguagePreview,
+					'disabled' => $messageReadOnly || !$this->editable,
 					'cssclass' => 'separate-form-element',
 				];
 
@@ -713,7 +717,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 				}
 			}
 
-			if ( $wgNoticeUseTranslateExtension ) {
+			if ( $wgNoticeUseTranslateExtension && $this->editable ) {
 				$formDescriptor[ 'priority-langs' ] = [
 					'section' => 'banner-messages',
 					'class' => HTMLLargeMultiSelectField::class,
@@ -771,22 +775,24 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			'rawrow' => true,
 		];
 
-		$buttons = [];
-		// TODO: Fix this gawdawful method of inserting the close button
-		$buttons[] =
-			'<a href="#" onclick="mw.centralNotice.adminUi.bannerEditor.insertButton(\'close\');' .
-				'return false;">' . $this->msg( 'centralnotice-close-button' )->escaped() . '</a>';
-		$formDescriptor[ 'banner-insert-button' ] = [
-			'section' => 'edit-template',
-			'class' => HTMLInfoField::class,
-			'rawrow' => true,
-			'default' => Html::rawElement(
-				'div',
-				[ 'class' => 'banner-editing-top-hint separate-form-element' ],
-				$this->msg( 'centralnotice-insert' )->
-					rawParams( $this->getLanguage()->commaList( $buttons ) )->
-					escaped() ),
-		];
+		if ( $this->editable ) {
+			$buttons = [];
+			// TODO: Fix this gawdawful method of inserting the close button
+			$buttons[] =
+				'<a href="#" onclick="mw.centralNotice.adminUi.bannerEditor.insertButton(\'close\');' .
+					'return false;">' . $this->msg( 'centralnotice-close-button' )->escaped() . '</a>';
+			$formDescriptor[ 'banner-insert-button' ] = [
+				'section' => 'edit-template',
+				'class' => HTMLInfoField::class,
+				'rawrow' => true,
+				'default' => Html::rawElement(
+					'div',
+					[ 'class' => 'banner-editing-top-hint separate-form-element' ],
+					$this->msg( 'centralnotice-insert' )->
+						rawParams( $this->getLanguage()->commaList( $buttons ) )->
+						escaped() ),
+			];
+		}
 
 		$formDescriptor[ 'banner-body' ] = [
 			'section' => 'edit-template',
