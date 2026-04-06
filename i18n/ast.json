@@ -253,8 +253,6 @@
 	"centralnotice-banner-history-logger-max-entry-age-help": "Les entraes del rexistru más antigües qu'esto caducarán y nun se devolverán al sirvidor.",
 	"centralnotice-banner-history-logger-max-entries": "Númberu máximu d'entraes a caltener nel rexistru",
 	"centralnotice-banner-history-logger-max-entries-help": "Si se rexistra más historial antes d'unviar el rexistru al sirvidor, los elementos más antiguos desapaecerán.",
-	"centralnotice-banner-history-logger-wait-log-no-send-beacon": "Allancia pa unviar el rexistru sin sendBeacon (en milisegundos)",
-	"centralnotice-banner-history-logger-wait-log-no-send-beacon-help": "Pa unviar el rexistru darréu antes de navegar a una páxina distinta, en dellos restoladores, configuramos un tiempu d'espera máximu antes d'arrenunciar a unviar el rexistru.",
 	"centralnotice-legacy-support": "Anubrimientu d'heredaos y sofitu pa contar impresiones",
 	"centralnotice-legacy-support-help": "Preferencies pa compatibilidá colos cartelos antiguos qu'usen Special:RecordImpression o incluyen JavaScript que tapez el cartel.",
 	"centralnotice-set-record-impression-sample-rate": "Afitar la frecuencia de muestra pa Special:RecordImpression",

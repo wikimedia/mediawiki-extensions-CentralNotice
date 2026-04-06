@@ -266,8 +266,6 @@
 	"centralnotice-banner-history-logger-max-entry-age-help": "Starejši dnevniški vnosi bodo potekli in ne bodo poslani strežniku.",
 	"centralnotice-banner-history-logger-max-entries": "Največje število v dnevniku shranjenih zapisov",
 	"centralnotice-banner-history-logger-max-entries-help": "Če bo pred pošiljanjem dnevnika strežniku zabeleženo več zgodovine, bodo najstarejši zapisi izginili.",
-	"centralnotice-banner-history-logger-wait-log-no-send-beacon": "Čas do prekinitve pošljanja dnevnika brez sendBeacon (v milisekundah)",
-	"centralnotice-banner-history-logger-wait-log-no-send-beacon-help": "Da pošljete dnevnik neposredno pred prehodom na drugo stran, v nekaterih brskalnikih nastavimo najdaljši čas čakanja, preden se pošiljanje dnevnika prekine.",
 	"centralnotice-legacy-support": "Podpora za skritje predhodnega in štetje vtisov",
 	"centralnotice-legacy-support-help": "Nastavitve za združljivost s starejšimi pasicami, ki temeljijo na Special:RecordImpression ali ki vključujejo JavaScript za skritje pasice.",
 	"centralnotice-set-record-impression-sample-rate": "Nastavite frekvenco vzorčenja za Posebno:RecordImpression",

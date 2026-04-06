@@ -283,8 +283,6 @@
 	"centralnotice-banner-history-logger-max-entry-age-help": "Bundan daha eski günlük girişlerinin süresi dolar ve sunucuya geri gönderilmez.",
 	"centralnotice-banner-history-logger-max-entries": "Günlükte tutulacak maksimum giriş sayısı",
 	"centralnotice-banner-history-logger-max-entries-help": "Günlük sunucuya gönderilmeden önce daha fazla geçmiş kaydedilmişse, en eski öğeler kaybolur.",
-	"centralnotice-banner-history-logger-wait-log-no-send-beacon": "Günlüğü sendBeacon olmadan göndermek için zaman aşımı (milisaniye cinsinden)",
-	"centralnotice-banner-history-logger-wait-log-no-send-beacon-help": "Günlüğü farklı bir sayfaya gitmeden hemen önce göndermek için, bazı tarayıcılarda, günlüğü göndermekten vazgeçmeden önce beklenecek maksimum süreyi belirleriz.",
 	"centralnotice-legacy-support": "Eski gizleme ve gösterim sayma desteği",
 	"centralnotice-legacy-support-help": "Special:RecordImpression kullanan veya büyük başlığı gizleyen JavaScript içeren daha eski başlıklarla uyumluluk ayarları.",
 	"centralnotice-set-record-impression-sample-rate": "Special:RecordImpression için örnek hızını ayarla",

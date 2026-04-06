@@ -286,8 +286,6 @@
 	"centralnotice-banner-history-logger-max-entry-age-help": "Записи в журналі, старші ніж цей, будуть протерміновані і не будуть відправлені назад на сервер.",
 	"centralnotice-banner-history-logger-max-entries": "Найбільша кількість записів, щоб зберігати в журналі",
 	"centralnotice-banner-history-logger-max-entries-help": "Якщо перед відправленням журналу на сервер буде записано більше історії, найстаріші елементи зникнуть.",
-	"centralnotice-banner-history-logger-wait-log-no-send-beacon": "Таймаут для відправки журналу без sendBeacon (у мілісекундах)",
-	"centralnotice-banner-history-logger-wait-log-no-send-beacon-help": "Щоб надіслати журнал безпосередньо перед переходом на іншу сторінку, в деяких браузерах, ми встановили максимальний час очікування перед відмовою від надсилання журналу.",
 	"centralnotice-legacy-support": "Підтримка  застарілого методу приховування та підрахунку відображень",
 	"centralnotice-legacy-support-help": "Налаштування для сумісності зі старішими банерами, що спираються на Special:RecordImpression чи містять JavaScript для приховування банера.",
 	"centralnotice-set-record-impression-sample-rate": "Встановити частоту дискретизації для Special:RecordImpression",

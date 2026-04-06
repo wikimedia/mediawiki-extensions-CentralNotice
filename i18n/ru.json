@@ -297,8 +297,6 @@
 	"centralnotice-banner-history-logger-max-entry-age-help": "Записи в журнале старее, чем здесь задано, будут считаться недействительными и не будут отправлены обратно на сервер.",
 	"centralnotice-banner-history-logger-max-entries": "Максимальное число записей, доступное для сохранения в журнале",
 	"centralnotice-banner-history-logger-max-entries-help": "Если перед отправкой журнала на сервер будет записано больше данных, самые старые элементы исчезнут.",
-	"centralnotice-banner-history-logger-wait-log-no-send-beacon": "Интервал отправки журнала без sendBeacon (в миллисекундах)",
-	"centralnotice-banner-history-logger-wait-log-no-send-beacon-help": "Чтобы отправить журнал непосредственно перед переходом на другую страницу, в некоторых браузерах мы устанавливаем максимальное время ожидания, прежде чем отказаться от отправки журнала.",
 	"centralnotice-impression-diet": "Диетический режим показа",
 	"centralnotice-impression-diet-help": "Ограничивать число баннеров, показываемых одному человеку.",
 	"centralnotice-impression-diet-maximum-seen": "Максимальное число показов, которое увидит любой человек",

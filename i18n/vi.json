@@ -271,8 +271,6 @@
 	"centralnotice-banner-history-logger-max-entry-age-help": "Những mục nhật trình cũ hơn sẽ bị hết hạn và sẽ không được gửi về lại máy chủ.",
 	"centralnotice-banner-history-logger-max-entries": "Số tối đa để giữ các mục nhật trình",
 	"centralnotice-banner-history-logger-max-entries-help": "Nếu có thêm lịch sử khác được ghi lại trước khi nhật trình được gửi lên máy chủ, các mục cũ nhất sẽ biến mất.",
-	"centralnotice-banner-history-logger-wait-log-no-send-beacon": "Thời gian chờ gửi nhật trình không có sendBeacon (tính bằng mili giây)",
-	"centralnotice-banner-history-logger-wait-log-no-send-beacon-help": "Để gửi nhật trình lập tức trước khi chuyển sang trang khác, trong một số trình duyệt, chúng tôi đặt thời gian chờ tối đa trước khi thôi gửi nhật trình.",
 	"centralnotice-legacy-support": "Hỗ trợ ẩn và đếm lượt xem các biểu ngữ cũ",
 	"centralnotice-legacy-support-help": "Thiết lập tương thích cho các biểu ngữ cũ dựa trên Đặc biệt:Ghi lần hiển thị hoặc có JavaScript để ẩn biểu ngữ.",
 	"centralnotice-set-record-impression-sample-rate": "Đặt tần số lấy mẫu cho Special:RecordImpression",

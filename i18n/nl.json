@@ -278,8 +278,6 @@
 	"centralnotice-banner-history-logger-max-entry-age-help": "Logboekvermeldingen die ouder zijn dan hier is aangegeven komen te vervallen en worden niet teruggestuurd naar de server.",
 	"centralnotice-banner-history-logger-max-entries": "Maximum te houden aantal regels in logboek",
 	"centralnotice-banner-history-logger-max-entries-help": "Als er meer geschiedenis wordt vastgelegd voordat het logboek naar de server wordt gestuurd, verdwijnen de oudste vermeldingen.",
-	"centralnotice-banner-history-logger-wait-log-no-send-beacon": "Tijdslimiet voor het verzenden van het logboek zonder sendBeacon (in milliseconden)",
-	"centralnotice-banner-history-logger-wait-log-no-send-beacon-help": "Om het logboek meteen te verzenden voordat u naar een andere pagina gaat, hebben we in sommige browsers een maximale wachttijd ingesteld voordat we het verzenden van het logboek opgegeven.",
 	"centralnotice-legacy-support": "Ondersteuning voor de oude manier van tellen van het verbergen en van weergaven",
 	"centralnotice-legacy-support-help": "Instellingen voor compatibiliteit met oudere banners die afhankelijk zijn van Special:RecordImpression of JavaScript-code bevatten die de banner verbergt.",
 	"centralnotice-set-record-impression-sample-rate": "Bemonsteringsfrequentie instellen voor Special:RecordImpression",

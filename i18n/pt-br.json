@@ -285,8 +285,6 @@
 	"centralnotice-banner-history-logger-max-entry-age-help": "As entradas de registro mais antigas do que isso serão expiradas e não serão enviadas de volta para o servidor.",
 	"centralnotice-banner-history-logger-max-entries": "Número máximo de entradas para manter no log",
 	"centralnotice-banner-history-logger-max-entries-help": "Se mais histórico for gravado antes do envio do log ao servidor, os itens mais antigos desaparecerão.",
-	"centralnotice-banner-history-logger-wait-log-no-send-beacon": "Tempo limite para envio do log sem sendBeacon (em milissegundos)",
-	"centralnotice-banner-history-logger-wait-log-no-send-beacon-help": "Para enviar o registro imediatamente antes de navegar para uma página diferente, em alguns navegadores, estabelecemos um tempo máximo para aguardar antes de desistir do envio do log.",
 	"centralnotice-legacy-support": "Legacy escondido e apoio de contagem de impressões",
 	"centralnotice-legacy-support-help": "Configurações para compatibilidade com banners antigos que dependem de Special:RecordImpression ou incluem JavaScript que esconde o banner.",
 	"centralnotice-set-record-impression-sample-rate": "Definir taxa de amostragem para Special:RecordImpression",

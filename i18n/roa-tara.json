@@ -259,8 +259,6 @@
 	"centralnotice-banner-history-logger-max-entry-age-help": "Vôsce de l'archivije cchiù vicchie de quiste ca scade e non g'avène mannate a 'u server.",
 	"centralnotice-banner-history-logger-max-entries": "Numere massime de vôsce da tenè jndr'à l'archivije",
 	"centralnotice-banner-history-logger-max-entries-help": "Ce cchiù cunde so reggistrate apprime l'archivije avène mannate a 'u server, le vôsce chciù vicchie avènene scombaiene.",
-	"centralnotice-banner-history-logger-wait-log-no-send-beacon": "Tiembe scadute pe l'invie de l'archivije senze sendBeacon (in milliseconde)",
-	"centralnotice-banner-history-logger-wait-log-no-send-beacon-help": "Pe mannà l'archivije immediatamende apprime d'a navigazzione sus a 'n'otra pàgene, jndr'à certe browser, nuje 'mbostame 'nu tiembe massime da aspettà apprime de mannà l'archivije.",
 	"centralnotice-legacy-support": "Supporte pe sconnere le cose vicchie e 'u condegge de le 'mbressiune",
 	"centralnotice-legacy-support-help": "'Mbostaziune pa combatibbiletà cu le stresciune vicchie ca fanne affidamende sus a Special:RecordImpression o 'ngludone JavaScript ca sconne 'u striscione.",
 	"centralnotice-set-record-impression-sample-rate": "'Mboste 'a frequenze de cambionamende pe Special:RecordImpression",

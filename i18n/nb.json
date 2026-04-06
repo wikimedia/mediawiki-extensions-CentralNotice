@@ -270,8 +270,6 @@
 	"centralnotice-banner-history-logger-max-entry-age-help": "Loggoppføringer eldre enn dette vil være utløpt, og blir ikke sendt tilbake til tjeneren.",
 	"centralnotice-banner-history-logger-max-entries": "Maksimalt antall oppføringer som skal beholdes i loggen",
 	"centralnotice-banner-history-logger-max-entries-help": "Om mer historikk lagres før loggen blir sendt til tjeneren vil de eldste oppføringene forsvinne.",
-	"centralnotice-banner-history-logger-wait-log-no-send-beacon": "Tidsavbrudd for å sende loggen uten sendBeacon (i millisekunder)",
-	"centralnotice-banner-history-logger-wait-log-no-send-beacon-help": "For å sende loggen umiddelbart før de navigerer til en annen side setter vi en maksimumstid å vente før man gir opp å sende loggen i noen nettlesere.",
 	"centralnotice-legacy-support": "Foreldet støtte for skjuling og visningstelling",
 	"centralnotice-legacy-support-help": "Setter kompatibilitet med eldre bannere som er avhengige av Special:RecordImpression eller inkludering av JavaScript som skjuler banneret.",
 	"centralnotice-set-record-impression-sample-rate": "Sett testingsrate for Special:RecordImpression",

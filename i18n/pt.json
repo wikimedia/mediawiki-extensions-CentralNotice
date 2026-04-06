@@ -275,8 +275,6 @@
 	"centralnotice-banner-history-logger-max-entry-age-help": "As entradas de registo mais antigas que a especificada expiram e não serão enviadas ao servidor.",
 	"centralnotice-banner-history-logger-max-entries": "Número máximo de entradas a manter no registo",
 	"centralnotice-banner-history-logger-max-entries-help": "Se o historial registado for maior antes do registo ser enviado ao servidor, as entradas mais antigas desaparecem.",
-	"centralnotice-banner-history-logger-wait-log-no-send-beacon": "Tempo limite para envio do registo sem \"sendBeacon\" (em milisegundos)",
-	"centralnotice-banner-history-logger-wait-log-no-send-beacon-help": "Para enviar o registo de imediato antes de navegar para uma página diferente, nalguns navegadores da Internet, definimos um tempo limite de espera antes de desistir de enviar o registo.",
 	"centralnotice-legacy-support": "Suporte de ocultação e contagem de impressões em faixas antigas",
 	"centralnotice-legacy-support-help": "Configuração para compatibilidade com faixas antigas que dependem de Special:RecordImpression ou incluem JavaScript que oculta a faixa.",
 	"centralnotice-set-record-impression-sample-rate": "Definir a taxa de amostragem para Special:RecordImpression",
