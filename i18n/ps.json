@@ -133,7 +133,7 @@
 	"centralnotice-projects": "پروژې",
 	"centralnotice-country": "هېواد",
 	"centralnotice-region": "سيمه",
-	"centralnotice-no-allocation": "هيڅ ليتوغونه ځانگړي شوي نه دي.",
+	"centralnotice-no-allocation": "هېڅ خبرتوغونه ځانگړي شوي نه دي.",
 	"centralnotice-allocation-description": "د ژبې لپاره د خبرتوغ ځانگړی‌کونگ:$1، پروژه: $2، د $3 هېواد کې، په $4 وسيله کې.",
 	"centralnotice-historical-allocation-description": "د ژبې لپاره د خبرتوغ ځانگړی‌کونگ: $1، پروژه: $2، د $3 هېواد کې، په $4 وسيله کې، په $5 بجو",
 	"centralnotice-percentage": "سلنه",
