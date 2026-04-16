@@ -273,6 +273,7 @@
 	"centralnotice-archive-campaign-confirm": "Архивирование делает уведомление постоянно неактивным.",
 	"centralnotice-archive-campaign-cancel": "Отмена",
 	"centralnotice-archive-edit-prevented": "Редактирование этого уведомления отключено, поскольку она заблокирована или находится в архиве. Измените её статусу в [[Special:CentralNotice]].",
+	"centralnotice-archived-campaigns": "Архивные кампании",
 	"centralnotice-add-new-banner-title": "Добавить новый баннер",
 	"centralnotice-delete-banner": "Удалить",
 	"centralnotice-delete-banner-title": "Удалить баннер{{PLURAL:$1||ы}}?",
