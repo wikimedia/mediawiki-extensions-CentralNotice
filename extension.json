@@ -253,6 +253,7 @@
 			"tests/qunit/ext.centralNotice.kvStore/kvStore.tests.js",
 			"tests/qunit/ext.centralNotice.startUp/kvStoreMaintenance.tests.js",
 			"tests/qunit/subscribing/ext.centralNotice.bannerSequence.tests.js",
+			"tests/qunit/subscribing/ext.centralNotice.impressionDiet.tests.js",
 			"tests/qunit/subscribing/ext.centralNotice.geoIP.tests.js"
 		],
 		"dependencies": [
@@ -261,6 +262,7 @@
 			"ext.centralNotice.display",
 			"ext.centralNotice.kvStore",
 			"ext.centralNotice.bannerSequence",
+			"ext.centralNotice.impressionDiet",
 			"ext.centralNotice.geoIP"
 		]
 	},

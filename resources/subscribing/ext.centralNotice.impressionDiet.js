@@ -19,24 +19,15 @@
 
 	const cn = mw.centralNotice;
 	const mixin = new cn.Mixin( 'impressionDiet' );
-	const now = Date.now();
 	const STORAGE_KEY = 'impression_diet';
 	// Time to store impression-counting data, in days
 	const COUNTS_STORAGE_TTL = 365;
 
 	let identifier;
 	let multiStorageOption;
-	/**
-	 * Object with data used to determine whether to hide the banner
-	 * Properties:
-	 *   seenCount:        Total number of impressions seen by this user
-	 *   skippedThisCycle: Number of initial impressions we've skipped this cycle
-	 *   nextCycleStart:   Unix timestamp after which we can show more banners
-	 *   seenThisCycle:    Number of impressions seen this cycle
-	 */
-	let counts;
 
-	mixin.setPreBannerHandler( ( mixinParams ) => {
+	mixin.setPreBannerHandler( impressionDietHandler );
+	function impressionDietHandler( mixinParams ) {
 		// URL forced a banner
 		if ( mw.util.getParamValue( 'force' ) ) {
 			return;
@@ -59,6 +50,18 @@
 			cn.failCampaign( 'waitnostorage' );
 			return;
 		}
+
+		const now = Date.now();
+
+		/**
+		 * Object with data used to determine whether to hide the banner
+		 * Properties:
+		 *   seenCount:        Total number of impressions seen by this user
+		 *   skippedThisCycle: Number of initial impressions we've skipped this cycle
+		 *   nextCycleStart:   Unix timestamp after which we can show more banners
+		 *   seenThisCycle:    Number of impressions seen this cycle
+		 */
+		let counts;
 
 		// Reset counts if requested (for testing)
 		if ( mw.util.getParamValue( 'reset' ) === '1' ) {
@@ -117,7 +120,7 @@
 
 		// Bookkeeping.
 		storeCounts( counts );
-	} );
+	}
 
 	function getZeroedCounts() {
 		return {
@@ -196,5 +199,10 @@
 
 	// Register the mixin
 	cn.registerCampaignMixin( mixin );
+
+	// For use in QUnit tests
+	module.exports.private = {
+		impressionDietHandler
+	};
 
 }() );
