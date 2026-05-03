@@ -265,8 +265,6 @@
 	"centralnotice-banner-history-logger-max-entry-age-help": "Кхузахь билгалдаьхначул шира журналан дӀайаздарш нийса доцуш лорур ду, сервере йуха дӀахьажор дац.",
 	"centralnotice-banner-history-logger-max-entries": "Журналехь Ӏалашдан йиш йолу максимум дӀайаздарш.",
 	"centralnotice-banner-history-logger-max-entries-help": "Нагахь санна журнал сервере дӀайахьийтале кхин а хаамаш йазбахь, уггаре а шира элементаш дӀайер йу.",
-	"centralnotice-banner-history-logger-wait-log-no-send-beacon": "Журнал дӀайахьийтаран интервал sendBeacon йоцуш (миллисекундашца)",
-	"centralnotice-banner-history-logger-wait-log-no-send-beacon-help": "Кхечу агӀонна тӀе дӀакхачале хьалха журнал дӀайахьийтархьама, цхьайолчу браузершкахь оха уггаре йоккха хан хӀоттайо журнал дӀайахьийта реза ца хилале собар дан.",
 	"centralnotice-legacy-support": "Ширделла къайладахарийн а, дагардарийн а функци дӀахӀоттор",
 	"centralnotice-legacy-support-help": "Special:RecordImpression лелош йолу йа баннер лечкъош йолу JavaScript йукъайогӀуш йолу ширачу баннершца нийса хиларан параметраш.",
 	"centralnotice-set-record-impression-sample-rate": "ХӀоттабе дискретизацин барам Special:RecordImpression-на",

@@ -286,8 +286,6 @@
 	"centralnotice-banner-history-logger-max-entry-age-help": "Записи в журналі, старші ніж цей, будуть протерміновані і не будуть відправлені назад на сервер.",
 	"centralnotice-banner-history-logger-max-entries": "Найбільша кількість записів, щоб зберігати в журналі",
 	"centralnotice-banner-history-logger-max-entries-help": "Якщо перед відправленням журналу на сервер буде записано більше історії, найстаріші елементи зникнуть.",
-	"centralnotice-banner-history-logger-wait-log-no-send-beacon": "Таймаут для відправки журналу без sendBeacon (у мілісекундах)",
-	"centralnotice-banner-history-logger-wait-log-no-send-beacon-help": "Щоб надіслати журнал безпосередньо перед переходом на іншу сторінку, в деяких браузерах, ми встановили максимальний час очікування перед відмовою від надсилання журналу.",
 	"centralnotice-legacy-support": "Підтримка  застарілого методу приховування та підрахунку відображень",
 	"centralnotice-legacy-support-help": "Налаштування для сумісності зі старішими банерами, що спираються на Special:RecordImpression чи містять JavaScript для приховування банера.",
 	"centralnotice-set-record-impression-sample-rate": "Встановити частоту дискретизації для Special:RecordImpression",
@@ -360,5 +358,7 @@
 	"centralnotice-campaign-type-maintenance": "Технічна підтримка",
 	"centralnotice-campaign-type-photography": "Фотографія",
 	"centralnotice-campaign-type-special": "Особливий",
-	"centralnotice-user-prefs-intro": "Банери показують оголошення, що складають інтерес для спільнот та користувачів Вікімедіа.\n\nНижче наведено опції, що дозволяють Вам керувати тим, які типи оголошень Ви бачитимете. Деякі оголошення платформи, як-то стосовні технічної підтримки та особливі оголошення, вважаються необхідними для всіх користувачів та будуть показуватись завжди. За детальною інформацією, будь ласка, прочитайте [[metawikimedia:Special:MyLanguage/CentralNotice|документацію на Мета-вікі]]."
+	"centralnotice-user-prefs-intro": "Банери показують оголошення, що складають інтерес для спільнот та користувачів Вікімедіа.\n\nНижче наведено опції, що дозволяють Вам керувати тим, які типи оголошень Ви бачитимете. Деякі оголошення платформи, як-то стосовні технічної підтримки та особливі оголошення, вважаються необхідними для всіх користувачів та будуть показуватись завжди. За детальною інформацією, будь ласка, прочитайте [[metawikimedia:Special:MyLanguage/CentralNotice|документацію на Мета-вікі]].",
+	"namespaceinfo-description-ns866": "Повідомлення, що використовуються в банерах [[mw:Special:MyLanguage/Extension:CentralNotice|CentralNotice]], та їхні переклади",
+	"namespaceinfo-description-ns867": "Сторінки обговорення для банерних повідомлень CentralNotice"
 }

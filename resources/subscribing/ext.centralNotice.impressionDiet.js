@@ -2,16 +2,14 @@
  * Impression diet mixin. Provides knobs to cap the number of impressions
  * each user will see.
  *
- * This mixin will migrate count data in cookies to kvStore, which will use
- * LocalStorage, or (if that's not available and the campaigns is in a
- * category using legacy mechanisms) fall back to a new sort of cookie.
+ * This mixin stores count data in the kvStore (LocalStorage).
  *
  * In general, showing a banner entails that a certain number of impressions
  * have already occurred in a time period. Parameter documentation is provided
  * in the CentralNotice campaign management UI.
  *
- * Banner may be forced if URL parameter force = 1
- * Counters may be reset if URL parameter reset = 1
+ * - Banner may be forced via URL parameter force=1.
+ * - Cycle counters may be reset via URL parameter reset=1.
  *
  * Flow chart: https://commons.wikimedia.org/wiki/File:CentralNotice_-_wait_cookie_code_flow.png
  * (FIXME: update ^^ with new parameter names)
@@ -19,33 +17,17 @@
 ( function () {
 	'use strict';
 
-	let identifier, multiStorageOption,
-		/**
-		 * Object with data used to determine whether to hide the banner
-		 * Properties:
-		 *   seenCount:        Total number of impressions seen by this user
-		 *   skippedThisCycle: Number of initial impressions we've skipped this cycle
-		 *   nextCycleStart:   Unix timestamp after which we can show more banners
-		 *   seenThisCycle:    Number of impressions seen this cycle
-		 */
-		counts;
+	const cn = mw.centralNotice;
+	const mixin = new cn.Mixin( 'impressionDiet' );
+	const STORAGE_KEY = 'impression_diet';
+	// Time to store impression-counting data, in days
+	const COUNTS_STORAGE_TTL = 365;
 
-	const cn = mw.centralNotice,
-		mixin = new cn.Mixin( 'impressionDiet' ),
+	let identifier;
+	let multiStorageOption;
 
-		now = Date.now(),
-
-		STORAGE_KEY = 'impression_diet',
-
-		// Suffix used with legacy cookies only
-		WAIT_COOKIE_SUFFIX = '-wait',
-
-		// Time to store impression-counting data, in days
-		COUNTS_STORAGE_TTL = 365;
-
-	mixin.setPreBannerHandler( ( mixinParams ) => {
-		let hide;
-
+	mixin.setPreBannerHandler( impressionDietHandler );
+	function impressionDietHandler( mixinParams ) {
 		// URL forced a banner
 		if ( mw.util.getParamValue( 'force' ) ) {
 			return;
@@ -55,11 +37,8 @@
 
 		// Check if and how we can store counts
 		multiStorageOption = cn.kvStore.getMultiStorageOption(
-			cn.getDataProperty( 'campaignCategoryUsesLegacy' ) );
-
-		// In all cases, check for legacy cookies and try to migrate if
-		// found
-		possiblyMigrateLegacyCookies();
+			cn.getDataProperty( 'campaignCategoryUsesLegacy' )
+		);
 
 		// Banner was hidden already
 		if ( cn.isCampaignFailed() ) {
@@ -72,12 +51,22 @@
 			return;
 		}
 
+		const now = Date.now();
+
+		/**
+		 * Object with data used to determine whether to hide the banner
+		 * Properties:
+		 *   seenCount:        Total number of impressions seen by this user
+		 *   skippedThisCycle: Number of initial impressions we've skipped this cycle
+		 *   nextCycleStart:   Unix timestamp after which we can show more banners
+		 *   seenThisCycle:    Number of impressions seen this cycle
+		 */
+		let counts;
+
 		// Reset counts if requested (for testing)
 		if ( mw.util.getParamValue( 'reset' ) === '1' ) {
 			counts = getZeroedCounts();
-
 		} else {
-
 			// Otherwise get counts from storage
 			counts = getCounts();
 		}
@@ -87,7 +76,6 @@
 		) {
 			// We're beyond the wait period, and have nothing to do except
 			// maybe start a new cycle.
-
 			if ( mixinParams.restartCycleDelay !== 0 ) {
 				// Begin a new cycle by clearing counters.
 				counts.skippedThisCycle = 0;
@@ -98,9 +86,9 @@
 		// Compare counts against campaign settings and decide whether to
 		// show a banner
 
+		let hide;
 		if ( counts.seenThisCycle < mixinParams.maximumSeen ) {
 			// You haven't seen the maximum count of banners per cycle!
-
 			if ( counts.skippedThisCycle < mixinParams.skipInitial ) {
 				// Skip initial impressions.
 				hide = 'waitimps';
@@ -132,7 +120,7 @@
 
 		// Bookkeeping.
 		storeCounts( counts );
-	} );
+	}
 
 	function getZeroedCounts() {
 		return {
@@ -144,52 +132,20 @@
 	}
 
 	/**
-	 * TODO: Delete fix code a year after deploy
-	 * Update names of stored counts for clarity.
+	 * Migrate or discard old or invalid data
 	 *
-	 * @param {Object} kvStoreCounts possibly using legacy names
-	 * @return {Object} counts object using new names
+	 * @param {Object|undefined} kvStoreCounts Possibly using previous schemas
+	 * @return {Object|undefined} Counts object using current names or undefined
+	 *  if data was invalid or too old.
 	 */
 	function fixCountNames( kvStoreCounts ) {
-		// If we get an object with new names, don't change it
-		if ( kvStoreCounts.skippedThisCycle !== undefined ) {
-			return kvStoreCounts;
-		}
-		return {
-			seenCount: kvStoreCounts.seenCount,
-			skippedThisCycle: kvStoreCounts.waitCount,
-			nextCycleStart: kvStoreCounts.waitUntil,
-			seenThisCycle: kvStoreCounts.waitSeenCount
-		};
-	}
-
-	function possiblyMigrateLegacyCookies() {
-
-		// Legacy cookies required an identifier
-		if ( !identifier ) {
-			return;
+		if ( !kvStoreCounts || kvStoreCounts.skippedThisCycle === undefined ) {
+			// * undefined
+			// * T121178: March 2018 schema change (rename waitCount to skippedThisCycle)
+			return undefined;
 		}
 
-		const rawCookie = $.cookie( identifier );
-
-		if ( !rawCookie ) {
-			return;
-		}
-
-		const rawWaitCookie = $.cookie( identifier + WAIT_COOKIE_SUFFIX );
-		const waitData = ( rawWaitCookie || '' ).split( /[|]/ );
-
-		const cookieCounts = {
-			seenCount: parseInt( rawCookie, 10 ) || 0,
-			skippedThisCycle: parseInt( waitData[ 0 ], 10 ) || 0,
-			nextCycleStart: parseInt( waitData[ 1 ], 10 ) || 0,
-			seenThisCycle: parseInt( waitData[ 2 ], 10 ) || 0
-		};
-
-		storeCounts( cookieCounts );
-
-		$.removeCookie( identifier, { path: '/' } );
-		$.removeCookie( identifier + WAIT_COOKIE_SUFFIX, { path: '/' } );
+		return kvStoreCounts;
 	}
 
 	/**
@@ -214,18 +170,15 @@
 				multiStorageOption
 			);
 		}
-		c = c || getZeroedCounts();
 
-		return fixCountNames( c );
+		return fixCountNames( c ) || getZeroedCounts();
 	}
 
-	/*
+	/**
 	 * Store updated counts
 	 */
 	function storeCounts( c ) {
-
 		if ( identifier ) {
-
 			cn.kvStore.setItem(
 				STORAGE_KEY + '_' + identifier,
 				c,
@@ -233,9 +186,7 @@
 				COUNTS_STORAGE_TTL,
 				multiStorageOption
 			);
-
 		} else {
-
 			cn.kvStore.setItem(
 				STORAGE_KEY,
 				c,
@@ -248,5 +199,10 @@
 
 	// Register the mixin
 	cn.registerCampaignMixin( mixin );
+
+	// For use in QUnit tests
+	module.exports.private = {
+		impressionDietHandler
+	};
 
 }() );

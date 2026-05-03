@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Html\Html;
+use MediaWiki\Xml\XmlSelect;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
 

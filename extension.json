@@ -15,7 +15,7 @@
 	"descriptionmsg": "centralnotice-desc",
 	"license-name": "GPL-2.0-or-later",
 	"requires": {
-		"MediaWiki": ">= 1.46",
+		"MediaWiki": ">= 1.47.0",
 		"extensions": {
 			"EventLogging": "*"
 		}
@@ -253,6 +253,7 @@
 			"tests/qunit/ext.centralNotice.kvStore/kvStore.tests.js",
 			"tests/qunit/ext.centralNotice.startUp/kvStoreMaintenance.tests.js",
 			"tests/qunit/subscribing/ext.centralNotice.bannerSequence.tests.js",
+			"tests/qunit/subscribing/ext.centralNotice.impressionDiet.tests.js",
 			"tests/qunit/subscribing/ext.centralNotice.geoIP.tests.js"
 		],
 		"dependencies": [
@@ -261,6 +262,7 @@
 			"ext.centralNotice.display",
 			"ext.centralNotice.kvStore",
 			"ext.centralNotice.bannerSequence",
+			"ext.centralNotice.impressionDiet",
 			"ext.centralNotice.geoIP"
 		]
 	},
@@ -410,11 +412,6 @@
 							"type": "integer",
 							"labelMsg": "centralnotice-banner-history-logger-max-entries",
 							"helpMsg": "centralnotice-banner-history-logger-max-entries-help"
-						},
-						"waitLogNoSendBeacon": {
-							"type": "integer",
-							"labelMsg": "centralnotice-banner-history-logger-wait-log-no-send-beacon",
-							"helpMsg": "centralnotice-banner-history-logger-wait-log-no-send-beacon-help"
 						}
 					}
 				},

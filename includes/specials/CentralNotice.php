@@ -11,6 +11,7 @@ use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
+use MediaWiki\Xml\XmlSelect;
 
 class CentralNotice extends UnlistedSpecialPage {
 

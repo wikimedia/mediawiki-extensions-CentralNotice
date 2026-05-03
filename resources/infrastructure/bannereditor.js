@@ -28,6 +28,8 @@
 	// Coordinate with PREVIEW_STORAGE_KEY_PREFIX in ext.centralNotice.display.js
 	const PREVIEW_STORAGE_KEY_PREFIX = 'cn-banner-preview-';
 
+	const isEditable = mw.config.get( 'CentralNoticeEditable' );
+
 	function doPurgeCache() {
 		const language = $( '#cn-cdn-cache-language' ).val(),
 			messageId = 'centralnotice-purge-cache-' + language;
@@ -318,6 +320,9 @@
 		 */
 		insertButton: function ( buttonType ) {
 			let buttonValue;
+			if ( !isEditable ) {
+				return;
+			}
 			const bannerField = document.getElementById( 'mw-input-wpbanner-body' );
 			if ( buttonType === 'close' ) {
 				buttonValue = '<a href="#" title="' +
@@ -350,17 +355,32 @@
 
 	// Attach handlers and initialize stuff after document ready
 	$( () => {
+		$( '#cn-js-error-warn' ).hide();
+
 		const $editSection = $( '#cn-formsection-edit-template' ),
 			$previewLink = $( '<a>' ),
 			$previewLegend = $( '<legend>' ),
 			$previewUpdateButton = $( '<button>' );
+
+		// Retrieve banner name sent via data attribute
+		bannerName = $( '#centralnotice-data-container' ).data( 'banner-name' );
+
+		$previewLink.text( mw.msg( 'centralnotice-preview-page' ) );
+
+		if ( !isEditable ) {
+			$previewLink.insertBefore( $editSection );
+			$previewLink.attr( 'href', mw.Title.makeTitle( -1, 'Random' ).getUrl( {
+				banner: bannerName,
+				force: 1
+			} ) ).attr( 'target', '_blank' );
+			return;
+		}
 
 		// Create and attach banner preview elements
 		$previewFieldSet = $( '<fieldset>' );
 		$previewFieldSet.addClass( 'cn-banner-preview-fieldset' );
 		$previewLegend.append( $( '<span>' ).text( mw.msg( 'centralnotice-fieldset-preview' ) ) );
 
-		$previewLink.text( mw.msg( 'centralnotice-preview-page' ) );
 		$previewLegend.append( $previewLink );
 		$previewFieldSet.append( $previewLegend );
 
@@ -396,10 +416,6 @@
 		$( '#mw-input-wpsave-button' ).on( 'click', bannerEditor.doSaveBanner );
 		$( '#mw-input-wptranslate-language' ).on( 'change', bannerEditor.updateLanguage );
 		$( '#cn-cdn-cache-purge' ).on( 'click', doPurgeCache );
-		$( '#cn-js-error-warn' ).hide();
-
-		// Retrieve banner name sent via data attribute
-		bannerName = $( '#centralnotice-data-container' ).data( 'banner-name' );
 
 		// Trigger preview right away
 		fetchAndUpdateBannerPreview( false );

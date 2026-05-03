@@ -258,8 +258,6 @@
 	"centralnotice-banner-history-logger-max-entry-age-help": "Le entratas de registro plus ancian que isto expirara e non essera reinviate al servitor.",
 	"centralnotice-banner-history-logger-max-entries": "Numero maxime de entratas a conservar in registro",
 	"centralnotice-banner-history-logger-max-entries-help": "Si plus de historia es registrate ante que le registro es inviate al servitor, le entratas le plus ancian disparera.",
-	"centralnotice-banner-history-logger-wait-log-no-send-beacon": "Tempore limite pro inviar le registro sin \"sendBeacon\" (in millisecundas)",
-	"centralnotice-banner-history-logger-wait-log-no-send-beacon-help": "Pro inviar le registro immediatemente ante de navigar a un altere pagina, in alcun navigatores, nos defini un tempore maxime pro attender ante de abandonar le invio del registro.",
 	"centralnotice-legacy-support": "Functionalitate ancian de celamento e de contator de impressiones",
 	"centralnotice-legacy-support-help": "Parametros pro compatibilitate con bandieras ancian que depende de \"Special:RecordImpression\" o que include JavaScript que cela le bandiera.",
 	"centralnotice-set-record-impression-sample-rate": "Definir le taxa de monstra pro Special:RecordImpression",

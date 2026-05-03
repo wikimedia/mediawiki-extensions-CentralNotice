@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
+use Wikimedia\Http\HttpStatus;
 
 /**
  * @deprecated

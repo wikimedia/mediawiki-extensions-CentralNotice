@@ -13,6 +13,7 @@
 			"Priviet",
 			"Revi",
 			"SeoJeongHo",
+			"Tensama0415",
 			"Ykhwong",
 			"Yknok29",
 			"아라"
@@ -60,6 +61,7 @@
 	"centralnotice-balanced": "모든 배너에 같은 비중을 두기",
 	"centralnotice-weight": "중요도",
 	"centralnotice-locked": "잠김",
+	"centralnotice-notice-mixins-fieldset": "추가 캠페인 기능",
 	"centralnotice-notice-mixins-int-required": "정수가 필요합니다",
 	"centralnotice-notice-mixins-float-required": "부동 소수점 수가 필요합니다",
 	"centralnotice-notice-mixins-out-of-bound": "값이 범위를 초과합니다",
@@ -140,6 +142,7 @@
 	"centralnotice-countries": "국가",
 	"centralnotice-regions": "지역",
 	"centralnotice-location": "국가 및 지역",
+	"centralnotice-location-filter": "필터",
 	"centralnotice-allocation": "할당",
 	"centralnotice-view-allocation": "배너 할당 보기",
 	"centralnotice-allocation-instructions": "보고자 하는 배너가 할당된 환경을 선택하세요:",

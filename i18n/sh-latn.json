@@ -227,7 +227,6 @@
 	"centralnotice-banner-history-logger-max-entry-age": "Najveća dopuštena starost unosa evidencije (dana)",
 	"centralnotice-banner-history-logger-max-entry-age-help": "Unosi evidencije stariji od navedenoga će istećiti i neće budu isporućeni nazad serveru.",
 	"centralnotice-banner-history-logger-max-entries-help": "Ako se zavede još historije po slanju evidencije, najstarijih stavaka će nestati.",
-	"centralnotice-banner-history-logger-wait-log-no-send-beacon": "Istjek isporuke evidencije bez sendBeacon (milisekunde)",
 	"centralnotice-legacy-support-help": "Postavke skladnosti sa starijim obavijestima što zasnovaju se na Special:RecordImpression ili u sebi imaju javaskript što krije obavijest.",
 	"centralnotice-set-record-impression-sample-rate": "Zadaj stop uzorkovanja za \"Special:RecordImpression\"",
 	"centralnotice-custom-record-impression-sample-rate": "Stop uzorkovanja za \"Special:RecordImpression\" (treba da bude među 0 i 1, zaključno sa njim)",

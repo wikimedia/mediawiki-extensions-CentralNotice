@@ -307,8 +307,6 @@
 	"centralnotice-banner-history-logger-max-entry-age-help": "早于此条记录的日志记录将失效，并将不会发回服务器。",
 	"centralnotice-banner-history-logger-max-entries": "要保持在日志的记录的最大数",
 	"centralnotice-banner-history-logger-max-entries-help": "如果更多历史在日志发送至服务器前被记录，最早的项目将被显示。",
-	"centralnotice-banner-history-logger-wait-log-no-send-beacon": "不使用sendBeacon发送日志时的超时（毫秒）",
-	"centralnotice-banner-history-logger-wait-log-no-send-beacon-help": "在一些浏览器中，要在导航至一个不同页面之前立刻发送日志，我们在放弃发送日志前设置最长等待时间。",
 	"centralnotice-legacy-support": "传统隐藏和印象计数支持",
 	"centralnotice-legacy-support-help": "用于与旧有横幅之间兼容性的设置，这些横幅依赖于Special:RecordImpression或包含隐藏横幅的JavaScript。",
 	"centralnotice-set-record-impression-sample-rate": "为Special:RecordImpression设置抽样率",

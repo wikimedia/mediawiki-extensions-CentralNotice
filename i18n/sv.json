@@ -274,8 +274,6 @@
 	"centralnotice-banner-history-logger-max-entry-age-help": "Loggposter som är äldre än detta kommer att löpas ut och inte skickas tillbaka till servern.",
 	"centralnotice-banner-history-logger-max-entries": "Maximalt antal poster att ha i loggen",
 	"centralnotice-banner-history-logger-max-entries-help": "If mer historik lagras innan loggen skickas till servern kommer de äldsta föremålen försvinna.",
-	"centralnotice-banner-history-logger-wait-log-no-send-beacon": "Timeout för att skicka loggen utan sendBeacon (i millisekunder)",
-	"centralnotice-banner-history-logger-wait-log-no-send-beacon-help": "För att skicka loggen omedelbart innan du navigerar till en annan sida. För vissa webbläsare har vi angivit en maximal väntetid innan försök att skicka loggen upphör.",
 	"centralnotice-legacy-support": "Äldre gömningar och stöd för intrycksräkning",
 	"centralnotice-legacy-support-help": "Inställningar för kompatibilitet med äldre banners som är beroende av Special:RecordImpression eller inkluderar JavaScript som döljer bannern.",
 	"centralnotice-set-record-impression-sample-rate": "Ange samplingsfrekvens för Special:RecordImpression",

@@ -287,8 +287,6 @@
 	"centralnotice-banner-history-logger-max-entry-age-help": "早於此的日誌項目將會失效，並且不會發回給伺服器。",
 	"centralnotice-banner-history-logger-max-entries": "項目保持在日誌裡的最大數目",
 	"centralnotice-banner-history-logger-max-entries-help": "若日誌被發送到伺服器之前有更多歷史被記錄下來，那最早的項目將不會顯示出來。",
-	"centralnotice-banner-history-logger-wait-log-no-send-beacon": "不使用 sendBeacon 來發送日誌的逾時時間（毫秒）",
-	"centralnotice-banner-history-logger-wait-log-no-send-beacon-help": "在導航至其它頁面之前日誌會立即被發送，在一些瀏覽器裡，我們便會設定等待放棄發送日誌前的最長時間。",
 	"centralnotice-legacy-support": "舊版隱藏與印象計數支援",
 	"centralnotice-legacy-support-help": "與舊有橫幅兼容性方面的設定依靠於 Special:RecordImpression，或是包含隱藏橫幅用的 JavaScript。",
 	"centralnotice-set-record-impression-sample-rate": "設定 Special:RecordImpression 的取樣率",
