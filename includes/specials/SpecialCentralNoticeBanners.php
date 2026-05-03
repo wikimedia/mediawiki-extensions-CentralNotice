@@ -798,6 +798,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			'section' => 'edit-template',
 			'type' => 'textarea',
 			'readonly' => !$this->editable,
+			'disabled' => !$this->editable,
 			'hidelabel' => true,
 			'placeholder' => '<!-- blank banner -->',
 			'default' => $this->banner->getBodyContent(),
