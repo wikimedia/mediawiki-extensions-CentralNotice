@@ -237,6 +237,12 @@
 			"messages": [
 				"centralnotice-csp-violation-alert"
 			]
+		},
+		"ext.centralNotice.localBlackoutTimes": {
+			"scripts": "subscribing/ext.centralNotice.localBlackoutTimes.js",
+			"dependencies": [
+				"ext.centralNotice.display"
+			]
 		}
 	},
 	"ResourceFileModulePaths": {
@@ -516,6 +522,23 @@
 							"step": 0.0001,
 							"labelMsg": "centralnotice-impression-events-sample-rate-field",
 							"defaultValue": 0
+						}
+					}
+				},
+				"localBlackoutTimes": {
+					"subscribingModule": "ext.centralNotice.localBlackoutTimes",
+					"nameMsg": "centralnotice-blackout",
+					"helpMsg": "centralnotice-blackout-help",
+					"parameters": {
+						"startTime": {
+							"type": "string",
+							"labelMsg": "centralnotice-blackout-start-time",
+							"helpMsg": "centralnotice-blackout-time-help"
+						},
+						"endTime": {
+							"type": "string",
+							"labelMsg": "centralnotice-blackout-end-time",
+							"helpMsg": "centralnotice-blackout-time-help"
 						}
 					}
 				}

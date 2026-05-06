@@ -248,7 +248,10 @@ class CentralNoticeHooks implements
 						'centralnotice-large-banner-limit-identifier-help',
 						'centralnotice-impression-events-sample-rate',
 						'centralnotice-impression-events-sample-rate-help',
-						'centralnotice-impression-events-sample-rate-field'
+						'centralnotice-impression-events-sample-rate-field',
+						'centralnotice-blackout-start-time',
+						'centralnotice-blackout-end-time',
+						'centralnotice-blackout-time-help',
 					]
 				],
 				'ext.centralNotice.adminUi.bannerSequence' => $moduleTemplate + [
