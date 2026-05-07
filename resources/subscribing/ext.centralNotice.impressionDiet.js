@@ -176,6 +176,8 @@
 
 	/**
 	 * Store updated counts
+	 *
+	 * @param c
 	 */
 	function storeCounts( c ) {
 		if ( identifier ) {
