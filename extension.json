@@ -454,6 +454,11 @@
 							"labelMsg": "centralnotice-impression-diet-maximum-seen",
 							"helpMsg": "centralnotice-impression-diet-maximum-seen-help"
 						},
+						"dailyLimit": {
+							"type": "integer",
+							"labelMsg": "centralnotice-impression-diet-daily-limit",
+							"helpMsg": "centralnotice-impression-diet-daily-limit-help"
+						},
 						"restartCycleDelay": {
 							"type": "integer",
 							"labelMsg": "centralnotice-impression-diet-restart-cycle-delay",

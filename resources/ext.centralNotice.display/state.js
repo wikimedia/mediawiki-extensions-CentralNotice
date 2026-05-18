@@ -54,7 +54,7 @@
 			waitimps: 3,
 			waiterr: 4, // Deprecated
 			belowMinEdits: 5,
-			viewLimit: 6,
+			viewLimit: 6, // Legacy. Impression diet uses "waitdate" instead. This is a used on-wiki in MediaWiki:CentralNotice/Resources/MinEditsMaxViews.js, MediaWiki:CentralNotice/Resources/MaxViews.js, MediaWiki:CentralNotice/Resources/MinEditsMaxViewsFDC.js
 			'seen-fullscreen': 7,
 			'cookies-disabled': 8,
 			donate: 9,
@@ -69,7 +69,8 @@
 			jsonParamError: 18,
 			bannerSequenceEmptyStep: 19,
 			bannerSequenceAllStepsSkipped: 20,
-			userOptOut: 21
+			userOptOut: 21,
+			waitdaily: 22
 		};
 
 	const campaignAttemptsManager = ( function () {
@@ -494,7 +495,7 @@
 		/**
 		 * Marks a campaign as failed.
 		 *
-		 * @param {string} reason
+		 * @param {string} reason See `REASONS` constant for a list of known values.
 		 */
 		failCampaign: function ( reason ) {
 			state.data.bannerCanceledReason = reason;

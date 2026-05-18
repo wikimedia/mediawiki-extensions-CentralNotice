@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Abdullahi"
+			"Abdullahi",
+			"AhmedG612"
 		]
 	},
+	"centralnotice-add": "Ku dar",
 	"centralnotice-devicetype-desktop": "shaashada kombiyutarka",
 	"centralnotice-banner-class": "Qeybta"
 }

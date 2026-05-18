@@ -27,6 +27,7 @@
 			mixinParams: {
 				maximumSeen: 3,
 				skipInitial: 0,
+				dailyLimit: 0,
 				restartCycleDelay: 0
 			},
 			sequence: [
@@ -41,6 +42,7 @@
 			mixinParams: {
 				maximumSeen: 3,
 				skipInitial: 2,
+				dailyLimit: 0,
 				restartCycleDelay: 0
 			},
 			sequence: [
@@ -71,6 +73,70 @@
 				{ tick: CLOCK_HOUR, hide: undefined },
 				{ tick: CLOCK_HOUR, hide: 'waitdate' },
 				{ tick: CLOCK_HOUR, hide: 'waitdate' }
+			]
+		},
+		'dailyLimit without restartCycleDelay': {
+			mixinParams: {
+				maximumSeen: 4,
+				skipInitial: 1,
+				dailyLimit: 2,
+				restartCycleDelay: 0
+			},
+			sequence: [
+				// 09:15
+				{ hide: 'waitimps' },
+				// 10:15
+				{ tick: CLOCK_HOUR, hide: undefined },
+				// 11:15 reached dailyLimit, pause cycle
+				{ tick: CLOCK_HOUR, hide: undefined },
+				// 12:15
+				{ tick: CLOCK_HOUR, hide: 'waitdaily' },
+				// 13:15
+				{ tick: CLOCK_HOUR, hide: 'waitdaily' },
+				// 01:15 day 2
+				{ tick: CLOCK_HOUR * 12, hide: 'waitdaily' },
+				// 05:15 new day, resume cycle
+				{ tick: CLOCK_HOUR * 4, hide: undefined },
+				// 06:15 max per cycle
+				{ tick: CLOCK_HOUR, hide: undefined },
+				// 07:15
+				{ tick: CLOCK_HOUR, hide: 'waitdate' },
+				// 07:15 day 3
+				{ tick: CLOCK_DAY, hide: 'waitdate' },
+				// 08:15
+				{ tick: CLOCK_HOUR, hide: 'waitdate' }
+			]
+		},
+		'dailyLimit with restartCycleDelay': {
+			mixinParams: {
+				maximumSeen: 4,
+				skipInitial: 1,
+				dailyLimit: 2,
+				restartCycleDelay: 24 * 3600
+			},
+			sequence: [
+				// 09:15
+				{ hide: 'waitimps' },
+				// 10:15
+				{ tick: CLOCK_HOUR, hide: undefined },
+				// 11:15 reached dailyLimit, pause cycle
+				{ tick: CLOCK_HOUR, hide: undefined },
+				// 12:15
+				{ tick: CLOCK_HOUR, hide: 'waitdaily' },
+				// 13:15
+				{ tick: CLOCK_HOUR, hide: 'waitdaily' },
+				// 01:15 day 2
+				{ tick: CLOCK_HOUR * 12, hide: 'waitdaily' },
+				// 05:15 new day, resume cycle
+				{ tick: CLOCK_HOUR * 4, hide: undefined },
+				// 06:15 max per cycle
+				{ tick: CLOCK_HOUR, hide: undefined },
+				// 07:15
+				{ tick: CLOCK_HOUR, hide: 'waitdate' },
+				// 07:15 day 3, restart cycle
+				{ tick: CLOCK_DAY, hide: 'waitimps' },
+				// 08:15
+				{ tick: CLOCK_HOUR, hide: undefined }
 			]
 		}
 	}, function ( assert, { mixinParams, sequence } ) {
