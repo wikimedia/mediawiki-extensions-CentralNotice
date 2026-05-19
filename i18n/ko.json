@@ -284,6 +284,8 @@
 	"centralnotice-impression-diet-identifier-help": "이 기능에서 저장하는 영구 클라이언트 측 데이터(예: 노출 수)의 식별자입니다. 이 필드는 대부분의 캠페인에서 선택 사항입니다. 이 필드를 비워두면 동일한 분류에 속한 캠페인은 노출 수를 공유하거나, 이 캠페인에서 분류 기능을 사용하지 않는 경우 해당 캠페인에만 노출 수가 기록됩니다. 여러 캠페인 분류에서 이 데이터를 공유하려면 각 캠페인에 동일한 식별자를 지정하세요. 참고: 특정 캠페인 분류는 이 기능을 위해 쿠키를 사용하도록 구성되어 있었습니다. 해당 분류의 캠페인에서는 이 식별자가 쿠키 이름이었습니다. 이러한 레거시 쿠키는 이관될 예정입니다. 또한 캠페인 진행 중에 식별자를 변경하면 지금까지 기록된 모든 노출 수가 손실됩니다.",
 	"centralnotice-impression-diet-maximum-seen": "개개인이 볼 최대 노출",
 	"centralnotice-impression-diet-maximum-seen-help": "광고 게재 주기가 재시작되도록 설정된 경우, 이것은 전체 노출 횟수가 아닌 주기당 노출 횟수를 제한합니다.",
+	"centralnotice-impression-diet-daily-limit": "일일 노출 제한",
+	"centralnotice-impression-diet-daily-limit-help": "기본값은 0으로 되어 있어 일일 제한이 존재하지 않습니다. 일일 제한은 한 주기와 최대 주기에 걸쳐서 작동한 후, 노출을 중단하고 다음 날 (04:00 AM 현지시각) 시작 후 재개합니다. 일일 제한이 최대 이상이면 아무런 효과도 없습니다.",
 	"centralnotice-impression-diet-restart-cycle-delay": "사이클을 다시 시작하기 전에 기다릴 시간(초 단위, 선택 사항)",
 	"centralnotice-impression-diet-restart-cycle-delay-help": "기본값은 0이며, 이는 독자가 한 번의 광고 주기를 경험하면 배너 표시를 중단한다는 의미입니다.",
 	"centralnotice-impression-diet-skip-initial": "건너뛸 첫 노출 횟수 (선택 사항)",
