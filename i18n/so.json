@@ -1,9 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Abdullahi"
+			"Abdullahi",
+			"AhmedG612"
 		]
 	},
+	"centralnotice-add": "Ku dar",
+	"centralnotice-change-summary-heading": "Soo Koobid",
 	"centralnotice-devicetype-desktop": "shaashada kombiyutarka",
-	"centralnotice-banner-class": "Qeybta"
+	"centralnotice-banner-class": "Qeybta",
+	"centralnotice-change-summary-label": "Soo Koobid"
 }
