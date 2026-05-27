@@ -348,5 +348,10 @@
 	"centralnotice-campaign-type-special": "Spezial",
 	"centralnotice-user-prefs-intro": "Banner zeigen Ankündigungen an, die für die Wikimedia-Gemeinschaften und -Benutzer von Interesse sind.\n\nIm Folgenden findest du Optionen zur Verwaltung der dir angezeigten Arten von Ankündigungen. Bestimmte Plattform-Hinweise, wie z. B. solche, die sich auf die Wartung der Seite beziehen, und spezielle Hinweise, die für alle Benutzer als notwendig erachtet werden, werden immer angezeigt. Für weitere Informationen lies bitte die [[metawikimedia:Special:MyLanguage/CentralNotice|Dokumentation im Meta-Wiki]].",
 	"namespaceinfo-description-ns866": "In [[mw:Special:MyLanguage/Extension:CentralNotice|CentralNotice]]-Bannern verwendete Nachrichten und deren Übersetzungen",
-	"namespaceinfo-description-ns867": "Diskussionsseiten für CentralNotice-Bannernachrichten"
+	"namespaceinfo-description-ns867": "Diskussionsseiten für CentralNotice-Bannernachrichten",
+	"centralnotice-blackout": "Sperrzeiten für die Kampagne (in Ortszeit)",
+	"centralnotice-blackout-help": "Zeitspanne, in der keine Banner dieser Kampagne angezeigt werden. Die Startzeit kann nach der Endzeit liegen, was bedeutet, dass der Sperrzeitraum die lokale Mitternacht überschreitet.",
+	"centralnotice-blackout-start-time": "Beginn der Sperrzeit",
+	"centralnotice-blackout-time-help": "Bitte verwende das 24-Stunden-Format (HH:MM), z. B. 18:30.",
+	"centralnotice-blackout-end-time": "Ende der Sperrzeit"
 }

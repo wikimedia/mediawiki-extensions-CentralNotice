@@ -349,5 +349,10 @@
 	"centralnotice-campaign-type-special": "특수",
 	"centralnotice-user-prefs-intro": "배너는 위키미디어 공동체와 사용자의 관심사의 공지를 표시합니다.\n\n다음은 어느 유형의 공지를 볼 것인지 관리할 수 있는 옵션입니다. 사이트 유지보수에 관한 사항, 모든 사용자에게 필수적인 특별한 공지 등 특정 플랫폼 공지는 무조건 표시됩니다. 추가 정보에 대해서는 [[metawikimedia:Special:MyLanguage/CentralNotice|메타위키의 문서]]를 참고해 주십시오.",
 	"namespaceinfo-description-ns866": "[[mw:Special:MyLanguage/Extension:CentralNotice|CentralNotice]] 배너에 사용된 메시지 및 해당 번역",
-	"namespaceinfo-description-ns867": "CentralNotice 배너 메시지에 대한 토론 문서"
+	"namespaceinfo-description-ns867": "CentralNotice 배너 메시지에 대한 토론 문서",
+	"centralnotice-blackout": "캠페인 정전 시간 (현지 시간 기준)",
+	"centralnotice-blackout-help": "이 캠페인의 배너가 전혀 표시되지 않는 시간입니다. 시작 시간이 종료 시간 이후일 수 있으며, 이는 배너 표시 금지 기간이 현지 자정을 넘는다는 것을 의미합니다.",
+	"centralnotice-blackout-start-time": "정전 시작 시간",
+	"centralnotice-blackout-time-help": "24시간 형식(HH:MM)으로 입력해 주세요. 예: 18:30.",
+	"centralnotice-blackout-end-time": "정전 종료 시간"
 }
