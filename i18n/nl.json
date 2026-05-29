@@ -354,5 +354,10 @@
 	"centralnotice-campaign-type-special": "Speciaal",
 	"centralnotice-user-prefs-intro": "Banners geven aankondigingen weer die interessant zijn voor Wikimedia-gemeenschappen en gebruikers.\n\nHieronder vindt u opties waarmee u kunt beheren welke soorten aankondigingen u ziet. Bepaalde platformkennisgevingen, zoals die met betrekking tot site-onderhoud en speciale kennisgevingen die noodzakelijk worden geacht voor alle gebruikers, zullen altijd worden weergegeven. Lees voor meer informatie de [[metawikimedia:Special:MyLanguage/CentralNotice|documentatie op Meta-Wiki]].",
 	"namespaceinfo-description-ns866": "Berichten die worden gebruikt in [[mw:Special:MyLanguage/Extension:CentralNotice|CentralNotice]]-banners en hun vertalingen",
-	"namespaceinfo-description-ns867": "Overlegpagina’s voor CentralNotice-bannerberichten"
+	"namespaceinfo-description-ns867": "Overlegpagina’s voor CentralNotice-bannerberichten",
+	"centralnotice-blackout": "Periode waarin campagne niet wordt weergegeven (lokale tijd)",
+	"centralnotice-blackout-help": "Uren waarin geen banners van deze campagne worden weergegeven. De begintijd kan na de eindtijd liggen, wat betekent dat de periode tot na middernacht duurt.",
+	"centralnotice-blackout-start-time": "Begin van niet weergeven",
+	"centralnotice-blackout-time-help": "Gebruik het 24-uurs HH:MM-formaat, bijvoorbeeld 18:30.",
+	"centralnotice-blackout-end-time": "Einde van niet weergeven"
 }
