@@ -252,7 +252,7 @@
 	"centralnotice-delete-banner-title": "{{PLURAL:$1|배너}}를 삭제합니까?",
 	"centralnotice-delete-banner-confirm": "경고: 배너 삭제는 모든 설정과 메시지를 지우게 됩니다. 이 작업은 되돌릴 수 없습니다. 대신 보존하는 것을 고려해보십시오.",
 	"centralnotice-delete-banner-cancel": "취소",
-	"centralnotice-messages-pending-approval": "승인 보류중인 메시지가 현재 언어",
+	"centralnotice-messages-pending-approval": "승인 대기 중인 메시지가 있는 언어",
 	"centralnotice-devices": "표시할 장치",
 	"centralnotice-start-timestamp": "시작 (UTC)",
 	"centralnotice-end-timestamp": "끝 (UTC)",
