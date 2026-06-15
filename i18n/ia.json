@@ -269,6 +269,8 @@
 	"centralnotice-impression-diet-identifier-help": "Un identificator pro le datos persistente immagazinate in cliente per iste function (como le numero de impressiones). Iste campo es facultative pro le major parte del campanias. Si tu lo lassa vacue, le campanias in le mesme categoria habera un numero commun de impressiones, o, si iste campania non usa le function de categorias, le numero essera specific a iste campania. Pro usar iste datos in commun in plure categorias de campania, specifica le mesme identificator pro cata campania. Nota: certe categorias de campania soleva esser configurate pro usar cookies pro iste function. Pro le campanias in ille categorias, iste identificator esseva le nomine del cookie; tal cookies historic essera migrate. Remarca etiam que si le identificator es cambiate durante un campania, tote le numeros essera reinitialisate a zero.",
 	"centralnotice-impression-diet-maximum-seen": "Maximo de impressiones que cata individuo videra",
 	"centralnotice-impression-diet-maximum-seen-help": "Si le cyclo es configurate pro reinitiar, isto limita le numero de impressiones vidite per cyclo e non le numero total de impressiones vidite.",
+	"centralnotice-impression-diet-daily-limit": "Limite quotidian de impressiones",
+	"centralnotice-impression-diet-daily-limit-help": "Le valor predefinite es 0, que significa necun limite. Le limite quotidian opera in un cyclo e usque a su maximo, per pausar le impressiones e reprender los quando le proxime die comencia (04:00 del fuso horari local). Isto non ha effecto si le limite quotidian excede le maximo.",
 	"centralnotice-impression-diet-restart-cycle-delay": "Quante tempore attender ante de reinitiar le cyclo, in secundas (facultative)",
 	"centralnotice-impression-diet-restart-cycle-delay-help": "Predefinite como 0, lo que significa que le lectores videra un sol cyclo, e postea nos cessa de monstrar bandieras.",
 	"centralnotice-impression-diet-skip-initial": "Numero de impressiones initial a saltar (facultative)",
@@ -332,5 +334,10 @@
 	"centralnotice-campaign-type-special": "Special",
 	"centralnotice-user-prefs-intro": "Bandieras presenta annuncios de interesse pro le communitates e usatores de Wikimedia.\n\nEcce le optiones pro seliger le typos de annuncios que tu vole vider. Certe avisos de platteforma essera sempre monstrate, como illos relative al mantenentia del sito e avisos special que se considera necessari pro tote le usatores. Pro plus information, lege le [[metawikimedia:Special:MyLanguage/CentralNotice|documentation sur Meta-Wiki]].",
 	"namespaceinfo-description-ns866": "Messages usate in bandieras de [[mw:Special:MyLanguage/Extension:CentralNotice|Avisos Central]] e lor traductiones",
-	"namespaceinfo-description-ns867": "Paginas de discussion pro messages de bandiera de Avisos Central"
+	"namespaceinfo-description-ns867": "Paginas de discussion pro messages de bandiera de Avisos Central",
+	"centralnotice-blackout": "Horas de silentio del campania (in hora local)",
+	"centralnotice-blackout-help": "Horas durante le quales necun bandiera de iste campania essera monstrate. Le hora de initio pote esser posterior al hora de fin, indicante que le periodo de silentio passa le medienocte local.",
+	"centralnotice-blackout-start-time": "Initio del periodo de silentio",
+	"centralnotice-blackout-time-help": "Per favor usa le formato HH:MM a 24 horas, p.ex. 18:30.",
+	"centralnotice-blackout-end-time": "Fin del periodo de silentio"
 }

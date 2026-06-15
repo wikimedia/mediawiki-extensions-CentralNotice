@@ -337,5 +337,10 @@
 	"centralnotice-campaign-type-special": "Special",
 	"centralnotice-user-prefs-intro": "Banners display announcements of interest to Wikimedia communities and users.\n\nBelow are options that allow you to manage which types of announcements you see. Certain platform notices, such as those relating to site maintenance and special notices considered necessary to all users, will always be displayed. For further information, please read the [[metawikimedia:Special:MyLanguage/CentralNotice|documentation on Meta-Wiki]].",
 	"namespaceinfo-description-ns866": "Messages used in [[mw:Special:MyLanguage/Extension:CentralNotice|CentralNotice]] banners and their translations",
-	"namespaceinfo-description-ns867": "Talk pages for CentralNotice banner messages"
+	"namespaceinfo-description-ns867": "Talk pages for CentralNotice banner messages",
+	"centralnotice-blackout": "Campaign blackout hours (in local time)",
+	"centralnotice-blackout-help": "Hours during which no banners from this campaign will be shown. Start time may be after end time, indicating that the blackout period crosses local midnight.",
+	"centralnotice-blackout-start-time": "Start of blackout time",
+	"centralnotice-blackout-time-help": "Please use 24 hr HH:MM format, e.g. 18:30.",
+	"centralnotice-blackout-end-time": "End of blackout time"
 }

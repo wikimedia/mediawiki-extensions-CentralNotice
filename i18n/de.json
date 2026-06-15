@@ -283,6 +283,8 @@
 	"centralnotice-impression-diet-identifier-help": "Ein Identifikator für permanente clientseitige Daten, die von dieser Funktion gespeichert werden (wie Zugriffszähler). Dieses Feld ist für die meisten Kampagnen optional. Falls du es leer lässt, teilen sich Kampagnen der gleichen Kategorie die Zugriffszähler oder falls diese Kampagne die Kategorienfunktion nicht verwendet, sind Zähler spezifisch für diese Kampagne. Um diese Daten mit mehreren Kampagnenkategorien zu teilen, gib für jede Kampagne den gleichen Identifikator an. Hinweis: Bestimmte verwendete Kampagnenkategorien sind so konfiguriert, dass sie für diese Funktion Cookies verwenden. Für Kampagnen in diesen Kategorien war der Identifikator der Cookiename; solche veralteten Cookies werden migriert. Bedenke auch, dass alle Zähler auf das Datum verloren gehen, falls der Identifikator während der Kampagne geändert wird.",
 	"centralnotice-impression-diet-maximum-seen": "Maximale Eindrücke, die jeder Einzelne sehen kann",
 	"centralnotice-impression-diet-maximum-seen-help": "Falls der Kreis zum Neustarten konfiguriert ist, begrenzt dies die Anzahl der Eindrücke, die pro Kreis eher gesehen werden als die Gesamtzahl der gesehenen Eindrücke.",
+	"centralnotice-impression-diet-daily-limit": "Tägliches Limit für Einblendungen",
+	"centralnotice-impression-diet-daily-limit-help": "Der Standardwert ist 0, was bedeutet, dass kein Tageslimit festgelegt ist. Das Tageslimit wird innerhalb eines Zyklus und bis zu seinem Höchstwert angewendet, indem die Anzeigenauslieferung unterbrochen und nach Beginn des nächsten Tages (04:00 Uhr Ortszeit) wieder aufgenommen wird. Dies hat keine Auswirkungen, wenn das Tageslimit über dem Höchstwert liegt.",
 	"centralnotice-impression-diet-restart-cycle-delay": "Wie lang vor dem Neustart des Kreises gewartet werden soll, in Sekunden (optional)",
 	"centralnotice-impression-diet-restart-cycle-delay-help": "Standard auf 0, was bedeutet, dass Leser einen einzelnen Kreis entdecken, und wir dann das Anzeigen von Vorlagen beenden.",
 	"centralnotice-impression-diet-skip-initial": "Anzahl der ersten zu überspringenden Eindrücke (optional)",
@@ -346,5 +348,10 @@
 	"centralnotice-campaign-type-special": "Spezial",
 	"centralnotice-user-prefs-intro": "Banner zeigen Ankündigungen an, die für die Wikimedia-Gemeinschaften und -Benutzer von Interesse sind.\n\nIm Folgenden findest du Optionen zur Verwaltung der dir angezeigten Arten von Ankündigungen. Bestimmte Plattform-Hinweise, wie z. B. solche, die sich auf die Wartung der Seite beziehen, und spezielle Hinweise, die für alle Benutzer als notwendig erachtet werden, werden immer angezeigt. Für weitere Informationen lies bitte die [[metawikimedia:Special:MyLanguage/CentralNotice|Dokumentation im Meta-Wiki]].",
 	"namespaceinfo-description-ns866": "In [[mw:Special:MyLanguage/Extension:CentralNotice|CentralNotice]]-Bannern verwendete Nachrichten und deren Übersetzungen",
-	"namespaceinfo-description-ns867": "Diskussionsseiten für CentralNotice-Bannernachrichten"
+	"namespaceinfo-description-ns867": "Diskussionsseiten für CentralNotice-Bannernachrichten",
+	"centralnotice-blackout": "Sperrzeiten für die Kampagne (in Ortszeit)",
+	"centralnotice-blackout-help": "Zeitspanne, in der keine Banner dieser Kampagne angezeigt werden. Die Startzeit kann nach der Endzeit liegen, was bedeutet, dass der Sperrzeitraum die lokale Mitternacht überschreitet.",
+	"centralnotice-blackout-start-time": "Beginn der Sperrzeit",
+	"centralnotice-blackout-time-help": "Bitte verwende das 24-Stunden-Format (HH:MM), z. B. 18:30.",
+	"centralnotice-blackout-end-time": "Ende der Sperrzeit"
 }

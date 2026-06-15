@@ -367,5 +367,10 @@
 	"centralnotice-campaign-type-special": "Name of campaign type for campaigns of a special category, which cannot be hidden by preferences. Used in user preferences '''on client wikis''' and CentralNotice campaign configuration. Included as a default type in $wgCentralNoticeCampaignTypes.",
 	"centralnotice-user-prefs-intro": "Explanatory introduction for section in user preferences '''on client wikis''' where users can select which banner types to display.",
 	"namespaceinfo-description-ns866": "Description for the CNBanner namespace",
-	"namespaceinfo-description-ns867": "Description for the CNBanner talk namespace"
+	"namespaceinfo-description-ns867": "Description for the CNBanner talk namespace",
+	"centralnotice-blackout": "Label for CentralNotice local blackout times mixin. Blackout refers to a period of time when something should be turned off.",
+	"centralnotice-blackout-help": "Help message for CentralNotice local blackout times mixin",
+	"centralnotice-blackout-start-time": "Label for start time field for CentralNotice blackout times mixin",
+	"centralnotice-blackout-time-help": "Help text for time fields for CentralNotice blackout times mixin. HH:MM indicates that the format should use two digits for the hour and two digits for the minute, separated by a ':' character.",
+	"centralnotice-blackout-end-time": "Label for end time field for CentralNotice blackout times mixin"
 }
