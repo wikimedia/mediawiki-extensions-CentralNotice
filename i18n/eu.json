@@ -10,7 +10,8 @@
 			"Subi",
 			"Theklan",
 			"Unai Fdz. de Betoño",
-			"පසිඳු කාවින්ද"
+			"පසිඳු කාවින්ද",
+			"Xabier Armendaritz"
 		]
 	},
 	"centralnotice": "Ohar zentralizatuen administrazioa",
@@ -35,7 +36,7 @@
 	"centralnotice-show-notices": "Oharrak erakutsi",
 	"centralnotice-list-templates": "Txantiloiak zerrendatu",
 	"centralnotice-translations": "Itzulpenak",
-	"centralnotice-translate-to": "Hona itzuli",
+	"centralnotice-translate-to": "Itzuli hizkuntza honetara:",
 	"centralnotice-translate": "Itzuli",
 	"centralnotice-english": "Ingelesa",
 	"centralnotice-banner-name": "Banner izena:",
