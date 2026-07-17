@@ -141,7 +141,7 @@
 				countriesListString = countries.join( ', ' );
 			}
 
-			$geoStatus.html(
+			$geoStatus.text(
 				mw.msg(
 					'centralnotice-geo-status',
 					countriesListString,
