@@ -24,7 +24,8 @@
 			"Sp5uhe",
 			"Vengir",
 			"WTM",
-			"Woytecr"
+			"Woytecr",
+			"PanWor"
 		]
 	},
 	"centralnotice": "Zarządzanie wspólnymi komunikatami",
@@ -121,7 +122,7 @@
 	"centralnotice-update-preview": "Odśwież podgląd",
 	"centralnotice-preview-page": "[ Zobacz na wiki ]",
 	"centralnotice-preview-loader-error-dialog-title": "Podczas ładowania podglądu bannera wystąpił błąd",
-	"centralnotice-preview-loader-permissions-error": "Nie posiadasz uprawnień do podglądu bannerów, lub twój token edycyjny wygasł. Spróbuj zalogować się ponownie, lub odśwież stronę.",
+	"centralnotice-preview-loader-permissions-error": "Nie posiadasz uprawnień do podglądu bannerów lub Twój token edycyjny wygasł. Spróbuj zalogować się ponownie lub odśwież stronę.",
 	"centralnotice-clone": "Kopia",
 	"centralnotice-clone-notice": "Utwórz kopię szablonu",
 	"centralnotice-clone-name": "Nazwa",
