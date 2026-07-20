@@ -12,5 +12,9 @@
 	"apihelp-centralnoticeallocations-param-device": "د هغه سولگر نوم چې چاڼ پرې کېږي.",
 	"apihelp-centralnoticecdncacheupdatebanner-param-language": "د خبرتوغ د منځپانگې ژبه چې بايد سپا شي",
 	"apihelp-centralnoticecdncacheupdatebanner-param-banner": "د هغه خبرتوغ نوم چې منځپانگه يې بايد سپا شي",
-	"apihelp-query+centralnoticelogs-param-user": "کارن‌نوم (اختياري)."
+	"apihelp-query+centralnoticelogs-param-user": "کارن‌نوم (اختياري).",
+	"apihelp-query+centralnoticelogs-example-1": "يادښتونه ښودل",
+	"apihelp-query+centralnoticeactivecampaigns-summary": "د پيل او پای نېټو او اړوند خبرتوغونو سره د اوسني کارنده ټاکنيزو سياليو لړليک ترلاسه کړئ.",
+	"apihelp-query+centralnoticeactivecampaigns-param-includefuture": "راتلونکې چارن شوې ټاکنيزې‌سيالۍ پکې راونغاړئ (همدارنگه اوسنۍ کارنده ټاکنيزې‌سيالۍ)",
+	"apihelp-query+centralnoticeactivecampaigns-example-1": "د پيل او پای نېټو او اړوند خبرتوغونو سره د اوسني کارنده ټاکنيزو سياليو لړليک ترلاسه کړئ."
 }
