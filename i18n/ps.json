@@ -93,6 +93,8 @@
 	"centralnotice-number-uses": "کاروي",
 	"centralnotice-settings": "اوڼنې",
 	"centralnotice-edit-template": "خبرتوغ سمول",
+	"centralnotice-edit-template-summary": "گواښنه: خبرتوغ کې د باندنيو سرچينوبارول کولی شي چې د کارن پټنتيا له گواښ سره مخامخ کي.\n\nد ځايي‌کولو وړ پيغام جوړولو لپاره، يوه لړۍ په درېوو لينده‌کيو کې ځای‌پرځای کړئ، د بېلې په توگه <nowiki>{{{پيغام_نوم}}}</nowiki>. د بل خبرتوغ څخه د ځايي‌کولو وړ پيغام رانغاړلو لپاره لومړی د خبرتوغ نور، ورپسې کامه، بيا د پيغام نوم وليکئ، د بېلگې په توگه <nowiki>{{{خبرتوغ_نوم,پيغام_نوم}}}</nowiki>.",
+	"centralnotice-edit-template-magicwords": "د ترکيبي خبروتوغ له ‌خوا چمتو شوي کوډگر ويي: $1",
 	"centralnotice-message": "پيغام",
 	"centralnotice-message-not-set": "پيغام نه دی اوڼل شوی",
 	"centralnotice-campaigns-using-banner": "ټاکنيزې‌سيالۍ دا خبرتوغ کاروي",
