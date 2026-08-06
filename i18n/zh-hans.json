@@ -316,7 +316,7 @@
 	"centralnotice-set-record-impression-sample-rate": "为Special:RecordImpression设置抽样率",
 	"centralnotice-custom-record-impression-sample-rate": "Special:RecordImpression抽样率（应介于0和1之间，包括0和1）",
 	"centralnotice-banners-not-guaranteed-to-display": "横幅可能不显示，这由横幅中的Javascript决定",
-	"centralnotice-impression-diet": "影响节制",
+	"centralnotice-impression-diet": "印象节制",
 	"centralnotice-impression-diet-help": "限制可由任何一个人看到的横幅数量。",
 	"centralnotice-impression-diet-identifier": "客户端存储的标识符",
 	"centralnotice-impression-diet-identifier-help": "用于固定客户端数据的，存储在此功能的标识符（例如印象计数）。此字段对于大多数通告可选。如果您将其留空，相同分类中的通告将分享印象计数，或如果此通告不使用分类功能，计数将特指此通告。要跨越多个通告分类分享此数据，请为每个通告指定同一标识符。注意：特定通告分类过去曾被配置为使用此功能的cookie。对于这些分类中的通告，这个标识符曾是cookie名称；这种遗留cookie将被迁移。另请注意，如果标识符在通告期间更改，迄今为止的所有计数将会丢失。",
