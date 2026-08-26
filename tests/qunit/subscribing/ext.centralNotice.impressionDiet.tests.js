@@ -55,7 +55,7 @@
 				{ hide: 'waitdate' }
 			]
 		},
-		'maximumSeen with restartCycleDelay and skipInitial': {
+		'maximumSeen with restartCycleDelay and skipInitial over a day': {
 			mixinParams: {
 				maximumSeen: 3,
 				skipInitial: 1,
@@ -137,6 +137,75 @@
 				{ tick: CLOCK_DAY, hide: 'waitimps' },
 				// 08:15
 				{ tick: CLOCK_HOUR, hide: undefined }
+			]
+		},
+		'maximumSeen with restartCycleDelay and skipInitial over a week': {
+			mixinParams: {
+				maximumSeen: 10,
+				skipInitial: 1,
+				restartCycleDelay: 7 * 24 * 3600
+			},
+			sequence: [
+				// Monday (4 views)
+				{ hide: 'waitimps' },
+				{ tick: CLOCK_HOUR, hide: undefined },
+				{ tick: CLOCK_HOUR, hide: undefined },
+				{ tick: CLOCK_HOUR, hide: undefined },
+				// Tuesday (6 views)
+				{ tick: CLOCK_DAY, hide: undefined },
+				{ tick: CLOCK_HOUR, hide: undefined },
+				{ tick: CLOCK_HOUR, hide: undefined },
+				{ tick: CLOCK_HOUR, hide: undefined },
+				{ tick: CLOCK_HOUR, hide: undefined },
+				{ tick: CLOCK_HOUR, hide: undefined },
+				// Wednesday (3 views)
+				{ tick: CLOCK_DAY, hide: undefined },
+				{ tick: CLOCK_HOUR, hide: 'waitdate' },
+				{ tick: CLOCK_HOUR, hide: 'waitdate' },
+				// Thursday (4 views)
+				{ tick: CLOCK_DAY, hide: 'waitdate' },
+				{ tick: CLOCK_HOUR, hide: 'waitdate' },
+				{ tick: CLOCK_HOUR, hide: 'waitdate' },
+				{ tick: CLOCK_HOUR, hide: 'waitdate' },
+				// Friday (1 view)
+				{ tick: CLOCK_DAY, hide: 'waitdate' },
+				{ tick: CLOCK_DAY, hide: 'waitdate' },
+				{ tick: CLOCK_DAY, hide: 'waitdate' }
+			]
+		},
+		'dailyLimit with restartCycleDelay over a week': {
+			mixinParams: {
+				maximumSeen: 10,
+				skipInitial: 1,
+				dailyLimit: 2,
+				restartCycleDelay: 7 * 24 * 3600
+			},
+			sequence: [
+				// Monday (4 views)
+				{ hide: 'waitimps' },
+				{ tick: CLOCK_HOUR, hide: undefined },
+				{ tick: CLOCK_HOUR, hide: undefined },
+				{ tick: CLOCK_HOUR, hide: 'waitdaily' },
+				// Tuesday (6 views)
+				{ tick: CLOCK_DAY, hide: undefined },
+				{ tick: CLOCK_HOUR, hide: undefined },
+				{ tick: CLOCK_HOUR, hide: 'waitdaily' },
+				{ tick: CLOCK_HOUR, hide: 'waitdaily' },
+				{ tick: CLOCK_HOUR, hide: 'waitdaily' },
+				{ tick: CLOCK_HOUR, hide: 'waitdaily' },
+				// Wednesday (3 views)
+				{ tick: CLOCK_DAY, hide: undefined },
+				{ tick: CLOCK_HOUR, hide: undefined },
+				{ tick: CLOCK_HOUR, hide: 'waitdaily' },
+				// Thursday (4 views)
+				{ tick: CLOCK_DAY, hide: undefined },
+				{ tick: CLOCK_HOUR, hide: undefined },
+				{ tick: CLOCK_HOUR, hide: 'waitdaily' },
+				{ tick: CLOCK_HOUR, hide: 'waitdaily' },
+				// Friday (1 view)
+				{ tick: CLOCK_DAY, hide: undefined },
+				{ tick: CLOCK_DAY, hide: undefined },
+				{ tick: CLOCK_DAY, hide: 'waitdate' }
 			]
 		}
 	}, function ( assert, { mixinParams, sequence } ) {
