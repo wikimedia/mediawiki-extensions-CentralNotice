@@ -12,7 +12,8 @@
 			"Paloi Sciurala",
 			"Stelistcristi",
 			"Strainu",
-			"XXN"
+			"XXN",
+			"Vellion Eagle"
 		]
 	},
 	"centralnotice": "Administrarea anunțului central",
@@ -29,7 +30,7 @@
 	"centralnotice-modify": "Trimite",
 	"centralnotice-view": "Vizualizare",
 	"centralnotice-save-banner": "Salvare",
-	"centralnotice-live-preview": "Previzualizați versiunea salvată ultima",
+	"centralnotice-live-preview": "Previzualizați ultima versiune salvată",
 	"centralnotice-add-new": "Adaugă un anunț central nou",
 	"centralnotice-remove": "Șterge",
 	"centralnotice-manage": "Gestionare anunț central",
