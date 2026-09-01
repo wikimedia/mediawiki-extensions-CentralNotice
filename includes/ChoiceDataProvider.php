@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
@@ -46,16 +45,9 @@ class ChoiceDataProvider {
 		$choices = $cache->getWithSetCallback(
 			$dataKey,
 			self::CACHE_TTL,
-			function ( $oldValue, &$ttl, array &$setOpts )
+			function ()
 				use ( $project, $language ) {
-				// TODO: Should this instead be a primary query, given the concern about replag?
 				$dbr = CNDatabase::getReplicaDb();
-
-				// Account for replica lag to prevent a race condition when
-				// campaigns are updated, the cache is invalidated, and
-				// a client queries a yet-unsynced replica DB.
-				$setOpts += Database::getCacheSetOptions( $dbr );
-
 				return self::fetchChoices( $project, $language, $dbr );
 			},
 			[

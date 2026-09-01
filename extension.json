@@ -129,6 +129,12 @@
 			"remoteExtPath": "CentralNotice/resources/ext.centralNotice.startUp",
 			"packageFiles": [
 				"index.js",
+				{
+					"name": "config.json",
+					"config": [
+						"CentralNoticeProhibitedExperiments"
+					]
+				},
 				"kvStoreMaintenance.js"
 			],
 			"dependencies": [
@@ -569,6 +575,9 @@
 		},
 		"CentralNoticeContentSecurityPolicy": {
 			"value": false
+		},
+		"CentralNoticeProhibitedExperiments": {
+			"value": []
 		},
 		"CentralNoticeMaxCampaignFallback": {
 			"value": 5

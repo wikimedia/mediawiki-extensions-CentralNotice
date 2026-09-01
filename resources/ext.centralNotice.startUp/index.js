@@ -13,8 +13,26 @@
  * ext.centralNotice.choiceData. If there are campaigns in choiceData,
  * that module will depend on any other modules needed for further processing.
  */
-( function () {
 
+const config = require( './config.json' );
+/**
+ * @return {string[]} the names of experiments that are currently active.
+ */
+const getUserExperimentAssignments = async () => {
+	// Note that mw.loader.using call should not result in a round trip
+	// provided wgTestKitchenEnableExperiments is enabled on the project
+	// (which is true for all Wikimedia projects). The call here guarantees load
+	// order - that the library has been loaded without adding a hard dependency on
+	// TestKitchen in CentralNotice.
+	const assignments = await mw.loader.using( 'ext.testKitchen' ).then(
+		() => mw.testKitchen.getAssignments(),
+		// If test kitchen not found, return []
+		() => []
+	).then( ( a ) => Object.keys( a ) );
+	return assignments;
+};
+
+function main() {
 	const cn = mw.centralNotice,
 		testingBannerName = mw.util.getParamValue( 'banner' ),
 		kvStoreMaintenance = require( './kvStoreMaintenance.js' ),
@@ -81,5 +99,26 @@
 	}
 
 	cn.chooseAndMaybeDisplay();
+}
 
+( async function () {
+	const assignments = await getUserExperimentAssignments();
+	const prohibited = new Set( config.CentralNoticeProhibitedExperiments );
+
+	// If an experiment where banners are prohibited is running is active
+	// exit without displaying a banner.
+	// A hook is fired to allow that experiment to log dropped events and also
+	// continue after HTML modifications.
+	// This hook is only stable for experiments to use, and should not be used
+	// by gadgets.
+	// Note: `some` is used instead of `intersection` as we currently need to support
+	// browsers in an ES2019 target.
+	const inProhibitedExperiment = assignments.some(
+		( assignment ) => prohibited.has( assignment )
+	);
+	if ( inProhibitedExperiment ) {
+		mw.hook( 'centralnotice.startup' ).fire( main );
+	} else {
+		main();
+	}
 }() );
