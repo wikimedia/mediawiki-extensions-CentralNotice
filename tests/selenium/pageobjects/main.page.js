@@ -1,5 +1,4 @@
-'use strict';
-const Page = require( 'wdio-mediawiki/Page' );
+import Page from 'wdio-mediawiki/Page.js';
 
 class MainPage extends Page {
 	get banner() {
@@ -11,4 +10,4 @@ class MainPage extends Page {
 	}
 }
 
-module.exports = new MainPage();
+export default new MainPage();

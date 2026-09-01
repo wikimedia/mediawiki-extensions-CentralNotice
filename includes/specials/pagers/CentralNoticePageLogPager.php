@@ -129,7 +129,7 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 		);
 
 		// Create title object
-		$title = Title::newFromText( "MediaWiki:{$row->rc_title}" );
+		$title = Title::makeTitle( $row->rc_namespace, $row->rc_title );
 
 		if ( $this->logType == 'bannercontent' ) {
 			// If the banner was just created, show a link to the banner. If the banner was

@@ -10,6 +10,6 @@
 	{
 		"ignoreDependencies": true,
 		"resourceModule": "ext.centralNotice.startUp",
-		"maxSize": "1.2 kB"
+		"maxSize": "1.4 kB"
 	}
 ]

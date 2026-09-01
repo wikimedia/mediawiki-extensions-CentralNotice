@@ -1,0 +1,42 @@
+{
+	"@metadata": {
+		"authors": [
+			"AhmedG612"
+		]
+	},
+	"apierror-centralnotice-cdn-permissions-error": "Isticmaaluhu ma haysto oggolaansho uu ku nadiifiyo nuxurka boorrada dhinaca hore.",
+	"apierror-centralnotice-cdn-lang-code-error": "Koodhka luuqadda ayaa khaldan.",
+	"apierror-centralnotice-cdn-banner-name-error": "Magaca boorka ayaa khaldan.",
+	"apierror-centralnotice-cdn-banner-not-found": "Boorka lama helin",
+	"apihelp-centralnoticeallocations-summary": "Hel qoondaynta boorrada ay adeegto Ogeysiiska Dhexe ee dhammaan noocyada isticmaalayaasha ku hoos jira shaandhada cabbirrada.",
+	"apihelp-centralnoticeallocations-extended-description": "Tani waa wicitaan JSON oo keliya ah.",
+	"apihelp-centralnoticeallocations-param-project": "Mashruuca lagu helayo qoondaymaha hoostiisa.",
+	"apihelp-centralnoticeallocations-param-country": "Dalka lagu sifeynayo.",
+	"apihelp-centralnoticeallocations-param-language": "Luuqadda lagu sifeynayo.",
+	"apihelp-centralnoticeallocations-param-anonymous": "Xaaladda gelitaanka isticmaalaha ee lagu sifeynayo (run|been).",
+	"apihelp-centralnoticeallocations-param-device": "Magaca qalabka lagu sifeynayo.",
+	"apihelp-centralnoticeallocations-param-bucket": "Baaliga lagu sifeynayo, iyadoo lagu salaynayo lambarka (0 .. $1, ikhtiyaari).",
+	"apihelp-centralnoticeallocations-example-1": "Muuji qaar ka mid ah qoondaymaha",
+	"apihelp-centralnoticecdncacheupdatebanner-summary": "Codso nadiifinta nuxurka boorka ee ku kaydsan kaydka CDN (dhinaca hore) ee isticmaalayaasha aan la aqoonsan, iyadoo loo eegayo boorka iyo luuqadda la codsaday.",
+	"apihelp-centralnoticecdncacheupdatebanner-param-language": "Luuqadda nuxurka boorka ee la nadiifinayo",
+	"apihelp-centralnoticecdncacheupdatebanner-param-banner": "Magaca boorka nuxurkiisa la nadiifinayo",
+	"apihelp-centralnoticecdncacheupdatebanner-example-1": "Nadiifi nuxurka 'Banner1' ee ku jira kaydka CDN, luuqadda Ingiriisiga",
+	"apihelp-centralnoticequerycampaign-summary": "Hel dhammaan dejimaha habaynta ee olole.",
+	"apihelp-centralnoticequerycampaign-param-campaign": "Magaca ololaha. Kala saar qiimayaal badan adigoo isticmaalaya \"|\" (xariiqda toosan).",
+	"apihelp-centralnoticequerycampaign-example-1": "Muuji ololaha \"Plea_US\"",
+	"apihelp-centralnoticechoicedata-summary": "Hel xogta loo baahan yahay si loo doorto boor mashruuc iyo luuqad gaar ah.",
+	"apihelp-centralnoticechoicedata-param-project": "Mashruuca loo helayo xogta doorashada boorka.",
+	"apihelp-centralnoticechoicedata-param-language": "Luuqadda loo helayo xogta doorashada boorka.",
+	"apihelp-centralnoticechoicedata-example-1": "Hel xogta lagu dooranayo boorka loogu talagalay isticmaalayaasha Wikipedia Ingiriisiga.",
+	"apihelp-query+centralnoticelogs-summary": "Hel diiwaanka isbeddellada habaynta ololaha.",
+	"apihelp-query+centralnoticelogs-param-campaign": "Magaca ololaha (ikhtiyaari). Kala saar qiimayaal badan adigoo isticmaalaya \"|\" (xariiqda toosan).",
+	"apihelp-query+centralnoticelogs-param-user": "Magaca isticmaalaha (ikhtiyaar).",
+	"apihelp-query+centralnoticelogs-param-limit": "Tirada ugu badan ee safafka la soo celinayo (ikhtiyaari).",
+	"apihelp-query+centralnoticelogs-param-offset": "Meesha laga bilaabayo natiijooyinka (ikhtiyaari).",
+	"apihelp-query+centralnoticelogs-param-start": "Waqtiga bilowga xadka (ikhtiyaari).",
+	"apihelp-query+centralnoticelogs-param-end": "Waqtiga dhammaadka xadka (ikhtiyaari).",
+	"apihelp-query+centralnoticelogs-example-1": "Muuji diiwaanada",
+	"apihelp-query+centralnoticeactivecampaigns-summary": "Hel liiska ololayaasha hadda firfircoon oo wata taariikhaha bilowga iyo dhammaadka iyo boorrada la xiriira.",
+	"apihelp-query+centralnoticeactivecampaigns-param-includefuture": "Ku dar ololayaasha mustaqbalka ee la hawlgeliyey (sidoo kale ololayaasha hadda firfircoon).",
+	"apihelp-query+centralnoticeactivecampaigns-example-1": "Hel liiska ololayaasha hadda firfircoon oo wata taariikhaha bilowga iyo dhammaadka iyo boorrada la xiriira."
+}
