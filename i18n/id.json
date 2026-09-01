@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Aldnonymous",
+			"Bayahiu",
 			"Bennylin",
 			"C5st4wr6ch",
 			"Daud I.F. Argana",
@@ -289,5 +290,5 @@
 	"centralnotice-campaign-type-maintenance": "Pemeliharaan",
 	"centralnotice-campaign-type-photography": "Fotografi",
 	"centralnotice-campaign-type-special": "Khusus",
-	"centralnotice-user-prefs-intro": "Spanduk menampilkan pengumuman yang menarik bagi komunitas dan pengguna Wikimedia.\n\nDi bawah ini adalah opsi yang memungkinkan Anda mengelola jenis pengumuman yang Anda lihat. Pemberitahuan platform tertentu, seperti yang berkaitan dengan pemeliharaan situs dan pemberitahuan khusus yang dianggap perlu untuk semua pengguna, akan selalu ditampilkan. Untuk informasi lebih lanjut, silakan baca [[metawikimedia:Special:MyLanguage/CentralNotice|dokumentasi di Meta-Wiki]]."
+	"centralnotice-user-prefs-intro": "Spanduk menampilkan pengumuman yang menarik bagi komunitas dan pengguna Wikimedia.\n\nBerikut opsi yang memungkinkan Anda mengelola jenis pengumuman yang Anda lihat. Pemberitahuan platform tertentu, seperti yang berkaitan dengan pemeliharaan situs dan pemberitahuan khusus yang dianggap perlu untuk semua pengguna, akan selalu ditampilkan. Untuk informasi lebih lanjut, silakan baca [[metawikimedia:Special:MyLanguage/CentralNotice|dokumentasinya di Meta-Wiki]]."
 }
