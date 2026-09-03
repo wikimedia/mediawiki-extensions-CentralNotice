@@ -216,7 +216,7 @@
 	"centralnotice-devicetype-unknown": "Мобилан аппараташ iPhone, iPad йа Android йоцчу платформаш тӀехь — ([https://gerrit.wikimedia.org/g/mediawiki/extensions/CentralNotice/+/master/resources/ext.centralNotice.display/state.js#119 билгалдаккхаран логика])",
 	"centralnotice-all": "Йерриге",
 	"centralnotice-generic-error": "Хьан йац дехар дина гӀуллакх кхочушдан оьшуш йолу бакъонаш йа ша гӀуллакх нийса ца хилла.",
-	"centralnotice-banner-name-error": "Баннеран цӀе нийса йац. Нийсачу цӀерашкахь элпийн терахьийн хьаьркаш а, буха сизаш а бен ца хуьлу.",
+	"centralnotice-banner-name-error": "Баннеран цӀе нийса йац. Нийсачу цӀерашкахь элпийн терахьийн символаш а, буха сизаш а бен ца хуьлу.",
 	"centralnotice-all-except": "Йерриге, $1 йиссалц",
 	"centralnotice-excluding-list": "$1 ($2 йоцуш)",
 	"centralnotice-user-role": "Декъашхочун роль",
