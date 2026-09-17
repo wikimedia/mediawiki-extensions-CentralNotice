@@ -280,7 +280,6 @@
 	"centralnotice-banner-not-found-title": "Page title and top header of Special:CentralNoticeBanners when the requested banner does not exist",
 	"centralnotice-banner-not-found-contents": "Used as the body content of SpecialCentral:NoticeBanners when the requested banner does not exist",
 	"centralnotice-csp-violation-alert": "Alert displayed when a content security policy violation is detected in a banner preview. <code>$1</code> is the URL of the violating request.",
-	"hidebanners": "{{doc-special|HideBanners/P3P|unlisted=1}}",
 	"centralnotice-banner-history-logger": "Name of the banner history logger campaign mixin, for adminsitration UI control",
 	"centralnotice-banner-history-logger-help": "Description of the banner history feature",
 	"centralnotice-banner-history-logger-rate": "Label for the banner history logger campaign mixin sample rate control in the administration UI",

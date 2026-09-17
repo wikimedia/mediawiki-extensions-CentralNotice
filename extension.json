@@ -359,9 +359,6 @@
 		"NoticeHideUrls": {
 			"value": []
 		},
-		"CentralNoticeHideBannersP3P": {
-			"value": false
-		},
 		"NoticeBannerMaxAge": {
 			"value": 600
 		},
