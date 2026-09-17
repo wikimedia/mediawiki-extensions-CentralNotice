@@ -29,6 +29,9 @@
  * For an overview of how this all fits together, see
  * mw.centralNotice.reallyChooseAndMaybeDisplay() (below).
  */
+
+const config = require( './config.json' );
+
 ( function () {
 	let cn,
 
@@ -50,6 +53,38 @@
 		// Prefix for key used to store banner preview content for external preview.
 		// Coordinate with PREVIEW_STORAGE_KEY_PREFIX in bannereditor.js
 		PREVIEW_STORAGE_KEY_PREFIX = 'cn-banner-preview-';
+
+	/**
+	 * Note that mw.loader.using call should not result in a round trip
+	 * provided wgTestKitchenEnableExperiments is enabled on the project
+	 * (which is true for all Wikimedia projects). The call here guarantees load
+	 * order - that the library has been loaded without adding a hard dependency
+	 * on TestKitchen in CentralNotice.
+	 *
+	 * @param {string[]} experimentNames the names of the experiments to check
+	 * @return {Promise} Resolves to names of experiments in which the
+	 * user is enrolled
+	 */
+	const getUserExperimentAssignments = ( experimentNames ) => {
+		if ( experimentNames.length === 0 ) {
+			return Promise.resolve( [] );
+		}
+		return mw.loader.using( 'ext.testKitchen' )
+			.then( () => Promise.all( experimentNames.map(
+				( name ) => mw.testKitchen.getExperiment( name )
+					.then(
+						( experiment ) => ( experiment.getAssignedGroup() !== null ) ?
+							name :
+							null
+					)
+			) ).then(
+				( enrolledExperiments ) => enrolledExperiments.filter(
+					( result ) => result !== null
+				)
+			),
+			// If test kitchen not found, return an empty list
+			() => [] );
+	};
 
 	// TODO: make data.result options explicit via constants
 
@@ -716,7 +751,10 @@
 		 * Attachment point for other objects in this module that are not meant
 		 * for outside use.
 		 */
-		internal: {},
+		internal: {
+			displayConfig: config,
+			getUserExperimentAssignments: getUserExperimentAssignments
+		},
 
 		/**
 		 * Call this to indicate that banners in a campaign may not always
@@ -860,12 +898,32 @@
 				} );
 		},
 
-		insertBanner: function ( bannerJson ) {
+		insertBanner: async function ( bannerJson ) {
+			// Insert the banner only after the DOM is ready and we know
+			// whether the user is in an experiment prohibiting banners.
+			const state = mw.centralNotice.internal.state,
+				[ enrolledExperiments ] = await Promise.all( [
+					state.getEnrolledExperimentsPromise(),
+					new Promise( ( resolve ) => {
+						if ( document.readyState === 'loading' ) {
+							document.addEventListener( 'DOMContentLoaded', resolve );
+						} else {
+							resolve();
+						}
+					} )
+				] ),
+				inProhibitedExperiment = ( enrolledExperiments.length > 0 );
 
-			// Insert the banner only after the DOM is ready
-			$( () => {
+			// If an experiment where banners are prohibited is running is
+			// active, fail the campaign and log the hide reason.
+			if ( inProhibitedExperiment && !state.urlParams.force ) {
+				cn.failCampaign( 'experiment' );
+				cn.internal.state.setBannerLoadedButHidden( 'experiment' );
+				bannerLoadedDeferredObj.resolve( state.getData() );
+				processAfterBannerFetch();
+			} else {
 				cn.reallyInsertBanner( bannerJson );
-			} );
+			}
 		},
 
 		/**

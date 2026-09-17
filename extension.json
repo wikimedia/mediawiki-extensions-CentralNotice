@@ -129,12 +129,6 @@
 			"remoteExtPath": "CentralNotice/resources/ext.centralNotice.startUp",
 			"packageFiles": [
 				"index.js",
-				{
-					"name": "config.json",
-					"config": [
-						"CentralNoticeProhibitedExperiments"
-					]
-				},
 				"kvStoreMaintenance.js"
 			],
 			"dependencies": [
@@ -163,7 +157,8 @@
 				{
 					"name": "config.json",
 					"config": {
-						"categoriesUsingLegacy": "CentralNoticeCategoriesUsingLegacy"
+						"categoriesUsingLegacy": "CentralNoticeCategoriesUsingLegacy",
+						"prohibitedExperiments": "CentralNoticeProhibitedExperiments"
 					}
 				}
 			],

@@ -70,7 +70,8 @@
 			bannerSequenceEmptyStep: 19,
 			bannerSequenceAllStepsSkipped: 20,
 			userOptOut: 21,
-			waitdaily: 22
+			waitdaily: 22,
+			experiment: 23 // Pageview is in a TestKitchen experiment that can't tolerate banners
 		};
 
 	const campaignAttemptsManager = ( function () {
@@ -210,6 +211,12 @@
 
 		// Contains list of campaigns statuses
 		state.data.campaignStatuses = [];
+
+		state.enrolledExperimentsPromise = mw.centralNotice.internal.getUserExperimentAssignments(
+			mw.centralNotice.internal.displayConfig.prohibitedExperiments.map(
+				( configEntry ) => configEntry.name || configEntry
+			)
+		);
 	}
 
 	function getOptedOutCampaignsForUser() {
@@ -302,6 +309,11 @@
 		attemptedCampaignsByName: {},
 
 		/**
+		 * @private
+		 */
+		enrolledExperimentsPromise: null,
+
+		/**
 		 * Call this with geo data before calling setUp() or
 		 * setUpForTestingBanner().
 		 *
@@ -381,6 +393,15 @@
 			}
 
 			return dataCopy;
+		},
+
+		/**
+		 * Returns a Promise that resolves to an array of experiments in which the user is enrolled
+		 *
+		 * @return {null|Promise}
+		 */
+		getEnrolledExperimentsPromise: function () {
+			return state.enrolledExperimentsPromise;
 		},
 
 		/**
