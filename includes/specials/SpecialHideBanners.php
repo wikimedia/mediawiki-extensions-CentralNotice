@@ -13,9 +13,6 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 	// Cache this blank response for a day or so (60 * 60 * 24 s.)
 	private const CACHE_EXPIRY = 86400;
 
-	// Hard-coded upper limit of 10 years for the user-provided …&duration=… parameter
-	private const MAX_COOKIE_DURATION = 10 * 365 * 86400;
-
 	public function __construct() {
 		parent::__construct( 'HideBanners' );
 	}
@@ -25,19 +22,12 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 		$config = $this->getConfig();
 
 		$reason = $this->getRequest()->getText( 'reason', 'donate' );
+		$noticeCookieDurations = $config->get( 'NoticeCookieDurations' );
 
-		// No duration parameter for a custom reason is not expected; we have a
-		// fallback value, but we log that this happened.
-		$duration = $this->getRequest()->getInt( 'duration' );
-		if ( $duration <= 0 || $duration > self::MAX_COOKIE_DURATION ) {
-			$noticeCookieDurations = $config->get( 'NoticeCookieDurations' );
-			if ( isset( $noticeCookieDurations[$reason] ) ) {
-				$duration = $noticeCookieDurations[$reason];
-			} else {
-				$duration = $config->get( 'CentralNoticeFallbackHideCookieDuration' );
-				wfLogWarning( 'Missing or invalid duration for hide cookie reason "'
-					. $reason . '".' );
-			}
+		if ( isset( $noticeCookieDurations[$reason] ) ) {
+			$duration = $noticeCookieDurations[$reason];
+		} else {
+			$duration = $config->get( 'CentralNoticeFallbackHideCookieDuration' );
 		}
 
 		$category = $this->getRequest()->getText( 'category', 'fundraising' );

@@ -73,11 +73,8 @@ Configuration
   );
 
 * $wgCentralNoticeFallbackHideCookieDuration: Fallback hide cookie duration,
-  for hide reasons without an entry in $wgNoticeCookieDurations, if no duration
-  is specified in the request to Special:HideBanners.
-  Note: This is just to keep things running in an unexpected edge case. It is
-  recommended that this value not be intentionally relied on by banners.
-  Default: 604800
+  for hide reasons without an entry in $wgNoticeCookieDurations.
+  Default: 604800  // One week
 
 * $wgNoticeHideUrls: Locations of Special:HideBanner targets to hit
   when a banner close button is pressed. The hides will then be specific to
