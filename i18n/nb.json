@@ -261,7 +261,6 @@
 	"centralnotice-banner-not-found-contents": "Det er ingen bannere med dette navnet.",
 	"centralnotice-csp-violation-alert": "Brudd på innholdssikkerhetspolitikken oppdaget. Å laste innhold fra kilder utenom wikien kan kompromittere lesernes data. Forhåndsvis bannere uten tilleggsfunksjoner eller eksterne utvidelser. Den blokkerte URL-en er: $1.\n\nPrøvde å laste noe fra $1.",
 	"hidebanners": "Skjul bannere",
-	"centralnotice-specialhidebanners-p3p": "Noen nettlesere krever en P3P kompakt-policy for å sette informasjonskapsler i visse situasjoner. Ingen kompakt-policy er tilgjengelig for øyeblikket. Vennligst se nettstedets menneske-leselige personvernspolicy.",
 	"centralnotice-banner-history-logger": "Bannerhistorikklogger",
 	"centralnotice-banner-history-logger-help": "Spor sekvensen av bannere som ses av lesere, og send den tilbake til tjeneren.",
 	"centralnotice-banner-history-logger-rate": "Testingsrate",

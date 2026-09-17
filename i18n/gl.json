@@ -253,7 +253,6 @@
 	"centralnotice-banner-not-found-contents": "Non existe un cartel con ese nome exacto.",
 	"centralnotice-csp-violation-alert": "Detectouse unha violación das normas de seguridade de contidos. A carga de contidos de fontes externas ao wiki filtra datos do lector. Previsualiza os carteis sen trebellos nin complementos de terceiros. Enderezo URL problemático: $1.",
 	"hidebanners": "Agochar carteis",
-	"centralnotice-specialhidebanners-p3p": "Algúns navegadores requiren unha política P3P compacta para fixar as cookies en certas situacións. Pero actualmente non está dispoñible unha política compacta. Por favor, consulte a política de privacidade lexible do sitio.",
 	"centralnotice-banner-history-logger": "Rexistro do historial dos carteis",
 	"centralnotice-banner-history-logger-help": "Seguir a secuencia dos carteis vistos polos lectores e ocasionalmente devolvelo ao servidor.",
 	"centralnotice-banner-history-logger-rate": "Índice de exemplo",

@@ -263,7 +263,6 @@
 	"centralnotice-banner-not-found-contents": "Es gibt keine Vorlage mit diesem genauen Namen.",
 	"centralnotice-csp-violation-alert": "Verletzung der Content Security Policy entdeckt! Das Laden von Inhalten aus anderen Quellen führt zu Datenlecks bei den Leserdaten. Bitte zeige eine Vorschau von Bannern ohne Helferlein oder Addons von Drittanbietern an. Verletzende URL: $1.",
 	"hidebanners": "Vorlagen ausblenden",
-	"centralnotice-specialhidebanners-p3p": "Einige Browser erfordern eine P3P-kompakte Richtlinie, um Cookies in bestimmten Situationen zu setzen. Es ist jedoch derzeit keine kompakte Richtlinie verfügbar. Bitte lies die menschenlesbare Datenschutzrichtlinie der Website.",
 	"centralnotice-banner-history-logger": "Vorlagenverlaufsprotokollierung",
 	"centralnotice-banner-history-logger-help": "Verfolgt die Sequenz an Vorlagen, die von Lesern gesehen werden, und sendet sie gelegentlich an den Server zurück.",
 	"centralnotice-banner-history-logger-rate": "Samplerate",

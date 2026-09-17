@@ -242,7 +242,6 @@
 	"centralnotice-banner-not-found-title": "Banner nenalezen",
 	"centralnotice-banner-not-found-contents": "Neexistuje banner, který by měl přesně tento název.",
 	"hidebanners": "Skrýt bannery",
-	"centralnotice-specialhidebanners-p3p": "Některé prohlížeče pro nastavování cookies v některých situacích vyžadují kompaktní zásady P3P. Avšak kompaktní zásady momentálně nejsou k dispozici. Přečtete si prosím lidsky čitelnou verzi pravidel ochrany osobních údajů na tomto projektu.",
 	"centralnotice-banner-sequence-help": "Nastavit více bannerů tak, aby se zobrazovaly v určitém pořadí.",
 	"centralnotice-banner-sequence-days": "Doba potlačení (dny)",
 	"centralnotice-banner-sequence-banner": "Banner",

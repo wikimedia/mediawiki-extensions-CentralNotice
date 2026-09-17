@@ -259,7 +259,6 @@
 	"centralnotice-banner-not-found-contents": "אין כרזה עם השם הזה.",
 	"centralnotice-csp-violation-alert": "זוהתה הפרה של מדיניות אבטחת התוכן! טעינת תוכן ממקורות מחוץ לוויקי מדליפה נתוני קוראים. נא לעשות תצוגה מקדימה של כרזות ללא גאדג'טים או תוספות של צד שלישי. כתובת ה־URL שמפרה את המדיניות: $1.",
 	"hidebanners": "הסתרת כרזות",
-	"centralnotice-specialhidebanners-p3p": "דפדפנים אחדים דורשים מדיניות קומפקטית של P3P כדי להגדיר עוגיות במצבים מסוימים. עם זאת, אין מדיניות קומפקטית זמינה. נא לבדוק את מדיניות הפרטיות האנושית של האתר.",
 	"centralnotice-banner-history-logger": "רושם יומן היסטוריית כרזה",
 	"centralnotice-banner-history-logger-help": "מעקב אחר סדר הכרזות שרואים הקוראים ומדי פעם לשלוח אותו לשרת.",
 	"centralnotice-banner-history-logger-rate": "קצב דגימה",

@@ -289,7 +289,6 @@
 	"centralnotice-banner-not-found-contents": "No hay ningún banner con este nombre exacto.",
 	"centralnotice-csp-violation-alert": "Se ha detectado una vulneración a la política de seguridad del contenido (CSP). Cargar contenido de fuentes externas a la wiki filtra los datos del lector. Previsualiza los banners sin accesorios ni complementos de terceros. URL de la violación: $1.",
 	"hidebanners": "Ocultar pancartas",
-	"centralnotice-specialhidebanners-p3p": "Algunos navegadores requieren una normativa compacta de P3P para establecer cookies en ciertas situaciones. Sin embargo, no hay ninguna normativa compacta disponible en la actualidad. Consulta la normativa de privacidad del sitio.",
 	"centralnotice-banner-history-logger": "Registro del historial de banners",
 	"centralnotice-banner-history-logger-help": "Realizar un seguimiento de los carteles vistos por los lectores y enviar de manera ocasional dichos datos al servidor.",
 	"centralnotice-banner-history-logger-rate": "Índice de muestra",
