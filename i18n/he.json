@@ -258,7 +258,6 @@
 	"centralnotice-banner-not-found-title": "הכּרזה לא נמצאה",
 	"centralnotice-banner-not-found-contents": "אין כרזה עם השם הזה.",
 	"centralnotice-csp-violation-alert": "זוהתה הפרה של מדיניות אבטחת התוכן! טעינת תוכן ממקורות מחוץ לוויקי מדליפה נתוני קוראים. נא לעשות תצוגה מקדימה של כרזות ללא גאדג'טים או תוספות של צד שלישי. כתובת ה־URL שמפרה את המדיניות: $1.",
-	"hidebanners": "הסתרת כרזות",
 	"centralnotice-banner-history-logger": "רושם יומן היסטוריית כרזה",
 	"centralnotice-banner-history-logger-help": "מעקב אחר סדר הכרזות שרואים הקוראים ומדי פעם לשלוח אותו לשרת.",
 	"centralnotice-banner-history-logger-rate": "קצב דגימה",

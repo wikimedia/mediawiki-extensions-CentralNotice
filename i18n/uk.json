@@ -276,7 +276,6 @@
 	"centralnotice-banner-not-found-title": "Банер не знайдено",
 	"centralnotice-banner-not-found-contents": "Немає банера з точно такою назвою.",
 	"centralnotice-csp-violation-alert": "Виявлено порушення політики захисту вмісту. Завантаження вмісту з джерел поза вікі спричиняє витік даних про читача. Будь ласка, здійснюйте попередній перегляд банерів без додатків чи доповнень третіх сторін. Посилання-порушник: $1.",
-	"hidebanners": "Приховати банери",
 	"centralnotice-banner-history-logger": "Реєстратор історії банера",
 	"centralnotice-banner-history-logger-help": "Відстежувати послідовність, у якій читачі бачать банери, і зрідка надсилати її назад на сервер.",
 	"centralnotice-banner-history-logger-rate": "Частота дискретизації",

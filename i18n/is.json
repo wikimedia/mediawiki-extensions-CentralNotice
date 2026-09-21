@@ -106,7 +106,6 @@
 	"centralnotice-delete-banner-title": "Eyða {{PLURAL:$1| borða|borðum}}",
 	"centralnotice-delete-banner-cancel": "Hætta við",
 	"centralnotice-banner-not-found-title": "Borði fannst ekki",
-	"hidebanners": "Fela borða",
 	"centralnotice-banner-history-logger-rate": "Safntíðni",
 	"centralnotice-banner-sequence-banner": "Borði",
 	"centralnotice-banner-sequence-no-banner": "(Enginn borði)",

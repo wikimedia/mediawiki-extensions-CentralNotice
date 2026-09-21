@@ -256,7 +256,6 @@
 	"centralnotice-banner-not-found-title": "Pasice ni bilo mogoče najti",
 	"centralnotice-banner-not-found-contents": "Pasica s točno takim imenom ne obstaja.",
 	"centralnotice-csp-violation-alert": "Zaznana kršitev Pravilnika o varnosti vsebine! Poskus prenosa s strani $1.",
-	"hidebanners": "Skrij pasice",
 	"centralnotice-banner-history-logger": "Beleženje zgodovine pasic",
 	"centralnotice-banner-history-logger-help": "Sledi zaporedju pasic, ki jih vidijo bralci, in ga občasno pošlji strežniku.",
 	"centralnotice-banner-history-logger-rate": "Frekvenca vzorčenja",

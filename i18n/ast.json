@@ -243,7 +243,6 @@
 	"centralnotice-banner-not-found-title": "Nun s'alcontró'l cartelu",
 	"centralnotice-banner-not-found-contents": "Nun esiste un cartelu con esti nome exautu.",
 	"centralnotice-csp-violation-alert": "Detectóse una violación de la Política de Seguridá del Conteníu. Tentóse xubir daqué dende $1.",
-	"hidebanners": "Anubrir los cartelos",
 	"centralnotice-banner-history-logger": "Rexistru del historial del cartel",
 	"centralnotice-banner-history-logger-help": "Siguir la secuencia de cartelos que ven los llectores y, dacuando, devolvela al sirvidor.",
 	"centralnotice-banner-history-logger-rate": "Frecuencia d'amuesa",

@@ -263,7 +263,6 @@
 	"centralnotice-banner-not-found-title": "배너를 찾을 수 없음",
 	"centralnotice-banner-not-found-contents": "이 이름을 가진 배너가 없습니다.",
 	"centralnotice-csp-violation-alert": "내용 보안 정책 위반이 발견되었습니다! 위키 외부 소스에서 콘텐츠를 불러오면 독자 데이터가 유출됩니다. 배너를 미리 보기할 때는 소도구나 서드 파티 추가 기능을 사용하지 마세요. 위반 URL: $1.",
-	"hidebanners": "배너 숨기기",
 	"centralnotice-banner-history-logger": "배너 역사 로거",
 	"centralnotice-banner-history-logger-help": "독자들이 본 배너의 시퀀스를 추적하고, 주기적으로 서버로 전송합니다.",
 	"centralnotice-banner-history-logger-rate": "샘플링 레이트",

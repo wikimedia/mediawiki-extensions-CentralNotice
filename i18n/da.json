@@ -261,7 +261,6 @@
 	"centralnotice-banner-not-found-title": "Banner ikke fundet",
 	"centralnotice-banner-not-found-contents": "Der er intet banner med præcis dette navn.",
 	"centralnotice-csp-violation-alert": "Overtrædelse af indholdssikkerhedspolitikken opdaget. Indlæsning af indhold fra kilder uden for wikien lækker læserdata. Se venligst et eksempel på bannere uden gadgets eller tredjepartsudvidelser. Overtrædende URL: $1.",
-	"hidebanners": "Skjul bannere",
 	"centralnotice-banner-history-logger": "Bannerhistoriklogger",
 	"centralnotice-banner-history-logger-help": "Spor rækkefølgen af bannere, som læserne ser, og send den lejlighedsvis tilbage til serveren.",
 	"centralnotice-banner-history-logger-rate": "Udviklingsrate",

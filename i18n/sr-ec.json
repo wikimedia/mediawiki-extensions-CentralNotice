@@ -222,7 +222,6 @@
 	"centralnotice-end-time": "Завршно време (UTC)",
 	"centralnotice-banner-not-found-title": "Плакат није пронађен",
 	"centralnotice-banner-not-found-contents": "Не постоји плакат с тачно оваквим именом.",
-	"hidebanners": "Сакриј банере",
 	"centralnotice-banner-sequence": "Низ банера",
 	"centralnotice-banner-sequence-help": "Подешавање више банера за приказ у одређеном редоследу.",
 	"centralnotice-banner-sequence-days": "Трајање супресије (дани)",

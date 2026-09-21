@@ -241,7 +241,6 @@
 	"centralnotice-end-time": "Čas konce (UTC)",
 	"centralnotice-banner-not-found-title": "Banner nenalezen",
 	"centralnotice-banner-not-found-contents": "Neexistuje banner, který by měl přesně tento název.",
-	"hidebanners": "Skrýt bannery",
 	"centralnotice-banner-sequence-help": "Nastavit více bannerů tak, aby se zobrazovaly v určitém pořadí.",
 	"centralnotice-banner-sequence-days": "Doba potlačení (dny)",
 	"centralnotice-banner-sequence-banner": "Banner",

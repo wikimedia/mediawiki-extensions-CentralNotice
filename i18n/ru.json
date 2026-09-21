@@ -289,7 +289,6 @@
 	"centralnotice-banner-not-found-title": "Баннер не найден",
 	"centralnotice-banner-not-found-contents": "Нет баннера с точно таким именем.",
 	"centralnotice-csp-violation-alert": "Обнаружено нарушение политики защиты содержимого. Загрузка материалов с внешних источников может раскрывать данные читателя. Пожалуйста, просматривайте баннеры без гаджетов или сторонних дополнений. URL с нарушением: $1.",
-	"hidebanners": "Скрыть баннеры",
 	"centralnotice-banner-history-logger": "Регистрация истории баннера",
 	"centralnotice-banner-history-logger-help": "Отслеживать последовательность отображаемых для читателей баннеров и иногда и отправлять данные обратно на сервер.",
 	"centralnotice-banner-history-logger-rate": "Частота сбора данных",

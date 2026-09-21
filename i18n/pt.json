@@ -265,7 +265,6 @@
 	"centralnotice-banner-not-found-title": "A faixa não foi encontrada",
 	"centralnotice-banner-not-found-contents": "Não existe nenhuma faixa com este nome exato.",
 	"centralnotice-csp-violation-alert": "Violação da Política de Segurança de Conteúdo (CSP) detectada. Carregar conteúdo de fontes externas à wiki compromete os dados do leitor. Por favor, faça uma pré-visualização dos banners sem gadgets ou complementos de terceiros. URL em violação: $1.",
-	"hidebanners": "Ocultar faixas",
 	"centralnotice-banner-history-logger": "Registador do historial de faixas",
 	"centralnotice-banner-history-logger-help": "Monitorizar a sequência de faixas vistas pelos leitores e enviá-la ocasionalmente ao servidor.",
 	"centralnotice-banner-history-logger-rate": "Taxa de amostragem",

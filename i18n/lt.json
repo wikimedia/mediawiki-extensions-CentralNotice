@@ -219,7 +219,6 @@
 	"centralnotice-end-time": "Pabaigos laikas (UTC)",
 	"centralnotice-banner-not-found-title": "Baneris nerastas",
 	"centralnotice-banner-not-found-contents": "Nėra baneriu su tiksliai tokiu pavadinimu.",
-	"hidebanners": "Slėpti banerius",
 	"centralnotice-banner-history-logger": "Banerio istorijos seklys",
 	"centralnotice-banner-history-logger-rate": "Ėmimo dažnis",
 	"centralnotice-banner-history-logger-max-entry-age": "Maksimalus žurnalo įrašų amžius (dienomis)",

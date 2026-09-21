@@ -255,7 +255,6 @@
 	"centralnotice-banner-not-found-title": "A hirdetés nem található",
 	"centralnotice-banner-not-found-contents": "Nincs pontosan ilyen nevű hirdetés.",
 	"centralnotice-csp-violation-alert": "Tartalombiztonsági irányelv megsértése észlelve. A wikin kívüli forrásokból származó tartalom betöltése olvasói adatok kiszivárgásához vezet. A hirdetések előnézetét segédeszközök és külső fejlesztésű kiegészítők nélkül tekintsd meg. Az irányelvet sértő URL: $1.",
-	"hidebanners": "Hirdetések elrejtése",
 	"centralnotice-banner-history-logger": "Hirdetéstörténet-naplózó",
 	"centralnotice-banner-history-logger-help": "Az olvasók által látott hirdetések sorrendjének nyomon követése és időnkénti visszaküldése a kiszolgálóra.",
 	"centralnotice-banner-history-logger-rate": "Mintavételi arány",

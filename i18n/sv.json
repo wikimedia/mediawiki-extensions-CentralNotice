@@ -264,7 +264,6 @@
 	"centralnotice-banner-not-found-title": "Banner hittades inte",
 	"centralnotice-banner-not-found-contents": "Det finns ingen banner med det exakta namnet.",
 	"centralnotice-csp-violation-alert": "Överträdelse av innehållssäkerhetspolicy upptäckt. Läsardata läcker när innehåll från källor utanför wikin laddas. Förhandsgranska banners utan gadgets eller tillägg från tredje part. Brott mot URL: $1 .",
-	"hidebanners": "Dölj banners",
 	"centralnotice-banner-history-logger": "Bannerhistorikloggare",
 	"centralnotice-banner-history-logger-help": "Spåra sekvensen av banners som läsarna ser och skicka den då och då tillbaka till servern.",
 	"centralnotice-banner-history-logger-rate": "Provnivå",

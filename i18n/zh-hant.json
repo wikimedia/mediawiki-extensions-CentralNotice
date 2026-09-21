@@ -277,7 +277,6 @@
 	"centralnotice-banner-not-found-title": "查無橫幅",
 	"centralnotice-banner-not-found-contents": "沒有符合此確切名稱的橫幅。",
 	"centralnotice-csp-violation-alert": "偵測到違反安全方針的內容。從 wiki 以外的來源載入內容會洩漏讀者資料，請預覽不包含小工具或第三方外掛程式的橫幅。違規 URL：$1",
-	"hidebanners": "隱藏橫幅",
 	"centralnotice-banner-history-logger": "橫幅歷史日誌器",
 	"centralnotice-banner-history-logger-help": "追蹤被讀者所見的橫幅序列，並不定時回傳至伺服器。",
 	"centralnotice-banner-history-logger-rate": "取樣率",
