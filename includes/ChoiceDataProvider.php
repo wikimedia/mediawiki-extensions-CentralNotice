@@ -254,10 +254,12 @@ class ChoiceDataProvider {
 		}
 
 		// Add campaign-associated mixins to the data structure
+		$mixins = Campaign::getCompactCampaignMixins(
+			array_map( static fn ( $campaignInfo ) => $campaignInfo['name'], $choices )
+		);
 		foreach ( $choices as &$campaignInfo ) {
 			// Get info for enabled mixins for this campaign
-			$campaignInfo['mixins'] =
-				Campaign::getCompactCampaignMixins( $campaignInfo['name'] );
+			$campaignInfo['mixins'] = $mixins[$campaignInfo['name']];
 		}
 
 		// Fetch the devices

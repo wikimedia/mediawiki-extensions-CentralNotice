@@ -1278,7 +1278,7 @@ class CentralNotice extends UnlistedSpecialPage {
 			// Create controls for campaign-associated mixins (if there are any)
 			$centralNoticeCampaignMixins = $config->get( 'CentralNoticeCampaignMixins' );
 			if ( $centralNoticeCampaignMixins ) {
-				$mixinsThisNotice = Campaign::getCampaignMixins( $notice, false, $wasPosted );
+				$mixinsThisNotice = Campaign::getCampaignMixins( [ $notice ], false, $wasPosted )[$notice];
 
 				$htmlOut .= Html::openElement( 'fieldset' ) . "\n" .
 					Html::element( 'legend', [], $this->msg( 'centralnotice-notice-mixins-fieldset' )->text() ) . "\n";
