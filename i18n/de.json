@@ -271,7 +271,7 @@
 	"centralnotice-banner-history-logger-max-entries": "Maximale Anzahl der Einträge, die im Logbuch behalten werden sollen",
 	"centralnotice-banner-history-logger-max-entries-help": "Falls mehr Ereignisse aufgezeichnet werden, bevor das Logbuch an den Server gesandt wird, verschwinden die ältesten Einträge.",
 	"centralnotice-legacy-support": "Veraltete Versteck- und Eindruckszählerunterstützung",
-	"centralnotice-legacy-support-help": "Einstellungen für die Kompatibilität mit älteren Vorlagen, die sich auf „Special:RecordImpression“ stützen oder JavaScript beinhalten und die Vorlage verstecken.",
+	"centralnotice-legacy-support-help": "Einstellungen für die Kompatibilität mit älteren Vorlagen, die sich auf „/beacon/impression“ stützen oder JavaScript beinhalten und die Vorlage verstecken.",
 	"centralnotice-set-record-impression-sample-rate": "Samplerate für „Spezial:Zugriffe zählen“ festlegen",
 	"centralnotice-custom-record-impression-sample-rate": "Samplerate von „Spezial:Zugriffe zählen“ (sollte einschließlich zwischen 0 und 1 sein)",
 	"centralnotice-banners-not-guaranteed-to-display": "Vorlagen könnten nicht angezeigt werden, wie von Vorlagen-Javascript festgelegt",

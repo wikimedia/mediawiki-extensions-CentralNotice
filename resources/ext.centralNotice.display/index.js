@@ -593,7 +593,7 @@
 	 */
 	function processAfterBannerFetch() {
 
-		// If we're testing a banner, don't call Special:RecordImpression or
+		// If we're testing a banner, don't call /beacon/impression or
 		// run mixin hooks.
 		if ( !cn.internal.state.getData().testingBanner ) {
 			runPostBannerOrFailHooks();
@@ -626,7 +626,7 @@
 	 *         Campaign mixins can use a postBannerOrFailMixinHook instead. Following
 	 *         legacy code, we call the promise with an object containing
 	 *         (almost all) the same data that is sent to
-	 *         Special:RecordImpression (though this data is also now available
+	 *         /beacon/impression (though this data is also now available
 	 *         via mw.centralNotice.data).
 	 *
 	 *     events.bannerLoaded: Legacy location of bannerLoadedPromise.
@@ -658,7 +658,7 @@
 
 			// Process legacy hook for in-banner JS that hides banners after
 			// they're loaded and/or adds data to send to
-			// Special:RecordImpression. Only do this if
+			// /beacon/impression. Only do this if
 			// bannersNotGuaranteedToDisplay is set.
 			if ( state.getData().bannersNotGuaranteedToDisplay ) {
 				if ( typeof cn.bannerData.alterImpressionData === 'function' ) {
@@ -774,8 +774,8 @@
 		},
 
 		/**
-		 * Set the minimal sample rate for calling Special:RecordImpression. Default is
-		 * wgCentralNoticeSampleRate. Note that Special:RecordImpression will
+		 * Set the minimal sample rate for calling /beacon/impression. Default is
+		 * wgCentralNoticeSampleRate. Note that /beacon/impression will
 		 * not be called at all if a campaign was not chosen for this user. Also note
 		 * that the highest rate set will be used.
 		 *
