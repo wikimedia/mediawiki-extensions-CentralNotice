@@ -257,7 +257,7 @@ class ChoiceDataProvider {
 		foreach ( $choices as &$campaignInfo ) {
 			// Get info for enabled mixins for this campaign
 			$campaignInfo['mixins'] =
-				Campaign::getCampaignMixins( $campaignInfo['name'], true );
+				Campaign::getCompactCampaignMixins( $campaignInfo['name'] );
 		}
 
 		// Fetch the devices
