@@ -289,6 +289,8 @@
 		urlParams: {},
 
 		/**
+		 * TODO: make data.result options explicit via constants
+		 *
 		 * @private
 		 */
 		data: {},

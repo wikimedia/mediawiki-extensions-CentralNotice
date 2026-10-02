@@ -86,8 +86,6 @@ const config = require( './config.json' );
 			() => [] );
 	};
 
-	// TODO: make data.result options explicit via constants
-
 	/**
 	 * Class for campaign-associated mixins. Access via mw.centralNotice.Mixin.
 	 *
