@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
@@ -12,8 +13,11 @@ class ChoiceDataProvider {
 	/** @var string Common prefix for choice data cache keys */
 	private const CACHE_KEY_NAMESPACE = 'CentralNoticeChoiceData';
 
-	/** @var int Time-to-live for choice data cache entries, in seconds */
-	private const CACHE_TTL = 3600;
+	/** @var int Time-to-live for choice data cache entries */
+	private const CACHE_TTL = WANObjectCache::TTL_HOUR;
+
+	/** @var int How long to use a stale value while one thread recalculates */
+	private const CACHE_TSE = 30 * WANObjectCache::TTL_SECOND;
 
 	/**
 	 * Invalidate the shared global cache.
@@ -51,11 +55,13 @@ class ChoiceDataProvider {
 				return self::fetchChoices( $project, $language, $dbr );
 			},
 			[
-				// We don't bother with the lockTSE option because the only
-				// potentially high-volume requests that would ask for this
-				// object are heavily cached by Varnish, for all users. (Those
-				// requests are for load.php.)
 				'checkKeys' => [ $checkKey ],
+				// While requests for this data are heavily cached by
+				// Varnish for all users, we still allow a stale value
+				// to be used for 30 seconds as invalidation is frequent
+				// and calculation involves many DB queries.
+				'lockTSE' => self::CACHE_TSE,
+				// Update the cache at most once per request
 				'pcTTL' => $cache::TTL_PROC_LONG,
 			]
 		);
