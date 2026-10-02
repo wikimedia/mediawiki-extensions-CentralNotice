@@ -11,6 +11,10 @@ use MediaWiki\SpecialPage\UnlistedSpecialPage;
  * see fundrasing banners.
  */
 class SpecialHideBanners extends UnlistedSpecialPage {
+
+	// maximum length for 'reason' or 'category' in cookies
+	private const MAX_FIELD_LENGTH = 64;
+
 	// Cache this blank response for a day or so (60 * 60 * 24 s.)
 	private const CACHE_EXPIRY = 86400;
 	// Hard-coded upper limit of 10 years for the user-provided …&duration=… parameter
@@ -73,6 +77,8 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 	 * @param string $reason
 	 */
 	private function setHideCookie( $category, $duration, $reason ) {
+		$category = mb_substr( $category, 0, self::MAX_FIELD_LENGTH );
+		$reason = mb_substr( $reason, 0, self::MAX_FIELD_LENGTH );
 		$created = time();
 		$exp = $created + $duration;
 		$value = [
