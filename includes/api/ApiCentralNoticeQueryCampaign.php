@@ -12,19 +12,17 @@ class ApiCentralNoticeQueryCampaign extends ApiBase {
 	 */
 	private const CAMPAIGNS_FILTER = '/^[a-zA-Z0-9 _|\-]+$/';
 
-	public function execute() {
-		// Get our language/project/country
-		$params = $this->extractRequestParams();
+	private const MAX_CAMPAIGNS = 32;
 
-		if ( !preg_match( self::CAMPAIGNS_FILTER, $params['campaign'] ) ) {
-			return;
-		}
+	public function execute() {
+		$params = $this->extractRequestParams();
 
 		$result = $this->getResult();
 
-		$campaigns = explode( '|', $params['campaign'] );
-
-		foreach ( $campaigns as $campaign ) {
+		foreach ( $params['campaign'] as $campaign ) {
+			if ( !preg_match( self::CAMPAIGNS_FILTER, $campaign ) ) {
+				continue;
+			}
 			$settings = Campaign::getCampaignSettings( $campaign );
 			if ( $settings ) {
 				$settings['banners'] = json_decode( $settings['banners'] );
@@ -51,6 +49,9 @@ class ApiCentralNoticeQueryCampaign extends ApiBase {
 			'campaign' => [
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_ISMULTI_LIMIT1 => self::MAX_CAMPAIGNS,
+				ParamValidator::PARAM_ISMULTI_LIMIT2 => self::MAX_CAMPAIGNS,
 			],
 		];
 	}
