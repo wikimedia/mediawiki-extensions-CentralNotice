@@ -220,12 +220,6 @@
 				"mediawiki.util"
 			]
 		},
-		"ext.centralNotice.freegeoipLookup": {
-			"scripts": "subscribing/ext.centralNotice.freegeoipLookup.js",
-			"dependencies": [
-				"ext.centralNotice.geoIP"
-			]
-		},
 		"ext.centralNotice.impressionEventsSampleRate": {
 			"scripts": "subscribing/ext.centralNotice.impressionEventsSampleRate.js",
 			"dependencies": [
