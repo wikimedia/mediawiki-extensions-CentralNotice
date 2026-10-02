@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Api\ApiBase;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /** @todo: This needs some major cleanup to work more like the rest of the API. */
 class ApiCentralNoticeQueryCampaign extends ApiBase {
@@ -11,16 +12,17 @@ class ApiCentralNoticeQueryCampaign extends ApiBase {
 	 */
 	private const CAMPAIGNS_FILTER = '/^[a-zA-Z0-9 _|\-]+$/';
 
-	public function execute() {
-		// Obtain the ApiResults object from the base
-		$result = $this->getResult();
+	private const MAX_CAMPAIGNS = 32;
 
-		// Get our language/project/country
+	public function execute() {
 		$params = $this->extractRequestParams();
 
-		$campaigns = explode( '|', self::sanitizeText( $params['campaign'], self::CAMPAIGNS_FILTER, '' ) );
+		$result = $this->getResult();
 
-		foreach ( $campaigns as $campaign ) {
+		foreach ( $params['campaign'] as $campaign ) {
+			if ( !preg_match( self::CAMPAIGNS_FILTER, $campaign ) ) {
+				continue;
+			}
 			$settings = Campaign::getCampaignSettings( $campaign );
 			if ( $settings ) {
 				$settings['banners'] = json_decode( $settings['banners'] );
@@ -42,7 +44,15 @@ class ApiCentralNoticeQueryCampaign extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return [ 'campaign' => '' ];
+		return [
+			'campaign' => [
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_ISMULTI_LIMIT1 => self::MAX_CAMPAIGNS,
+				ParamValidator::PARAM_ISMULTI_LIMIT2 => self::MAX_CAMPAIGNS,
+			],
+		];
 	}
 
 	/**
