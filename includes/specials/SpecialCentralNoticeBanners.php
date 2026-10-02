@@ -142,7 +142,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$htmlForm = new CentralNoticeHtmlForm( $formDescriptor, $this->getContext() );
 		$htmlForm->setSubmitCallback( [ $this, 'processBannerList' ] )
 			->prepareForm();
-		$formResult = $htmlForm->trySubmit();
+		$formResult = $htmlForm->tryAuthorizedSubmit();
 
 		if ( $this->bannerFormRedirectRequired ) {
 			return;
@@ -286,6 +286,10 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	 */
 	public function processBannerList( $formData ) {
 		$this->setFilterFromUrl();
+
+		if ( !$this->getRequest()->wasPosted() ) {
+			return null;
+		}
 
 		if ( $formData[ 'action' ] && $this->editable ) {
 			switch ( strtolower( $formData[ 'action' ] ) ) {
@@ -942,6 +946,9 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	}
 
 	public function processEditBanner( $formData ) {
+		if ( !$this->getRequest()->wasPosted() ) {
+			return null;
+		}
 		// First things first! Figure out what the heck we're actually doing!
 		switch ( $formData[ 'action' ] ) {
 			case 'update-lang':
