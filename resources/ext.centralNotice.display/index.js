@@ -898,6 +898,18 @@ const config = require( './config.json' );
 				} );
 		},
 
+		/**
+		 * Inserts the banner, unless pageview is in a banners-prohibited test
+		 * kitchen experiment. Experiment enrollment lookups have been
+		 * initiated in state.setInitialData().
+		 * Any experiments configured as bannerExperiment: true MUST add a handler
+		 * for the 'centralnotice.prohibitedExperiment' hook to either cede the
+		 * pageview back to CentralNotice by calling the function passed as the
+		 * first argument or properly log the hidden banner impression by calling
+		 * the function passed as the second argument.
+		 *
+		 * @param {Object} bannerJson
+		 */
 		insertBanner: async function ( bannerJson ) {
 			// Insert the banner only after the DOM is ready and we know
 			// whether the user is in an experiment prohibiting banners.
@@ -912,15 +924,43 @@ const config = require( './config.json' );
 						}
 					} )
 				] ),
-				inProhibitedExperiment = ( enrolledExperiments.length > 0 );
+				inProhibitedExperiment = ( enrolledExperiments.length > 0 ),
+				inBannerExperiment =
+					mw.centralNotice.internal.displayConfig.prohibitedExperiments.some(
+						( configEntry ) => configEntry.bannerExperiment &&
+							enrolledExperiments.includes( configEntry.name )
+					),
+				failCampaignForExperiment = () => {
+					cn.failCampaign( 'experiment' );
+					state.setBannerLoadedButHidden( 'experiment' );
+					bannerLoadedDeferredObj.resolve( state.getData() );
+					processAfterBannerFetch();
+				};
 
 			// If an experiment where banners are prohibited is running is
 			// active, fail the campaign and log the hide reason.
 			if ( inProhibitedExperiment && !state.urlParams.force ) {
-				cn.failCampaign( 'experiment' );
-				cn.internal.state.setBannerLoadedButHidden( 'experiment' );
-				bannerLoadedDeferredObj.resolve( state.getData() );
-				processAfterBannerFetch();
+				if ( inBannerExperiment ) {
+					// Just fire the hook and depend on the experiment code to
+					// call one of the two callback functions to either cede the
+					// pageview and insert the banner or to log the hidden impression.
+					let calledHookCallback = false;
+					mw.hook( 'centralnotice.prohibitedExperiment' ).fire(
+						() => {
+							if ( !calledHookCallback ) {
+								cn.reallyInsertBanner( bannerJson );
+							}
+							calledHookCallback = true;
+						}, () => {
+							if ( !calledHookCallback ) {
+								failCampaignForExperiment();
+							}
+							calledHookCallback = true;
+						}
+					);
+				} else {
+					failCampaignForExperiment();
+				}
 			} else {
 				cn.reallyInsertBanner( bannerJson );
 			}

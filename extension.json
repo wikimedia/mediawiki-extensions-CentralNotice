@@ -563,7 +563,8 @@
 			"value": false
 		},
 		"CentralNoticeProhibitedExperiments": {
-			"value": []
+			"value": [],
+			"description": "Suppress banners for these experiments. Entries can be strings or objects with properties 'name' and 'bannerExperiment' (bool). Experiments with bannerExperiment: true MUST add a handler for the 'centralnotice.prohibitedExperiment' hook to either cede the pageview back to CentralNotice by calling the function passed as the first argument or log the hidden banner impression by calling the function passed as the second argument."
 		},
 		"CentralNoticeMaxCampaignFallback": {
 			"value": 5
