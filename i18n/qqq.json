@@ -370,5 +370,11 @@
 	"centralnotice-blackout-help": "Help message for CentralNotice local blackout times mixin",
 	"centralnotice-blackout-start-time": "Label for start time field for CentralNotice blackout times mixin",
 	"centralnotice-blackout-time-help": "Help text for time fields for CentralNotice blackout times mixin. HH:MM indicates that the format should use two digits for the hour and two digits for the minute, separated by a ':' character.",
-	"centralnotice-blackout-end-time": "Label for end time field for CentralNotice blackout times mixin"
+	"centralnotice-blackout-end-time": "Label for end time field for CentralNotice blackout times mixin",
+	"centralnotice-user-edit-count": "Label for CentralNotice mixin to target users by edit count",
+	"centralnotice-user-edit-count-help": "Help message for CentralNotice mixin that targets users by edit count.",
+	"centralnotice-user-edit-count-min-edits": "Label for field specifying minimum edits",
+	"centralnotice-user-edit-count-min-edits-help": "Help text for field specifying minimum edits",
+	"centralnotice-user-edit-count-max-edits": "Label for field specifying maximum edits",
+	"centralnotice-user-edit-count-max-edits-help": "Help text for field specifying maximum edits"
 }

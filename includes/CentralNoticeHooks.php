@@ -252,6 +252,10 @@ class CentralNoticeHooks implements
 						'centralnotice-blackout-start-time',
 						'centralnotice-blackout-end-time',
 						'centralnotice-blackout-time-help',
+						'centralnotice-user-edit-count-min-edits',
+						'centralnotice-user-edit-count-min-edits-help',
+						'centralnotice-user-edit-count-max-edits',
+						'centralnotice-user-edit-count-max-edits-help',
 					]
 				],
 				'ext.centralNotice.adminUi.bannerSequence' => $moduleTemplate + [
