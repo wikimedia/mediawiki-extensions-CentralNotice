@@ -253,7 +253,6 @@
 	"centralnotice-end-time": "Waktu berakhir (UTC)",
 	"centralnotice-banner-not-found-title": "Spanduk tidak ditemukan",
 	"centralnotice-banner-not-found-contents": "Tidak ada spanduk dengan nama ini.",
-	"hidebanners": "Sembunyikan spanduk",
 	"centralnotice-banner-history-logger": "Pencatat riwayat spanduk",
 	"centralnotice-banner-history-logger-rate": "Sample rate",
 	"centralnotice-banner-sequence-help": "Mengatur beberapa spanduk agar ditampilkan dalam urutan tertentu.",

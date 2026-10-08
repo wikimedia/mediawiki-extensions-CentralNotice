@@ -3,11 +3,13 @@
 	'use strict';
 
 	const realAjax = $.ajax,
+		realDisplayConfig = require( 'ext.centralNotice.display/config.json' ),
 		realGeoIP = mw.geoIP,
 		realBucketCookie = $.cookie( 'CN' ),
 		realHideCookie = $.cookie( 'centralnotice_hide_fundraising' ),
 		realSendBeacon = navigator.sendBeacon,
 		realshouldHide = mw.centralNotice.internal.hide.shouldHide,
+		realGetAssignments = mw.centralNotice.internal.getUserExperimentAssignments,
 		bannerData = {
 			bannerName: 'test_banner',
 			campaign: 'test_campaign',
@@ -357,6 +359,12 @@
 			// record impression call
 			mw.centralNotice.recordImpressionDeferredObj = null;
 			mw.centralNotice.recordImpressionDelayPromises = [];
+			mw.centralNotice.internal.getUserExperimentAssignments = function () {
+				return new Promise( ( resolve ) => {
+					resolve( [] );
+				} );
+			};
+			mw.centralNotice.internal.displayConfig.prohibitedExperiments = [ 'prohibited-experiment' ];
 		},
 		afterEach: function () {
 			$.ajax = realAjax;
@@ -371,6 +379,8 @@
 			mw.centralNotice.internal.state.urlParams.impressionEventSampleRate = null;
 			mw.centralNotice.internal.state.attemptedCampaignsByName = {};
 			mw.centralNotice.internal.hide.shouldHide = realshouldHide;
+			mw.centralNotice.internal.getUserExperimentAssignments = realGetAssignments;
+			mw.centralNotice.internal.displayConfig = realDisplayConfig;
 		}
 	} ) );
 
@@ -383,6 +393,29 @@
 		mw.centralNotice.reallyInsertBanner( bannerData );
 
 		assert.strictEqual( $( 'div#test_banner' ).length, 1 );
+	} );
+
+	QUnit.test( 'showBannerWhenNoProhibitedExperiment', async ( assert ) => {
+		mw.centralNotice.choiceData = choiceData2Campaigns;
+		mw.centralNotice.chooseAndMaybeDisplay();
+
+		await mw.centralNotice.insertBanner( bannerData );
+
+		assert.strictEqual( $( 'div#test_banner' ).length, 1 );
+	} );
+
+	QUnit.test( 'suppressBannerForProhibitedExperiment', async ( assert ) => {
+		mw.centralNotice.internal.getUserExperimentAssignments = function ( list ) {
+			return new Promise( ( resolve ) => {
+				resolve( list );
+			} );
+		};
+		mw.centralNotice.choiceData = choiceData2Campaigns;
+		mw.centralNotice.chooseAndMaybeDisplay();
+
+		await mw.centralNotice.insertBanner( bannerData );
+
+		assert.strictEqual( $( 'div#test_banner' ).length, 0 );
 	} );
 
 	/**

@@ -379,6 +379,7 @@ class Campaign {
 			$banners[$outKey]['bucket'] = $banner['bucket'];
 		}
 
+		$mixins = self::getCompactCampaignMixins( [ $campaignName ], $fromPrimary )[$campaignName];
 		return [
 			'start'     => $row->not_start,
 			'end'       => $row->not_end,
@@ -396,7 +397,7 @@ class Campaign {
 			'regions'   => implode( ", ", self::getNoticeRegions( $campaignName, $fromPrimary ) ),
 			// Encode into a JSON string for storage
 			'banners'   => FormatJson::encode( $banners ),
-			'mixins'    => FormatJson::encode( self::getCampaignMixins( $campaignName, true, $fromPrimary ) ),
+			'mixins'    => FormatJson::encode( $mixins ),
 		];
 	}
 
@@ -522,37 +523,44 @@ class Campaign {
 	}
 
 	/**
-	 * Retrieve campaign mixins settings for this campaign.
+	 * Retrieve mixin settings for these campaigns.
 	 *
-	 * If $compact is true, retrieve only enabled mixins, and return a compact
-	 * data structure in which keys are mixin names and values are parameter
-	 * settings.
+	 * The data structure will be an array whose keys are campaign names and whose
+	 * values are themselves arrays. The inner array's keys are mixin names and
+	 * values are arrays with 'enabled' and 'parameters' keys.
 	 *
-	 * If $compact is false, mixins that were once enabled for this campaign but
+	 * If $onlyEnabled is true, retrieve only enabled mixins
+	 *
+	 * If $onlyEnabled is false, mixins that were once enabled for this campaign but
 	 * are now disabled will be included, showing their last parameter settings.
-	 * The data structure will be an array whose keys are mixin names and whose
-	 * values are arrays with 'enabled' and 'parameters' keys. Note that mixins
-	 * that were never enabled for this campaign will be omitted.
+	 * Note that mixins that were never enabled for this campaign will be omitted.
 	 *
-	 * @param string $campaignName
-	 * @param bool $compact
+	 * @param string[] $campaignNames
+	 * @param bool $onlyEnabled
 	 * @param bool $fromPrimary
 	 *
 	 * @return array
 	 */
-	public static function getCampaignMixins( $campaignName, $compact = false, $fromPrimary = false ) {
+	public static function getCampaignMixins(
+		array $campaignNames, bool $onlyEnabled = false, bool $fromPrimary = false
+	): array {
 		global $wgCentralNoticeCampaignMixins;
+
+		if ( count( $campaignNames ) == 0 ) {
+			return [];
+		}
 
 		$db = $fromPrimary ? CNDatabase::getPrimaryDb() : CNDatabase::getReplicaDb();
 
 		// Prepare query conditions
-		$conds = [ 'notices.not_name' => $campaignName ];
-		if ( $compact ) {
+		$conds = [ 'notices.not_name' => $campaignNames ];
+		if ( $onlyEnabled ) {
 			$conds['notice_mixins.nmxn_enabled'] = 1;
 		}
 
 		$dbRows = $db->newSelectQueryBuilder()
 			->select( [
+				'notices.not_name',
 				'notice_mixins.nmxn_mixin_name',
 				'notice_mixins.nmxn_enabled',
 				'notice_mixin_params.nmxnp_param_name',
@@ -566,12 +574,16 @@ class Campaign {
 			->caller( __METHOD__ )
 			->fetchResultSet();
 
+		$campaignMixins = array_fill_keys(
+			$campaignNames,
+			[],
+		);
 		// Build up the results
 		// We expect a row for every parameter name-value pair for every mixin,
 		// and maybe some with null name-value pairs (for mixins with no
 		// parameters).
-		$campaignMixins = [];
 		foreach ( $dbRows as $dbRow ) {
+			$noticeName = $dbRow->not_name;
 			$mixinName = $dbRow->nmxn_mixin_name;
 
 			// A mixin may have been removed from the code but may still
@@ -581,17 +593,11 @@ class Campaign {
 			}
 
 			// First time we have a result row for this mixin?
-			if ( !isset( $campaignMixins[$mixinName] ) ) {
-				// Data structure depends on $compact
-				if ( $compact ) {
-					$campaignMixins[$mixinName] = [];
-
-				} else {
-					$campaignMixins[$mixinName] = [
-						'enabled' => (bool)$dbRow->nmxn_enabled,
-						'parameters' => []
-					];
-				}
+			if ( !isset( $campaignMixins[$noticeName][$mixinName] ) ) {
+				$campaignMixins[$noticeName][$mixinName] = [
+					'enabled' => (bool)$dbRow->nmxn_enabled,
+					'parameters' => []
+				];
 			}
 
 			// If there are mixin params in this row, add them in
@@ -629,7 +635,7 @@ class Campaign {
 						if ( $paramVal === null ) {
 							wfLogWarning( 'Couldn\'t decode json param ' . $paramName
 								. ' for mixin ' . $mixinName . ' in campaign ' .
-								$campaignName . '.' );
+								$noticeName . '.' );
 
 							// In this case, it's fine to emit a null value for the
 							// parameter. Both Admin UI and subscribing client-side
@@ -644,12 +650,7 @@ class Campaign {
 							'Unknown parameter type ' . $paramType );
 				}
 
-				// Again, data structure depends on $compact
-				if ( $compact ) {
-					$campaignMixins[$mixinName][$paramName] = $paramVal;
-				} else {
-					$campaignMixins[$mixinName]['parameters'][$paramName] = $paramVal;
-				}
+				$campaignMixins[$noticeName][$mixinName]['parameters'][$paramName] = $paramVal;
 			}
 		}
 
@@ -657,13 +658,38 @@ class Campaign {
 		// CNChoiceDataResourceLoaderModule (which gets this data via
 		// ChoiceDataProvider) for consistent RL module hashes.
 
-		array_walk( $campaignMixins, static function ( &$campaignMixin ) {
-			ksort( $campaignMixin );
+		array_walk( $campaignMixins, static function ( &$campaign ) {
+			array_walk( $campaign, static function ( &$campaignMixin ) {
+				ksort( $campaignMixin );
+			} );
+
+			ksort( $campaign );
 		} );
 
 		ksort( $campaignMixins );
 
 		return $campaignMixins;
+	}
+
+	/**
+	 * Selects the same data as @see getCampaignMixins but limits to only enabled
+	 * mixins, and returns a compact data structure under the top-level campaign-keyed
+	 * array in which keys are mixin names and values are parameter settings.
+	 *
+	 * @param string[] $campaignNames
+	 * @param bool $fromPrimary
+	 * @return array
+	 */
+	public static function getCompactCampaignMixins( array $campaignNames, bool $fromPrimary = false ): array {
+		$campaignMixins = self::getCampaignMixins( $campaignNames, true, $fromPrimary );
+		$compactMixins = [];
+		foreach ( $campaignMixins as $campaign => $mixin ) {
+			$compactMixins[$campaign] = array_map( static function ( $mixinInfo ) {
+				return $mixinInfo['parameters'];
+			}, $mixin );
+		}
+
+		return $compactMixins;
 	}
 
 	/**

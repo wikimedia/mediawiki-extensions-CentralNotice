@@ -129,12 +129,6 @@
 			"remoteExtPath": "CentralNotice/resources/ext.centralNotice.startUp",
 			"packageFiles": [
 				"index.js",
-				{
-					"name": "config.json",
-					"config": [
-						"CentralNoticeProhibitedExperiments"
-					]
-				},
 				"kvStoreMaintenance.js"
 			],
 			"dependencies": [
@@ -163,7 +157,8 @@
 				{
 					"name": "config.json",
 					"config": {
-						"categoriesUsingLegacy": "CentralNoticeCategoriesUsingLegacy"
+						"categoriesUsingLegacy": "CentralNoticeCategoriesUsingLegacy",
+						"prohibitedExperiments": "CentralNoticeProhibitedExperiments"
 					}
 				}
 			],
@@ -224,12 +219,6 @@
 				"ext.centralNotice.display",
 				"ext.centralNotice.kvStore",
 				"mediawiki.util"
-			]
-		},
-		"ext.centralNotice.freegeoipLookup": {
-			"scripts": "subscribing/ext.centralNotice.freegeoipLookup.js",
-			"dependencies": [
-				"ext.centralNotice.geoIP"
 			]
 		},
 		"ext.centralNotice.impressionEventsSampleRate": {
@@ -358,9 +347,6 @@
 		},
 		"NoticeHideUrls": {
 			"value": []
-		},
-		"CentralNoticeHideBannersP3P": {
-			"value": false
 		},
 		"NoticeBannerMaxAge": {
 			"value": 600
@@ -577,7 +563,8 @@
 			"value": false
 		},
 		"CentralNoticeProhibitedExperiments": {
-			"value": []
+			"value": [],
+			"description": "Suppress banners for these experiments. Entries can be strings or objects with properties 'name' and 'bannerExperiment' (bool). Experiments with bannerExperiment: true MUST add a handler for the 'centralnotice.prohibitedExperiment' hook to either cede the pageview back to CentralNotice by calling the function passed as the first argument or log the hidden banner impression by calling the function passed as the second argument."
 		},
 		"CentralNoticeMaxCampaignFallback": {
 			"value": 5

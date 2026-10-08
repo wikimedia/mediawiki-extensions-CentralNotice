@@ -29,6 +29,9 @@
  * For an overview of how this all fits together, see
  * mw.centralNotice.reallyChooseAndMaybeDisplay() (below).
  */
+
+const config = require( './config.json' );
+
 ( function () {
 	let cn,
 
@@ -51,7 +54,37 @@
 		// Coordinate with PREVIEW_STORAGE_KEY_PREFIX in bannereditor.js
 		PREVIEW_STORAGE_KEY_PREFIX = 'cn-banner-preview-';
 
-	// TODO: make data.result options explicit via constants
+	/**
+	 * Note that mw.loader.using call should not result in a round trip
+	 * provided wgTestKitchenEnableExperiments is enabled on the project
+	 * (which is true for all Wikimedia projects). The call here guarantees load
+	 * order - that the library has been loaded without adding a hard dependency
+	 * on TestKitchen in CentralNotice.
+	 *
+	 * @param {string[]} experimentNames the names of the experiments to check
+	 * @return {Promise} Resolves to names of experiments in which the
+	 * user is enrolled
+	 */
+	const getUserExperimentAssignments = ( experimentNames ) => {
+		if ( experimentNames.length === 0 ) {
+			return Promise.resolve( [] );
+		}
+		return mw.loader.using( 'ext.testKitchen' )
+			.then( () => Promise.all( experimentNames.map(
+				( name ) => mw.testKitchen.getExperiment( name )
+					.then(
+						( experiment ) => ( experiment.getAssignedGroup() !== null ) ?
+							name :
+							null
+					)
+			) ).then(
+				( enrolledExperiments ) => enrolledExperiments.filter(
+					( result ) => result !== null
+				)
+			),
+			// If test kitchen not found, return an empty list
+			() => [] );
+	};
 
 	/**
 	 * Class for campaign-associated mixins. Access via mw.centralNotice.Mixin.
@@ -593,7 +626,7 @@
 	 */
 	function processAfterBannerFetch() {
 
-		// If we're testing a banner, don't call Special:RecordImpression or
+		// If we're testing a banner, don't call /beacon/impression or
 		// run mixin hooks.
 		if ( !cn.internal.state.getData().testingBanner ) {
 			runPostBannerOrFailHooks();
@@ -626,7 +659,7 @@
 	 *         Campaign mixins can use a postBannerOrFailMixinHook instead. Following
 	 *         legacy code, we call the promise with an object containing
 	 *         (almost all) the same data that is sent to
-	 *         Special:RecordImpression (though this data is also now available
+	 *         /beacon/impression (though this data is also now available
 	 *         via mw.centralNotice.data).
 	 *
 	 *     events.bannerLoaded: Legacy location of bannerLoadedPromise.
@@ -658,7 +691,7 @@
 
 			// Process legacy hook for in-banner JS that hides banners after
 			// they're loaded and/or adds data to send to
-			// Special:RecordImpression. Only do this if
+			// /beacon/impression. Only do this if
 			// bannersNotGuaranteedToDisplay is set.
 			if ( state.getData().bannersNotGuaranteedToDisplay ) {
 				if ( typeof cn.bannerData.alterImpressionData === 'function' ) {
@@ -716,7 +749,10 @@
 		 * Attachment point for other objects in this module that are not meant
 		 * for outside use.
 		 */
-		internal: {},
+		internal: {
+			displayConfig: config,
+			getUserExperimentAssignments: getUserExperimentAssignments
+		},
 
 		/**
 		 * Call this to indicate that banners in a campaign may not always
@@ -774,8 +810,8 @@
 		},
 
 		/**
-		 * Set the minimal sample rate for calling Special:RecordImpression. Default is
-		 * wgCentralNoticeSampleRate. Note that Special:RecordImpression will
+		 * Set the minimal sample rate for calling /beacon/impression. Default is
+		 * wgCentralNoticeSampleRate. Note that /beacon/impression will
 		 * not be called at all if a campaign was not chosen for this user. Also note
 		 * that the highest rate set will be used.
 		 *
@@ -860,12 +896,72 @@
 				} );
 		},
 
-		insertBanner: function ( bannerJson ) {
+		/**
+		 * Inserts the banner, unless pageview is in a banners-prohibited test
+		 * kitchen experiment. Experiment enrollment lookups have been
+		 * initiated in state.setInitialData().
+		 * Any experiments configured as bannerExperiment: true MUST add a handler
+		 * for the 'centralnotice.prohibitedExperiment' hook to either cede the
+		 * pageview back to CentralNotice by calling the function passed as the
+		 * first argument or properly log the hidden banner impression by calling
+		 * the function passed as the second argument.
+		 *
+		 * @param {Object} bannerJson
+		 */
+		insertBanner: async function ( bannerJson ) {
+			// Insert the banner only after the DOM is ready and we know
+			// whether the user is in an experiment prohibiting banners.
+			const state = mw.centralNotice.internal.state,
+				[ enrolledExperiments ] = await Promise.all( [
+					state.getEnrolledExperimentsPromise(),
+					new Promise( ( resolve ) => {
+						if ( document.readyState === 'loading' ) {
+							document.addEventListener( 'DOMContentLoaded', resolve );
+						} else {
+							resolve();
+						}
+					} )
+				] ),
+				inProhibitedExperiment = ( enrolledExperiments.length > 0 ),
+				inBannerExperiment =
+					mw.centralNotice.internal.displayConfig.prohibitedExperiments.some(
+						( configEntry ) => configEntry.bannerExperiment &&
+							enrolledExperiments.includes( configEntry.name )
+					),
+				failCampaignForExperiment = () => {
+					cn.failCampaign( 'experiment' );
+					state.setBannerLoadedButHidden( 'experiment' );
+					bannerLoadedDeferredObj.resolve( state.getData() );
+					processAfterBannerFetch();
+				};
 
-			// Insert the banner only after the DOM is ready
-			$( () => {
+			// If an experiment where banners are prohibited is running is
+			// active, fail the campaign and log the hide reason.
+			if ( inProhibitedExperiment && !state.urlParams.force ) {
+				if ( inBannerExperiment ) {
+					// Just fire the hook and depend on the experiment code to
+					// call one of the two callback functions to either cede the
+					// pageview and insert the banner or to log the hidden impression.
+					let calledHookCallback = false;
+					mw.hook( 'centralnotice.prohibitedExperiment' ).fire(
+						() => {
+							if ( !calledHookCallback ) {
+								cn.reallyInsertBanner( bannerJson );
+							}
+							calledHookCallback = true;
+						}, () => {
+							if ( !calledHookCallback ) {
+								failCampaignForExperiment();
+							}
+							calledHookCallback = true;
+						}
+					);
+				} else {
+					failCampaignForExperiment();
+				}
+			} else {
 				cn.reallyInsertBanner( bannerJson );
-			} );
+			}
 		},
 
 		/**

@@ -88,7 +88,9 @@
 
 		/**
 		 * Set a hide cookies for this domain and others in wgNoticeHideUrls
-		 * with the given reason and duration.
+		 * with the given reason and duration. Note that cookies set on
+		 * other wikis via Special:HideBanners will not respect custom
+		 * duration parameters.
 		 *
 		 * @param {string} newReason Reason to store in the hide cookie
 		 * @param {number} duration Cookie duration, in seconds
@@ -119,7 +121,6 @@
 
 			this.fetchHideUrls(
 				mw.config.get( 'wgNoticeHideUrls' ),
-				duration,
 				category,
 				newReason
 			);
@@ -130,15 +131,13 @@
 		 * for all wikis in a cluster
 		 *
 		 * @param {string[]} hideUrls
-		 * @param {number} duration Cookie duration, in seconds
 		 * @param {string} categoryName Reason to store in the hide cookie
 		 * @param {string} newReason Reason to store in the hide cookie
 		 * @return {HTMLImageElement[]}
 		 */
-		fetchHideUrls: function ( hideUrls, duration, categoryName, newReason ) {
+		fetchHideUrls: function ( hideUrls, categoryName, newReason ) {
 			return hideUrls.map( ( hideUrl ) => {
 				const url = new URL( hideUrl, location );
-				url.searchParams.set( 'duration', duration );
 				url.searchParams.set( 'category', categoryName );
 				url.searchParams.set( 'reason', newReason );
 

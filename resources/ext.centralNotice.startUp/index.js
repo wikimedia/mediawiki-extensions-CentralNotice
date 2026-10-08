@@ -41,6 +41,9 @@ function main() {
 	// For back-compat and debugging, export globally.
 	cn.kvStoreMaintenance = kvStoreMaintenance;
 
+	// Start loading testKitchen, as we will need to consult it when
+	// deciding whether to show a fetched banner
+	mw.loader.load( 'ext.testKitchen' );
 	// Note: In legacy code, CentralNotice initialization was done after the DOM
 	// finished loading (via $( function() {...} )). Now, we only delay logic
 	// that accesses DOM elements in that way, and run other code sooner.

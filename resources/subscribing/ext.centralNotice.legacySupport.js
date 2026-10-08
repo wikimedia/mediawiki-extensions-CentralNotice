@@ -1,6 +1,6 @@
 /**
  * Provides features to support legacy campaigns. With this mixin, campaigns may:
- * - set a rate for Special:RecordImpression that's different from the default; and
+ * - set a rate for /beacon/impression that's different from the default; and
  * - signal that banners are not guaranteed to display.
  */
 ( function () {

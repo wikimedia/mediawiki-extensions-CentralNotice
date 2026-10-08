@@ -70,7 +70,8 @@
 			bannerSequenceEmptyStep: 19,
 			bannerSequenceAllStepsSkipped: 20,
 			userOptOut: 21,
-			waitdaily: 22
+			waitdaily: 22,
+			experiment: 23 // Pageview is in a TestKitchen experiment that can't tolerate banners
 		};
 
 	const campaignAttemptsManager = ( function () {
@@ -210,6 +211,12 @@
 
 		// Contains list of campaigns statuses
 		state.data.campaignStatuses = [];
+
+		state.enrolledExperimentsPromise = mw.centralNotice.internal.getUserExperimentAssignments(
+			mw.centralNotice.internal.displayConfig.prohibitedExperiments.map(
+				( configEntry ) => configEntry.name || configEntry
+			)
+		);
 	}
 
 	function getOptedOutCampaignsForUser() {
@@ -282,6 +289,8 @@
 		urlParams: {},
 
 		/**
+		 * TODO: make data.result options explicit via constants
+		 *
 		 * @private
 		 */
 		data: {},
@@ -300,6 +309,11 @@
 		 * @private
 		 */
 		attemptedCampaignsByName: {},
+
+		/**
+		 * @private
+		 */
+		enrolledExperimentsPromise: null,
 
 		/**
 		 * Call this with geo data before calling setUp() or
@@ -381,6 +395,15 @@
 			}
 
 			return dataCopy;
+		},
+
+		/**
+		 * Returns a Promise that resolves to an array of experiments in which the user is enrolled
+		 *
+		 * @return {null|Promise}
+		 */
+		getEnrolledExperimentsPromise: function () {
+			return state.enrolledExperimentsPromise;
 		},
 
 		/**
@@ -501,7 +524,7 @@
 			state.data.bannerCanceledReason = reason;
 			setStatus( STATUSES.BANNER_CANCELED, reason );
 
-			// Legacy fields for Special:RecordImpression
+			// Legacy fields for /beacon/impression
 			state.data.result = 'hide';
 			state.data.reason = reason;
 		},
@@ -526,7 +549,7 @@
 		setNoBannerAvailable: function () {
 			setStatus( STATUSES.NO_BANNER_AVAILABLE );
 
-			// Legacy fields for Special:RecordImpression
+			// Legacy fields for /beacon/impression
 			state.data.result = 'hide';
 			state.data.reason = 'empty';
 		},
@@ -540,7 +563,7 @@
 			state.data.bannerLoadedButHiddenReason = reason;
 			setStatus( STATUSES.BANNER_LOADED_BUT_HIDDEN, reason );
 
-			// Legacy fields for Special:RecordImpression
+			// Legacy fields for /beacon/impression
 			state.data.result = 'hide';
 			state.data.reason = reason;
 		},
@@ -552,12 +575,12 @@
 		setBannerShown: function () {
 			setStatus( STATUSES.BANNER_SHOWN );
 
-			// Legacy field for Special:RecordImpression
+			// Legacy field for /beacon/impression
 			state.data.result = 'show';
 		},
 
 		/**
-		 * Sets banner_count, a legacy field for Special:RecordImpression
+		 * Sets banner_count, a legacy field for /beacon/impression
 		 *
 		 * @param {number} bannerCount
 		 */

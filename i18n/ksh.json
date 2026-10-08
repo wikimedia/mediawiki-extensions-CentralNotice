@@ -202,7 +202,6 @@
 	"centralnotice-start-time": "De Aanfangszick (UTC)",
 	"centralnotice-end-date": "Et Dattum fum Engk en <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Universal Time Controlled\">UTC</i>",
 	"centralnotice-end-time": "De UTC Zick för et Engk",
-	"centralnotice-specialhidebanners-p3p": "Beschtemmpte Brauser bruche en kumpakte <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Platform for Privacy Preferences\">P3P</i> Rähjel för <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"„Plätzjer“\">cookies</i>, di en bschtemmpte Fäll eröm jescheck wähde.\n<!--\n\nhttps://translatewiki.net/wiki/Thread:Support/About_MediaWiki:Centralauth-centralautologin-p3p-explanation/ksh\n-->\nDonn Der de Rähjelle övver de Prevahtheid un der Dahteschoz för heh dat Wikki aanlohre.",
 	"centralnotice-banner-history-logger-rate": "Sample rate (should be between 0 and 1 inclusive)<!-- https://translatewiki.net/wiki/Thread:Support/About_MediaWiki:Centralnotice-banner-history-logger-rate/qqq  -->",
 	"centralnotice-impression-diet-restart-cycle-delay": "De Aanzahl Sekonde för affzewahde, ih dat der nähkße Dorschjang kütt - kann och fott blihve.",
 	"centralnotice-impression-diet-restart-cycle-delay-help": "Der Schtandadd es 0. esu krijje de Lässer eine Dorschjang un dann es Schloß.",
