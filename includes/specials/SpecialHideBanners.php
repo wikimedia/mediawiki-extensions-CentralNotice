@@ -14,9 +14,6 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 	// maximum length for 'reason' or 'category' in cookies
 	private const MAX_FIELD_LENGTH = 64;
 
-	// Cache this blank response for a day or so (60 * 60 * 24 s.)
-	private const CACHE_EXPIRY = 86400;
-
 	public function __construct() {
 		parent::__construct( 'HideBanners' );
 	}
@@ -43,11 +40,6 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 
 		header( 'Content-Type: image/png' );
 		header( 'access-control-allow-origin: *' );
-
-		if ( !$this->getUser()->isRegistered() ) {
-			$expiry = self::CACHE_EXPIRY;
-			header( "Cache-Control: public, s-maxage={$expiry}, max-age=0" );
-		}
 	}
 
 	/**
