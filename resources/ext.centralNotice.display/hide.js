@@ -16,8 +16,8 @@
 		// configured in wgNoticeCookieDurations.
 		MAX_CUSTOM_HIDE_DURATION = 2592000;
 
-	function removeCookie() {
-		$.cookie( cookieName, null, { path: '/' } );
+	function removeCookie( name ) {
+		$.cookie( name || cookieName, null, { path: '/' } );
 	}
 
 	/**
@@ -32,27 +32,40 @@
 			cookieName = HIDE_COOKIE_PREFIX + category;
 		},
 
-		processCookie: function () {
-			const rawCookieVal = $.cookie( cookieName );
+		/**
+		 * Gets the cookie for the category and validates it, removing invalid cookies.
+		 *
+		 * Parses the JSON and returns the stored object.
+		 *
+		 * This function should not set properties on hide, as this may be called
+		 * by external code to check whether the fundraising hide cookie has
+		 * a donate reason.
+		 *
+		 * @param {string} extractCategory
+		 * @return {Object|null}
+		 */
+		extractAndValidateCookie: function ( extractCategory ) {
+			const extractCookieName = HIDE_COOKIE_PREFIX + extractCategory,
+				rawCookieVal = $.cookie( extractCookieName );
 
 			// No cookie
 			if ( !rawCookieVal ) {
-				return;
+				return null;
 			}
 
-			// An old-format cookie; just delete it :)
-			if ( rawCookieVal === 'hide' ) {
-				removeCookie();
-				return;
-			}
-
-			let hideData;
 			// Try to parse the cookie
 			try {
-				hideData = JSON.parse( rawCookieVal );
+				return JSON.parse( rawCookieVal );
 			} catch ( e ) {
 				// Corrupt cookie contents
-				removeCookie();
+				removeCookie( extractCookieName );
+			}
+			return null;
+		},
+
+		processCookie: function () {
+			const hideData = hide.extractAndValidateCookie( category );
+			if ( !hideData ) {
 				return;
 			}
 
@@ -76,6 +89,14 @@
 				shouldHide = true;
 				reason = hideData.reason;
 			}
+		},
+
+		getDonationDate: function () {
+			const frCookie = hide.extractAndValidateCookie( 'fundraising' );
+			if ( !frCookie || frCookie.reason !== 'donate' || !( typeof frCookie.created === 'number' ) ) {
+				return null;
+			}
+			return new Date( frCookie.created * 1000 );
 		},
 
 		shouldHide: function () {

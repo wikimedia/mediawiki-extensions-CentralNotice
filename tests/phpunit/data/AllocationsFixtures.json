@@ -1,6 +1,10 @@
 {
 	"mock_config_values": {
-		"NoticeNumberOfBuckets": 2
+		"NoticeNumberOfBuckets": 2,
+		"NoticeCookieDurations": {
+			"close": 1209600,
+			"donate": 31536000
+		}
 	},
 	"test_cases": {
 		"single_full_anon": {

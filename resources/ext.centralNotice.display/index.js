@@ -989,6 +989,16 @@ const config = require( './config.json' );
 		},
 
 		/**
+		 * Return the created date of any fundraising cookie with reason = donate,
+		 * or null if none exists.
+		 *
+		 * @return {Date|null}
+		 */
+		getDonationDate: function () {
+			return cn.internal.hide.getDonationDate();
+		},
+
+		/**
 		 * Set and store this user's bucket for the current campaign. The
 		 * bucketer must be initialized first. However, code in campaign mixin
 		 * hook handlers and banners can safely assume that's the case.
