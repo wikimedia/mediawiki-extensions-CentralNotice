@@ -1,14 +1,11 @@
 <?php
 
 class CampaignLog {
-	/** @var string[] */
-	private static $basic_fields = [
+	private const BASIC_FIELDS = [
 		'start', 'end', 'enabled', 'preferred', 'locked', 'geo', 'buckets'
 	];
-	/** @var string[] */
-	private static $list_fields = [ 'projects', 'languages', 'countries', 'regions' ];
-	/** @var string[] */
-	private static $map_fields = [ 'banners' ];
+	private const LIST_FIELDS = [ 'projects', 'languages', 'countries', 'regions' ];
+	private const MAP_FIELDS = [ 'banners' ];
 
 	/** @var mixed[] */
 	private $begin;
@@ -43,13 +40,13 @@ class CampaignLog {
 				}
 			};
 
-			foreach ( static::$basic_fields as $name ) {
+			foreach ( self::BASIC_FIELDS as $name ) {
 				$store( $name );
 			}
-			foreach ( static::$list_fields as $name ) {
+			foreach ( self::LIST_FIELDS as $name ) {
 				$store( $name, $commaExplode );
 			}
-			foreach ( static::$map_fields as $name ) {
+			foreach ( self::MAP_FIELDS as $name ) {
 				$store( $name, $jsonDecode );
 			}
 		}
@@ -114,13 +111,13 @@ class CampaignLog {
 				unset( $added[ $name ] );
 			}
 		};
-		foreach ( static::$basic_fields as $name ) {
+		foreach ( self::BASIC_FIELDS as $name ) {
 			$diff_basic( $name );
 		}
-		foreach ( static::$list_fields as $name ) {
+		foreach ( self::LIST_FIELDS as $name ) {
 			$diff_list( $name );
 		}
-		foreach ( static::$map_fields as $name ) {
+		foreach ( self::MAP_FIELDS as $name ) {
 			$diff_map( $name );
 		}
 
