@@ -89,6 +89,7 @@ const config = require( './config.json' );
 	/**
 	 * Class for campaign-associated mixins. Access via mw.centralNotice.Mixin.
 	 *
+	 * @class CentralNoticeMixin
 	 * @param {string} name
 	 */
 	const Mixin = function ( name ) {
@@ -102,6 +103,7 @@ const config = require( './config.json' );
 	 * Run after we've chosen a campaign to attempt, but before we try to choose a
 	 * banner from that campaign.
 	 *
+	 * @memberof CentralNoticeMixin
 	 * @param {Function} handlerFunc
 	 */
 	Mixin.prototype.setPreBannerHandler = function ( handlerFunc ) {
@@ -112,6 +114,7 @@ const config = require( './config.json' );
 	 * Run after we chose and loaded a banner, or after the campaign failed, or after
 	 * we unsuccessfully attempted to chose a banner.
 	 *
+	 * @memberof CentralNoticeMixin
 	 * @param {Function} handlerFunc
 	 */
 	Mixin.prototype.setPostBannerOrFailHandler = function ( handlerFunc ) {
@@ -123,6 +126,7 @@ const config = require( './config.json' );
 	 * to be displayed, the hook runs after it's loaded. If all attempted campaigns failed
 	 * and no banner will show, the hook runs then.
 	 *
+	 * @memberof CentralNoticeMixin
 	 * @param {Function} handlerFunc
 	 */
 	Mixin.prototype.setFinalizeChooseAndMaybeDisplayHandler = function ( handlerFunc ) {
@@ -136,6 +140,7 @@ const config = require( './config.json' );
 	 * @param {string} hookPropertyName The name of a Mixin property containing
 	 * hook handlers
 	 * @param {Object} campaign
+	 * @ignore
 	 */
 	function runMixinHooks( hookPropertyName, campaign ) {
 		// eslint-disable-next-line no-jquery/no-each-util
@@ -163,14 +168,23 @@ const config = require( './config.json' );
 		} );
 	}
 
+	/**
+	 * @ignore
+	 */
 	function runPreBannerHooks() {
 		runMixinHooks( 'preBannerHandler', cn.internal.state.getAttemptingCampaign() );
 	}
 
+	/**
+	 * @ignore
+	 */
 	function runPostBannerOrFailHooks() {
 		runMixinHooks( 'postBannerOrFailHandler', cn.internal.state.getAttemptingCampaign() );
 	}
 
+	/**
+	 * @ignore
+	 */
 	function runFinalizeChooseAndMaybeDisplayHooks() {
 		cn.internal.state.getAttemptedCampaigns().forEach( ( campaign ) => {
 			runMixinHooks( 'finalizeChooseAndMaybeDisplayHandler', campaign );
@@ -180,6 +194,8 @@ const config = require( './config.json' );
 	/**
 	 * Set up the legacy cn.data property using a getter, or a normal property
 	 * (for browsers that don't support getters).
+	 *
+	 * @ignore
 	 */
 	function setUpDataProperty() {
 
@@ -204,6 +220,7 @@ const config = require( './config.json' );
 
 	/**
 	 * Expose a promise object to be resolved when the banner is loaded.
+	 * @ignore
 	 */
 	function setUpBannerLoadedPromise() {
 		bannerLoadedDeferredObj = $.Deferred();
@@ -218,6 +235,7 @@ const config = require( './config.json' );
 	/***
 	 * Based on implementation of now deprecated mw.Uri.encode
 	 *
+	 * @ignore
 	 * @param {string} s
 	 * @return {string}
 	 */
@@ -228,6 +246,9 @@ const config = require( './config.json' );
 			.replace( /%20/g, '+' );
 	}
 
+	/**
+	 * @ignore
+	 */
 	function fetchOrRetrieveBanner() {
 		const data = cn.internal.state.getData();
 
@@ -252,6 +273,7 @@ const config = require( './config.json' );
 	}
 
 	/**
+	 * @ignore
 	 * @param {string} dispatcherUrl
 	 * @param {Object} data Banner data
 	 * @return {URL}
@@ -286,6 +308,10 @@ const config = require( './config.json' );
 		urlBase.hash = '';
 		return urlBase;
 	}
+
+	/**
+	 * @ignore
+	 */
 	function fetchBanner() {
 		const url = getBannerUrl(
 			mw.config.get( 'wgCentralNoticeActiveBannerDispatcher' ),
@@ -304,6 +330,9 @@ const config = require( './config.json' );
 		} );
 	}
 
+	/**
+	 * @ignore
+	 */
 	function injectBannerHTML( bannerHtml ) {
 
 		// The centralNotice div should already have been added by
@@ -325,12 +354,16 @@ const config = require( './config.json' );
 	/**
 	 * Adds reallyRecordImpression() as the last handler for cn.recordImpressionDeferredObj,
 	 * then resolves.
+	 * @ignore
 	 */
 	function resolveRecordImpressionDeferred() {
 		cn.recordImpressionDeferredObj.done( reallyRecordImpression );
 		cn.recordImpressionDeferredObj.resolve();
 	}
 
+	/**
+	 * @ignore
+	 */
 	function recordImpression() {
 		let timeoutHasRun = false;
 
@@ -358,6 +391,9 @@ const config = require( './config.json' );
 		} );
 	}
 
+	/**
+	 * @ignore
+	 */
 	function reallyRecordImpression() {
 		const state = cn.internal.state,
 			random = Math.random();
@@ -380,6 +416,9 @@ const config = require( './config.json' );
 		}
 	}
 
+	/**
+	 * @ignore
+	 */
 	function sendBeacon( urlStr ) {
 		if ( navigator.sendBeacon ) {
 			try {
@@ -392,6 +431,9 @@ const config = require( './config.json' );
 		}
 	}
 
+	/**
+	 * @ignore
+	 */
 	function reallyChooseAndMaybeDisplay() {
 
 		const chooser = cn.internal.chooser,
@@ -608,6 +650,7 @@ const config = require( './config.json' );
 	 * Convenience method used only by reallyChooseAndMaybeDisplay() to update available
 	 * campaigns within the fallback loop.
 	 *
+	 * @ignore
 	 * @param {number} iteration
 	 */
 	function fallbackLoopUpdateAvailableCampaigns( iteration ) {
@@ -623,6 +666,7 @@ const config = require( './config.json' );
 	/**
 	 * Stuff we have to do following the call to fetch a banner (successful
 	 * or not)
+	 * @ignore
 	 */
 	function processAfterBannerFetch() {
 
@@ -640,6 +684,9 @@ const config = require( './config.json' );
 	 * other CN modules may add properties to this object, and we add some
 	 * dynamically. These additional properties are:
 	 *
+	 * @namespace mw.centralNotice
+	 */
+	/**
 	 *     choiceData: An array of campaigns possibly available to this user,
 	 *         along with data needed to chose one (or none). This contains
 	 *         everything the server can determine ahead-of-time about campaigns
@@ -671,7 +718,7 @@ const config = require( './config.json' );
 	 *         ext.centralNotice.bannerHistoryLogger, if that module has been
 	 *         loaded.
 	 */
-	cn = {
+	cn = /** @lends mw.centralNotice */{
 		/**
 		 * Really insert the banner (without waiting for the DOM to be ready).
 		 * Only exposed for use in tests.
@@ -845,14 +892,15 @@ const config = require( './config.json' );
 
 		/**
 		 * Base class for campaign-associated mixins (defined above).
+		 * @type {CentralNoticeMixin}
 		 */
-		Mixin: Mixin,
+		Mixin,
 
 		/**
 		 * Register a campaign-associated mixin to make it available for campaigns
 		 * to use it. Should be called for every campaign-associated mixin.
 		 *
-		 * @param {mw.centralNotice.Mixin} mixin
+		 * @param {CentralNoticeMixin} mixin
 		 */
 		registerCampaignMixin: function ( mixin ) {
 			campaignMixins[ mixin.name ] = mixin;
@@ -862,6 +910,8 @@ const config = require( './config.json' );
 		 * Select a campaign and a banner, run hooks, and maybe display a
 		 * banner.
 		 * Note: cn.choiceData must be set before this is called
+		 *
+		 * @private only accessible for testing
 		 */
 		chooseAndMaybeDisplay: function () {
 
@@ -881,6 +931,9 @@ const config = require( './config.json' );
 				.always( reallyChooseAndMaybeDisplay );
 		},
 
+		/**
+		 * @private testing only
+		 */
 		displayTestingBanner: function () {
 
 			// We gather the same data as for normal banner display, plus
@@ -907,6 +960,7 @@ const config = require( './config.json' );
 		 * the function passed as the second argument.
 		 *
 		 * @param {Object} bannerJson
+		 * @private testing only
 		 */
 		insertBanner: async function ( bannerJson ) {
 			// Insert the banner only after the DOM is ready and we know
@@ -965,6 +1019,7 @@ const config = require( './config.json' );
 		 * Handle a banner loader error, with an optional message
 		 *
 		 * @param {string} [msg]
+		 * @private testing only
 		 */
 		handleBannerLoaderError: function ( msg ) {
 			cn.internal.state.setBannerLoaderError( msg );
@@ -972,18 +1027,32 @@ const config = require( './config.json' );
 			processAfterBannerFetch();
 		},
 
+		/**
+		 * Hide the banner from a close button.
+		 */
 		hideBannerWithCloseButton: function () {
 			// Hide the banner element
 			$( '#centralNotice' ).hide();
 			cn.internal.hide.setHideWithCloseButtonCookies();
 		},
 
+		/**
+		 * Hides the current banner and sets a cookie to prevent future displays.
+		 *
+		 * @param {sting} reason
+		 * @param {number} duration
+		 */
 		customHideBanner: function ( reason, duration ) {
 			// Hide the banner element
 			$( '#centralNotice' ).hide();
 			cn.internal.hide.setHideCookies( reason, duration );
 		},
 
+		/**
+		 * Alias for hideBannerWithCloseButton
+		 *
+		 * @todo Determine whether this should be deprecated.
+		 */
 		hideBanner: function () {
 			cn.hideBannerWithCloseButton();
 		},
@@ -1006,6 +1075,7 @@ const config = require( './config.json' );
 		 * The current bucket can be read using
 		 * mw.centralNotice.getDataProperty( 'bucket' )
 		 *
+		 * @internal function for use in mixins
 		 * @param {number} bucket
 		 */
 		setBucket: function ( bucket ) {
@@ -1022,6 +1092,7 @@ const config = require( './config.json' );
 		 * and device. If the requested banner can't be displayed, no banner will be
 		 * shown.
 		 *
+		 * @internal use only
 		 * @param {string} banner The name of the banner to request
 		 */
 		requestBanner: function ( banner ) {

@@ -2,6 +2,8 @@
 	"name": "CentralNotice",
 	"private": true,
 	"scripts": {
+		"jsdoc": "jsdoc -c jsdoc.json",
+		"doc": "npm run jsdoc",
 		"minify:svg": "svgo --config=.svgo.config.js --quiet --recursive --folder resources/infrastructure/",
 		"selenium-daily": "npm run @selenium-test",
 		"@selenium-test": "wdio tests/selenium/wdio.conf.js",
@@ -18,6 +20,8 @@
 		"grunt-banana-checker": "0.13.0",
 		"grunt-eslint": "24.3.0",
 		"grunt-stylelint": "0.21.0",
+		"jsdoc": "4.0.3",
+		"jsdoc-wmf-theme": "1.2.0",
 		"stylelint-config-wikimedia": "0.20.0",
 		"svgo": "3.3.5",
 		"wdio-mediawiki": "6.5.3"

@@ -39,25 +39,25 @@
 	 */
 
 	/**
-	 * @event bucket-change
-	 *
 	 * The control for the number of buckets in the campaign has changed.
 	 * @param {number} numBuckets
+	 *
+	 * @event bucket-change
 	 */
 
 	/**
-	 * @event assigned-banners-change
-	 *
 	 * The controls for banner assignment (bucket assignments and banner removal
 	 * checkboxes) have changed. Note: This event does not fire when a checkbox for
 	 * adding a banner is checked.
+	 *
+	 * @event assigned-banners-change
 	 */
 	/**
-	 * @event error-state
-	 *
 	 * An error state is set or removed
 	 * @param {string} errorKey
 	 * @param {boolean} state true to set error, false to clear one.
+	 *
+	 * @event error-state
 	 */
 	const eventBus = new OO.EventEmitter();
 
