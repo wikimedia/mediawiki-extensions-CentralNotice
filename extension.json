@@ -238,6 +238,12 @@
 			"dependencies": [
 				"ext.centralNotice.display"
 			]
+		},
+		"ext.centralNotice.userEditCount": {
+			"scripts": "subscribing/ext.centralNotice.userEditCount.js",
+			"dependencies": [
+				"ext.centralNotice.display"
+			]
 		}
 	},
 	"ResourceFileModulePaths": {
@@ -531,6 +537,23 @@
 							"type": "string",
 							"labelMsg": "centralnotice-blackout-end-time",
 							"helpMsg": "centralnotice-blackout-time-help"
+						}
+					}
+				},
+				"userEditCount": {
+					"subscribingModule": "ext.centralNotice.userEditCount",
+					"nameMsg": "centralnotice-user-edit-count",
+					"helpMsg": "centralnotice-user-edit-count-help",
+					"parameters": {
+						"minEdits": {
+							"type": "string",
+							"labelMsg": "centralnotice-user-edit-count-min-edits",
+							"helpMsg": "centralnotice-user-edit-count-min-edits-help"
+						},
+						"maxEdits": {
+							"type": "string",
+							"labelMsg": "centralnotice-user-edit-count-max-edits",
+							"helpMsg": "centralnotice-user-edit-count-max-edits-help"
 						}
 					}
 				}

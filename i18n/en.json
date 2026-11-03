@@ -340,5 +340,11 @@
 	"centralnotice-blackout-help": "Hours during which no banners from this campaign will be shown. Start time may be after end time, indicating that the blackout period crosses local midnight.",
 	"centralnotice-blackout-start-time": "Start of blackout time",
 	"centralnotice-blackout-time-help": "Please use 24 hr HH:MM format, e.g. 18:30.",
-	"centralnotice-blackout-end-time": "End of blackout time"
+	"centralnotice-blackout-end-time": "End of blackout time",
+	"centralnotice-user-edit-count": "Target by user edit count",
+	"centralnotice-user-edit-count-help": "Set a minimum and/or maximum number of edits for a user to see this campaign.",
+	"centralnotice-user-edit-count-min-edits": "Minimum edits",
+	"centralnotice-user-edit-count-min-edits-help": "Only users with at least this many edits may see this campaign",
+	"centralnotice-user-edit-count-max-edits": "Maximum edits",
+	"centralnotice-user-edit-count-max-edits-help": "Only users with at most this many edits may see this campaign"
 }

@@ -41,6 +41,7 @@
 			"Vlad5250",
 			"Vonavy",
 			"Wileyfoxyx",
+			"Yurina Tatiana",
 			"Александр Сигачёв"
 		]
 	},
@@ -308,16 +309,19 @@
 	"centralnotice-large-banner-limit-help": "Покажите большой баннер один раз, а затем переключитесь на небольшие баннеры. Размещайте большие баннеры в выборках A и B, а мелкие баннеры — в выборках C и D.",
 	"centralnotice-banner-sequence": "Последовательность баннеров",
 	"centralnotice-banner-sequence-help": "Установить несколько баннеров в определённом порядке.",
+	"centralnotice-banner-sequence-days-error": "Должно быть целым числом больше нуля.",
 	"centralnotice-banner-sequence-banner": "Баннер",
 	"centralnotice-banner-sequence-page-views": "Просмотров страниц",
 	"centralnotice-banner-sequence-skip-with-id-error": "Идентификатор не может содержать «|».",
 	"centralnotice-banner-sequence-no-banner": "(нет баннера)",
 	"centralnotice-multiple-countries": "Несколько стран",
+	"centralnotice-multiple-regions": "Несколько регионов",
 	"centralnotice-multiple-languages": "Несколько языков",
 	"centralnotice-banner-template": "Шаблон баннера",
 	"centralnotice-banner-template-info": "(шаблон)",
 	"prefs-centralnotice-banners": "Баннеры",
 	"prefs-centralnotice-display-banner-types": "Типы отображаемых баннеров",
+	"prefs-description-centralnotice-banners": "Управляйте типами объявлений, которые хотите видеть.",
 	"centralnotice-campaign-type": "Тип кампании",
 	"centralntoice-deleted-campaign-type": "$1 (удаленный тип)",
 	"centralnotice-campaign-type-advocacy": "Правозащита",
@@ -328,5 +332,6 @@
 	"centralnotice-campaign-type-maintenance": "Обслуживание",
 	"centralnotice-campaign-type-photography": "Фотография",
 	"centralnotice-campaign-type-special": "Особое",
-	"centralnotice-user-prefs-intro": "Баннеры показывают объявления, представляющие интерес для сообществ и участников Викимедиа.\n\nНиже приведены параметры, позволяющие управлять типами объявлений, которые вы будете видеть. Некоторые уведомления платформы — те, которые связаны с обслуживанием сайта, а также особые уведомления, которые считаются необходимыми для всех участников, — будут отображаться всегда. Для получения дополнительной информации, пожалуйста, прочтите [[metawikimedia:Special:MyLanguage/CentralNotice|документацию на Мета-вики]]."
+	"centralnotice-user-prefs-intro": "Баннеры показывают объявления, представляющие интерес для сообществ и участников Викимедиа.\n\nНиже приведены параметры, позволяющие управлять типами объявлений, которые вы будете видеть. Некоторые уведомления платформы — те, которые связаны с обслуживанием сайта, а также особые уведомления, которые считаются необходимыми для всех участников, — будут отображаться всегда. Для получения дополнительной информации, пожалуйста, прочтите [[metawikimedia:Special:MyLanguage/CentralNotice|документацию на Мета-вики]].",
+	"centralnotice-blackout-time-help": "Пожалуйста, используйте 24-часовой формат ЧЧ:ММ (HH:MM), например 18:30."
 }
