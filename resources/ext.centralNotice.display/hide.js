@@ -14,7 +14,12 @@
 
 		// Maximum duration of hide cookies with reasons other than those
 		// configured in wgNoticeCookieDurations.
-		MAX_CUSTOM_HIDE_DURATION = 2592000;
+		MAX_CUSTOM_HIDE_DURATION = 2592000,
+
+		// Remember a donation for a year in localstorage, even if we overwrite the cookie
+		DONATION_DATE_STORAGE_KEY = 'centralnotice_donation_date',
+
+		DONATION_DATE_EXPIRY = 60 * 60 * 24 * 365;
 
 	function removeCookie( name ) {
 		$.cookie( name || cookieName, null, { path: '/' } );
@@ -93,10 +98,13 @@
 
 		getDonationDate: function () {
 			const frCookie = hide.extractAndValidateCookie( 'fundraising' );
-			if ( !frCookie || frCookie.reason !== 'donate' || !( typeof frCookie.created === 'number' ) ) {
-				return null;
+			let donationTimestamp;
+			if ( frCookie && frCookie.reason === 'donate' && typeof frCookie.created === 'number' ) {
+				donationTimestamp = frCookie.created;
+			} else {
+				donationTimestamp = mw.storage.get( DONATION_DATE_STORAGE_KEY );
 			}
-			return new Date( frCookie.created * 1000 );
+			return donationTimestamp ? new Date( donationTimestamp * 1000 ) : null;
 		},
 
 		shouldHide: function () {
@@ -133,6 +141,18 @@
 
 			// Re-use the same date object to set the cookie's expiry time
 			date.setSeconds( date.getSeconds() + duration );
+			if ( category === 'fundraising' ) {
+				if ( newReason === 'donate' ) {
+					hide.storeDonationDate( hideData.created );
+				} else {
+					const existingCookie = hide.extractAndValidateCookie( category );
+					// If we're overwriting a donation cookie with something else,
+					// stash the donation date in localstorage
+					if ( existingCookie && existingCookie.reason === 'donate' ) {
+						hide.storeDonationDate( existingCookie.created );
+					}
+				}
+			}
 
 			$.cookie(
 				cookieName,
@@ -173,6 +193,10 @@
 		setHideWithCloseButtonCookies: function () {
 			// 'close' must be in REASONS in ext.centralNotice.display.state
 			hide.setHideCookies( 'close', durations.close );
+		},
+
+		storeDonationDate: function ( unixTimestamp ) {
+			mw.storage.set( DONATION_DATE_STORAGE_KEY, unixTimestamp, DONATION_DATE_EXPIRY );
 		}
 	};
 }() );
