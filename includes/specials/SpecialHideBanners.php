@@ -24,13 +24,17 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 		$config = $this->getConfig();
 
 		$reason = $this->getRequest()->getText( 'reason', 'donate' );
+		// The 'Durations' values are also used client-side to determine how long
+		// to hide banners for a specific cookie reason.
 		$noticeCookieDurations = $config->get( 'NoticeCookieDurations' );
+		// The 'Expirations' values are only used here, and can override the in-browser
+		// cookie expiration date to be longer than the functional duration.
+		$noticeCookieExpirations = $config->get( 'NoticeCookieExpirations' );
 
-		if ( isset( $noticeCookieDurations[$reason] ) ) {
-			$duration = $noticeCookieDurations[$reason];
-		} else {
-			$duration = $config->get( 'CentralNoticeFallbackHideCookieDuration' );
-		}
+		$duration =
+			$noticeCookieExpirations[$reason] ??
+			$noticeCookieDurations[$reason] ??
+			$config->get( 'CentralNoticeFallbackHideCookieDuration' );
 
 		$category = $this->getRequest()->getText( 'category', 'fundraising' );
 		$category = Banner::sanitizeRenderedCategory( $category );

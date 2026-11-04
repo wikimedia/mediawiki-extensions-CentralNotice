@@ -349,6 +349,13 @@
 			},
 			"merge_strategy": "array_plus"
 		},
+		"NoticeCookieExpirations": {
+			"value": {
+				"donate": 28080000,
+				"donate-recur": 31536000
+			},
+			"merge_strategy": "array_plus"
+		},
 		"CentralNoticeFallbackHideCookieDuration": {
 			"value": 604800
 		},
