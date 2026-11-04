@@ -68,8 +68,10 @@ Configuration
 	// Defaults to two weeks.
 	'close' => 1209600,
 	// Amount of time the banners will hide after a successful donation.
-	// Defaults to one year.
-	'donate' => 31536000
+	// Defaults to six months.
+	'donate' => 15552000,
+	// 325 days, almost 11 months
+	'donate-recur' => 28080000
   );
 
 * $wgCentralNoticeFallbackHideCookieDuration: Fallback hide cookie duration,
