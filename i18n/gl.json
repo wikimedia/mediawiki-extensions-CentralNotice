@@ -341,5 +341,11 @@
 	"centralnotice-blackout-help": "Horario durante o cal non se mostrarán carteis desta campaña. A hora de inicio pode ser posterior á hora de finalización, o que indica que o período de bloqueo pasa da medianoite local.",
 	"centralnotice-blackout-start-time": "Hora de inicio do peche",
 	"centralnotice-blackout-time-help": "Emprega o formato HH:MM de 24 horas; por exemplo, 18:30.",
-	"centralnotice-blackout-end-time": "Hora de fin do peche"
+	"centralnotice-blackout-end-time": "Hora de fin do peche",
+	"centralnotice-user-edit-count": "Focalizar por número de edicións do usuario",
+	"centralnotice-user-edit-count-help": "Define un número mínimo e/ou máximo de edicións para que un usuario vexa esta campaña.",
+	"centralnotice-user-edit-count-min-edits": "Número mínimo de edicións",
+	"centralnotice-user-edit-count-min-edits-help": "Só os usuarios con polo menos este número de edicións poden ver esta campaña",
+	"centralnotice-user-edit-count-max-edits": "Número máximo de usuarios",
+	"centralnotice-user-edit-count-max-edits-help": "Só os usuarios con este número máximo de edicións poden ver esta campaña"
 }

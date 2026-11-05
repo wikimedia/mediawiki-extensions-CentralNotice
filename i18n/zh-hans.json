@@ -386,5 +386,11 @@
 	"centralnotice-blackout-help": "此活动的所有横幅不会显示的时段。开始时间可以晚于结束时间，这表示静默期会跨越本地时间的午夜。",
 	"centralnotice-blackout-start-time": "静默开始时间",
 	"centralnotice-blackout-time-help": "请使用24小时制HH:MM格式，例如18:30。",
-	"centralnotice-blackout-end-time": "静默结束时间"
+	"centralnotice-blackout-end-time": "静默结束时间",
+	"centralnotice-user-edit-count": "按用户编辑次数选定目标",
+	"centralnotice-user-edit-count-help": "设置用户看到此活动所需的最低或最高编辑次数。",
+	"centralnotice-user-edit-count-min-edits": "最低编辑次数",
+	"centralnotice-user-edit-count-min-edits-help": "只有编辑次数达到此数量的用户才能看到此活动",
+	"centralnotice-user-edit-count-max-edits": "最高编辑次数",
+	"centralnotice-user-edit-count-max-edits-help": "只有编辑次数不超过此数量的用户才能看到此活动"
 }
