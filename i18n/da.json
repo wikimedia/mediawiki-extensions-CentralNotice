@@ -350,5 +350,11 @@
 	"centralnotice-blackout-help": "Timer, hvor der ikke vises bannere fra denne kampagne. Starttidspunktet kan være efter sluttidspunktet, hvilket indikerer, at blackout-perioden krydser lokal midnat.",
 	"centralnotice-blackout-start-time": "Start på blackout-tiden",
 	"centralnotice-blackout-time-help": "Brug venligst 24-timers TT:MM-format, f.eks. 18:30.",
-	"centralnotice-blackout-end-time": "Slut på blackout-tiden"
+	"centralnotice-blackout-end-time": "Slut på blackout-tiden",
+	"centralnotice-user-edit-count": "Mål efter antal brugerredigeringer",
+	"centralnotice-user-edit-count-help": "Angiv et minimum og/eller maksimum antal redigeringer, som en bruger må se denne kampagne.",
+	"centralnotice-user-edit-count-min-edits": "Minimumsændringer",
+	"centralnotice-user-edit-count-min-edits-help": "Kun brugere med mindst dette antal redigeringer kan se denne kampagne",
+	"centralnotice-user-edit-count-max-edits": "Maksimalt antal redigeringer",
+	"centralnotice-user-edit-count-max-edits-help": "Kun brugere med højst dette antal redigeringer kan se denne kampagne"
 }
