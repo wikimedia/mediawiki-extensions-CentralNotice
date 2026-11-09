@@ -363,5 +363,11 @@
 	"centralnotice-blackout-help": "ساعات لن يتم خلالها عرض أي إعلانات من هذه الحملة. قد يبدأ وقت العرض بعد وقت الانتهاء، مما يشير إلى أن فترة الحظر تتجاوز منتصف الليل بالتوقيت المحلي.",
 	"centralnotice-blackout-start-time": "بداية وقت انقطاع التيار الكهربائي",
 	"centralnotice-blackout-time-help": "يرجى استخدام تنسيق 24 ساعة HH:MM، على سبيل المثال 18:30.",
-	"centralnotice-blackout-end-time": "نهاية فترة انقطاع التيار الكهربائي"
+	"centralnotice-blackout-end-time": "نهاية فترة انقطاع التيار الكهربائي",
+	"centralnotice-user-edit-count": "الهدف حسب عدد تعديلات المستخدم",
+	"centralnotice-user-edit-count-help": "حدد الحد الأدنى و/أو الحد الأقصى لعدد التعديلات التي يمكن للمستخدم رؤيتها لهذه الحملة.",
+	"centralnotice-user-edit-count-min-edits": "الحد الأدنى من التعديلات",
+	"centralnotice-user-edit-count-min-edits-help": "لا يمكن رؤية هذه الحملة إلا للمستخدمين الذين لديهم هذا العدد من التعديلات على الأقل",
+	"centralnotice-user-edit-count-max-edits": "أقصى قدر من التعديلات",
+	"centralnotice-user-edit-count-max-edits-help": "لن يتمكن من رؤية هذه الحملة إلا المستخدمون الذين لديهم هذا العدد من التعديلات كحد أقصى"
 }

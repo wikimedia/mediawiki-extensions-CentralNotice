@@ -341,5 +341,11 @@
 	"centralnotice-blackout-help": "Часови во кои нема да се прикажуваат разгласи за овој поход. Почетното време може да биде по завршното, што означува дека периодот ја преминува полноќта.",
 	"centralnotice-blackout-start-time": "Почеток на неработното време",
 	"centralnotice-blackout-time-help": "Користете 24-часовен формат ЧЧ:ММ, на пр. 18:30.",
-	"centralnotice-blackout-end-time": "Крај на неработното време"
+	"centralnotice-blackout-end-time": "Крај на неработното време",
+	"centralnotice-user-edit-count": "Цели според број на кориснички уредувања",
+	"centralnotice-user-edit-count-help": "Задајте најмал и/или најголем број на уредувања за корисникот да може да го види овој поход.",
+	"centralnotice-user-edit-count-min-edits": "Најмалку уредувања",
+	"centralnotice-user-edit-count-min-edits-help": "Само корисници со барем олку уредувања може да го гледаат овој поход",
+	"centralnotice-user-edit-count-max-edits": "Највеќе уредувања",
+	"centralnotice-user-edit-count-max-edits-help": "Само корисници со највеќе олку уредувања може да го гледаат овој поход"
 }
