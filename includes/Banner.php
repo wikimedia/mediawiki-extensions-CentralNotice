@@ -260,13 +260,15 @@ class Banner {
 
 	/**
 	 * Gets an array of all categories currently seen attached to banners
-	 * @return string[]
+	 * @return array<string,string>
 	 */
 	public static function getAllUsedCategories() {
-		$res = CNDatabase::getReplicaDb()->newSelectQueryBuilder()
+		$dbr = CNDatabase::getReplicaDb();
+		$res = $dbr->newSelectQueryBuilder()
 			->select( 'tmp_category' )
 			->distinct()
 			->from( 'cn_templates' )
+			->where( $dbr->expr( 'tmp_category', '!=', null ) )
 			->caller( __METHOD__ )
 			->orderBy( 'tmp_category' )
 			->fetchResultSet();
