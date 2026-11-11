@@ -338,5 +338,11 @@
 	"centralnotice-blackout-help": "Saacadaha aan la muujin doonin boorrada ololahan (waqtiga maxalliga ah). Waqtiga bilowgu wuu ka dambayn karaa waqtiga dhammaadka, taas oo muujinaysa in muddada hakintu ka gudbayso saqda dhexe ee waqtiga maxalliga ah.",
 	"centralnotice-blackout-start-time": "Bilowga waqtiga hakinta",
 	"centralnotice-blackout-time-help": "Fadlan isticmaal qaabka 24-ka saac ee HH:MM, tusaale ahaan 18:30.",
-	"centralnotice-blackout-end-time": "Dhammaadka waqtiga hakinta"
+	"centralnotice-blackout-end-time": "Dhammaadka waqtiga hakinta",
+	"centralnotice-user-edit-count": "Ku beegso tirada wax ka beddellada isticmaalaha",
+	"centralnotice-user-edit-count-help": "Deji tirada ugu yar iyo/ama ugu badan ee wax ka beddellada uu isticmaaluhu sameeyo si uu u arko ololahan.",
+	"centralnotice-user-edit-count-min-edits": "Wax ka beddelka ugu yar",
+	"centralnotice-user-edit-count-min-edits-help": "Kaliya isticmaalayaasha leh ugu yaraan tiradan wax ka beddellada ah ayaa arki kara ololahan.",
+	"centralnotice-user-edit-count-max-edits": "Tafatirka ugu badan",
+	"centralnotice-user-edit-count-max-edits-help": "Kaliya isticmaalayaasha aan ka badnayn tiradan wax ka beddellada ah ayaa arki kara ololahan."
 }

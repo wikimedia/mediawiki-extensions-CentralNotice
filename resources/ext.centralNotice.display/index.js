@@ -915,11 +915,8 @@ const config = require( './config.json' );
 				[ enrolledExperiments ] = await Promise.all( [
 					state.getEnrolledExperimentsPromise(),
 					new Promise( ( resolve ) => {
-						if ( document.readyState === 'loading' ) {
-							document.addEventListener( 'DOMContentLoaded', resolve );
-						} else {
-							resolve();
-						}
+						// jQuery used here so we resolve AFTER startup function has inserted div
+						$( resolve );
 					} )
 				] ),
 				inProhibitedExperiment = ( enrolledExperiments.length > 0 ),
