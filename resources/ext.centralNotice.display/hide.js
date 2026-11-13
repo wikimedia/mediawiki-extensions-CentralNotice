@@ -14,10 +14,15 @@
 
 		// Maximum duration of hide cookies with reasons other than those
 		// configured in wgNoticeCookieDurations.
-		MAX_CUSTOM_HIDE_DURATION = 2592000;
+		MAX_CUSTOM_HIDE_DURATION = 2592000,
 
-	function removeCookie() {
-		$.cookie( cookieName, null, { path: '/' } );
+		// Remember a donation for a year in localstorage, even if we overwrite the cookie
+		DONATION_DATE_STORAGE_KEY = 'centralnotice_donation_date',
+
+		DONATION_DATE_EXPIRY = 60 * 60 * 24 * 365;
+
+	function removeCookie( name ) {
+		$.cookie( name || cookieName, null, { path: '/' } );
 	}
 
 	/**
@@ -32,27 +37,40 @@
 			cookieName = HIDE_COOKIE_PREFIX + category;
 		},
 
-		processCookie: function () {
-			const rawCookieVal = $.cookie( cookieName );
+		/**
+		 * Gets the cookie for the category and validates it, removing invalid cookies.
+		 *
+		 * Parses the JSON and returns the stored object.
+		 *
+		 * This function should not set properties on hide, as this may be called
+		 * by external code to check whether the fundraising hide cookie has
+		 * a donate reason.
+		 *
+		 * @param {string} extractCategory
+		 * @return {Object|null}
+		 */
+		extractAndValidateCookie: function ( extractCategory ) {
+			const extractCookieName = HIDE_COOKIE_PREFIX + extractCategory,
+				rawCookieVal = $.cookie( extractCookieName );
 
 			// No cookie
 			if ( !rawCookieVal ) {
-				return;
+				return null;
 			}
 
-			// An old-format cookie; just delete it :)
-			if ( rawCookieVal === 'hide' ) {
-				removeCookie();
-				return;
-			}
-
-			let hideData;
 			// Try to parse the cookie
 			try {
-				hideData = JSON.parse( rawCookieVal );
+				return JSON.parse( rawCookieVal );
 			} catch ( e ) {
 				// Corrupt cookie contents
-				removeCookie();
+				removeCookie( extractCookieName );
+			}
+			return null;
+		},
+
+		processCookie: function () {
+			const hideData = hide.extractAndValidateCookie( category );
+			if ( !hideData ) {
 				return;
 			}
 
@@ -76,6 +94,17 @@
 				shouldHide = true;
 				reason = hideData.reason;
 			}
+		},
+
+		getDonationDate: function () {
+			const frCookie = hide.extractAndValidateCookie( 'fundraising' );
+			let donationTimestamp;
+			if ( frCookie && frCookie.reason === 'donate' && typeof frCookie.created === 'number' ) {
+				donationTimestamp = frCookie.created;
+			} else {
+				donationTimestamp = mw.storage.get( DONATION_DATE_STORAGE_KEY );
+			}
+			return donationTimestamp ? new Date( donationTimestamp * 1000 ) : null;
 		},
 
 		shouldHide: function () {
@@ -112,6 +141,18 @@
 
 			// Re-use the same date object to set the cookie's expiry time
 			date.setSeconds( date.getSeconds() + duration );
+			if ( category === 'fundraising' ) {
+				if ( newReason === 'donate' ) {
+					hide.storeDonationDate( hideData.created );
+				} else {
+					const existingCookie = hide.extractAndValidateCookie( category );
+					// If we're overwriting a donation cookie with something else,
+					// stash the donation date in localstorage
+					if ( existingCookie && existingCookie.reason === 'donate' ) {
+						hide.storeDonationDate( existingCookie.created );
+					}
+				}
+			}
 
 			$.cookie(
 				cookieName,
@@ -152,6 +193,10 @@
 		setHideWithCloseButtonCookies: function () {
 			// 'close' must be in REASONS in ext.centralNotice.display.state
 			hide.setHideCookies( 'close', durations.close );
+		},
+
+		storeDonationDate: function ( unixTimestamp ) {
+			mw.storage.set( DONATION_DATE_STORAGE_KEY, unixTimestamp, DONATION_DATE_EXPIRY );
 		}
 	};
 }() );
