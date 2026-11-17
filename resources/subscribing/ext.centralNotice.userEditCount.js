@@ -11,10 +11,10 @@
 		const editCount = mw.config.get( 'wgUserEditCount' ) || 0,
 			min = mixinParams.minEdits, max = mixinParams.maxEdits;
 
-		if (
-			( min && editCount < min ) ||
-			( max && editCount > max )
-		) {
+		if ( min && editCount < min ) {
+			cn.failCampaign( 'belowMinEdits' );
+		}
+		if ( max && editCount > max ) {
 			cn.failCampaign( 'other' );
 		}
 	} );
