@@ -227,12 +227,6 @@
 				"ext.centralNotice.display"
 			]
 		},
-		"ext.centralNotice.cspViolationAlert": {
-			"scripts": "subscribing/ext.centralNotice.cspViolationAlert.js",
-			"messages": [
-				"centralnotice-csp-violation-alert"
-			]
-		},
 		"ext.centralNotice.localBlackoutTimes": {
 			"scripts": "subscribing/ext.centralNotice.localBlackoutTimes.js",
 			"dependencies": [
@@ -589,9 +583,6 @@
 		},
 		"CentralNoticeGeoIPBackgroundLookupModule": {
 			"value": null
-		},
-		"CentralNoticeContentSecurityPolicy": {
-			"value": false
 		},
 		"CentralNoticeProhibitedExperiments": {
 			"value": [],

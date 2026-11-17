@@ -181,15 +181,6 @@ Configuration
   should be set server-side from Varnish.
   Default: null
 
-* $wgCentralNoticeContentSecurityPolicy: Optional setting to help detect banner
-  content that may violate users' privacy. When this is set, its value will be
-  used on banner preview pages as a content-security-policy header, and a small
-  script will be added to detect content security policy violations and show an
-  alert message. An example value that alerts on all third party requests but
-  does not break mediawiki is:
-    "default-src data: blob: 'unsafe-inline' 'unsafe-eval' 'self';"
-  Default: false
-
 * $wgCentralNoticeMaxCampaignFallback: The maximum number of times campaign chooser
   will iterate through available campaigns to choose one to display to the user.
   The purpose of setting a low value is to avoid a long-running loop through
