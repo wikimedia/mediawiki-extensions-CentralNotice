@@ -66,3 +66,11 @@ QUnit.test( 'setDonateThenCloseCookieAndRetrieveDate', ( assert ) => {
 	// Should be within 2 seconds (the date of the cookie is always rounded down to the nearest second)
 	assert.closeTo( date.getTime(), Date.now(), 2000 );
 } );
+
+QUnit.test( 'setDonateRecurCookieAndRetrieveDate', ( assert ) => {
+	hide.setCategory( 'fundraising' );
+	hide.setHideCookies( 'donate-recur', 1000 );
+	const date = hide.getDonationDate();
+	// Should be within 2 seconds (the date of the cookie is always rounded down to the nearest second)
+	assert.closeTo( date.getTime(), Date.now(), 2000 );
+} );

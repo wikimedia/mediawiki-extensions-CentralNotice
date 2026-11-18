@@ -99,7 +99,7 @@
 		getDonationDate: function () {
 			const frCookie = hide.extractAndValidateCookie( 'fundraising' );
 			let donationTimestamp;
-			if ( frCookie && frCookie.reason === 'donate' && typeof frCookie.created === 'number' ) {
+			if ( frCookie && frCookie.reason.startsWith( 'donate' ) && typeof frCookie.created === 'number' ) {
 				donationTimestamp = frCookie.created;
 			} else {
 				donationTimestamp = mw.storage.get( DONATION_DATE_STORAGE_KEY );
@@ -141,14 +141,15 @@
 
 			// Re-use the same date object to set the cookie's expiry time
 			date.setSeconds( date.getSeconds() + duration );
+
 			if ( category === 'fundraising' ) {
-				if ( newReason === 'donate' ) {
+				if ( newReason.startsWith( 'donate' ) ) {
 					hide.storeDonationDate( hideData.created );
 				} else {
 					const existingCookie = hide.extractAndValidateCookie( category );
 					// If we're overwriting a donation cookie with something else,
 					// stash the donation date in localstorage
-					if ( existingCookie && existingCookie.reason === 'donate' ) {
+					if ( existingCookie && existingCookie.reason.startsWith( 'donate' ) ) {
 						hide.storeDonationDate( existingCookie.created );
 					}
 				}
