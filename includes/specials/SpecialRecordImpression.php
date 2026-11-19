@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
+use Wikimedia\Http\HttpHeader;
 
 /**
  * Null endpoint.  This is a workaround to simplify analytics.
@@ -28,13 +29,13 @@ class SpecialRecordImpression extends UnlistedSpecialPage {
 	 */
 	private function sendHeaders() {
 		$expiry = static::CACHE_EXPIRY;
-		header( "Content-Type: image/png" );
+		HttpHeader::send( "Content-Type: image/png" );
 
 		// If we have a logged in user; do not cache (default for special pages)
 		// lest we capture a set-cookie header. Otherwise cache so we don't have
 		// too big of a DDoS hole.
 		if ( !$this->getUser()->isRegistered() ) {
-			header( "Cache-Control: public, s-maxage={$expiry}, max-age=0" );
+			HttpHeader::send( "Cache-Control: public, s-maxage={$expiry}, max-age=0" );
 		}
 	}
 }
