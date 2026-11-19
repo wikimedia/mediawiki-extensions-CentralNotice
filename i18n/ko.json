@@ -352,5 +352,11 @@
 	"centralnotice-blackout-help": "이 캠페인의 배너가 전혀 표시되지 않는 시간입니다. 시작 시간이 종료 시간 이후일 수 있으며, 이는 배너 표시 금지 기간이 현지 자정을 넘는다는 것을 의미합니다.",
 	"centralnotice-blackout-start-time": "정전 시작 시간",
 	"centralnotice-blackout-time-help": "24시간 형식(HH:MM)으로 입력해 주세요. 예: 18:30.",
-	"centralnotice-blackout-end-time": "정전 종료 시간"
+	"centralnotice-blackout-end-time": "정전 종료 시간",
+	"centralnotice-user-edit-count": "사용자의 편집 횟수로 타겟팅함",
+	"centralnotice-user-edit-count-help": "이 캠페인을 볼 수 있는 사용자의 최소 및/또는 최대 편집 횟수를 설정합니다.",
+	"centralnotice-user-edit-count-min-edits": "최소 편집 횟수",
+	"centralnotice-user-edit-count-min-edits-help": "최소 이 편집 횟수를 가진 사용자만 이 캠페인을 볼 수 있습니다",
+	"centralnotice-user-edit-count-max-edits": "최대 편집 횟수",
+	"centralnotice-user-edit-count-max-edits-help": "최대 이 편집 횟수를 가진 사용자만 이 캠페인을 볼 수 있습니다"
 }
