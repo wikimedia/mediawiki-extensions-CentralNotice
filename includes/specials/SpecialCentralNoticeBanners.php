@@ -144,6 +144,8 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		// Process the form that we sent out
 		$formDescriptor = $this->generateBannerListForm( $this->bannerFilterString );
 		$htmlForm = new CentralNoticeHtmlForm( $formDescriptor, $this->getContext() );
+		$this->setFilterFromUrl();
+
 		$htmlForm->setSubmitCallback( [ $this, 'processBannerList' ] )
 			->prepareForm();
 		$formResult = $htmlForm->tryAuthorizedSubmit();
@@ -289,8 +291,6 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	 * @return null|string|array
 	 */
 	public function processBannerList( $formData ) {
-		$this->setFilterFromUrl();
-
 		if ( !$this->getRequest()->wasPosted() ) {
 			return null;
 		}
