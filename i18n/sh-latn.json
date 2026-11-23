@@ -217,7 +217,6 @@
 	"centralnotice-messages-pending-approval": "Jezici s porukama koje trenutno čekaju odobrenje",
 	"centralnotice-banner-not-found-title": "Baner nije pronađen",
 	"centralnotice-banner-not-found-contents": "Ne postoji zaglavlje sa tačno tim imenom.",
-	"centralnotice-csp-violation-alert": "Utvrđeno je kršenje politike sigurnosti sadržajâ! Bio je pokušaj da se učita od $1.",
 	"centralnotice-banner-history-logger": "Dnevnik historije obavijesti",
 	"centralnotice-banner-history-logger-help": "Slijedi nizku obavijesti koja prikazuje se čitateljima i povremeno šalji ih nazad serveru.",
 	"centralnotice-banner-history-logger-rate": "Stop uzorkovanja",

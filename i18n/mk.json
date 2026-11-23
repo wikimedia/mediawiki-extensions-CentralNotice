@@ -251,7 +251,6 @@
 	"centralnotice-end-time": "Време на завршување (UTC)",
 	"centralnotice-banner-not-found-title": "Не го пронајдов заглавието",
 	"centralnotice-banner-not-found-contents": "Нема заглавие со точно тоа име.",
-	"centralnotice-csp-violation-alert": "Утврден е прекршок на правилата за безбедност на содржините. Вчитувањето на содржини од извори вон викито протекува податоци за читателите. Прегледајте ги разгласите без помагала или додатоци од трети лица. Прекршувачка URL: $1.",
 	"centralnotice-banner-history-logger": "Дневник на историјата на разгласот",
 	"centralnotice-banner-history-logger-help": "Следи ја низата разгласи што им се прикажува на читателите и повремено испраќај му ги назад на опслужувачот.",
 	"centralnotice-banner-history-logger-rate": "Стапка на примерочење",
