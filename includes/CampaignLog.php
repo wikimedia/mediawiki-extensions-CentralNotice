@@ -11,14 +11,6 @@ class CampaignLog {
 	private $begin;
 	/** @var mixed[] */
 	private $end;
-	/** @var string */
-	private $campaign;
-	/** @var string */
-	private $action;
-	/** @var string|int */
-	private $timestamp;
-	/** @var string|null */
-	private $comment;
 
 	/**
 	 * @param stdClass|null $row
@@ -50,11 +42,6 @@ class CampaignLog {
 				$store( $name, $jsonDecode );
 			}
 		}
-
-		$this->campaign = $row->notlog_not_name;
-		$this->action = $row->notlog_action;
-		$this->timestamp = $row->notlog_timestamp;
-		$this->comment = $row->notlog_comment ?? '';
 	}
 
 	/**

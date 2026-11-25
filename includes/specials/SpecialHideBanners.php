@@ -3,6 +3,7 @@
 use MediaWiki\Extension\CentralAuth\User\CentralAuthUser;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
+use Wikimedia\Http\HttpHeader;
 
 /**
  * Unlisted Special Page which sets a cookie for hiding banners across all languages of a project.
@@ -23,13 +24,17 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 		$config = $this->getConfig();
 
 		$reason = $this->getRequest()->getText( 'reason', 'donate' );
+		// The 'Durations' values are also used client-side to determine how long
+		// to hide banners for a specific cookie reason.
 		$noticeCookieDurations = $config->get( 'NoticeCookieDurations' );
+		// The 'Expirations' values are only used here, and can override the in-browser
+		// cookie expiration date to be longer than the functional duration.
+		$noticeCookieExpirations = $config->get( 'NoticeCookieExpirations' );
 
-		if ( isset( $noticeCookieDurations[$reason] ) ) {
-			$duration = $noticeCookieDurations[$reason];
-		} else {
-			$duration = $config->get( 'CentralNoticeFallbackHideCookieDuration' );
-		}
+		$duration =
+			$noticeCookieExpirations[$reason] ??
+			$noticeCookieDurations[$reason] ??
+			$config->get( 'CentralNoticeFallbackHideCookieDuration' );
 
 		$category = $this->getRequest()->getText( 'category', 'fundraising' );
 		$category = Banner::sanitizeRenderedCategory( $category );
@@ -38,8 +43,8 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 		$this->getOutput()->disable();
 		wfResetOutputBuffers();
 
-		header( 'Content-Type: image/png' );
-		header( 'access-control-allow-origin: *' );
+		HttpHeader::send( 'Content-Type: image/png' );
+		HttpHeader::send( 'access-control-allow-origin: *' );
 	}
 
 	/**
@@ -49,6 +54,10 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 	 * @param string $reason
 	 */
 	private function setHideCookie( $category, $duration, $reason ) {
+		if ( defined( 'MW_PHPUNIT_TEST' ) ) {
+			// Cookies are no-ops in tests, avoid "Headers already sent" warnings.
+			return;
+		}
 		$category = mb_substr( $category, 0, self::MAX_FIELD_LENGTH );
 		$reason = mb_substr( $reason, 0, self::MAX_FIELD_LENGTH );
 		$created = time();

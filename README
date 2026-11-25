@@ -63,7 +63,7 @@ Configuration
   these entries based on the  cookie's "reason" element and adds that to the
   cookie's "created" element to determine when to stop hiding the banner.
 
-  Default: array(
+  Default: [
 	// The amount of time banners will be hidden by the close box.
 	// Defaults to two weeks.
 	'close' => 1209600,
@@ -72,7 +72,18 @@ Configuration
 	'donate' => 15552000,
 	// 325 days, almost 11 months
 	'donate-recur' => 28080000
-  );
+  ];
+
+* $wgNoticeCookieExpirations: If a value is set for a reason here, Special:HideBanner
+  will use this value to set an expiration date for the cookie. Otherwise it falls
+  back to the duration for the reason in $wgNoticeCookieDurations
+
+  Default: [
+	// 325 days
+	'donate' => 28080000,
+	// one year.
+	'donate-recur' => 31536000
+  ];
 
 * $wgCentralNoticeFallbackHideCookieDuration: Fallback hide cookie duration,
   for hide reasons without an entry in $wgNoticeCookieDurations.
@@ -169,15 +180,6 @@ Configuration
   be set from the GeoIP cookie. In the WMF production environment, this cookie
   should be set server-side from Varnish.
   Default: null
-
-* $wgCentralNoticeContentSecurityPolicy: Optional setting to help detect banner
-  content that may violate users' privacy. When this is set, its value will be
-  used on banner preview pages as a content-security-policy header, and a small
-  script will be added to detect content security policy violations and show an
-  alert message. An example value that alerts on all third party requests but
-  does not break mediawiki is:
-    "default-src data: blob: 'unsafe-inline' 'unsafe-eval' 'self';"
-  Default: false
 
 * $wgCentralNoticeMaxCampaignFallback: The maximum number of times campaign chooser
   will iterate through available campaigns to choose one to display to the user.

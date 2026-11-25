@@ -272,7 +272,6 @@
 	"centralnotice-end-time": "Bitiş zamanı (UTC)",
 	"centralnotice-banner-not-found-title": "Banner bulunamadı",
 	"centralnotice-banner-not-found-contents": "Bu tam adı taşıyan bir banner yok.",
-	"centralnotice-csp-violation-alert": "İçerik Güvenlik Politikası ihlâli tespit edildi. Viki dışı kaynaklardan içerik yüklenmesi, okuyucu verilerinin sızdırılmasına neden oluyor. Lütfen herhangi bir küçük araç veya üçüncü taraf eklentisi içermeyen başlıkları önizleyin. İhlal edilen URL: $1.",
 	"centralnotice-banner-history-logger": "Banner geçmişi günlüğü",
 	"centralnotice-banner-history-logger-help": "Okuyucular tarafından görülen afişlerin sırasını izleyin ve ara sıra sunucuya geri gönderin.",
 	"centralnotice-banner-history-logger-rate": "Aynı oran",

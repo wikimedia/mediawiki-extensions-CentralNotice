@@ -27,6 +27,10 @@
 	let multiStorageOption;
 
 	mixin.setPreBannerHandler( impressionDietHandler );
+
+	/**
+	 * @ignore
+	 */
 	function impressionDietHandler( mixinParams ) {
 		// URL forced a banner
 		if ( mw.util.getParamValue( 'force' ) ) {
@@ -53,16 +57,14 @@
 
 		const now = Date.now();
 
-		/**
-		 * Object with data used to determine whether to hide the banner
-		 * Properties:
-		 *   seenCount:        Total number of impressions seen by this user
-		 *   skippedThisCycle: Number of initial impressions we've skipped this cycle
-		 *   nextCycleStart:   Unix timestamp after which we can show more banners
-		 *   seenThisCycle:    Number of impressions seen this cycle
-		 *   nextDailyStart:   Unit timestamp when the daily limit resets
-		 *   seenThisDay:      Number of impressions seen this day
-		 */
+		// Object with data used to determine whether to hide the banner
+		// Properties:
+		//   seenCount:        Total number of impressions seen by this user
+		//   skippedThisCycle: Number of initial impressions we've skipped this cycle
+		//   nextCycleStart:   Unix timestamp after which we can show more banners
+		//   seenThisCycle:    Number of impressions seen this cycle
+		//   nextDailyStart:   Unit timestamp when the daily limit resets
+		//   seenThisDay:      Number of impressions seen this day
 		let counts;
 
 		// Reset counts if requested (for testing)
@@ -241,6 +243,7 @@
 	cn.registerCampaignMixin( mixin );
 
 	// For use in QUnit tests
+	// @ignore
 	module.exports.private = {
 		impressionDietHandler
 	};

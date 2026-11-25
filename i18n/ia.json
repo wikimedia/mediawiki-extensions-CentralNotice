@@ -247,7 +247,6 @@
 	"centralnotice-end-time": "Hora de fin (UTC)",
 	"centralnotice-banner-not-found-title": "Bandiera non trovate",
 	"centralnotice-banner-not-found-contents": "Non existe un bandiera con iste nomine exacte.",
-	"centralnotice-csp-violation-alert": "Ha essite detegite un violation del politica de securitate de contento. Le cargamento de contento desde fontes foras del wiki divulga datos de lectores. Per favor previsualisa bandieras sin gadgets o additivos de tertios. URL problematic: $1",
 	"centralnotice-banner-history-logger": "Registrator de historia de bandieras",
 	"centralnotice-banner-history-logger-help": "Traciar le sequentia de bandieras vidite per lectores, e occasionalmente inviar lo retro al servitor.",
 	"centralnotice-banner-history-logger-rate": "Taxa de monstra",

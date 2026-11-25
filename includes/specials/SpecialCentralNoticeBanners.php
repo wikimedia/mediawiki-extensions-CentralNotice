@@ -144,9 +144,11 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		// Process the form that we sent out
 		$formDescriptor = $this->generateBannerListForm( $this->bannerFilterString );
 		$htmlForm = new CentralNoticeHtmlForm( $formDescriptor, $this->getContext() );
+		$this->setFilterFromUrl();
+
 		$htmlForm->setSubmitCallback( [ $this, 'processBannerList' ] )
 			->prepareForm();
-		$formResult = $htmlForm->trySubmit();
+		$formResult = $htmlForm->tryAuthorizedSubmit();
 
 		if ( $this->bannerFormRedirectRequired ) {
 			return;
@@ -289,7 +291,9 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	 * @return null|string|array
 	 */
 	public function processBannerList( $formData ) {
-		$this->setFilterFromUrl();
+		if ( !$this->getRequest()->wasPosted() ) {
+			return null;
+		}
 
 		if ( $formData[ 'action' ] && $this->editable ) {
 			switch ( strtolower( $formData[ 'action' ] ) ) {
@@ -306,33 +310,27 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 						return $this->msg( 'centralnotice-template-exists' )->parse();
 					} else {
 						if ( !empty( $formData['newBannerTemplate'] ) ) {
-							$isError = false;
 							try {
 								$bannerTemplate = Banner::fromName( $formData['newBannerTemplate'] );
 								// This will do data-load for the banner, confirming it actually exists in the DB
 								// without calling Banner::exists()
 								if ( !$bannerTemplate->isTemplate() ) {
-									$isError = true;
 									wfDebugLog(
 										'CentralNotice',
 										'Attempted to create a banner based on invalid template'
 									);
-								}
-							} catch ( BannerDataException $exception ) {
-								$isError = true;
-								wfDebugLog( 'CentralNotice', $exception->getMessage() );
-							} finally {
-								if ( $isError ) {
-									// We do not want to show the actual exception to the user here,
-									// since the message does not actually refer to the template being created,
-									// but to the template it is being created from
 									return $this->msg( 'centralnotice-banner-template-error' )->plain();
 								}
+							} catch ( BannerDataException $exception ) {
+								wfDebugLog( 'CentralNotice', $exception->getMessage() );
+								// We do not want to show the actual exception to the user here,
+								// since the message does not actually refer to the template being created,
+								// but to the template it is being created from
+								return $this->msg( 'centralnotice-banner-template-error' )->plain();
 							}
 							$retval = Banner::addFromBannerTemplate(
 								$this->bannerName,
 								$this->getUser(),
-								// @phan-suppress-next-line PhanPossiblyUndeclaredVariable
 								$bannerTemplate,
 								$formData['newBannerEditSummary']
 							);
@@ -964,6 +962,9 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	 * @return string|null
 	 */
 	public function processEditBanner( $formData ) {
+		if ( !$this->getRequest()->wasPosted() ) {
+			return null;
+		}
 		// First things first! Figure out what the heck we're actually doing!
 		switch ( $formData[ 'action' ] ) {
 			case 'update-lang':

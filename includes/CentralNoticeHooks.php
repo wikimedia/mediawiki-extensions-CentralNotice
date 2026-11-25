@@ -389,7 +389,7 @@ class CentralNoticeHooks implements
 	 * @return bool
 	 */
 	public static function onBeforePageDisplay( $out, $skin ) {
-		global $wgCentralSelectedBannerDispatcher, $wgServerName, $wgCentralNoticeContentSecurityPolicy;
+		global $wgCentralSelectedBannerDispatcher, $wgServerName;
 
 		// Always add geoIP
 		// TODO Separate geoIP from CentralNotice
@@ -427,17 +427,6 @@ class CentralNoticeHooks implements
 		// Insert the startup module
 		$out->addModules( 'ext.centralNotice.startUp' );
 
-		// FIXME: I80f6f469ba4c0b60 has been in core since REL1_32.
-		// Get rid of $wgCentralNoticeContentSecurityPolicy and use their stuff.
-		if (
-			$wgCentralNoticeContentSecurityPolicy &&
-			$request->getVal( 'banner' )
-		) {
-			$request->response()->header(
-				"content-security-policy: $wgCentralNoticeContentSecurityPolicy"
-			);
-			$out->addModules( 'ext.centralNotice.cspViolationAlert' );
-		}
 		return true;
 	}
 

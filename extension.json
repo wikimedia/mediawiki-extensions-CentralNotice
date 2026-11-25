@@ -15,7 +15,7 @@
 	"descriptionmsg": "centralnotice-desc",
 	"license-name": "GPL-2.0-or-later",
 	"requires": {
-		"MediaWiki": ">= 1.47.0",
+		"MediaWiki": ">= 1.48.0",
 		"extensions": {
 			"EventLogging": "*"
 		}
@@ -227,12 +227,6 @@
 				"ext.centralNotice.display"
 			]
 		},
-		"ext.centralNotice.cspViolationAlert": {
-			"scripts": "subscribing/ext.centralNotice.cspViolationAlert.js",
-			"messages": [
-				"centralnotice-csp-violation-alert"
-			]
-		},
 		"ext.centralNotice.localBlackoutTimes": {
 			"scripts": "subscribing/ext.centralNotice.localBlackoutTimes.js",
 			"dependencies": [
@@ -346,6 +340,13 @@
 				"close": 1209600,
 				"donate": 15552000,
 				"donate-recur": 28080000
+			},
+			"merge_strategy": "array_plus"
+		},
+		"NoticeCookieExpirations": {
+			"value": {
+				"donate": 28080000,
+				"donate-recur": 31536000
 			},
 			"merge_strategy": "array_plus"
 		},
@@ -582,9 +583,6 @@
 		},
 		"CentralNoticeGeoIPBackgroundLookupModule": {
 			"value": null
-		},
-		"CentralNoticeContentSecurityPolicy": {
-			"value": false
 		},
 		"CentralNoticeProhibitedExperiments": {
 			"value": [],

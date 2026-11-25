@@ -262,7 +262,6 @@
 	"centralnotice-end-time": "종료 시각 (UTC)",
 	"centralnotice-banner-not-found-title": "배너를 찾을 수 없음",
 	"centralnotice-banner-not-found-contents": "이 이름을 가진 배너가 없습니다.",
-	"centralnotice-csp-violation-alert": "내용 보안 정책 위반이 발견되었습니다! 위키 외부 소스에서 콘텐츠를 불러오면 독자 데이터가 유출됩니다. 배너를 미리 보기할 때는 소도구나 서드 파티 추가 기능을 사용하지 마세요. 위반 URL: $1.",
 	"centralnotice-banner-history-logger": "배너 역사 로거",
 	"centralnotice-banner-history-logger-help": "독자들이 본 배너의 시퀀스를 추적하고, 주기적으로 서버로 전송합니다.",
 	"centralnotice-banner-history-logger-rate": "샘플링 레이트",
@@ -352,5 +351,11 @@
 	"centralnotice-blackout-help": "이 캠페인의 배너가 전혀 표시되지 않는 시간입니다. 시작 시간이 종료 시간 이후일 수 있으며, 이는 배너 표시 금지 기간이 현지 자정을 넘는다는 것을 의미합니다.",
 	"centralnotice-blackout-start-time": "정전 시작 시간",
 	"centralnotice-blackout-time-help": "24시간 형식(HH:MM)으로 입력해 주세요. 예: 18:30.",
-	"centralnotice-blackout-end-time": "정전 종료 시간"
+	"centralnotice-blackout-end-time": "정전 종료 시간",
+	"centralnotice-user-edit-count": "사용자의 편집 횟수로 타겟팅함",
+	"centralnotice-user-edit-count-help": "이 캠페인을 볼 수 있는 사용자의 최소 및/또는 최대 편집 횟수를 설정합니다.",
+	"centralnotice-user-edit-count-min-edits": "최소 편집 횟수",
+	"centralnotice-user-edit-count-min-edits-help": "최소 이 편집 횟수를 가진 사용자만 이 캠페인을 볼 수 있습니다",
+	"centralnotice-user-edit-count-max-edits": "최대 편집 횟수",
+	"centralnotice-user-edit-count-max-edits-help": "최대 이 편집 횟수를 가진 사용자만 이 캠페인을 볼 수 있습니다"
 }

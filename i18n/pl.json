@@ -271,7 +271,6 @@
 	"centralnotice-end-time": "Czas zakończenia (UTC)",
 	"centralnotice-banner-not-found-title": "Nie znaleziono banera",
 	"centralnotice-banner-not-found-contents": "Nie ma banera o dokładnie takiej nazwie.",
-	"centralnotice-csp-violation-alert": "Wykryto naruszenie polityki bezpieczeństwa treści. Ładowanie treści spoza wiki powoduje wyciek danych o czytelniku. Sprawdź podgląd bannerów bez gadżetów i zewnętrznych dodatków. Naruszający URL: $1.",
 	"centralnotice-banner-history-logger": "Rejestrator historii banerów",
 	"centralnotice-banner-history-logger-help": "Śledź kolejność banerów oglądanych przez czytelników i od czasu do czasu wysyłaj ją z powrotem do serwera.",
 	"centralnotice-banner-history-logger-rate": "Częstość próbkowania",

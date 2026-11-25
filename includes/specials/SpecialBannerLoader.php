@@ -3,6 +3,7 @@
 use MediaWiki\Html\Html;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
+use Wikimedia\Http\HttpHeader;
 
 /**
  * Renders banner contents as jsonp.
@@ -158,7 +159,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	 * TODO Couldn't we cache for logged-in users? See T149873
 	 */
 	private function sendHeaders() {
-		header( "Content-type: text/javascript; charset=utf-8" );
+		HttpHeader::send( "Content-type: text/javascript; charset=utf-8" );
 
 		if ( !$this->getUser()->isRegistered() ) {
 			// Header tells front-end caches to retain the content for $sMaxAge seconds.
@@ -170,7 +171,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 			$sMaxAge = 0;
 		}
 
-		header( "Cache-Control: public, s-maxage={$sMaxAge}, max-age=0" );
+		HttpHeader::send( "Cache-Control: public, s-maxage={$sMaxAge}, max-age=0" );
 	}
 
 	/**

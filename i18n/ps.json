@@ -288,5 +288,9 @@
 	"centralnotice-blackout": "د ټاکنيزې سيالۍ د بندېدو گړۍ (په ځايي وخت)",
 	"centralnotice-blackout-start-time": "د برېښنا بندېدو پيل وخت",
 	"centralnotice-blackout-time-help": "مهرباني وکړئ د ۲۴ گړۍ HH:MM بڼه وکاروئ، د بېلگې په توگه 18:30.",
-	"centralnotice-blackout-end-time": "د برېښنا بندېدو پای وخت"
+	"centralnotice-blackout-end-time": "د برېښنا بندېدو پای وخت",
+	"centralnotice-user-edit-count-min-edits": "لږ تر لږه سمونونه",
+	"centralnotice-user-edit-count-min-edits-help": "يوازې هغه کارنان چې لږ تر لږه دومره سمونونه لري دا ټاکنيزه سيالي ليدلی شي",
+	"centralnotice-user-edit-count-max-edits": "ډېر تر ډېره سمونونه",
+	"centralnotice-user-edit-count-max-edits-help": "يوازې هغه کارنان چې ډېر تر ډېره دومره سمونونه لري دا ټاکنيزه سيالي ليدلی شي"
 }
