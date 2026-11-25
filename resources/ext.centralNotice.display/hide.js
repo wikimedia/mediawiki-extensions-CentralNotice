@@ -94,6 +94,16 @@
 				shouldHide = true;
 				reason = hideData.reason;
 			}
+
+			// Stash any existing donation date in localstorage when first seen,
+			// in case cookie is overwritten in custom banner code.
+			if (
+				category === 'fundraising' &&
+				hideData.reason.startsWith( 'donate' ) &&
+				typeof hideData.created === 'number'
+			) {
+				hide.storeDonationDate( hideData.created );
+			}
 		},
 
 		getDonationDate: function () {
@@ -145,13 +155,6 @@
 			if ( category === 'fundraising' ) {
 				if ( newReason.startsWith( 'donate' ) ) {
 					hide.storeDonationDate( hideData.created );
-				} else {
-					const existingCookie = hide.extractAndValidateCookie( category );
-					// If we're overwriting a donation cookie with something else,
-					// stash the donation date in localstorage
-					if ( existingCookie && existingCookie.reason.startsWith( 'donate' ) ) {
-						hide.storeDonationDate( existingCookie.created );
-					}
 				}
 			}
 
